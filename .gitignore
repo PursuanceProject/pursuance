@@ -1,0 +1,7 @@
+*~
+node_modules/
+build/
+ensue
+
+# bower static assets
+static/lib/
