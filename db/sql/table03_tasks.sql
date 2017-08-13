@@ -1,5 +1,5 @@
 CREATE TABLE tasks (
-    task_id          serial    NOT NULL,
+    id               serial    NOT NULL,
     pursuance_id     integer   NOT NULL REFERENCES pursuances ON DELETE CASCADE,
     title            text      NOT NULL CHECK (LENGTH(title) <= 100) DEFAULT '',
     title_enc        text      NOT NULL CHECK (LENGTH(title_enc) <= 2100) DEFAULT '',
