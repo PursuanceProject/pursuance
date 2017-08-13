@@ -7,7 +7,7 @@ CREATE TABLE tasks (
     description_enc  text      NOT NULL CHECK (LENGTH(description_enc) <= 12000) DEFAULT '',
     deliverables     text      NOT NULL CHECK (LENGTH(deliverables) <= 2000) DEFAULT '',
     deliverables_enc text      NOT NULL CHECK (LENGTH(deliverables_enc) <= 4000) DEFAULT '',
-    assignee         text      REFERENCES users,
+    assignee         integer   REFERENCES users,
     created          timestamp WITH time zone NOT NULL DEFAULT now(),
     PRIMARY KEY (task_id, pursuance_id)
 );
