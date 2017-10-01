@@ -25,4 +25,4 @@ npm start
 
 ## Conventions
 
-Please follow these naming and spacing conventions when making a pull request: [React + Redux Convetions](https://unbug.gitbooks.io/react-native-training/content/45_naming_convention.html)
+Please follow these naming and spacing conventions when making a pull request: [React + Redux Conventions](https://unbug.gitbooks.io/react-native-training/content/45_naming_convention.html)
