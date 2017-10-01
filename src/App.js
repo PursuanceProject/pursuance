@@ -1,22 +1,27 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import NavBar from './components/NavBar/NavBar';
+import Footer from './components/Footer/Footer';
+import HomePage from './components/HomePage/HomePage';
+import Dashboard from './components/Dashboard/Dashboard';
+import NotFound from './components/NotFound/NotFound';
 import './App.css';
+
 
 class App extends Component {
   render() {
     return (
-      <div className="App" style={{textAlign: 'center'}}>
-        <div className="App-header" style={{backgroundColor: '#222',
-                                            height: '150px',
-                                            padding: '20px',
-                                            color: 'white'}}>
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
+      <Router>
+        <div className="App">
+          <Route path="/" component={NavBar} />
+          <Switch>
+            <Route exact path="/" component={HomePage} />
+            <Route exact path="/dashboard" component={Dashboard} />
+            <Route path="/*" component={NotFound} />
+          </Switch>
+          <Route path="/" component={Footer} />
         </div>
-        <p className="App-intro" style={{fontSize: 'large'}}>
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+      </Router>
     );
   }
 }
