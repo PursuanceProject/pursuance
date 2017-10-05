@@ -11,7 +11,7 @@ npm install -g create-react-app
 ```
 
 Next, change directory into the `pursuance` folder.
-Run this this command to install node modules:
+Run this command to install node modules:
 
 ```
 npm install
@@ -25,4 +25,4 @@ npm start
 
 ## Conventions
 
-Please follow these naming and spacing conventions when making a pull request: [React + Redux Convetions](https://unbug.gitbooks.io/react-native-training/content/45_naming_convention.html)
+Please follow these naming and spacing conventions when submitting a pull request: [React + Redux Conventions](https://unbug.gitbooks.io/react-native-training/content/45_naming_convention.html)
