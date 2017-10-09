@@ -2,3 +2,7 @@
   border-radius: 0px;
   margin: 0px;
 }
+
+.navbar .container {
+  width: 86%;
+}

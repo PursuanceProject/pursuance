@@ -1,21 +1,6 @@
 #home-background {
-  background: url('../../static/placeholder/1280x720.png');
+  background: url('../../static/img/home_background.jpg');
   background-repeat: no-repeat;
   background-size: 100% 100%;
   height: calc(100vh - 120px);
-  padding: 60px;
-}
-
-.title-container {
-  margin-top: 28vh;
-}
-
-.motto-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.motto-container h3 {
-  margin: 0px;
 }
