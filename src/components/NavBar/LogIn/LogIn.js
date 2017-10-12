@@ -4,7 +4,7 @@ class LogIn extends Component {
 
   render() {
     return (
-      <div className="modal fade" id="log-in-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div className="modal fade" id="log-in-modal" tabIndex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div className="modal-dialog" role="document">
           <div className="modal-content">
             <div className="modal-header">

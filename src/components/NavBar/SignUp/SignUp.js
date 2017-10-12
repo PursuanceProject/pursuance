@@ -4,7 +4,7 @@ class SignUp extends Component {
 
   render() {
     return (
-      <div className="modal fade" id="sign-up-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div className="modal fade" id="sign-up-modal" tabIndex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div className="modal-dialog" role="document">
           <div className="modal-content">
             <div className="modal-header">
