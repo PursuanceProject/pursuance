@@ -1,0 +1,7 @@
+#home-background {
+  background: url('../../static/img/home_background.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: auto 100%;
+  height: calc(100vh - 120px);
+}
