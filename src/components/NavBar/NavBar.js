@@ -7,7 +7,7 @@ import './NavBar.css';
 
 class NavBar extends Component {
 
-  render () {
+  render() {
     return (
       <Navbar inverse collapseOnSelect>
         <Navbar.Header>
@@ -17,11 +17,11 @@ class NavBar extends Component {
           <Navbar.Toggle />
         </Navbar.Header>
         <Navbar.Collapse>
-          <Nav>
-            <NavItem>
+          <ul className="nav navbar-nav">
+            <li role="presentation">
               <Link to="/dashboard">Dashboard</Link>
-            </NavItem>
-          </Nav>
+            </li>
+          </ul>
           <Nav pullRight>
             <NavItem data-toggle="modal" data-target="#sign-up-modal">
               Sign Up

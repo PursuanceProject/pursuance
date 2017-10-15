@@ -1,0 +1,10 @@
+.checkbox {
+  text-align: left;
+  padding-left: 20px;
+}
+
+.checkbox input {
+  height: 16px;
+  width: 16px;
+  margin-top: 2px;
+}
