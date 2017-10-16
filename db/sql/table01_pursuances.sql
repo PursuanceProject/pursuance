@@ -1,7 +1,6 @@
 CREATE TABLE pursuances (
-    pursuance_id    serial    NOT NULL UNIQUE PRIMARY KEY,
+    id              serial    NOT NULL UNIQUE PRIMARY KEY,
     minilock_id     text      UNIQUE CHECK (40 <= LENGTH(minilock_id) AND LENGTH(minilock_id) <= 55),
-    parent_id       integer   REFERENCES pursuances,
     name            text      NOT NULL CHECK (LENGTH(name) <= 100) DEFAULT '',
     name_enc        text      NOT NULL CHECK (LENGTH(name_enc) <= 2100) DEFAULT '',
     description     text      NOT NULL CHECK (LENGTH(description) <= 10000) DEFAULT '',
