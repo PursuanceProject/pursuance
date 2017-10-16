@@ -2,29 +2,44 @@ import React, { Component } from 'react';
 import './LogIn.css';
 
 class LogIn extends Component {
+  constructor(props) {
+    super(props);
 
-  componentDidMount() {
-    let username = localStorage.getItem('username');
-    if(username) {
-      document.getElementById('input-username-login').value = username;
-      document.getElementById('remember-username').checked = 'checked';
-      // Refactor using React's `ref` attribute
+    this.rememberChecked = '';
+    this.usernameRemembered = '';
+    this.username = '';
+    this.password = '';
+  }
+
+  componentWillMount() {
+    const usernameLS = localStorage.getItem('username');
+    if(usernameLS) {
+      this.usernameRemembered = usernameLS;
+      this.rememberChecked = 'Checked';
     }
+  }
+
+  setUsername = (e) => {
+    this.username = e.target.value;
+  }
+
+  setPassword = (e) => {
+    this.password = e.target.value;
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const username = document.getElementById('input-username-login').value;
-    const password = document.getElementById('input-password-login').value;
     if(document.getElementById('remember-username').checked) {
-      localStorage.setItem('username', username);
+      localStorage.setItem('username', this.username);
     } else {
       localStorage.removeItem('username');
     }
-    console.log('Username: ', username);
-    console.log('Password: ', password);
     // Front End Validation
     // Post Request LogIn
+    // Clear user info from RAM
+    this.usernameRemembered = '';
+    this.username = '';
+    this.password = '';
   }
 
   render() {
@@ -41,19 +56,21 @@ class LogIn extends Component {
                 <div className="form-group">
                   <label htmlFor="input-username-login" className="col-sm-2 control-label">Username</label>
                   <div className="col-sm-10">
-                    <input type="text" className="form-control" id="input-username-login" placeholder="Username"/>
+                    <input type="text" className="form-control" id="input-username-login" placeholder="Username"
+                    defaultValue={this.usernameRemembered}
+                    onChange={this.setUsername}/>
                   </div>
                 </div>
                 <div className="form-group">
                   <label htmlFor="input-password-login" className="col-sm-2 control-label">Password</label>
                   <div className="col-sm-10">
-                    <input type="password" className="form-control" id="input-password-login" placeholder="minimum of 8 characters"/>
+                    <input type="password" className="form-control" id="input-password-login" placeholder="minimum of 8 characters" onChange={this.setPassword}/>
                   </div>
                 </div>
                 <div className="form-group">
                   <div className="col-sm-offset-2 col-sm-10">
                     <div className="checkbox">
-                      <input id="remember-username" type="checkbox"/>
+                      <input id="remember-username" type="checkbox" defaultChecked={this.rememberChecked} />
                       <span>Remember Username</span>
                     </div>
                   </div>
