@@ -8,13 +8,14 @@ class LogIn extends Component {
     if(username) {
       document.getElementById('input-username-login').value = username;
       document.getElementById('remember-username').checked = 'checked';
+      // Refactor using React's `ref` attribute
     }
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
-    let username = document.getElementById('input-username-login').value;
-    let password = document.getElementById('input-password-login').value;
+    const username = document.getElementById('input-username-login').value;
+    const password = document.getElementById('input-password-login').value;
     if(document.getElementById('remember-username').checked) {
       localStorage.setItem('username', username);
     } else {

@@ -6,8 +6,8 @@ class SignUp extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
 
-    let username = document.getElementById('input-username-signup').value;
-    let password = document.getElementById('input-password-signup').value;
+    const username = document.getElementById('input-username-signup').value;
+    const password = document.getElementById('input-password-signup').value;
 
     console.log('Username: ', username);
     console.log('Password: ', password);
