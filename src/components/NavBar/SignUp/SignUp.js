@@ -2,17 +2,28 @@ import React, { Component } from 'react';
 import './SignUp.css';
 
 class SignUp extends Component {
+  constructor(props) {
+    super(props);
+
+    this.username = '';
+    this.password = '';
+  }
+
+  setUsername = (e) => {
+    this.username = e.target.value;
+  }
+
+  setPassword = (e) => {
+    this.password = e.target.value;
+  }
 
   handleSubmit = (e) => {
     e.preventDefault();
-
-    const username = document.getElementById('input-username-signup').value;
-    const password = document.getElementById('input-password-signup').value;
-
-    console.log('Username: ', username);
-    console.log('Password: ', password);
     // Front End Validation
     // Post Request SignUp
+    // Clear user info from RAM
+    this.username = '';
+    this.password = '';
   }
 
   render() {
@@ -29,13 +40,14 @@ class SignUp extends Component {
                 <div className="form-group">
                   <label htmlFor="input-username-signup" className="col-sm-2 control-label">Username</label>
                   <div className="col-sm-10">
-                    <input type="text" className="form-control" id="input-username-signup" placeholder="Username" />
+                    <input type="text" className="form-control" id="input-username-signup" placeholder="Username"
+                    onChange={this.setUsername}/>
                   </div>
                 </div>
                 <div className="form-group">
                   <label htmlFor="input-password-signup" className="col-sm-2 control-label">Password</label>
                   <div className="col-sm-10">
-                    <input type="password" className="form-control" id="input-password-signup" placeholder="minimum of 8 characters" />
+                    <input type="password" className="form-control" id="input-password-signup" placeholder="minimum of 8 characters" onChange={this.setPassword}/>
                   </div>
                 </div>
                 <div className="form-group modal-btn-ctn">
