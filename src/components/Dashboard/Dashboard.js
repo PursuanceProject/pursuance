@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import TaskManager from './TaskManager/TaskManager';
 import './Dashboard.css';
 
 class Dashboard extends Component {
@@ -9,9 +10,7 @@ class Dashboard extends Component {
         <div className="task-manager-title">
           <h1>Pursuance: Task Manager</h1>
         </div>
-        <div className="task-manager-container">
-
-        </div>
+        <TaskManager />
       </div>
     );
   }

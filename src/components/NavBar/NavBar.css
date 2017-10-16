@@ -6,3 +6,12 @@
 .navbar .container {
   width: 86%;
 }
+
+.modal-btn-ctn {
+  text-align: right;
+  padding-right: 16px;
+}
+
+.modal-btn-ctn .btn {
+  margin-left: 10px;
+}
