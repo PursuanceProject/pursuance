@@ -1,6 +1,4 @@
 #!/bin/bash
-# Steve Phillips / elimisteve
-# 2017.05.27
 
 set -euo pipefail
 
