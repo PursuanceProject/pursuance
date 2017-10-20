@@ -11,13 +11,13 @@ Web Tokens) shortly after our demo on November 4, 2017.)
 
 Please fork and clone down this repository to your local machine.
 
-If you don't have React.js globally installed, run this command in your command line:
+If you don't have React.js globally installed, run this command:
 
 ```
 npm install -g create-react-app
 ```
 
-Next, change directory into the `pursuance` folder.
+Next, `cd` into the `pursuance` folder.
 
 Run this command to install node modules:
 
