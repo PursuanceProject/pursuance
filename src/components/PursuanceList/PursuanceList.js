@@ -8,7 +8,7 @@ class PursuanceList extends Component {
       <div className="pursuance-list">
 
         {this.props.pursuances.map((pursuance) => (
-          <div className="">
+          <div key={pursuance.id} className="">
             <h3>
               <Link to={`/${pursuance.id}/tasks/hierarchy`}>{pursuance.name}</Link>
             </h3>

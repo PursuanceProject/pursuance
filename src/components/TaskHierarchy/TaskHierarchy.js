@@ -31,7 +31,7 @@ class TaskHierarchy extends Component {
       <div className="task-hierarchy-container">
 
         {this.state.tasks.map((task) => (
-          <div className="row">
+          <div key={'' + task.pursuance_id + '_' + task.id} className="row">
             <div className="task-title">
               {task.title}
             </div>
