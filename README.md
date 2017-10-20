@@ -1,5 +1,12 @@
 # Pursuance
 
+## WARNING
+
+Do not expose the server in this branch (`demo`) to the world; it is
+meant for presentation purposes only.  (We will leveraging a
+combination of miniLock/cryptographic auth and PostgREST's JWTs (JSON
+Web Tokens) shortly after our demo on November 4, 2017.)
+
 ## Getting Started
 
 Please fork and clone down this repository to your local machine.
