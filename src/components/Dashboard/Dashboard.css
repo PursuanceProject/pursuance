@@ -1,7 +1,5 @@
 #dashboard {
-  background: url('../../static/placeholder/1280x720.png');
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-  height: calc(100vh - 120px);
+  background-color: LightGrey;
+  height: calc(100vh - 100px);
   padding: 30px;
 }
