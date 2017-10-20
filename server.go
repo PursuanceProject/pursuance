@@ -48,6 +48,17 @@ func NewRouter(m *miniware.Mapper) *mux.Router {
 		http.StripPrefix("/postgrest",
 			httputil.NewSingleHostReverseProxy(postgrestAPI)))
 
+	// Hack to make up for the fact that
+	//   r.NotFoundHandler = http.HandlerFunc(GetIndex)
+	// doesn't do anything, since the below
+	//   r.PathPrefix("/").Handler(...)
+	// call returns its own 404, ignoring the value of
+	//   r.NotFoundHandler
+	for i := 0; i < 10; i++ {
+		r.PathPrefix("/" + fmt.Sprintf("%d", i)).HandlerFunc(GetIndex)
+	}
+	r.PathPrefix("/dashboard").HandlerFunc(GetIndex)
+
 	r.PathPrefix("/").Handler(http.FileServer(http.Dir("./build"))).Methods("GET")
 
 	http.Handle("/", r)
