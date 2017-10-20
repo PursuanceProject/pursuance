@@ -32,14 +32,15 @@ class TaskForm extends Component {
           </div>
           <div className="date-picker-ctn">
             <DatePicker
-              placeholderText="YYYY/MM/DD"
+              placeholderText="YYYY-MM-DD"
+              dateFormat="YYYY-MM-DD"
               selected={this.startDate}
               onSelect={this.handleDateSelect}
               onChange={this.handleDateChange}
             />
           </div>
           <button type="submit" className="btn btn-default">
-            Submit
+            Save
           </button>
         </form>
 
