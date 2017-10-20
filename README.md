@@ -18,10 +18,10 @@ Run this command to install node modules:
 npm install
 ```
 
-To run the React App on localhost:
+To run the React App on localhost and watch for updates:
 
 ```
-npm start
+npm run watch
 ```
 
 Then, in another terminal, to set up the database and run PostgREST,
