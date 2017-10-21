@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import './PursuanceList.css';
 import { Link } from 'react-router-dom';
+import './PursuanceList.css';
+import '../Content.css';
 
 class PursuanceList extends Component {
   render() {

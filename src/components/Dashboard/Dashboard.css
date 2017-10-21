@@ -3,3 +3,19 @@
   height: calc(100vh - 100px);
   padding: 30px;
 }
+
+#dashboard-title {
+  text-align: center;
+}
+
+#dash-first-row {
+  display: flex;
+}
+
+#dash-second-row {
+  display: flex;
+}
+
+.dash-ctn {
+  flex: 1;
+}

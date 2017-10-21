@@ -8,7 +8,10 @@ class TaskForm extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { startDate: moment() };
+    this.state = { startDate: '' };
+
+    this.time = moment().format("YYYY-MM-DD");
+    console.log('Time: ', this.time);
   }
 
   handleDateSelect = (date) => {
@@ -17,6 +20,10 @@ class TaskForm extends Component {
 
   handleDateChange = (date) => {
     this.setState({ startDate: date });
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault();
   }
 
   render () {
@@ -34,12 +41,12 @@ class TaskForm extends Component {
             <DatePicker
               placeholderText="YYYY-MM-DD"
               dateFormat="YYYY-MM-DD"
-              selected={this.startDate}
+              selected={this.state.startDate}
               onSelect={this.handleDateSelect}
               onChange={this.handleDateChange}
             />
           </div>
-          <button type="submit" className="btn btn-default">
+          <button type="submit" className="btn btn-default" onClick={this.handleSubmit}>
             Save
           </button>
         </form>
