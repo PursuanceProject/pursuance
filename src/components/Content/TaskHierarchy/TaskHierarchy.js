@@ -31,7 +31,11 @@ class TaskHierarchy extends Component {
     <li>
       <div key={'' + task.pursuance_id + '_' + task.id} className="">
         <div className="task-title">
+<<<<<<< HEAD:src/components/TaskHierarchy/TaskHierarchy.js
             {task.title}
+=======
+          {task.title}
+>>>>>>> 44a1e1e099f25e775bafc1b1ccccc0a768865860:src/components/Content/TaskHierarchy/TaskHierarchy.js
         </div>
       </div>
 
