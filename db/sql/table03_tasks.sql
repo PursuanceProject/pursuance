@@ -32,3 +32,11 @@ CREATE TRIGGER trigger_set_default_parent_task_pursuance_id
     BEFORE INSERT OR UPDATE ON tasks
     FOR EACH ROW
     EXECUTE PROCEDURE set_default_parent_task_pursuance_id();
+
+
+CREATE FUNCTION subtasks(parent_id integer, parent_pursuance_id integer) RETURNS SETOF tasks AS $$
+  SELECT * FROM tasks WHERE parent_task_id = parent_id
+                        AND parent_task_pursuance_id = parent_pursuance_id
+                   ORDER BY pursuance_id, id;
+$$ LANGUAGE SQL STABLE;
+ALTER FUNCTION subtasks(parent_id integer, parent_pursuance_id integer) OWNER TO superuser;
