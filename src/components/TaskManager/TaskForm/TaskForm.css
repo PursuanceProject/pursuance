@@ -1,0 +1,19 @@
+.task-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#input-task-title-ctn {
+  width: 60%;
+}
+
+#input-task-title {
+
+}
+
+.react-datepicker-wrapper input {
+  height: 32px;
+  padding-left: 6px;
+  border-radius: 3px;
+}

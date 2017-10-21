@@ -1,16 +1,23 @@
 # Pursuance
 
+## WARNING
+
+Do not expose the server in this branch (`demo`) to the world; it is
+meant for presentation purposes only.  (We will leveraging a
+combination of miniLock/cryptographic auth and PostgREST's JWTs (JSON
+Web Tokens) shortly after our demo on November 4, 2017.)
+
 ## Getting Started
 
 Please fork and clone down this repository to your local machine.
 
-If you don't have React.js globally installed, run this command in your command line:
+If you don't have React.js globally installed, run this command:
 
 ```
 npm install -g create-react-app
 ```
 
-Next, change directory into the `pursuance` folder.
+Next, `cd` into the `pursuance` folder.
 
 Run this command to install node modules:
 
@@ -18,10 +25,10 @@ Run this command to install node modules:
 npm install
 ```
 
-To run the React App on localhost:
+To run the React App on localhost and watch for updates:
 
 ```
-npm start
+npm run watch
 ```
 
 Then, in another terminal, to set up the database and run PostgREST,
