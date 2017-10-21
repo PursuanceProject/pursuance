@@ -3,6 +3,9 @@ import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import './ReactDatePicker.css';
 import './TaskForm.css';
+import generateId from '../../../../utils/generateId';
+import { UpdateFormField } from '../../../../actions'
+import { connect } from 'react-redux';
 
 class TaskForm extends Component {
   constructor(props) {
@@ -12,6 +15,13 @@ class TaskForm extends Component {
 
     this.time = moment().format("YYYY-MM-DD");
     console.log('Time: ', this.time);
+  }
+  componentWillMount() {
+    this.id = generateId('task')
+  }
+
+  onChange = (e) => {
+    this.props.UpdateFormField(e.target.value, this.id,e.target.name);
   }
 
   handleDateSelect = (date) => {
@@ -30,12 +40,12 @@ class TaskForm extends Component {
     return (
       <div className="task-form-container">
 
-        <form className="task-form">
+        <form className="task-form" name={this.id}>
           <div id="input-task-title-ctn" className="">
-            <input id="input-task-title" type="text" className="form-control"  placeholder="Task Title" />
+            <input id="input-task-title" type="text" className="form-control"  placeholder="Task Title" name={'title'} onChange={this.onChange}/>
           </div>
           <div className="assign-autocomplete">
-            <input type="text" className="form-control" placeholder="Assigned To"/>
+            <input type="text" className="form-control" placeholder="Assigned To" name={'assigned_to'} onChange={this.onChange}/>
           </div>
           <div className="date-picker-ctn">
             <DatePicker
@@ -56,4 +66,4 @@ class TaskForm extends Component {
   }
 }
 
-export default TaskForm;
+export default connect(null, { UpdateFormField })(TaskForm);
