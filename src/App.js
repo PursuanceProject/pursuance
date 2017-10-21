@@ -4,7 +4,7 @@ import NavBar from './components/NavBar/NavBar';
 import Footer from './components/Footer/Footer';
 import HomePage from './components/HomePage/HomePage';
 import Dashboard from './components/Dashboard/Dashboard';
-import TaskHierarchy from './components/TaskHierarchy/TaskHierarchy';
+import TaskHierarchy from './components/Content/TaskHierarchy/TaskHierarchy';
 import NotFound from './components/NotFound/NotFound';
 import './App.css';
 

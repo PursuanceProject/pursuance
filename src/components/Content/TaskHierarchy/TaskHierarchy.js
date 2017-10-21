@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import TaskForm from '../TaskManager/TaskForm/TaskForm';
 import './TaskHierarchy.css';
+import '../Content.css';
 
-import * as postgrest from '../../utils/postgrest';
+import * as postgrest from '../../../utils/postgrest';
 
 class TaskHierarchy extends Component {
   constructor(props) {
@@ -13,7 +14,7 @@ class TaskHierarchy extends Component {
     };
   }
 
-  componentDidMount() {
+  componentWillMount() {
     const pursuanceID = this.props.match.params.pursuance_id;
     postgrest.getJSON(`/tasks?pursuance_id=eq.${pursuanceID}&order=created.asc,id.asc`)
       .then((tasks) => {
@@ -28,9 +29,10 @@ class TaskHierarchy extends Component {
 
   renderTask = (task) => (
     <li>
-      <div key={'' + task.pursuance_id + '_' + task.id} className="row">
+      <div key={'' + task.pursuance_id + '_' + task.id} className="">
         <div className="task-title">
-        {task.title}
+          {task.title}
+        </div>
       </div>
 
       <div className="task-assigned_to">
@@ -42,17 +44,17 @@ class TaskHierarchy extends Component {
       </div>
 
       <ul>
-        task.subtasks.map((task) => renderTask(task))
+        {(task.subtasks || []).map((task) => this.renderTask(task))}
       </ul>
     </li>
   )
 
-  render () {
+  render() {
     return (
-      <div className="task-hierarchy-container">
+      <div className="content-ctn">
 
         <ul>
-          {this.state.tasks.map((task) => renderTask(task))}
+          {this.state.tasks.map((task) => this.renderTask(task))}
         </ul>
 
         <TaskForm />
