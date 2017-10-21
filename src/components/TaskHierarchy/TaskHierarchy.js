@@ -26,25 +26,34 @@ class TaskHierarchy extends Component {
       })
   }
 
+  renderTask = (task) => (
+    <li>
+      <div key={'' + task.pursuance_id + '_' + task.id} className="row">
+        <div className="task-title">
+        {task.title}
+      </div>
+
+      <div className="task-assigned_to">
+        {task.assigned_to && '@'+task.assigned_to}
+      </div>
+
+      <div className="task-due_date">
+        {task.due_date && postgrest.formatDate(task.due_date)}
+      </div>
+
+      <ul>
+        task.subtasks.map((task) => renderTask(task))
+      </ul>
+    </li>
+  )
+
   render () {
     return (
       <div className="task-hierarchy-container">
 
-        {this.state.tasks.map((task) => (
-          <div key={'' + task.pursuance_id + '_' + task.id} className="row">
-            <div className="task-title">
-              {task.title}
-            </div>
-
-            <div className="task-assigned_to">
-              {task.assigned_to && '@'+task.assigned_to}
-            </div>
-
-            <div className="task-due_date">
-              {task.due_date && postgrest.formatDate(task.due_date)}
-            </div>
-          </div>
-        ))}
+        <ul>
+          {this.state.tasks.map((task) => renderTask(task))}
+        </ul>
 
         <TaskForm />
       </div>
