@@ -43,7 +43,7 @@ class TaskHierarchy extends Component {
       </div>
 
       <ul>
-        task.subtasks.map((task) => renderTask(task))
+        {(task.subtasks || []).map((task) => this.renderTask(task))}
       </ul>
     </li>
   )
