@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import './Dashboard.css';
-import PursuanceList from '../PursuanceList/PursuanceList';
-
+import PursuanceList from '../Content/PursuanceList/PursuanceList';
 import * as postgrest from '../../utils/postgrest';
+import './Dashboard.css';
+
 
 class Dashboard extends Component {
   constructor(props) {
@@ -13,7 +13,7 @@ class Dashboard extends Component {
     };
   }
 
-  componentDidMount() {
+  componentWillMount() {
     // TODO: Once we add auth, only grab pursuances that the logged-in
     // user is a mumber of
     postgrest.getJSON('/pursuances?select=id,name,description')
@@ -30,26 +30,26 @@ class Dashboard extends Component {
   render () {
     return (
       <div id="dashboard">
-        <div className="dashboard-title">
+        <div id="dashboard-title">
           <h1>Dashboard</h1>
         </div>
 
-        <div className="row">
-          <div className="col-sm-6 col-lg-3">
+        <div id="dash-first-row">
+          <div className="dash-ctn">
             <h2>My Pursuances</h2>
 
             <PursuanceList pursuances={this.state.pursuances} />
           </div>
-          <div className="col-sm-6 col-lg-3">
+          <div className="dash-ctn">
             <h2>Next Steps</h2>
           </div>
         </div>
 
-        <div className="row">
-          <div className="col-sm-6 col-lg-3">
+        <div id="dash-second-row">
+          <div className="dash-ctn">
             <h2>Pinned Tasks</h2>
           </div>
-          <div className="col-sm-6 col-lg-3">
+          <div className="dash-ctn">
             <h2>Notifications</h2>
           </div>
         </div>
