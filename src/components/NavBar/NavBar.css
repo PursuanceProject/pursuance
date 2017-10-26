@@ -8,6 +8,10 @@
   width: 86%;
 }
 
+.modal-title {
+  text-align: center;
+}
+
 .modal-btn-ctn {
   text-align: right;
   padding-right: 16px;
@@ -15,4 +19,16 @@
 
 .modal-btn-ctn .btn {
   margin-left: 10px;
+}
+
+.navbar-brand {
+  color: #fcfcfc !important;
+}
+
+.navbar-nav li a {
+  color: #d6d6d6 !important;
+}
+
+.navbar-nav li a:hover {
+  color: #be8700 !important;
 }

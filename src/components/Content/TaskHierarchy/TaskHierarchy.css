@@ -1,4 +1,33 @@
 ul {
   list-style-type: none;
-  padding: 0;
+}
+
+.ul-ctn {
+  font-size: 1.1em;
+}
+
+.plus-ctn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border: 2px solid black;
+  border-radius: 6px;
+}
+
+.plus-ctn:hover {
+  background-color: LightGrey;
+  cursor: pointer;
+}
+
+.task-title {
+  flex: 1;
+  border: 2px solid DarkGrey;
+  border-radius: 5px;
+  padding-left: 10px;
+}
+
+.task-row-ctn {
+  display: flex;
 }

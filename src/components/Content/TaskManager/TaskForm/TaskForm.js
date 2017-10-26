@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import DatePicker from 'react-datepicker';
-import moment from 'moment';
 import './ReactDatePicker.css';
 import './TaskForm.css';
 
@@ -9,9 +8,6 @@ class TaskForm extends Component {
     super(props);
 
     this.state = { startDate: '' };
-
-    this.time = moment().format("YYYY-MM-DD");
-    console.log('Time: ', this.time);
   }
 
   handleDateSelect = (date) => {
