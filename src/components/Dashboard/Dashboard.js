@@ -10,7 +10,7 @@ class Dashboard extends Component {
   componentWillMount() {
     // TODO: Once we add auth, only grab pursuances that the logged-in
     // user is a mumber of
-      this.props.getPursuances();
+    this.props.getPursuances();
   }
 
   render () {

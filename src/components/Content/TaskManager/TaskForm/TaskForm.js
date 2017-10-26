@@ -83,7 +83,7 @@ class TaskForm extends Component {
     let assigned_to
     const { taskForm } = this.props;
     if (taskForm[this.id]) {
-      assigned_to  = taskForm[this.id].assigned_to;
+      assigned_to = taskForm[this.id].assigned_to;
     }
     return (
       <div className="task-form-container">

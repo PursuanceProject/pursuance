@@ -9,5 +9,5 @@ export const getUsersReq = () => {
         }
         return usersObject;
       })
-    .catch(err => console.log(err, 'error fetching users'))
+    .catch(err => console.log('error fetching users:', err))
 }
