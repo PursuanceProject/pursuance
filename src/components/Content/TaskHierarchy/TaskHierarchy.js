@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import TaskForm from '../TaskManager/TaskForm/TaskForm';
 import './TaskHierarchy.css';
 import '../Content.css';
-
+import { connect } from 'react-redux';
+import { getUsers } from '../../../actions';
 import * as postgrest from '../../../utils/postgrest';
 
 class TaskHierarchy extends Component {
@@ -15,6 +16,7 @@ class TaskHierarchy extends Component {
   }
 
   componentWillMount() {
+    this.props.getUsers();
     const pursuanceID = this.props.match.params.pursuance_id;
     postgrest.getJSON(`/tasks?pursuance_id=eq.${pursuanceID}&order=created.asc,id.asc`)
       .then((tasks) => {
@@ -31,7 +33,7 @@ class TaskHierarchy extends Component {
     <li>
       <div key={'' + task.pursuance_id + '_' + task.id} className="">
         <div className="task-title">
-          {task.title}
+            {task.title}
         </div>
       </div>
 
@@ -63,4 +65,4 @@ class TaskHierarchy extends Component {
   }
 }
 
-export default TaskHierarchy;
+export default connect(null, { getUsers })(TaskHierarchy);

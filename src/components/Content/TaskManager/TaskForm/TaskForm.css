@@ -2,6 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
 }
 
 #input-task-title-ctn {
@@ -16,4 +17,29 @@
   height: 32px;
   padding-left: 6px;
   border-radius: 3px;
+}
+
+.assign-autocomplete {
+  width: 20%;
+  position: relative;
+  display: flex;
+}
+.at-symbol {
+  background-color: #eee;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-right: none;
+  color: #555;
+  font-size: 14px;
+  font-weight: normal;
+  padding: 6px 2px;
+  text-align: center;
+}
+.assign-to {
+  border-left: none;
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+  position: relative;
 }
