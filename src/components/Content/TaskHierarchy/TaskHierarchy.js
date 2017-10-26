@@ -28,8 +28,8 @@ class TaskHierarchy extends Component {
   }
 
   renderTask = (task) => (
-    <li>
-      <div key={'' + task.pursuance_id + '_' + task.id} className="">
+    <li key={task.gid}>
+      <div className="">
         <div className="task-title">
           {task.title}
         </div>
