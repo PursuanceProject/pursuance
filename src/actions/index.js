@@ -1,8 +1,8 @@
 import { getUsersReq } from '../api/users';
 import { getPursuancesReq } from '../api/pursuances';
 
-export const updateFormField = (value, formId, fieldId) =>
-  ({ type: 'TASK_FIELD_UPDATE', value, formId, fieldId })
+export const updateFormField = (formId, fieldId, value) =>
+  ({ type: 'TASK_FIELD_UPDATE', formId, fieldId, value })
 
 export const getUsers = () =>
   ({ type: 'GET_USERS', payload: getUsersReq() });

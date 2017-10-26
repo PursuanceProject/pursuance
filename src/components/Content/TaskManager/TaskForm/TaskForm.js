@@ -34,7 +34,7 @@ class TaskForm extends Component {
     const { updateFormField, startSuggestions, users } = this.props;
     const { value, name } = e.target;
 
-    updateFormField(value, this.id, name);
+    updateFormField(this.id, name, value);
 
     if (name === 'assigned_to') {
       startSuggestions(value, filterUsers, users);
@@ -61,7 +61,7 @@ class TaskForm extends Component {
 
   handleDateSelect = (date) => {
     this.setState({ startDate: date });
-    this.props.updateFormField(date, this.id, 'date')
+    this.props.updateFormField(this.id, 'date', date)
   }
 
   handleSubmit = (e) => {
@@ -74,7 +74,7 @@ class TaskForm extends Component {
   }
 
   onBlur = () => {
-      this.props.stopSuggestions();
+    this.props.stopSuggestions();
   }
 
   focusDatePicker = () => this.datePickerRef.input.focus();
@@ -111,7 +111,7 @@ class TaskForm extends Component {
                 type="text"
                 className="form-control assign-to"
                 placeholder="Assigned To"
-                value={assigned_to ? assigned_to : ''}
+                value={assigned_to || ''}
                 name={'assigned_to'}
                 onChange={this.onChange}
                 onFocus={this.onFocus}
