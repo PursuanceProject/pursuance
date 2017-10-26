@@ -1,4 +1,4 @@
-CREATE FUNCTION subtasks_recursive_flat(parent_gid text, subtask_pursuance_id integer) RETURNS TABLE(gid text, pursuance_id integer, id integer, title text, title_enc text, deliverables text, deliverables_enc text, assigned_to integer, created timestamp WITH time zone) AS $$
+CREATE FUNCTION subtasks_recursive_flat(parent_gid text, subtask_pursuance_id integer) RETURNS TABLE(gid text, pursuance_id integer, id integer, title text, title_enc text, deliverables text, deliverables_enc text, assigned_to text, created timestamp WITH time zone) AS $$
     WITH RECURSIVE parent_task AS (
             SELECT gid, pursuance_id, id, title, title_enc,
                    deliverables, deliverables_enc, assigned_to, created

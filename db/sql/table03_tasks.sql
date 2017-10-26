@@ -6,7 +6,7 @@ CREATE TABLE tasks (
     title_enc        text      NOT NULL CHECK (LENGTH(title_enc) <= 2200) DEFAULT '',
     deliverables     text      NOT NULL CHECK (LENGTH(deliverables) <= 10000) DEFAULT '',
     deliverables_enc text      NOT NULL CHECK (LENGTH(deliverables_enc) <= 12000) DEFAULT '',
-    assigned_to      integer   REFERENCES users,
+    assigned_to      text      REFERENCES users(username),
     created          timestamp WITH time zone NOT NULL DEFAULT now(),
     parent_task_gid  text      REFERENCES tasks(gid),
     PRIMARY KEY (id, pursuance_id),

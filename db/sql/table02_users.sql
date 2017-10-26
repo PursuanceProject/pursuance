@@ -1,6 +1,5 @@
 CREATE TABLE users (
-    id                  serial PRIMARY KEY,
-    username            text   NOT NULL UNIQUE CONSTRAINT proper_username CHECK (username ~ '^[a-z][a-z0-9._-]{0,45}$'),
+    username            text   PRIMARY KEY CONSTRAINT proper_username CHECK (username ~ '^[a-z][a-z0-9._-]{0,45}$'),
     minilock_id         text   NOT NULL DEFAULT '',
     default_profile     json   NOT NULL DEFAULT '{}',
     default_profile_enc text   NOT NULL DEFAULT '',
