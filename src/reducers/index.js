@@ -1,8 +1,12 @@
 import { combineReducers } from 'redux';
-import TaskForm from './TaskFormReducer';
+import taskForm from './taskFormReducer';
+import users from './usersReducer';
+import pursuances from './pursuancesReducer';
 
 const rootReducer = combineReducers({
-  TaskForm
+  taskForm,
+  users,
+  pursuances
 });
 
 

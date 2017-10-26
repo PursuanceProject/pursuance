@@ -2,13 +2,15 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './PursuanceList.css';
 import '../Content.css';
+import { connect } from 'react-redux';
 
 class PursuanceList extends Component {
   render() {
+    const pursuanceArr = Object.values(this.props.pursuances);
     return (
       <div className="pursuance-list">
 
-        {this.props.pursuances.map((pursuance) => (
+        {pursuanceArr.map((pursuance) => (
           <div key={pursuance.id} className="">
             <h3>
               <Link to={`/${pursuance.id}/tasks/hierarchy`}>{pursuance.name}</Link>
@@ -22,4 +24,4 @@ class PursuanceList extends Component {
   }
 }
 
-export default PursuanceList;
+export default connect(({ pursuances }) => ({ pursuances }))(PursuanceList);
