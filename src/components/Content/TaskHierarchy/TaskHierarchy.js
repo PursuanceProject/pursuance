@@ -17,7 +17,8 @@ class TaskHierarchy extends Component {
 
   componentWillMount() {
     this.props.getUsers();
-    const pursuanceID = this.props.match.params.pursuance_id;
+
+    const pursuanceID = this.props.pursuanceId;
     postgrest.getJSON(`/tasks?pursuance_id=eq.${pursuanceID}&order=created.asc,id.asc`)
       .then((tasks) => {
         this.setState({
@@ -30,15 +31,15 @@ class TaskHierarchy extends Component {
   }
 
   renderTask = (task) => (
-    <li>
-      <div key={'' + task.pursuance_id + '_' + task.id} className="">
+    <li key={task.gid}>
+      <div className="">
         <div className="task-title">
             {task.title}
         </div>
       </div>
 
       <div className="task-assigned_to">
-        {task.assigned_to && '@'+task.assigned_to}
+        {task.assigned_to && '@' + task.assigned_to}
       </div>
 
       <div className="task-due_date">

@@ -58,6 +58,7 @@ func NewRouter(m *miniware.Mapper) *mux.Router {
 		r.PathPrefix("/" + fmt.Sprintf("%d", i)).HandlerFunc(GetIndex)
 	}
 	r.PathPrefix("/dashboard").HandlerFunc(GetIndex)
+	r.PathPrefix("/pursuance").HandlerFunc(GetIndex)
 
 	r.PathPrefix("/").Handler(http.FileServer(http.Dir("./build"))).Methods("GET")
 
