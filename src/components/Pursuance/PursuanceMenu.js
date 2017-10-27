@@ -1,6 +1,5 @@
 import React from 'react';
-import { Navbar, NavItem, Nav, ButtonGroup, Button, DropdownButton, MenuItem } from 'react-bootstrap';
-import { NavLink } from 'react-router-dom';
+import { ButtonGroup, Button } from 'react-bootstrap';
 import PursuanceMenuItem from './PursuanceMenuItem';
 import FaCheckSquareO from 'react-icons/lib/fa/check-square-o';
 import CommentsO from 'react-icons/lib/fa/comments-o';

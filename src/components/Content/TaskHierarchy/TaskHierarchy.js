@@ -4,7 +4,7 @@ import './TaskHierarchy.css';
 import '../Content.css';
 import { connect } from 'react-redux';
 import { getUsers } from '../../../actions';
-import * as postgrest from '../../../utils/postgrest';
+import * as postgrest from '../../../api/postgrest';
 
 class TaskHierarchy extends Component {
   constructor(props) {
