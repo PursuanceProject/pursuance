@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
+import Task from './Task/Task';
 import TaskForm from '../TaskManager/TaskForm/TaskForm';
-import './TaskHierarchy.css';
-import '../Content.css';
 import { connect } from 'react-redux';
 import { getUsers } from '../../../actions';
 import * as postgrest from '../../../api/postgrest';
+import './TaskHierarchy.css';
+import '../Content.css';
 
 class TaskHierarchy extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      displayLi: true,
       tasks: []
     };
   }
@@ -18,48 +20,44 @@ class TaskHierarchy extends Component {
   componentWillMount() {
     this.props.getUsers();
 
-    const pursuanceID = this.props.pursuanceId;
-    postgrest.getJSON(`/tasks?pursuance_id=eq.${pursuanceID}&order=created.asc,id.asc`)
+    const pursuanceId = this.props.pursuanceId;
+    postgrest.getJSON(`/tasks?pursuance_id=eq.${pursuanceId}&order=created.asc,id.asc`)
       .then((tasks) => {
         this.setState({
           tasks: tasks
-        })
+        });
       })
       .catch((err) => {
         console.log('Error fetching tasks:', err);
-      })
+      });
   }
 
-  renderTask = (task) => (
-    <li key={task.gid}>
-      <div className="">
-        <div className="task-title">
-            {task.title}
-        </div>
-      </div>
+  toggleRow = () => {
+    this.setState({
+      ...this.state,
+      displayLi: !this.state.displayLi
+    });
+  }
 
-      <div className="task-assigned_to">
-        {task.assigned_to && '@' + task.assigned_to}
-      </div>
+  styleLi = () => {
+    if(this.state.displayLi) {
+      return { display: 'block' }
+    } else {
+      return { display: 'none' }
+    }
+  }
 
-      <div className="task-due_date">
-        {task.due_date && postgrest.formatDate(task.due_date)}
-      </div>
-
-      <ul>
-        {(task.subtasks || []).map((task) => this.renderTask(task))}
-      </ul>
-    </li>
-  )
+  mapTaskChildren = () => {
+    console.log('Task: ', this.state.tasks);
+    return this.state.tasks.map((task) => {
+      return <Task key={task.gid} taskData={task}/>;
+    });
+  }
 
   render() {
     return (
       <div className="content-ctn">
-
-        <ul>
-          {this.state.tasks.map((task) => this.renderTask(task))}
-        </ul>
-
+        {this.mapTaskChildren()}
         <TaskForm />
       </div>
     );
