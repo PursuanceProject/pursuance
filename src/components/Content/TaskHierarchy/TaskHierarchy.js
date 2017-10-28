@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
+import Task from './Task/Task';
 import TaskForm from '../TaskManager/TaskForm/TaskForm';
 import * as postgrest from '../../../utils/postgrest';
-import TiPlus from 'react-icons/lib/ti/plus';
-import TiMinus from 'react-icons/lib/ti/minus';
 import './TaskHierarchy.css';
 import '../Content.css';
 
@@ -12,6 +11,7 @@ class TaskHierarchy extends Component {
     super(props);
 
     this.state = {
+      displayLi: true,
       tasks: [
         {
           "id": 1,
@@ -135,49 +135,30 @@ class TaskHierarchy extends Component {
   }
 
   toggleRow = () => {
-
+    this.setState({
+      ...this.state,
+      displayLi: !this.state.displayLi
+    });
   }
 
-  recursiveTask = (task) => {
-    return (
-      <ul className="ul-ctn">
-        {task.subtasks.map((task) => this.renderTask(task))}
-      </ul>
-    );
+  styleLi = () => {
+    if(this.state.displayLi) {
+      return { display: 'block' }
+    } else {
+      return { display: 'none' }
+    }
   }
 
-  renderTask = (task) => (
-    <li className="li-task-ctn"  key={'' + task.pursuance_id + '_' + task.id}>
-      <div className="task-row-ctn">
-        <div className="plus-ctn" onClick={this.toggleRow}>
-          <TiMinus />
-        </div>
-        <div className="task-title">
-          {task.title}
-        </div>
-        <div className="task-assigned-to">
-          {task.assigned_to && '@'+task.assigned_to}
-        </div>
-        <div className="task-due-date">
-          {task.due_date && postgrest.formatDate(task.due_date)}
-        </div>
-      </div>
-      { task.subtasks ? this.recursiveTask(task) : null }
-    </li>
-  )
-
-  getTaskHierarchy = () => {
-    return this.state.tasks.map((task) => this.renderTask(task));
+  mapTaskChildren = () => {
+    return this.state.tasks.map((task) => {
+      return <Task key={task.pursuance_id + task.id} taskData={task}/>;
+    });
   }
 
   render() {
     return (
       <div className="content-ctn">
-
-        <ul className="ul-ctn">
-          {this.getTaskHierarchy()}
-        </ul>
-
+        {this.mapTaskChildren()}
         <TaskForm />
       </div>
     );
