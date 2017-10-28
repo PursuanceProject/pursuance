@@ -22,7 +22,7 @@ class TaskHierarchy extends Component {
     this.props.getUsers();
 
     const pursuanceId = this.props.pursuanceId;
-    postgrest.getJSON(`/tasks?pursuance_id=eq.${pursuanceId}&order=created.asc,id.asc`)
+    postgrest.getJSON(`/tasks?pursuance_id=eq.${pursuanceId}&order=id.asc,created.asc`)
       .then((tasks) => {
         const { taskMap, rootTaskGids } = this.buildTaskHierarchy(tasks);
         this.setState({
@@ -61,6 +61,30 @@ class TaskHierarchy extends Component {
     };
   }
 
+  addPostedTaskToHierarchy = (task) => {
+    task.subtask_gids = task.subtask_gids || [];
+
+    let parentTaskMap = {};
+    const parentTaskGid = task.parent_task_gid;
+    if (parentTaskGid) {
+      // Append task.gid to parentTask.subtask_gids
+      const parentTask = this.state.taskMap[parentTaskGid];
+      parentTaskMap = {
+        [parentTaskGid]: Object.assign({},
+                                       parentTask,
+                                       {subtask_gids: [...parentTask.subtask_gids,
+                                                       task.gid]})
+      }
+    }
+
+    this.setState({
+      taskMap: Object.assign({},
+                             this.state.taskMap,
+                             {[task.gid]: task},
+                             parentTaskMap)
+    })
+  }
+
   toggleRow = () => {
     this.setState({
       ...this.state,
@@ -69,7 +93,7 @@ class TaskHierarchy extends Component {
   }
 
   styleLi = () => {
-    if(this.state.displayLi) {
+    if (this.state.displayLi) {
       return { display: 'block' }
     } else {
       return { display: 'none' }
