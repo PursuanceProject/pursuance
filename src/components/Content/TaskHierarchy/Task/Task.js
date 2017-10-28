@@ -31,14 +31,14 @@ class Task extends Component {
               </div>
             </div>
           </div>
-
-          {(task.subtask_gids || []).map((gid) => {
-            return <Task
-                     key={gid}
-                     taskData={this.props.taskMap[gid]}
-                     taskMap={this.props.taskMap} />
-          })}
         </li>
+
+        {(task.subtask_gids || []).map((gid) => {
+          return <Task
+                   key={gid}
+                   taskData={this.props.taskMap[gid]}
+                   taskMap={this.props.taskMap} />
+        })}
       </ul>
     );
   }
