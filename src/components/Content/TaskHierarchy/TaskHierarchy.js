@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import Task from './Task/Task';
 import TaskForm from '../TaskManager/TaskForm/TaskForm';
-import * as postgrest from '../../../utils/postgrest';
+import { connect } from 'react-redux';
+import { getUsers } from '../../../actions';
+import * as postgrest from '../../../api/postgrest';
 import './TaskHierarchy.css';
 import '../Content.css';
-
 
 class TaskHierarchy extends Component {
   constructor(props) {
@@ -122,16 +123,18 @@ class TaskHierarchy extends Component {
   }
 
   componentWillMount() {
-    // const pursuanceID = this.props.match.params.pursuance_id;
-    // postgrest.getJSON(`/tasks?pursuance_id=eq.${pursuanceID}&order=created.asc,id.asc`)
-    //   .then((tasks) => {
-    //     this.setState({
-    //       tasks: tasks
-    //     })
-    //   })
-    //   .catch((err) => {
-    //     console.log('Error fetching tasks:', err);
-    //   });
+    this.props.getUsers();
+
+    const pursuanceID = this.props.pursuanceId;
+    postgrest.getJSON(`/tasks?pursuance_id=eq.${pursuanceID}&order=created.asc,id.asc`)
+      .then((tasks) => {
+        this.setState({
+          tasks: tasks
+        });
+      })
+      .catch((err) => {
+        console.log('Error fetching tasks:', err);
+      });
   }
 
   toggleRow = () => {
@@ -165,4 +168,4 @@ class TaskHierarchy extends Component {
   }
 }
 
-export default TaskHierarchy;
+export default connect(null, { getUsers })(TaskHierarchy);
