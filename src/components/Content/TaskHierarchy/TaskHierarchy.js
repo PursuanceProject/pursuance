@@ -13,7 +13,8 @@ class TaskHierarchy extends Component {
 
     this.state = {
       displayLi: true,
-      tasks: []
+      taskMap: {},
+      rootTaskGids: []
     };
   }
 
@@ -23,13 +24,41 @@ class TaskHierarchy extends Component {
     const pursuanceId = this.props.pursuanceId;
     postgrest.getJSON(`/tasks?pursuance_id=eq.${pursuanceId}&order=created.asc,id.asc`)
       .then((tasks) => {
+        const { taskMap, rootTaskGids } = this.buildTaskHierarchy(tasks);
         this.setState({
-          tasks: tasks
+          taskMap,
+          rootTaskGids
         });
       })
       .catch((err) => {
         console.log('Error fetching tasks:', err);
       });
+  }
+
+  buildTaskHierarchy = (tasks) => {
+    const taskMap = {};
+    for (let i = 0; i < tasks.length; i++) {
+      taskMap[tasks[i].gid] = Object.assign(tasks[i], {subtask_gids: []});
+    }
+
+    const rootTaskGids = [];
+
+    for (let i = 0; i < tasks.length; i++) {
+      const t = tasks[i];
+
+      // If a task has no parents, it's a root task
+      if (!t.parent_task_gid) {
+        rootTaskGids.push(t.gid);
+      } else {
+        // Add t to its parent's subtasks
+        taskMap[t.parent_task_gid].subtask_gids.push(t.gid)
+      }
+    }
+
+    return {
+      taskMap,
+      rootTaskGids
+    };
   }
 
   toggleRow = () => {
@@ -47,17 +76,19 @@ class TaskHierarchy extends Component {
     }
   }
 
-  mapTaskChildren = () => {
-    console.log('Task: ', this.state.tasks);
-    return this.state.tasks.map((task) => {
-      return <Task key={task.gid} taskData={task}/>;
+  renderHierarchy = () => {
+    return this.state.rootTaskGids.map((gid) => {
+      return <Task
+               key={gid}
+               taskData={this.state.taskMap[gid]}
+               taskMap={this.state.taskMap} />;
     });
   }
 
   render() {
     return (
       <div className="content-ctn">
-        {this.mapTaskChildren()}
+        {this.renderHierarchy()}
         <TaskForm />
       </div>
     );

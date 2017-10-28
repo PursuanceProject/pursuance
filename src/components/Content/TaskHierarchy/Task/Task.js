@@ -5,17 +5,6 @@ import TiMinus from 'react-icons/lib/ti/minus';
 import './Task.css';
 
 class Task extends Component {
-  constructor(props) {
-    super(props);
-
-    this.tasks = this.props.taskData.subtasks;
-  }
-
-  mapTaskChildren = () => {
-    return this.tasks.map((task) => {
-      return <Task key={task.pursuance_id + task.id} taskData={task}/>;
-    });
-  }
 
   styleLi = () => {
 
@@ -42,7 +31,13 @@ class Task extends Component {
               </div>
             </div>
           </div>
-          {task.subtasks && this.mapTaskChildren()}
+
+          {(task.subtask_gids || []).map((gid) => {
+            return <Task
+                     key={gid}
+                     taskData={this.props.taskMap[gid]}
+                     taskMap={this.props.taskMap} />
+          })}
         </li>
       </ul>
     );
