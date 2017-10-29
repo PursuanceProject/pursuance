@@ -9,8 +9,8 @@ class PursuancePage extends Component {
   render() {
     return (
       <Router>
-        <div className="PursuancePage">
-          <nav>
+        <div className="pursuance-page">
+          <nav id="pursuance-nav">
             <PursuanceMenu
               pursuanceId={this.props.match.params.pursuanceId} />
           </nav>

@@ -1,7 +1,9 @@
 footer {
+  background-color: #141414;
   display: flex;
   align-items: center;
   justify-content: center;
   height: 50px;
-  font-size: 0.94em;
+  font-size: 0.90em;
+  color: #d6d6d6;
 }

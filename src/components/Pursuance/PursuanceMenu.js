@@ -7,11 +7,12 @@ import FolderOpen from 'react-icons/lib/fa/folder-open';
 import Group from 'react-icons/lib/fa/group';
 import Rocket from 'react-icons/lib/fa/rocket';
 import PlusCircle from 'react-icons/lib/fa/plus-circle';
+import './PursuanceMenu.css';
 
 const PursuanceMenu = ({ pursuanceId }) => {
   return (
-    <ButtonGroup vertical>
-      <Button>
+    <ButtonGroup vertical id="pursuance-btn-group">
+      <Button id="pursuance-top-btn">
         <PursuanceMenuItem
           pursuanceId={pursuanceId}
           label='New'
@@ -52,7 +53,7 @@ const PursuanceMenu = ({ pursuanceId }) => {
           icon={<Group size={28} />}
         />
       </Button>
-      <Button>
+      <Button id="pursuance-bottom-btn">
         <PursuanceMenuItem
           pursuanceId={pursuanceId}
           label='Progress'
