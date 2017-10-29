@@ -1,0 +1,41 @@
+.li-task-ctn {
+  display: flex;
+}
+
+.task-row-ctn {
+  display: flex;
+  justify-content: space-between;
+}
+
+.plus-ctn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border: 2px solid black;
+  border-radius: 6px;
+}
+
+.plus-ctn:hover {
+  background-color: LightGrey;
+  cursor: pointer;
+}
+
+.task-ctn {
+  flex: 1;
+  border: 2px solid DarkGrey;
+  border-radius: 5px;
+}
+
+.task-title {
+  padding-left: 10px;
+}
+
+.task-assigned-to {
+  width: 200px;
+  margin-left: auto;
+}
+
+.task-due-date {
+}

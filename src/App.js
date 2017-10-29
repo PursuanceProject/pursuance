@@ -4,7 +4,7 @@ import NavBar from './components/NavBar/NavBar';
 import Footer from './components/Footer/Footer';
 import HomePage from './components/HomePage/HomePage';
 import Dashboard from './components/Dashboard/Dashboard';
-import TaskHierarchy from './components/Content/TaskHierarchy/TaskHierarchy';
+import PursuancePage from './components/Pursuance/PursuancePage';
 import NotFound from './components/NotFound/NotFound';
 import './App.css';
 
@@ -14,14 +14,14 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <Route path="/" component={NavBar} />
+          <NavBar />
           <Switch>
             <Route exact path="/" component={HomePage} />
             <Route exact path="/dashboard" component={Dashboard} />
-            <Route exact path="/:pursuance_id/tasks/hierarchy" component={TaskHierarchy} />
+            <Route exact path="/pursuance/:pursuanceId" component={PursuancePage} />
             <Route path="/*" component={NotFound} />
           </Switch>
-          <Route path="/" component={Footer} />
+          <Footer />
         </div>
       </Router>
     );

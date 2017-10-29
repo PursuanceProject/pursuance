@@ -1,0 +1,13 @@
+.MenuItem {
+    display: block;
+    text-align: center;
+    font-size: 9px;
+}
+
+.MenuItem span {
+    display: block;
+}
+
+.MenuItem.Active {
+    color: green;
+}

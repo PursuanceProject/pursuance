@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import DatePicker from 'react-datepicker';
-import moment from 'moment';
 import './ReactDatePicker.css';
 import './TaskForm.css';
 import generateId from '../../../../utils/generateId';
+import moment from 'moment';
 import { connect } from 'react-redux';
 import { filterUsers } from '../../../../utils/suggestions';
 import AssignerSuggestions from './Suggestions/AssignerSuggestions';
@@ -23,9 +23,6 @@ class TaskForm extends Component {
     super(props);
 
     this.state = { startDate: '' };
-
-    this.time = moment().format("YYYY-MM-DD");
-    console.log('Time: ', this.time);
   }
   componentWillMount() {
     this.id = generateId('task');

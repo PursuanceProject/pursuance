@@ -1,6 +1,6 @@
 import moment from 'moment';
 
-export const formatDate = (rfc3339, displayFormat="YYYY-MM-DD HH:mm:ss") => {
+export const formatDate = (rfc3339, displayFormat="YYYY-MM-DD") => {
   return moment(rfc3339).format(displayFormat);
 }
 

@@ -1,5 +1,7 @@
 .content-ctn {
-  background-color: LightGrey;
+  background-color: #fcfcfc;
   height: calc(100vh - 100px);
   padding: 30px;
+  width: 100%;
+  height: 100%;
 }

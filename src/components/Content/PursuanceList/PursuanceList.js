@@ -13,7 +13,7 @@ class PursuanceList extends Component {
         {pursuanceArr.map((pursuance) => (
           <div key={pursuance.id} className="">
             <h3>
-              <Link to={`/${pursuance.id}/tasks/hierarchy`}>{pursuance.name}</Link>
+              <Link to={`/pursuance/${pursuance.id}`}>{pursuance.name}</Link>
             </h3>
             <p>{pursuance.description}</p>
           </div>
