@@ -1,4 +1,5 @@
 .navbar {
+  background-color: #141414;
   border-radius: 0px;
   border: none;
   margin: 0px;
@@ -30,5 +31,5 @@
 }
 
 .navbar-nav li a:hover {
-  color: #be8700 !important;
+  color: #2bbbd8 !important;
 }
