@@ -1,24 +1,27 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import './PursuanceList.css';
 import '../Content.css';
-import { connect } from 'react-redux';
 
 class PursuanceList extends Component {
-  render() {
+
+  getPursuanceList = () => {
     const pursuanceArr = Object.values(this.props.pursuances);
+    return pursuanceArr.map((pursuance) => (
+      <div key={pursuance.id} className="pursuance-list-ctn">
+        <Link to={`/pursuance/${pursuance.id}`}>
+          <h3>{pursuance.name}</h3>
+        </Link>
+        <p>{pursuance.description}</p>
+      </div>
+    ));
+  }
+
+  render() {
     return (
       <div className="pursuance-list">
-
-        {pursuanceArr.map((pursuance) => (
-          <div key={pursuance.id} className="">
-            <h3>
-              <Link to={`/pursuance/${pursuance.id}`}>{pursuance.name}</Link>
-            </h3>
-            <p>{pursuance.description}</p>
-          </div>
-        ))}
-
+        {this.getPursuanceList()}
       </div>
     );
   }

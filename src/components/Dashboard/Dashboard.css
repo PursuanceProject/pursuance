@@ -1,11 +1,12 @@
 #dashboard {
-  background-color: #fcfcfc;
+  background-color: #1c1c1c;
   height: calc(100vh - 100px);
   padding: 30px;
 }
 
 #dashboard-title {
   text-align: center;
+  color: #fcfcfc;
 }
 
 #dash-first-row {
@@ -18,4 +19,15 @@
 
 .dash-ctn {
   flex: 1;
+  padding: 10px;
+}
+
+.dash-box {
+  padding: 12px;
+  border: 2px solid grey;
+  border-radius: 6px;
+}
+
+.dash-box-title {
+  color: #cecece;
 }

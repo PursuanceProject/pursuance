@@ -19,26 +19,31 @@ class Dashboard extends Component {
         <div id="dashboard-title">
           <h1>Dashboard</h1>
         </div>
-
         <div id="dash-first-row">
           <div className="dash-ctn">
-            <h2>My Pursuances</h2>
-
-            <PursuanceList />
+            <div className="dash-box">
+              <h2 className="dash-box-title">My Pursuances</h2>
+              <PursuanceList />
+            </div>
           </div>
-          <div className="dash-ctn">
-            <h2>Next Steps</h2>
-          </div>
+          {/* <div className="dash-ctn">
+            <div className="dasb-box">
+              <h2>Next Steps</h2>
+            </div>
+          </div> */}
         </div>
-
-        <div id="dash-second-row">
+        {/* <div id="dash-second-row">
           <div className="dash-ctn">
-            <h2>Pinned Tasks</h2>
+            <div className="dasb-box">
+              <h2>Pinned Tasks</h2>
+            </div>
           </div>
           <div className="dash-ctn">
-            <h2>Notifications</h2>
+            <div className="dasb-box">
+              <h2>Notifications</h2>
+            </div>
           </div>
-        </div>
+        </div> */}
       </div>
     );
   }

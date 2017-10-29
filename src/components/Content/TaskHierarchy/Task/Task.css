@@ -1,13 +1,13 @@
 .li-task-ctn {
   display: flex;
+  color: #d6d6d6;
 }
 
-.task-row-ctn {
-  display: flex;
-  justify-content: space-between;
+.toggle-ctn {
+  padding-right: 6px;
 }
 
-.plus-ctn {
+.toggle-icon-ctn {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -17,15 +17,21 @@
   border-radius: 6px;
 }
 
-.plus-ctn:hover {
+.toggle-icon-ctn:hover {
   background-color: LightGrey;
   cursor: pointer;
 }
 
+.task-row-ctn {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid LightGrey;
+  border-radius: 5px;
+  padding: 2px 2px 1px 2px;
+}
+
 .task-ctn {
   flex: 1;
-  border: 2px solid DarkGrey;
-  border-radius: 5px;
 }
 
 .task-title {
@@ -33,9 +39,11 @@
 }
 
 .task-assigned-to {
-  width: 200px;
+  width: 190px;
+  padding: 0 4px;
   margin-left: auto;
 }
 
 .task-due-date {
+  padding: 0 4px;
 }
