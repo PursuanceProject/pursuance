@@ -1,6 +1,6 @@
 import { getUsersReq } from '../api/users';
 import { getPursuancesReq } from '../api/pursuances';
-import { postTaskReq } from '../api/tasks';
+import { postTaskReq, getTasksReq } from '../api/tasks';
 
 export const updateFormField = (formId, fieldId, value) =>
   ({ type: 'TASK_FIELD_UPDATE', formId, fieldId, value })
@@ -10,6 +10,9 @@ export const getUsers = () =>
 
 export const getPursuances = () =>
   ({ type: 'GET_PURSUANCES', payload: getPursuancesReq() });
+
+  export const getTasks = () =>
+  ({ type:'GET_TASKS', payload: getTasksReq() });
 
 export const postTask = (task) =>
   ({ type: 'POST_TASK', payload: postTaskReq(task) });
