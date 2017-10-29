@@ -1,22 +1,19 @@
-.PursuancePage {
-    min-height: 100vh;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: row;
+.pursuance-page {
+  background-color: #1c1c1c;
+  display: flex;
+  flex-direction: row;
+  height: calc(100vh - 100px);
+  margin: 0;
+  padding: 12px;
 }
 
-.PursuancePage > article {
-    margin: 4px;
-    padding: 5px;
-    display: flex;
-    flex: 1;
-    order: 2;
+.pursuance-page > article {
+  display: flex;
+  flex: 1;
+  order: 2;
 }
 
-.PursuancePage > nav {
-    margin: 4px;
-    padding: 5px;
-    flex: 0 0 5em;
-    order: 1;
+.pursuance-page > nav {
+  flex: 0 0 5em;
+  order: 1;
 }
