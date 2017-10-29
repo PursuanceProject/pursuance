@@ -7,6 +7,7 @@ import FolderOpen from 'react-icons/lib/fa/folder-open';
 import Group from 'react-icons/lib/fa/group';
 import Rocket from 'react-icons/lib/fa/rocket';
 import PlusCircle from 'react-icons/lib/fa/plus-circle';
+import { connect } from 'react-redux';
 
 const PursuanceMenu = ({ pursuanceId }) => {
   return (
@@ -64,4 +65,4 @@ const PursuanceMenu = ({ pursuanceId }) => {
   );
 };
 
-export default PursuanceMenu;
+export default connect(({ currentPursuanceId }) => ({ currentPursuanceId }))(PursuanceMenu);
