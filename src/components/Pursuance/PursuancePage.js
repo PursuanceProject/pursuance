@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { setCurrentPursuance } from '../../actions';
 import PursuanceMenu from './PursuanceMenu';
 import TaskListView from './views/TaskListView';
 import './PursuancePage.css';
-import { connect } from 'react-redux';
-import { setCurrentPursuance } from '../../actions';
 
 class PursuancePage extends Component {
 
@@ -17,8 +17,8 @@ class PursuancePage extends Component {
   render() {
     return (
       <Router>
-        <div className="PursuancePage">
-          <nav>
+        <div className="pursuance-page">
+          <nav id="pursuance-nav">
             <PursuanceMenu />
           </nav>
           <article>

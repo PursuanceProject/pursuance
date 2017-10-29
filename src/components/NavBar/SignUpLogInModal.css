@@ -1,0 +1,48 @@
+.sign-login-dialog {
+  margin-top: 20vh;
+}
+
+.signup-login-content {
+  background-color: #1c1c1c;
+  border: 2px solid grey;
+}
+
+.sign-login-title {
+  color: #fcfcfc;
+}
+
+.close {
+  color: #969696;
+  opacity: 1;
+}
+
+.close:hover {
+  color: #d6d6d6;
+  opacity: 1;
+}
+
+.signup-login-body {
+  padding: 36px 26px 12px 26px;
+}
+
+.signup-login-label {
+  color: #d6d6d6;
+  font-size: 1.1em;
+}
+
+.btn-close {
+  background-color: #969696;
+  color: #dddddd;
+}
+
+.btn-close:hover {
+  background-color: #d6d6d6;
+}
+
+.btn-primary {
+  background-color: #288bd6;
+}
+
+.btn-primary:hover {
+  background-color: #8662ea;
+}
