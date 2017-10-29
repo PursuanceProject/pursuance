@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { ButtonGroup, Button } from 'react-bootstrap';
 import PursuanceMenuItem from './PursuanceMenuItem';
 import FaCheckSquareO from 'react-icons/lib/fa/check-square-o';
@@ -65,4 +66,4 @@ const PursuanceMenu = ({ pursuanceId }) => {
   );
 };
 
-export default PursuanceMenu;
+export default connect(({ currentPursuanceId }) => ({ currentPursuanceId }))(PursuanceMenu);

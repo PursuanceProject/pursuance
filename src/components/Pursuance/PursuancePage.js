@@ -1,18 +1,25 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { setCurrentPursuance } from '../../actions';
 import PursuanceMenu from './PursuanceMenu';
 import TaskListView from './views/TaskListView';
 import './PursuancePage.css';
 
 class PursuancePage extends Component {
 
+  componentWillMount() {
+    const { setCurrentPursuance, match } = this.props;
+    const currentPursuanceId = Number(match.params.pursuanceId);
+    setCurrentPursuance(currentPursuanceId);
+  }
+
   render() {
     return (
       <Router>
         <div className="pursuance-page">
           <nav id="pursuance-nav">
-            <PursuanceMenu
-              pursuanceId={this.props.match.params.pursuanceId} />
+            <PursuanceMenu />
           </nav>
           <article>
             <Switch>
@@ -27,4 +34,4 @@ class PursuancePage extends Component {
 
 }
 
-export default PursuancePage;
+export default connect(null, { setCurrentPursuance })(PursuancePage);
