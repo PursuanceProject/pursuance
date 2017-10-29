@@ -1,5 +1,7 @@
 #not-found {
-  height: calc(100vh - 140px);
-  padding-top: 160px;
+  background-color: #1c1c1c;
+  height: calc(100vh - 100px);
+  padding-top: 25%;
   text-align: center;
+  color: #d6d6d6;
 }

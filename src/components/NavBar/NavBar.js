@@ -9,7 +9,7 @@ class NavBar extends Component {
 
   render() {
     return (
-      <Navbar inverse collapseOnSelect>
+      <Navbar collapseOnSelect>
         <Navbar.Header>
           <Navbar.Brand>
             <Link to="/">Pursuance</Link>
