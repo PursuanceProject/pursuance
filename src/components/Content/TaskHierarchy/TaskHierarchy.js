@@ -101,12 +101,16 @@ class TaskHierarchy extends Component {
   }
 
   renderHierarchy = () => {
-    return this.state.rootTaskGids.map((gid) => {
-      return <Task
-               key={gid}
-               taskData={this.state.taskMap[gid]}
-               taskMap={this.state.taskMap} />;
-    });
+    return (
+        <ul className="ul-ctn">
+          {this.state.rootTaskGids.map((gid) => {
+            return <Task
+                     key={gid}
+                     taskData={this.state.taskMap[gid]}
+                     taskMap={this.state.taskMap} />
+          })}
+        </ul>
+    )
   }
 
   render() {
