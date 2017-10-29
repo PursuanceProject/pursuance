@@ -14,7 +14,8 @@ import {
   stopSuggestions,
   addSuggestion,
   upSuggestion,
-  downSuggestion
+  downSuggestion,
+  postTask
 } from '../../../../actions';
 
 class TaskForm extends Component {
@@ -45,7 +46,8 @@ class TaskForm extends Component {
     const { addSuggestion, taskForm, upSuggestion, downSuggestion } = this.props;
     const { highlightedSuggestion, suggestions } = taskForm;
 
-    if (e.key === 'Enter' && suggestions) {
+    if (e.key === 'Enter' && suggestions.length > 0) {
+      e.preventDefault()
       addSuggestion(suggestions[highlightedSuggestion].username);
       this.focusDatePicker();
     }
@@ -61,11 +63,19 @@ class TaskForm extends Component {
 
   handleDateSelect = (date) => {
     this.setState({ startDate: date });
-    this.props.updateFormField(this.id, 'date', date)
+    if (date) {
+      //currently ignored untill date Picker input is updating Redux value
+      this.props.updateFormField(this.id, 'due_date', date.format());
+    }
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
+    const { postTask, taskForm, currentPursuanceId } = this.props;
+    const task = taskForm[this.id];
+    task.pursuance_id = currentPursuanceId;
+    task.due_date = moment(document.getElementsByName(this.id)[0][2].value).format();
+    postTask(task);
   }
 
   onFocus = (e) => {
@@ -129,7 +139,7 @@ class TaskForm extends Component {
               onChange={this.handleDateSelect}
             />
           </div>
-          <button type="submit" className="btn btn-default" onClick={this.handleSubmit}>
+          <button className="btn btn-default" onClick={this.handleSubmit}>
             Save
           </button>
         </form>
@@ -139,12 +149,14 @@ class TaskForm extends Component {
   }
 }
 
-export default connect(({ users, taskForm }) => ({ users, taskForm }), {
+export default connect(({ users, taskForm, currentPursuanceId }) =>
+  ({ users, taskForm, currentPursuanceId }), {
    updateFormField,
    startSuggestions,
    showUsers,
    stopSuggestions,
    addSuggestion,
    upSuggestion,
-   downSuggestion
+   downSuggestion,
+   postTask
 })(TaskForm);

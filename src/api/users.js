@@ -1,7 +1,7 @@
 import * as postgrest from './postgrest';
 
 export const getUsersReq = () => {
-  return postgrest.getJSON('/users?select=id,username')
+  return postgrest.getJSON('/users?select=username')
     .then((usersArray) => {
       const usersObject = {};
       for (var i = 0; i < usersArray.length; i++) {

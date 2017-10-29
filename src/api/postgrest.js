@@ -15,7 +15,8 @@ export const postJSON = (pathSuffix, payload, additionalHeaders = {}) => {
 
   return fetch(URL_PREFIX + pathSuffix, {
     method: 'POST',
-    headers: headers
+    headers: headers,
+    body: JSON.stringify(payload)
   })
     .then((resp) => {
       return resp.json();
