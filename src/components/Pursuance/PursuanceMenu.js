@@ -10,12 +10,12 @@ import Rocket from 'react-icons/lib/fa/rocket';
 import PlusCircle from 'react-icons/lib/fa/plus-circle';
 import './PursuanceMenu.css';
 
-const PursuanceMenu = ({ pursuanceId }) => {
+const PursuanceMenu = ({ currentPursuanceId }) => {
   return (
     <ButtonGroup vertical id="pursuance-btn-group">
       <Button id="pursuance-top-btn">
         <PursuanceMenuItem
-          pursuanceId={pursuanceId}
+          pursuanceId={currentPursuanceId}
           label='New'
           action='add'
           icon={<PlusCircle size={28} />}
@@ -23,7 +23,7 @@ const PursuanceMenu = ({ pursuanceId }) => {
       </Button>
       <Button>
         <PursuanceMenuItem
-          pursuanceId={pursuanceId}
+          pursuanceId={currentPursuanceId}
           label='Tasks'
           action='tasks'
           defaultItem
@@ -32,7 +32,7 @@ const PursuanceMenu = ({ pursuanceId }) => {
       </Button>
       <Button>
         <PursuanceMenuItem
-          pursuanceId={pursuanceId}
+          pursuanceId={currentPursuanceId}
           label='Discuss'
           action='discussion'
           icon={<CommentsO size={28} />}
@@ -40,7 +40,7 @@ const PursuanceMenu = ({ pursuanceId }) => {
       </Button>
       <Button>
         <PursuanceMenuItem
-          pursuanceId={pursuanceId}
+          pursuanceId={currentPursuanceId}
           label='Files & Docs'
           action='docs'
           icon={<FolderOpen size={28} />}
@@ -48,7 +48,7 @@ const PursuanceMenu = ({ pursuanceId }) => {
       </Button>
       <Button>
         <PursuanceMenuItem
-          pursuanceId={pursuanceId}
+          pursuanceId={currentPursuanceId}
           label='Participants'
           action='participants'
           icon={<Group size={28} />}
@@ -56,7 +56,7 @@ const PursuanceMenu = ({ pursuanceId }) => {
       </Button>
       <Button id="pursuance-bottom-btn">
         <PursuanceMenuItem
-          pursuanceId={pursuanceId}
+          pursuanceId={currentPursuanceId}
           label='Progress'
           action='progress'
           icon={<Rocket size={28} />}
