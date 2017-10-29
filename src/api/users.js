@@ -5,9 +5,9 @@ export const getUsersReq = () => {
     .then((usersArray) => {
       const usersObject = {};
       for (var i = 0; i < usersArray.length; i++) {
-          usersObject[usersArray[i].username] = usersArray[i];
-        }
-        return usersObject;
-      })
-    .catch(err => console.log('error fetching users:', err))
+        usersObject[usersArray[i].username] = usersArray[i];
+      }
+      return usersObject;
+    })
+    .catch(err => console.log('Error fetching users:', err))
 }

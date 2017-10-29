@@ -11,7 +11,7 @@ export default function (state = initialState, action) {
 
     case 'POST_TASK_FULFILLED':
       return Object.assign({}, state, {
-        addedTasks: [...state.addedTasks, action.payload]
+        addedTasks: [...state.addedTasks, ...action.payload]
       });
 
     case 'POST_TASK_REJECTED':
