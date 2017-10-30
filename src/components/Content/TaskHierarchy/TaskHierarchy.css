@@ -2,6 +2,6 @@ ul {
   list-style-type: none;
 }
 
-.ul-ctn {
-  font-size: 1.1em;
+#root-ul-ctn {
+  padding-left: 0px;
 }

@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import DatePicker from 'react-datepicker';
-import './ReactDatePicker.css';
-import './TaskForm.css';
 import generateId from '../../../../utils/generateId';
 import moment from 'moment';
 import { connect } from 'react-redux';
@@ -17,6 +15,8 @@ import {
   downSuggestion,
   postTask
 } from '../../../../actions';
+import './ReactDatePicker.css';
+import './TaskForm.css';
 
 class TaskForm extends Component {
   constructor(props) {
@@ -94,7 +94,6 @@ class TaskForm extends Component {
     }
     return (
       <div className="task-form-container">
-
         <form className="task-form" name={this.id} autoComplete="off">
           <div id="input-task-title-ctn" className="">
             <input
@@ -136,11 +135,10 @@ class TaskForm extends Component {
               onChange={this.handleDateSelect}
             />
           </div>
-          <button className="btn btn-default" onClick={this.handleSubmit}>
+          <button className="btn btn-default save-task-btn" onClick={this.handleSubmit}>
             Save
           </button>
         </form>
-
       </div>
     );
   }
