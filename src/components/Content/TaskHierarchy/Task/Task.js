@@ -61,7 +61,7 @@ class Task extends Component {
           </div>
         </div>
         {
-          task.subtask_gids && task.subtask_gids.length &&
+          task.subtask_gids && task.subtask_gids.length > 0 &&
             <ul className="ul-ctn" style={this.styleUl()}>
               {this.mapSubTasks(task)}
             </ul>
