@@ -70,6 +70,10 @@ class TaskForm extends Component {
     e.preventDefault();
     const { postTask, taskForm, currentPursuanceId } = this.props;
     const task = taskForm[this.id];
+    if (!task) {
+      console.log("Thou shalt not submit empty TaskForm!");
+      return;
+    }
     task.pursuance_id = currentPursuanceId;
     task.due_date = moment(document.getElementsByName(this.id)[0][2].value).format();
     postTask(task);
