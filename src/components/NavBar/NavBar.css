@@ -26,10 +26,14 @@
   color: #fcfcfc !important;
 }
 
+.navbar-brand:hover {
+  color: #8662ea !important;
+}
+
 .navbar-nav li a {
   color: #d6d6d6 !important;
 }
 
 .navbar-nav li a:hover {
-  color: #2bbbd8 !important;
+  color: #1fc7d3 !important;
 }

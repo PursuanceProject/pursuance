@@ -14,9 +14,9 @@
 }
 
 .assign-autocomplete {
-  width: 20%;
   position: relative;
   display: flex;
+  width: 20%;
 }
 
 .at-symbol {
@@ -34,13 +34,22 @@
   border-radius: 0;
 }
 
-.react-datepicker__input-container {
+.date-picker-ctn {
   height: 34px;
 }
 
-.react-datepicker__input-container $0 {
-  height: 20px !important;
-  padding: 6px 12px !important;
+.react-datepicker-wrapper {
+  height: 34px;
+}
+
+.react-datepicker__input-container {
+  height: 100%;
+}
+
+.react-datepicker__input-container input {
+  height: 100%;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
 }
 
 .save-task-btn {

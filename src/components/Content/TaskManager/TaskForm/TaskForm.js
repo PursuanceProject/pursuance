@@ -118,16 +118,16 @@ class TaskForm extends Component {
               <span>@</span>
             </div>
             <input
-                type="text"
-                className="form-control assign-to"
-                placeholder="Assigned To"
-                value={assigned_to || ''}
-                name={'assigned_to'}
-                onChange={this.onChange}
-                onFocus={this.onFocus}
-                onBlur={this.onBlur}
-                onKeyDown={this.onKeyDown}
-              />
+              className="form-control assign-to"
+              type="text"
+              placeholder="Assigned To"
+              value={assigned_to || ''}
+              name={'assigned_to'}
+              onChange={this.onChange}
+              onFocus={this.onFocus}
+              onBlur={this.onBlur}
+              onKeyDown={this.onKeyDown}
+            />
           </div>
           <div className="date-picker-ctn">
             <DatePicker

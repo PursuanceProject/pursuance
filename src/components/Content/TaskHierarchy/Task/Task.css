@@ -7,6 +7,7 @@
 
 .task-ctn {
   display: flex;
+  justify-content: center;
 }
 
 .toggle-ctn {
@@ -28,6 +29,15 @@
   cursor: pointer;
 }
 
+.new-form-btn {
+
+}
+
+.new-form-btn:hover {
+  cursor: pointer;
+  color: #8662ea;
+}
+
 .task-row-ctn {
   flex: 1;
   display: flex;
@@ -47,6 +57,13 @@
   margin-left: auto;
 }
 
+.task-assigned-to:hover {
+  cursor: pointer;
+  color: #1fc7d3;
+}
+
 .task-due-date {
+  width: 96px;
   padding: 0 4px;
+  text-align: center;
 }
