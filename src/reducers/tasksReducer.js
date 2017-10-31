@@ -42,14 +42,14 @@ export default function (state = initialState, action) {
       });
 
     case 'ADD_POSTED_SUB_TASK':
-      const { task } = action.payload;
-      const parentTaskGid = task.parent_task_gid;
+      const subTask = action.task;
+      const parentTaskGid = subTask.parent_task_gid;
       const parentTask = state.taskMap[parentTaskGid];
       return Object.assign({}, state, {
         taskMap: Object.assign({}, state.taskMap, {
-          [task.gid]: task,
+          [subTask.gid]: subTask,
           [parentTaskGid]: Object.assign({}, parentTask, {
-            subtask_gids: [...parentTask.subtask_gids, task.gid]
+            subtask_gids: [...parentTask.subtask_gids, subTask.gid]
           })
         })
       });
