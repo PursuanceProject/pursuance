@@ -6,7 +6,10 @@ import * as postgrest from '../../../api/postgrest';
 import './TaskHierarchy.css';
 import '../Content.css';
 import {
-  getUsers
+  getUsers,
+  getTasks,
+  addPostedRootTaskToHierarchy,
+  addPostedSubTaskToHierarchy
 } from '../../../actions';
 
 class TaskHierarchy extends Component {
@@ -15,75 +18,34 @@ class TaskHierarchy extends Component {
 
     this.state = {
       displayLi: true,
-      taskMap: {},
-      rootTaskGids: []
     };
   }
 
   componentWillMount() {
-    const { getUsers, currentPursuanceId } = this.props;
+    const { getUsers, getTasks, currentPursuanceId } = this.props;
     getUsers();
-    postgrest.getJSON(`/tasks?pursuance_id=eq.${currentPursuanceId}&order=created.asc,id.asc`)
-      .then((tasks) => {
-        const { taskMap, rootTaskGids } = this.buildTaskHierarchy(tasks);
-        this.setState({
-          taskMap,
-          rootTaskGids
-        });
-      })
-      .catch((err) => {
-        console.log('Error fetching tasks:', err);
-      });
+    getTasks(currentPursuanceId);
   }
 
-  buildTaskHierarchy = (tasks) => {
-    const taskMap = {};
-    for (let i = 0; i < tasks.length; i++) {
-      taskMap[tasks[i].gid] = Object.assign(tasks[i], {subtask_gids: []});
+  componentWillReceiveProps(nextProps) {
+    const { recentlyAddedTask } = this.props.tasks;
+    let newTask = nextProps.tasks.recentlyAddedTask;
+    if (newTask !== recentlyAddedTask) {
+      this.updateTaskHierarchy(newTask);
     }
-
-    const rootTaskGids = [];
-
-    for (let i = 0; i < tasks.length; i++) {
-      const t = tasks[i];
-
-      // If a task has no parents, it's a root task
-      if (!t.parent_task_gid) {
-        rootTaskGids.push(t.gid);
-      } else {
-        // Add t to its parent's subtasks
-        taskMap[t.parent_task_gid].subtask_gids.push(t.gid)
-      }
-    }
-
-    return {
-      taskMap,
-      rootTaskGids
-    };
   }
 
-  addPostedTaskToHierarchy = (task) => {
+  updateTaskHierarchy = (task) => {
+    const { addPostedRootTaskToHierarchy, addPostedSubTaskToHierarchy } = this.props;
     task.subtask_gids = task.subtask_gids || [];
 
-    let parentTaskMap = {};
     const parentTaskGid = task.parent_task_gid;
     if (parentTaskGid) {
-      // Append task.gid to parentTask.subtask_gids
-      const parentTask = this.state.taskMap[parentTaskGid];
-      parentTaskMap = {
-        [parentTaskGid]: Object.assign({},
-                                       parentTask,
-                                       {subtask_gids: [...parentTask.subtask_gids,
-                                                       task.gid]})
-      }
+      addPostedSubTaskToHierarchy(task);
     }
-
-    this.setState({
-      taskMap: Object.assign({},
-                             this.state.taskMap,
-                             {[task.gid]: task},
-                             parentTaskMap)
-    })
+    else {
+      addPostedRootTaskToHierarchy(task);
+    }
   }
 
   toggleRow = () => {
@@ -102,13 +64,14 @@ class TaskHierarchy extends Component {
   }
 
   renderHierarchy = () => {
+    const { rootTaskGids, taskMap } = this.props.tasks;
     return (
         <ul className="ul-ctn">
-          {this.state.rootTaskGids.map((gid) => {
+          {rootTaskGids.map((gid) => {
             return <Task
                      key={gid}
-                     taskData={this.state.taskMap[gid]}
-                     taskMap={this.state.taskMap} />
+                     taskData={taskMap[gid]}
+                     taskMap={taskMap} />
           })}
         </ul>
     )
@@ -124,4 +87,10 @@ class TaskHierarchy extends Component {
   }
 }
 
-export default connect(({ currentPursuanceId }) => ({ currentPursuanceId }), { getUsers })(TaskHierarchy);
+export default connect(({ currentPursuanceId, tasks }) =>
+  ({ currentPursuanceId, tasks }), {
+     getUsers,
+     getTasks,
+     addPostedRootTaskToHierarchy,
+     addPostedSubTaskToHierarchy
+})(TaskHierarchy);
