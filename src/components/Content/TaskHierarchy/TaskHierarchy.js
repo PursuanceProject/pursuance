@@ -3,14 +3,14 @@ import Task from './Task/Task';
 import TaskForm from '../TaskManager/TaskForm/TaskForm';
 import { connect } from 'react-redux';
 import * as postgrest from '../../../api/postgrest';
-import './TaskHierarchy.css';
-import '../Content.css';
 import {
   getUsers,
   getTasks,
   addPostedRootTaskToHierarchy,
   addPostedSubTaskToHierarchy
 } from '../../../actions';
+import './TaskHierarchy.css';
+import '../Content.css';
 
 class TaskHierarchy extends Component {
   constructor(props) {
@@ -80,8 +80,10 @@ class TaskHierarchy extends Component {
   render() {
     return (
       <div className="content-ctn">
-        {this.renderHierarchy()}
-        <TaskForm />
+        <div id="task-hierarchy" className="overflow-y-ctn">
+          {this.renderHierarchy()}
+          <TaskForm />
+        </div>
       </div>
     );
   }

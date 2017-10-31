@@ -1,3 +1,7 @@
 .App {
 
 }
+
+.overflow-y-ctn {
+  overflow-y: auto;
+}
