@@ -3,11 +3,14 @@ import { Navbar, NavItem, Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import SignUp from './SignUp/SignUp';
 import LogIn from './LogIn/LogIn';
+import NotificationsPopover from './NotificationsPopover';
+import UserSettingsPopover from './UserSettingsPopover';
 import './NavBar.css';
 
 class NavBar extends Component {
 
   render() {
+    const { authenticated, username } = this.props;
     return (
       <Navbar collapseOnSelect>
         <Navbar.Header>
@@ -23,14 +26,38 @@ class NavBar extends Component {
             </li>
           </ul>
           <Nav pullRight>
-            <NavItem data-toggle="modal" data-target="#sign-up-modal">
-              Sign Up
-            </NavItem>
-            <SignUp />
-            <NavItem data-toggle="modal" data-target="#log-in-modal">
-              Log In
-            </NavItem>
-            <LogIn />
+            {
+              !authenticated && (
+                <NavItem data-toggle="modal" data-target="#sign-up-modal">
+                  Sign Up
+                </NavItem>)
+            }
+            {
+              !authenticated && <SignUp />
+            }
+            {
+              !authenticated && (
+                <NavItem data-toggle="modal" data-target="#log-in-modal">
+                  Log In
+                </NavItem>)
+            }
+            {
+              !authenticated && <LogIn />
+            }
+            {
+              authenticated && (
+                <NavItem>
+                  <NotificationsPopover />
+                </NavItem>
+              )
+            }
+            {
+              authenticated && (
+                <NavItem>
+                  <UserSettingsPopover username={username} />
+                </NavItem>
+              )
+            }
           </Nav>
         </Navbar.Collapse>
       </Navbar>

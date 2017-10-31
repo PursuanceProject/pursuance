@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { setCurrentPursuance } from '../../actions';
 import PursuanceMenu from './PursuanceMenu';
 import TaskListView from './views/TaskListView';
+import DiscussView from './views/DiscussView';
 import './PursuancePage.css';
 
 class PursuancePage extends Component {
@@ -25,6 +26,7 @@ class PursuancePage extends Component {
             <Switch>
               <Route exact path="/pursuance/:pursuanceId" component={TaskListView} />
               <Route exact path="/pursuance/:pursuanceId/tasks" component={TaskListView} />
+              <Route exact path="/pursuance/:pursuanceId/discuss" component={DiscussView} />
             </Switch>
           </article>
         </div>
