@@ -34,7 +34,7 @@ const PursuanceMenu = ({ currentPursuanceId }) => {
         <PursuanceMenuItem
           pursuanceId={currentPursuanceId}
           label='Discuss'
-          action='discussion'
+          action='discuss'
           icon={<CommentsO size={28} />}
         />
       </Button>

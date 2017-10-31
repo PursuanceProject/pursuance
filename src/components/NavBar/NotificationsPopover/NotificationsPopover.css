@@ -1,0 +1,19 @@
+.NotificationListContainer {
+  padding: 2px 5px 2px 5px;
+  position: absolute;
+}
+
+.NotificationsButtonContainer {
+  position: relative;
+}
+
+.NotificationsButton {
+  background: none;
+  border: none;
+  color: white;
+}
+
+.NewNotificationsIndicator {
+  position: absolute;
+  color: red;
+}
