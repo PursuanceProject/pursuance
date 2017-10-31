@@ -9,7 +9,7 @@ export default function (state = {}, action) {
       return action.payload
 
     case 'GET_USERS_REJECTED':
-      return 'CHECK CONSOLE FOR ERROR';
+      return state;
 
     default:
       return state

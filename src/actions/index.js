@@ -11,8 +11,8 @@ export const getUsers = () =>
 export const getPursuances = () =>
   ({ type: 'GET_PURSUANCES', payload: getPursuancesReq() });
 
-  export const getTasks = () =>
-  ({ type:'GET_TASKS', payload: getTasksReq() });
+  export const getTasks = (pursuanceId) =>
+  ({ type:'GET_TASKS', payload: getTasksReq(pursuanceId) });
 
 export const postTask = (task) =>
   ({ type: 'POST_TASK', payload: postTaskReq(task) });
@@ -37,3 +37,9 @@ export const downSuggestion = () =>
 
 export const setCurrentPursuance = (currentPursuanceId) =>
   ({ type: 'SET_CURRENT_PURSUANCE', currentPursuanceId });
+
+export const addPostedRootTaskToHierarchy = (task) =>
+  ({ type: 'ADD_POSTED_ROOT_TASK', task });
+
+export const addPostedSubTaskToHierarchy = (task) =>
+  ({ type: 'ADD_POSTED_SUB_TASK', task });
