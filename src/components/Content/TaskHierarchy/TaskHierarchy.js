@@ -66,7 +66,7 @@ class TaskHierarchy extends Component {
   renderHierarchy = () => {
     const { rootTaskGids, taskMap } = this.props.tasks;
     return (
-        <ul className="ul-ctn">
+        <ul id="root-ul-ctn" className="ul-ctn">
           {rootTaskGids.map((gid) => {
             return <Task
                      key={gid}
