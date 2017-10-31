@@ -5,19 +5,49 @@ import TiMinus from 'react-icons/lib/ti/minus';
 import './Task.css';
 
 class Task extends Component {
+  constructor(props) {
+    super(props);
 
-  styleLi = () => {
+    this.state = {
+      showChildren: true
+    };
+  }
 
+  toggleChildren = () => {
+    this.setState({
+      ...this.state,
+      showChildren: !this.state.showChildren
+    });
+  }
+
+  styleUl = () => {
+    if (this.state.showChildren) {
+      return { display: 'block' };
+    } else {
+      return { display: 'none' };
+    }
+  }
+
+  mapSubTasks = (task) => {
+    return task.subtask_gids.map((gid) => {
+      return <Task
+        key={gid}
+        taskData={this.props.taskMap[gid]}
+        taskMap={this.props.taskMap} />;
+    });
   }
 
   render() {
     const task = this.props.taskData;
+    const { showChildren } = this.state;
     return (
       <li className="li-task-ctn">
-        <div className="plus-ctn" onClick={this.toggleRow}>
-          <TiMinus />
-        </div>
-        <div className="task-ctn" style={this.styleLi()}>
+        <div className="task-ctn">
+          <div className="toggle-ctn">
+            <div className="toggle-icon-ctn" onClick={this.toggleChildren}>
+              {showChildren ? <TiMinus /> : <TiPlus />}
+            </div>
+          </div>
           <div className="task-row-ctn">
             <div className="task-title">
               {task.title}
@@ -30,17 +60,12 @@ class Task extends Component {
             </div>
           </div>
         </div>
-
-        {task.subtask_gids && task.subtask_gids.length && (
-          <ul className="ul-ctn">
-            {task.subtask_gids.map((gid) => {
-              return <Task
-                       key={gid}
-                       taskData={this.props.taskMap[gid]}
-                       taskMap={this.props.taskMap} />
-            })}
-          </ul>
-        )}
+        {
+          task.subtask_gids && task.subtask_gids.length > 0 &&
+            <ul className="ul-ctn" style={this.styleUl()}>
+              {this.mapSubTasks(task)}
+            </ul>
+        }
       </li>
     );
   }

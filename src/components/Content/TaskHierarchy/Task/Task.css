@@ -1,6 +1,12 @@
 .li-task-ctn {
   display: flex;
+  flex-direction: column;
   color: #d6d6d6;
+  font-size: 16px;
+}
+
+.task-ctn {
+  display: flex;
 }
 
 .toggle-ctn {
@@ -23,15 +29,12 @@
 }
 
 .task-row-ctn {
+  flex: 1;
   display: flex;
   justify-content: space-between;
   border: 1px solid LightGrey;
   border-radius: 5px;
   padding: 2px 2px 1px 2px;
-}
-
-.task-ctn {
-  flex: 1;
 }
 
 .task-title {
