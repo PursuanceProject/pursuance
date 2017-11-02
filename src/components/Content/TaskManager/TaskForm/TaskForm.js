@@ -26,7 +26,9 @@ class TaskForm extends Component {
   }
 
   componentWillMount() {
+    const { parentGid, updateFormField } = this.props;
     this.id = generateId('task');
+    updateFormField(this.id, 'parent_task_gid', parentGid || null);
   }
 
   getClassName = () => {
@@ -84,7 +86,6 @@ class TaskForm extends Component {
       console.log("Thou shalt not submit empty TaskForm!");
       return;
     }
-    task.parent_task_gid = this.props.parentGid || null;
     task.pursuance_id = currentPursuanceId;
     const dueDateRaw = document.getElementsByName(this.id)[0].value;
     if (dueDateRaw) {
