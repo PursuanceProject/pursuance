@@ -24,8 +24,17 @@ class TaskForm extends Component {
 
     this.state = { startDate: '' };
   }
+
   componentWillMount() {
     this.id = generateId('task');
+  }
+
+  getClassName = () => {
+    if(this.props.topLevel) {
+      return 'task-form-ctn';
+    } else {
+      return 'task-form-ctn nested-form';
+    }
   }
 
   onChange = (e) => {
@@ -97,7 +106,7 @@ class TaskForm extends Component {
       assigned_to = taskForm[this.id].assigned_to;
     }
     return (
-      <div className="task-form-container">
+      <div className={this.getClassName()}>
         <form className="task-form" name={this.id} autoComplete="off">
           <div id="input-task-title-ctn" className="">
             <input
@@ -109,7 +118,7 @@ class TaskForm extends Component {
               onChange={this.onChange}
             />
           </div>
-          <div className="assign-autocomplete">
+          <div className="assign-autocomplete-ctn">
             {this.props.taskForm.suggestions
               &&
               <AssignerSuggestions focusDatePicker={this.focusDatePicker}/>
