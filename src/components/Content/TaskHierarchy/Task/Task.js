@@ -91,7 +91,7 @@ class Task extends Component {
             </div>
           </div>
         </div>
-        {showTaskForm && <TaskForm gid={task.gid} taskData={task}/>}
+        {showTaskForm && <TaskForm gid={task.gid} taskData={task} />}
         {
           task.subtask_gids && task.subtask_gids.length > 0 &&
             <ul className="ul-ctn" style={this.styleUl()}>

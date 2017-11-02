@@ -10,6 +10,7 @@ CREATE TABLE tasks (
     due_date         timestamp WITH time zone,
     created          timestamp WITH time zone NOT NULL DEFAULT now(),
     parent_task_gid  text      REFERENCES tasks(gid),
+    assigned_to_pursuance_id integer REFERENCES pursuances(id);
     PRIMARY KEY (id, pursuance_id),
     CHECK ((LENGTH(title) > 0 OR LENGTH(title_enc) > 0)
             AND
