@@ -8,6 +8,7 @@ import AssignerSuggestions from './Suggestions/AssignerSuggestions';
 import {
   updateFormField,
   clearTaskFormFields,
+  setTaskFormParentGid,
   startSuggestions,
   showUsers,
   stopSuggestions,
@@ -32,6 +33,35 @@ class TaskForm extends Component {
       return 'task-form-ctn';
     } else {
       return 'task-form-ctn nested-form';
+    }
+  }
+
+  onTitleKeyDown = (e) => {
+    const { parentGid } = this.props;
+    const { taskMap } = this.props.tasks;
+    const title = this.props.taskForm[this.id].title || '';
+    if (e.key === 'Tab' && title.length === 0) {
+      e.preventDefault();
+      let newParentGid = null;
+      const parent = taskMap[parentGid];
+      if (e.nativeEvent.shiftKey) {
+        // Unindent
+        if (parent && parent.parent_task_gid) {
+          newParentGid = taskMap[parent.parent_task_gid].gid;
+        } else {
+          newParentGid = null;
+        }
+      } else {
+        // Indent
+        if (parent) {
+          const numChildren = parent.subtask_gids.length;
+          if (numChildren > 0) {
+            newParentGid = parent.subtask_gids[numChildren-1];
+          }
+        }
+      }
+      console.log(this.id, 'newParentGid:', newParentGid);
+      this.props.setTaskFormParentGid(this.id, newParentGid || null);
     }
   }
 
@@ -163,10 +193,11 @@ class TaskForm extends Component {
   }
 }
 
-export default connect(({ users, taskForm, currentPursuanceId }) =>
-  ({ users, taskForm, currentPursuanceId }), {
+export default connect(({ users, taskForm, currentPursuanceId, tasks }) =>
+  ({ users, taskForm, currentPursuanceId, tasks }), {
    updateFormField,
    clearTaskFormFields,
+   setTaskFormParentGid,
    startSuggestions,
    showUsers,
    stopSuggestions,
