@@ -3,6 +3,8 @@ import * as postgrest from '../../../../api/postgrest';
 import TiPlus from 'react-icons/lib/ti/plus';
 import TiMinus from 'react-icons/lib/ti/minus';
 import FaArrowCircleDown from 'react-icons/lib/fa/arrow-circle-down';
+import FaHandODown from 'react-icons/lib/fa/hand-o-down';
+import FaCommentsO from 'react-icons/lib/fa/comments-o';
 import TaskForm from '../../TaskManager/TaskForm/TaskForm';
 import './Task.css';
 
@@ -83,6 +85,10 @@ class Task extends Component {
             <div className="task-title">
               {task.title}
             </div>
+            <div className="task-icons-ctn">
+              <FaHandODown />
+              <FaCommentsO />
+            </div>
             <div className="task-assigned-to">
               {task.assigned_to && '@'+task.assigned_to}
             </div>
@@ -91,7 +97,7 @@ class Task extends Component {
             </div>
           </div>
         </div>
-        {showTaskForm && <TaskForm gid={task.gid} taskData={task} />}
+        {showTaskForm && <TaskForm parentGid={task.gid} />}
         {
           task.subtask_gids && task.subtask_gids.length > 0 &&
             <ul className="ul-ctn" style={this.styleUl()}>
