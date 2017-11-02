@@ -30,7 +30,7 @@ class TaskForm extends Component {
   }
 
   getClassName = () => {
-    if(this.props.topLevel) {
+    if (this.props.topLevel) {
       return 'task-form-ctn';
     } else {
       return 'task-form-ctn nested-form';
@@ -86,7 +86,10 @@ class TaskForm extends Component {
     }
     task.parent_task_gid = this.props.parentGid || null;
     task.pursuance_id = currentPursuanceId;
-    task.due_date = moment(document.getElementsByName(this.id)[0][2].value).format();
+    const dueDateRaw = document.getElementsByName(this.id)[0].value;
+    if (dueDateRaw) {
+      task.due_date = moment(dueDateRaw).format();
+    }
     postTask(task);
   }
 
@@ -102,7 +105,7 @@ class TaskForm extends Component {
   focusDatePicker = () => this.datePickerRef.input.focus();
 
   render() {
-    let assigned_to
+    let assigned_to;
     const { taskForm } = this.props;
     if (taskForm[this.id]) {
       assigned_to = taskForm[this.id].assigned_to;

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Task from './Task/Task';
 import TaskForm from '../TaskManager/TaskForm/TaskForm';
 import { connect } from 'react-redux';
-import * as postgrest from '../../../api/postgrest';
 import {
   getUsers,
   getTasks,
@@ -30,7 +29,7 @@ class TaskHierarchy extends Component {
   componentWillReceiveProps(nextProps) {
     const { recentlyAddedTask } = this.props.tasks;
     let newTask = nextProps.tasks.recentlyAddedTask;
-    if (newTask !== recentlyAddedTask) {
+    if (newTask && newTask !== recentlyAddedTask) {
       this.updateTaskHierarchy(newTask);
     }
   }
