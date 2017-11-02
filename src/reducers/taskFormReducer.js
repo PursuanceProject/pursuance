@@ -32,7 +32,7 @@ export default function (state = {}, action) {
       const suggestionForm = state.suggestionForm;
       return Object.assign({}, state, {
         [suggestionForm] : Object.assign({}, state[suggestionForm], {
-          assigned_to : action.username
+          assigned_to : action.suggestion
         }),
         suggestions: null
       });
