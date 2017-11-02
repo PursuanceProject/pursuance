@@ -51,7 +51,7 @@ class Task extends Component {
   }
 
   getTaskIcon = (task, showChildren) => {
-    if(task.subtask_gids.length < 1) {
+    if (task.subtask_gids.length < 1) {
       return (
         <FaArrowCircleDown
           className="new-form-btn"
