@@ -117,6 +117,7 @@ class TaskForm extends Component {
               className="form-control"
               placeholder="Task Title"
               name={'title'}
+              autoFocus
               onChange={this.onChange}
             />
           </div>
