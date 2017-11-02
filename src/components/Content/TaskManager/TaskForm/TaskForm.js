@@ -79,10 +79,12 @@ class TaskForm extends Component {
     e.preventDefault();
     const { postTask, taskForm, currentPursuanceId } = this.props;
     const task = taskForm[this.id];
+    // TODO: Refactor race conditions
     if (!task) {
       console.log("Thou shalt not submit empty TaskForm!");
       return;
     }
+    task.parent_task_gid = this.props.parentGid || null;
     task.pursuance_id = currentPursuanceId;
     task.due_date = moment(document.getElementsByName(this.id)[0][2].value).format();
     postTask(task);
@@ -99,7 +101,7 @@ class TaskForm extends Component {
 
   focusDatePicker = () => this.datePickerRef.input.focus();
 
-  render () {
+  render() {
     let assigned_to
     const { taskForm } = this.props;
     if (taskForm[this.id]) {
