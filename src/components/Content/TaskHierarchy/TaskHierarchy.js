@@ -82,7 +82,7 @@ class TaskHierarchy extends Component {
       <div className="content-ctn">
         <div id="task-hierarchy" className="overflow-y-ctn">
           {this.renderHierarchy()}
-          <TaskForm />
+          <TaskForm topLevel={true}/>
         </div>
       </div>
     );
