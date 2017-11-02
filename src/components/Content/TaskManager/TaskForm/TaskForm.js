@@ -20,11 +20,6 @@ import './ReactDatePicker.css';
 import './TaskForm.css';
 
 class TaskForm extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = { startDate: '' };
-  }
 
   componentWillMount() {
     const { parentGid, updateFormField } = this.props;
@@ -51,7 +46,7 @@ class TaskForm extends Component {
     }
   }
 
-  onKeyDown = (e) => {
+  onAssignerKeyDown = (e) => {
     const { addSuggestion, taskForm, upSuggestion, downSuggestion } = this.props;
     const { highlightedSuggestion, suggestions } = taskForm;
 
@@ -71,10 +66,9 @@ class TaskForm extends Component {
   }
 
   handleDateSelect = (date) => {
-    this.setState({ startDate: date });
     if (date) {
       //currently ignored untill date Picker input is updating Redux value
-      this.props.updateFormField(this.id, 'due_date', date.format());
+      this.props.updateFormField(this.id, 'due_date_raw', date);
     }
   }
 
@@ -84,21 +78,19 @@ class TaskForm extends Component {
       postTask, clearTaskFormFields, taskForm, currentPursuanceId
     } = this.props;
     const task = taskForm[this.id];
-    // TODO: Refactor race conditions
     if (!task) {
       console.log("Thou shalt not submit empty TaskForm!");
       return;
     }
     task.pursuance_id = currentPursuanceId;
-    const dueDateRaw = document.getElementsByName(this.id)[0].value;
-    if (dueDateRaw) {
-      task.due_date = moment(dueDateRaw).format();
-    }
+    task.due_date = moment(task.due_date_raw).format();
+    delete task.due_date_raw;
+
     // TODO: Chain these 2 together using a promise or RxJS
     postTask(task);
-    // TODO: Also clear this form's title and due_date, which appear
-    // to be locally managed and not in redux
     clearTaskFormFields(this.id);
+
+    this.titleRef.focus();
   }
 
   onFocus = (e) => {
@@ -113,11 +105,8 @@ class TaskForm extends Component {
   focusDatePicker = () => this.datePickerRef.input.focus();
 
   render() {
-    let assigned_to;
     const { taskForm } = this.props;
-    if (taskForm[this.id]) {
-      assigned_to = taskForm[this.id].assigned_to;
-    }
+    const { title, assigned_to, due_date_raw } = taskForm[this.id] || {};
     return (
       <div className={this.getClassName()}>
         <form className="task-form" name={this.id} autoComplete="off">
@@ -128,8 +117,11 @@ class TaskForm extends Component {
               className="form-control"
               placeholder="Task Title"
               name={'title'}
+              value={title || ''}
               autoFocus
+              ref={(input) => this.titleRef = input}
               onChange={this.onChange}
+              onKeyDown={this.onTitleKeyDown}
             />
           </div>
           <div className="assign-autocomplete-ctn">
@@ -149,7 +141,7 @@ class TaskForm extends Component {
               onChange={this.onChange}
               onFocus={this.onFocus}
               onBlur={this.onBlur}
-              onKeyDown={this.onKeyDown}
+              onKeyDown={this.onAssignerKeyDown}
             />
           </div>
           <div className="date-picker-ctn">
@@ -157,7 +149,7 @@ class TaskForm extends Component {
               placeholderText="YYYY-MM-DD"
               dateFormat="YYYY-MM-DD"
               ref={(input) => this.datePickerRef = input}
-              selected={this.state.startDate}
+              selected={due_date_raw || ''}
               onSelect={this.handleDateSelect}
               onChange={this.handleDateSelect}
             />
