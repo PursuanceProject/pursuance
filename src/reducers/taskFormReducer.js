@@ -9,6 +9,18 @@ export default function (state = {}, action) {
         })
       });
 
+    case 'TASK_FORM_CLEAR_FIELDS': {
+      // ...except parent_task_gid
+      const { formId } = action;
+      console.log('action', action);
+      console.log('formId', formId);
+      return Object.assign({}, state, {
+        [formId]: {
+          parent_task_gid: state[formId]['parent_task_gid']
+        }
+      });
+    }
+
     case 'START_SUGGESTIONS':
       return Object.assign({}, state, {
         suggestions :  action.suggestions,

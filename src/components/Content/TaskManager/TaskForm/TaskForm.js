@@ -7,6 +7,7 @@ import { filterUsers } from '../../../../utils/suggestions';
 import AssignerSuggestions from './Suggestions/AssignerSuggestions';
 import {
   updateFormField,
+  clearTaskFormFields,
   startSuggestions,
   showUsers,
   stopSuggestions,
@@ -79,7 +80,9 @@ class TaskForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const { postTask, taskForm, currentPursuanceId } = this.props;
+    const {
+      postTask, clearTaskFormFields, taskForm, currentPursuanceId
+    } = this.props;
     const task = taskForm[this.id];
     // TODO: Refactor race conditions
     if (!task) {
@@ -91,7 +94,11 @@ class TaskForm extends Component {
     if (dueDateRaw) {
       task.due_date = moment(dueDateRaw).format();
     }
+    // TODO: Chain these 2 together using a promise or RxJS
     postTask(task);
+    // TODO: Also clear this form's title and due_date, which appear
+    // to be locally managed and not in redux
+    clearTaskFormFields(this.id);
   }
 
   onFocus = (e) => {
@@ -167,6 +174,7 @@ class TaskForm extends Component {
 export default connect(({ users, taskForm, currentPursuanceId }) =>
   ({ users, taskForm, currentPursuanceId }), {
    updateFormField,
+   clearTaskFormFields,
    startSuggestions,
    showUsers,
    stopSuggestions,

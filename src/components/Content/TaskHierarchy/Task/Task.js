@@ -86,7 +86,8 @@ class Task extends Component {
               {task.title}
             </div>
             <div className="task-icons-ctn">
-              <FaHandODown />
+              <FaHandODown
+                onClick={this.toggleNewForm} />
               <FaCommentsO />
             </div>
             <div className="task-assigned-to">
@@ -97,13 +98,13 @@ class Task extends Component {
             </div>
           </div>
         </div>
-        {showTaskForm && <TaskForm parentGid={task.gid} />}
         {
           task.subtask_gids && task.subtask_gids.length > 0 &&
             <ul className="ul-ctn" style={this.styleUl()}>
               {this.mapSubTasks(task)}
             </ul>
         }
+        {showTaskForm && <TaskForm parentGid={task.gid} />}
       </li>
     );
   }
