@@ -6,13 +6,13 @@ export default function (state = {}, action) {
       return state;
 
     case 'GET_PURSUANCES_FULFILLED':
-      return action.payload
+      return action.payload;
 
     case 'GET_PURSUANCES_REJECTED':
       return state;
 
     default:
-      return state
+      return state;
   }
 
 }

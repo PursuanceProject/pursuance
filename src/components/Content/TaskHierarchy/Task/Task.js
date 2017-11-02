@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import * as postgrest from '../../../../api/postgrest';
 import TiPlus from 'react-icons/lib/ti/plus';
 import TiMinus from 'react-icons/lib/ti/minus';
@@ -40,20 +41,23 @@ class Task extends Component {
   }
 
   mapSubTasks = (task) => {
+    const { pursuances } = this.props;
     return task.subtask_gids.map((gid) => {
       return <Task
         key={gid}
         taskData={this.props.taskMap[gid]}
-        taskMap={this.props.taskMap} />;
+        taskMap={this.props.taskMap}
+        pursuances={pursuances} />;
     });
   }
 
   getTaskIcon = (task, showChildren) => {
-    if(task.subtask_gids.length < 1) {
+    if(task) {
       return (
         <FaArrowCircleDown
           className="new-form-btn"
           onClick={this.toggleNewForm}/>
+
       );
     } else if (showChildren) {
       return (
@@ -71,7 +75,10 @@ class Task extends Component {
   }
 
   render() {
-    const task = this.props.taskData;
+    const { pursuances, taskData } = this.props;
+    const task = taskData;
+    let assigned_to_pursuance_id;
+    const pursuanceId = task.assigned_to_pursuance_id;
     const { showChildren, showTaskForm } = this.state;
     return (
       <li className="li-task-ctn">
@@ -84,14 +91,18 @@ class Task extends Component {
               {task.title}
             </div>
             <div className="task-assigned-to">
-              {task.assigned_to && '@'+task.assigned_to}
+              { pursuanceId ? pursuances[pursuanceId].suggestionName : '@'+task.assigned_to }
             </div>
             <div className="task-due-date">
               {task.due_date && postgrest.formatDate(task.due_date)}
             </div>
           </div>
         </div>
-        {showTaskForm && <TaskForm gid={task.gid} taskData={task}/>}
+        {showTaskForm &&
+          <TaskForm
+            gid={task.gid}
+            taskData={task}
+          />}
         {
           task.subtask_gids && task.subtask_gids.length > 0 &&
             <ul className="ul-ctn" style={this.styleUl()}>
@@ -103,4 +114,4 @@ class Task extends Component {
   }
 }
 
-export default Task;
+export default connect(({ pursuances }) => ({ pursuances }))(Task);

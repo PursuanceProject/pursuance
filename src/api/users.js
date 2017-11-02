@@ -6,6 +6,7 @@ export const getUsersReq = () => {
       const usersObject = {};
       for (var i = 0; i < usersArray.length; i++) {
         usersObject[usersArray[i].username] = usersArray[i];
+        usersObject[usersArray[i].username].suggestionName = usersArray[i].username;
       }
       return usersObject;
     })
