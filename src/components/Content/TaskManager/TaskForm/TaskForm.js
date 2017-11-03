@@ -121,6 +121,7 @@ class TaskForm extends Component {
         if (pursuances[key].suggestionName === assignedTo) {
           task.assigned_to_pursuance_id = pursuances[key].id;
           delete task.assigned_to;
+          break;
         }
       }
     }
@@ -189,7 +190,7 @@ class TaskForm extends Component {
               name={'assigned_to'}
               onChange={this.onChange}
               onFocus={this.onFocus}
-              // onBlur={this.onBlur}
+              onBlur={this.onBlur}
               onKeyDown={this.onAssignerKeyDown}
             />
           </div>
