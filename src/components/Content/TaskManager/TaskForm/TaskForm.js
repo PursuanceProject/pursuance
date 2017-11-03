@@ -113,7 +113,9 @@ class TaskForm extends Component {
       return;
     }
     task.pursuance_id = currentPursuanceId;
-    task.due_date = moment(task.due_date_raw).format();
+    if (task.due_date_raw) {
+      task.due_date = moment(task.due_date_raw).format();
+    }
     delete task.due_date_raw;
 
     // TODO: Chain these 2 together using a promise or RxJS
