@@ -13,7 +13,12 @@ const ContributionPointsCounter = ({ username, contributionPoints }) => (
   stepPrecision={0}
   value={contributionPoints}
   formatValue={n => (
-    <Label bsStyle="warning"><FaStar size={12} /><span className="ContributionPointsAmount">{n}</span></Label>
+    <Label 
+      bsClass="ContributionPointsLabel" 
+      bsStyle="warning">
+        <FaStar size={12} />
+        <span className="ContributionPointsAmount">{n}</span>
+    </Label>
   )}/>
 
 );
