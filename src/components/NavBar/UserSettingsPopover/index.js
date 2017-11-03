@@ -14,7 +14,7 @@ const UserSettingsPopover = ({ username, contributionPoints }) => (
       </Popover>
     )}>
     <Button bsStyle="link" bsClass="UserSettingsButton">
-      <span>@{username}</span>
+      <span className="Username">@{username}</span>
       <ContributionPointsCounter contributionPoints={contributionPoints} />
     </Button>
   </OverlayTrigger>

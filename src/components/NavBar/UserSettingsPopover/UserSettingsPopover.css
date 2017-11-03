@@ -4,6 +4,10 @@
   color: white;
 }
 
+.UserSettingsButton span.Username {
+  vertical-align: middle;
+}
+
 .UserSettingsButton span {
   margin-left: 5px;
 }
@@ -14,12 +18,4 @@
 
 .ContributionPointsContainer .ContributionStar {  
   position: absolute;
-}
-
-
-.ContributionPointsContainer span {
-  z-index: 10;
-  position: absolute;
-  color: black;
-  background-color: red;
 }
