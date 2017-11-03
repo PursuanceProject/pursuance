@@ -38,7 +38,7 @@
 }
 
 .suggestion:nth-child(odd) {
-  background-color: rgb(220, 220, 220);
+  background-color: rgba(240, 240, 240, .5);
 }
 
 .active {
