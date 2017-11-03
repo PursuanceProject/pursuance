@@ -2,10 +2,13 @@
 
 ## WARNING
 
-Do not expose the server in this branch (`demo`) to the world; it is
-meant for presentation purposes only.  (We will leveraging a
-combination of miniLock/cryptographic auth and PostgREST's JWTs (JSON
-Web Tokens) shortly after our demo on November 4, 2017.)
+Do not expose the server in this branch (`demo`) to the world; for the
+moment, it is meant for presentation purposes only, as we are
+proparing to demo this software and to have users test it locally
+before adding a combination of miniLock-based cryptographic auth and
+PostgREST's JWTs (JSON Web Tokens) shortly after our demo on November
+4, 2017.  Hang tight!
+
 
 ## Getting Started
 
@@ -28,7 +31,7 @@ npm install
 To run the React App on localhost and watch for updates:
 
 ```
-npm run watch
+npm run start
 ```
 
 Then, in another terminal, to set up the database and run PostgREST,
@@ -49,20 +52,19 @@ Linux or OS X.)
 
 ``` $ postgrest postgrest.conf ```
 
-Then, in another terminal session run:
+Then, in another terminal session run this (**an error about not
+finding `github.com/PursuanceProject/pursuance` is OK here**) --
 
 ``` $ go get ./... ```
-
-(An error about not finding `github.com/PursuanceProject/pursuance` is
-OK here.)
 
 ``` $ go build ```
 
 ``` $ ./pursuance ```
 
-Then view <http://localhost:8082>.
+Then view <http://localhost:8080>.
 
 
 ## Conventions
 
-Please follow these naming and spacing conventions when submitting a pull request: [React + Redux Conventions](https://unbug.gitbooks.io/react-native-training/content/45_naming_convention.html)
+Please follow these naming and spacing conventions when submitting a pull request:
+[React + Redux Conventions](https://unbug.gitbooks.io/react-native-training/content/45_naming_convention.html).
