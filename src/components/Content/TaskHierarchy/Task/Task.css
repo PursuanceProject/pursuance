@@ -30,7 +30,6 @@
 }
 
 .new-form-btn {
-
 }
 
 .new-form-btn:hover {
@@ -49,6 +48,10 @@
 
 .task-title {
   padding-left: 10px;
+}
+
+.task-icons-ctn {
+  margin-left: auto;
 }
 
 .task-assigned-to {

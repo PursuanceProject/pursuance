@@ -4,6 +4,8 @@ import * as postgrest from '../../../../api/postgrest';
 import TiPlus from 'react-icons/lib/ti/plus';
 import TiMinus from 'react-icons/lib/ti/minus';
 import FaArrowCircleDown from 'react-icons/lib/fa/arrow-circle-down';
+import FaHandODown from 'react-icons/lib/fa/hand-o-down';
+import FaCommentsO from 'react-icons/lib/fa/comments-o';
 import TaskForm from '../../TaskManager/TaskForm/TaskForm';
 import './Task.css';
 
@@ -52,7 +54,7 @@ class Task extends Component {
   }
 
   getTaskIcon = (task, showChildren) => {
-    if(task) {
+    if (task.subtask_gids.length < 1) {
       return (
         <FaArrowCircleDown
           className="new-form-btn"
@@ -90,25 +92,28 @@ class Task extends Component {
             <div className="task-title">
               {task.title}
             </div>
+            <div className="task-icons-ctn">
+              <FaHandODown
+                onClick={this.toggleNewForm} />
+              <FaCommentsO />
+            </div>
             <div className="task-assigned-to">
-              { pursuanceId ? pursuances[pursuanceId].suggestionName : '@'+task.assigned_to }
+              { task.assigned_to && '@' + task.assigned_to
+              || pursuanceId && pursuances[pursuanceId].suggestionName
+              }
             </div>
             <div className="task-due-date">
               {task.due_date && postgrest.formatDate(task.due_date)}
             </div>
           </div>
         </div>
-        {showTaskForm &&
-          <TaskForm
-            gid={task.gid}
-            taskData={task}
-          />}
         {
           task.subtask_gids && task.subtask_gids.length > 0 &&
             <ul className="ul-ctn" style={this.styleUl()}>
               {this.mapSubTasks(task)}
             </ul>
         }
+        {showTaskForm && <TaskForm parentGid={task.gid} />}
       </li>
     );
   }
