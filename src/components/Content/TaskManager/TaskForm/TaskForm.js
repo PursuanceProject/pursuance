@@ -3,8 +3,9 @@ import DatePicker from 'react-datepicker';
 import generateId from '../../../../utils/generateId';
 import moment from 'moment';
 import { connect } from 'react-redux';
-import { filterUsers } from '../../../../utils/suggestions';
+import { filterSuggestion } from '../../../../utils/suggestions';
 import AssignerSuggestions from './Suggestions/AssignerSuggestions';
+import { PURSUANCE_DISPLAY_PREFIX } from '../../../../constants';
 import {
   updateFormField,
   clearTaskFormFields,
@@ -66,13 +67,15 @@ class TaskForm extends Component {
   }
 
   onChange = (e) => {
-    const { updateFormField, startSuggestions, users } = this.props;
+    const { updateFormField, startSuggestions, users, pursuances, currentPursuanceId } = this.props;
     const { value, name } = e.target;
 
     updateFormField(this.id, name, value);
 
     if (name === 'assigned_to') {
-      startSuggestions(value, filterUsers, users);
+      const suggestions = Object.assign({}, pursuances, users);
+      delete suggestions[currentPursuanceId];
+      startSuggestions(value, filterSuggestion, suggestions, this.id);
     }
   }
 
@@ -81,8 +84,8 @@ class TaskForm extends Component {
     const { highlightedSuggestion, suggestions } = taskForm;
 
     if (e.key === 'Enter' && suggestions.length > 0) {
-      e.preventDefault()
-      addSuggestion(suggestions[highlightedSuggestion].username);
+      e.preventDefault();
+      addSuggestion(suggestions[highlightedSuggestion].suggestionName);
       this.focusDatePicker();
     }
     if (e.key === 'ArrowUp' && suggestions) {
@@ -105,12 +108,22 @@ class TaskForm extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     const {
-      postTask, clearTaskFormFields, taskForm, currentPursuanceId
+      postTask, taskForm, currentPursuanceId, pursuances, clearTaskFormFields
     } = this.props;
     const task = taskForm[this.id];
+    const assignedTo = task.assigned_to;
     if (!task) {
       console.log("Thou shalt not submit empty TaskForm!");
       return;
+    }
+    if ( assignedTo && assignedTo.startsWith(PURSUANCE_DISPLAY_PREFIX)) {
+      for (var key in pursuances) {
+        if (pursuances[key].suggestionName === assignedTo) {
+          task.assigned_to_pursuance_id = pursuances[key].id;
+          delete task.assigned_to;
+          break;
+        }
+      }
     }
     task.pursuance_id = currentPursuanceId;
     if (task.due_date_raw) {
@@ -126,8 +139,10 @@ class TaskForm extends Component {
   }
 
   onFocus = (e) => {
-    const { users, startSuggestions } = this.props;
-    startSuggestions(e.target.value, filterUsers, users, this.id);
+    const { users, pursuances, startSuggestions, currentPursuanceId } = this.props;
+    const suggestions = Object.assign({}, pursuances, users);
+    delete suggestions[currentPursuanceId];
+    startSuggestions(e.target.value, filterSuggestion, suggestions, this.id);
   }
 
   onBlur = () => {
@@ -157,7 +172,10 @@ class TaskForm extends Component {
             />
           </div>
           <div className="assign-autocomplete-ctn">
-            {this.props.taskForm.suggestions
+            {
+              taskForm.suggestions
+              &&
+              this.id === taskForm.suggestionForm
               &&
               <AssignerSuggestions focusDatePicker={this.focusDatePicker}/>
             }
@@ -195,8 +213,8 @@ class TaskForm extends Component {
   }
 }
 
-export default connect(({ users, taskForm, currentPursuanceId, tasks }) =>
-  ({ users, taskForm, currentPursuanceId, tasks }), {
+export default connect(({ users, taskForm, currentPursuanceId, pursuances, tasks }) =>
+  ({ users, taskForm, currentPursuanceId, pursuances, tasks }), {
    updateFormField,
    clearTaskFormFields,
    setTaskFormParentGid,

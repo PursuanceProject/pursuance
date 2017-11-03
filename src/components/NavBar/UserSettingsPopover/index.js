@@ -2,8 +2,7 @@ import React from 'react';
 import { Popover, OverlayTrigger, Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import FaUser from 'react-icons/lib/fa/user';
-import NotificationList from '../../Content/Notifications/NotificationList';
-import styles from './UserSettingsPopover.css';
+import './UserSettingsPopover.css';
 
 const NotificationsPopover = ({ username }) => (
   <OverlayTrigger 

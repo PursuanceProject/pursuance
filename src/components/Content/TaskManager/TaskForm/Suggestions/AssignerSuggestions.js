@@ -7,13 +7,13 @@ import './AssignerSuggestions.css';
 const AssignerSuggestions = ({ taskForm, addSuggestion, focusDatePicker }) => (
   <div className='suggestions-container'>
     <ul className='suggestion-list'>
-      {taskForm.suggestions.map((user, i) => {
+      {taskForm.suggestions.map((suggestion, i) => {
         const activeItem = taskForm.highlightedSuggestion === i;
-        const username = user.username;
+        const suggestionName = suggestion.suggestionName
         let props = {
           key : i,
           onMouseDown : () =>  {
-            addSuggestion(username);
+            addSuggestion(suggestionName);
             focusDatePicker();
           },
           className : activeItem ? 'active suggestion': 'suggestion',
@@ -23,7 +23,7 @@ const AssignerSuggestions = ({ taskForm, addSuggestion, focusDatePicker }) => (
             if (item) item.scrollIntoView(scrollIntoViewOptions);
           }
         }
-        return <li {...props}>{username}</li>
+        return <li {...props}>{suggestionName}</li>
       })}
     </ul>
 </div>

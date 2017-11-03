@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import * as postgrest from '../../../../api/postgrest';
 import TiPlus from 'react-icons/lib/ti/plus';
 import TiMinus from 'react-icons/lib/ti/minus';
@@ -42,11 +43,13 @@ class Task extends Component {
   }
 
   mapSubTasks = (task) => {
+    const { pursuances } = this.props;
     return task.subtask_gids.map((gid) => {
       return <Task
         key={gid}
         taskData={this.props.taskMap[gid]}
-        taskMap={this.props.taskMap} />;
+        taskMap={this.props.taskMap}
+        pursuances={pursuances} />;
     });
   }
 
@@ -56,6 +59,7 @@ class Task extends Component {
         <FaArrowCircleDown
           className="new-form-btn"
           onClick={this.toggleNewForm}/>
+
       );
     } else if (showChildren) {
       return (
@@ -73,7 +77,9 @@ class Task extends Component {
   }
 
   render() {
-    const task = this.props.taskData;
+    const { pursuances, taskData } = this.props;
+    const task = taskData;
+    const assignedPursuanceId = task.assigned_to_pursuance_id;
     const { showChildren, showTaskForm } = this.state;
     return (
       <li className="li-task-ctn">
@@ -91,7 +97,10 @@ class Task extends Component {
               <FaCommentsO />
             </div>
             <div className="task-assigned-to">
-              {task.assigned_to && '@'+task.assigned_to}
+              { (task.assigned_to && '@' + task.assigned_to)
+                ||
+                (assignedPursuanceId && pursuances[assignedPursuanceId].suggestionName)
+              }
             </div>
             <div className="task-due-date">
               {task.due_date && postgrest.formatDate(task.due_date)}
@@ -110,4 +119,4 @@ class Task extends Component {
   }
 }
 
-export default Task;
+export default connect(({ pursuances }) => ({ pursuances }))(Task);
