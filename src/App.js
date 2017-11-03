@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { connect } from 'react-redux';
 import NavBar from './components/NavBar/NavBar';
 import Footer from './components/Footer/Footer';
 import HomePage from './components/HomePage/HomePage';
@@ -14,11 +15,13 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <NavBar />
+          <NavBar 
+            authenticated={ this.props.authenticated } 
+            username={ this.props.username } />
           <Switch>
             <Route exact path="/" component={HomePage} />
             <Route exact path="/dashboard" component={Dashboard} />
-            <Route exact path="/pursuance/:pursuanceId" component={PursuancePage} />
+            <Route path="/pursuance/:pursuanceId" component={PursuancePage} />
             <Route path="/*" component={NotFound} />
           </Switch>
           <Footer />
@@ -28,4 +31,8 @@ class App extends Component {
   }
 }
 
-export default App;
+function mapStateToProps(state) {
+  return state.auth;
+}
+
+export default connect(mapStateToProps)(App);
