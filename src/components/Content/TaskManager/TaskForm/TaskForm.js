@@ -37,12 +37,12 @@ class TaskForm extends Component {
   }
 
   onTitleKeyDown = (e) => {
-    const { parentGid } = this.props;
+    const parentGid = this.props.taskForm[this.id].parent_task_gid;
     const { taskMap } = this.props.tasks;
     const title = this.props.taskForm[this.id].title || '';
     if (e.key === 'Tab' && title.length === 0) {
       e.preventDefault();
-      let newParentGid = null;
+      let newParentGid;
       const parent = taskMap[parentGid];
       if (e.nativeEvent.shiftKey) {
         // Unindent
