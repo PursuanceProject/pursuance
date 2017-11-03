@@ -1,11 +1,11 @@
 .li-task-ctn {
   display: flex;
   flex-direction: column;
-  color: #d6d6d6;
   font-size: 16px;
 }
 
 .task-ctn {
+  color: #d6d6d6;
   display: flex;
   justify-content: center;
 }

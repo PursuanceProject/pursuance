@@ -168,7 +168,7 @@ class TaskForm extends Component {
               onKeyDown={this.onTitleKeyDown}
             />
           </div>
-          <div className="assign-autocomplete">
+          <div className="assign-autocomplete-ctn">
             {
               taskForm.suggestions
               &&
