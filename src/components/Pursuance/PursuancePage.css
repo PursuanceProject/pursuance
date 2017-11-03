@@ -2,7 +2,8 @@
   background-color: #1c1c1c;
   display: flex;
   flex-direction: row;
-  height: calc(100vh - 100px);
+  height: calc(100vh - 110px);
+  width: 100%;
   margin: 0;
   padding: 12px;
 }
