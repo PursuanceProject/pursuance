@@ -1,10 +1,10 @@
 import React from 'react';
-import { Popover, OverlayTrigger, Button } from 'react-bootstrap';
+import { OverlayTrigger, Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import FaBell from 'react-icons/lib/fa/bell';
 import FaCircle from 'react-icons/lib/fa/circle';
 import NotificationList from '../../Content/Notifications/NotificationList';
-import styles from './NotificationsPopover.css';
+import './NotificationsPopover.css';
 
 const NotificationsPopover = ({ notifications }) => (
   <OverlayTrigger 

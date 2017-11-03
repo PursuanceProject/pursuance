@@ -79,8 +79,7 @@ class Task extends Component {
   render() {
     const { pursuances, taskData } = this.props;
     const task = taskData;
-    let assigned_to_pursuance_id;
-    const pursuanceId = task.assigned_to_pursuance_id;
+    const assignedPursuanceId = task.assigned_to_pursuance_id;
     const { showChildren, showTaskForm } = this.state;
     return (
       <li className="li-task-ctn">
@@ -98,8 +97,9 @@ class Task extends Component {
               <FaCommentsO />
             </div>
             <div className="task-assigned-to">
-              { task.assigned_to && '@' + task.assigned_to
-              || pursuanceId && pursuances[pursuanceId].suggestionName
+              { (task.assigned_to && '@' + task.assigned_to)
+                ||
+                (assignedPursuanceId && pursuances[assignedPursuanceId].suggestionName)
               }
             </div>
             <div className="task-due-date">
