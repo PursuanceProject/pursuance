@@ -5,6 +5,12 @@ import { postTaskReq, getTasksReq } from '../api/tasks';
 export const updateFormField = (formId, fieldId, value) =>
   ({ type: 'TASK_FIELD_UPDATE', formId, fieldId, value })
 
+export const clearTaskFormFields = (formId) =>
+  ({ type: 'TASK_FORM_CLEAR_FIELDS', formId })
+
+export const setTaskFormParentGid = (formId, newParentGid) =>
+  ({ type: 'TASK_FORM_SET_PARENT_GID', formId, newParentGid })
+
 export const getUsers = () =>
   ({ type: 'GET_USERS', payload: getUsersReq() });
 

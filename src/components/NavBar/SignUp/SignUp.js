@@ -48,7 +48,7 @@ class SignUp extends Component {
                 <div className="form-group">
                   <label className="col-sm-2 control-label signup-login-label" htmlFor="input-password-signup">Password</label>
                   <div className="col-sm-10">
-                    <input type="password" className="form-control" id="input-password-signup" placeholder="minimum of 8 characters" onChange={this.setPassword}/>
+                    <input type="password" className="form-control" id="input-password-signup" placeholder="" onChange={this.setPassword}/>
                   </div>
                 </div>
                 <div className="form-group modal-btn-ctn">
