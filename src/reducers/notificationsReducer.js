@@ -23,6 +23,11 @@ export default function (state = initialState, action) {
           notifications: [{ id, type, content, userAction, timestamp },
                           ...state.notifications.filter(n => n.id !== id) ]
         };
+      
+      case 'REMOVE_NOTIFICATION':
+        return {
+          notifications: state.notifications.filter(n => n.id !== action.id)
+        };
 
       default:
         return state

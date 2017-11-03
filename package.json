@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "react": "^15.6.1",
+    "react-animated-number": "^0.4.3",
     "react-bootstrap": "^0.31.3",
     "react-datepicker": "^0.56.0",
     "react-dom": "^15.6.1",

@@ -1,10 +1,10 @@
 import React from 'react';
-import { Popover, OverlayTrigger, Button } from 'react-bootstrap';
-import { connect } from 'react-redux';
-import FaUser from 'react-icons/lib/fa/user';
+import { Popover, OverlayTrigger, Button, Badge } from 'react-bootstrap';
+import ContributionPointsCounter from './ContributionPointsCounter';
+import FaStar from 'react-icons/lib/fa/star';
 import './UserSettingsPopover.css';
 
-const NotificationsPopover = ({ username }) => (
+const UserSettingsPopover = ({ username, contributionPoints }) => (
   <OverlayTrigger 
     trigger="focus" 
     placement="bottom" 
@@ -14,13 +14,10 @@ const NotificationsPopover = ({ username }) => (
       </Popover>
     )}>
     <Button bsStyle="link" bsClass="UserSettingsButton">
-      <FaUser size={26} />
+      <span>@{username}</span>
+      <ContributionPointsCounter contributionPoints={contributionPoints} />
     </Button>
   </OverlayTrigger>
 );
 
-const mapStateToProps = (state) => {
-  return state.notifications;
-}
-
-export default connect(mapStateToProps)(NotificationsPopover);
+export default UserSettingsPopover;

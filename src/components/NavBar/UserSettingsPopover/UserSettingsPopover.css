@@ -7,3 +7,19 @@
 .UserSettingsButton span {
   margin-left: 5px;
 }
+
+.ContributionPointsContainer {
+  position: relative;
+}
+
+.ContributionPointsContainer .ContributionStar {  
+  position: absolute;
+}
+
+
+.ContributionPointsContainer span {
+  z-index: 10;
+  position: absolute;
+  color: black;
+  background-color: red;
+}

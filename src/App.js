@@ -7,6 +7,7 @@ import HomePage from './components/HomePage/HomePage';
 import Dashboard from './components/Dashboard/Dashboard';
 import PursuancePage from './components/Pursuance/PursuancePage';
 import NotFound from './components/NotFound/NotFound';
+import { removeNotification, addContributionPoints } from './actions';
 import './App.css';
 
 
@@ -17,7 +18,11 @@ class App extends Component {
         <div className="App">
           <NavBar 
             authenticated={ this.props.authenticated } 
-            username={ this.props.username } />
+            contributionPoints={ this.props.contributionPoints }
+            username={ this.props.username } 
+            onRemoveNotification={this.props.removeNotification}
+            onIncreaseContributionAmount={this.props.increaseContributionAmount}
+            />
           <Switch>
             <Route exact path="/" component={HomePage} />
             <Route exact path="/dashboard" component={Dashboard} />
@@ -32,7 +37,18 @@ class App extends Component {
 }
 
 function mapStateToProps(state) {
-  return state.auth;
+  return state.user;
 }
 
-export default connect(mapStateToProps)(App);
+function mapDispatchToProps(dispatch) {
+  return {
+    removeNotification(id){
+      dispatch(removeNotification(id));
+    },
+    increaseContributionAmount(amount){
+      dispatch(addContributionPoints(amount));
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

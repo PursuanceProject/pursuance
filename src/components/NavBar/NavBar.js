@@ -10,7 +10,7 @@ import './NavBar.css';
 class NavBar extends Component {
 
   render() {
-    const { authenticated, username } = this.props;
+    const { authenticated, username, contributionPoints } = this.props;
     return (
       <Navbar collapseOnSelect>
         <Navbar.Header>
@@ -47,14 +47,17 @@ class NavBar extends Component {
             {
               authenticated && (
                 <NavItem>
-                  <NotificationsPopover />
+                  <UserSettingsPopover username={username} contributionPoints={contributionPoints} />
                 </NavItem>
               )
             }
             {
               authenticated && (
                 <NavItem>
-                  <UserSettingsPopover username={username} />
+                  <NotificationsPopover
+                    onIncreaseContributionAmount={this.props.onIncreaseContributionAmount}
+                    onRemoveNotification={this.props.onRemoveNotification}
+                  />
                 </NavItem>
               )
             }
