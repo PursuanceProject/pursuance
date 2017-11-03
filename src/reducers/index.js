@@ -5,11 +5,11 @@ import pursuances from './pursuancesReducer';
 import currentPursuanceId from './currentPursuanceId';
 import tasks from './tasksReducer';
 import notificationsReducer from './notificationsReducer';
-import authReducer from './authReducer';
+import userReducer from './userReducer';
 
 const rootReducer = combineReducers({
   notifications: notificationsReducer,
-  auth: authReducer,
+  user: userReducer,
   taskForm,
   users,
   pursuances,

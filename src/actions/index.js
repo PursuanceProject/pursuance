@@ -64,3 +64,9 @@ export const setHelpWantedNotification = ({ id, content, userAction }) =>
   
 export const setProgressNotification = ({ id, content, userAction }) =>
   ({ type: 'SET_NOTIFICATION', id, notificationType: 'PROGRESS', content, userAction });
+
+export const removeNotification = (id) =>
+  ({ type: 'REMOVE_NOTIFICATION', id });
+
+export const addContributionPoints = (amount) => 
+  ({ type: 'ADD_CONTRIBUTION_POINTS', amount });

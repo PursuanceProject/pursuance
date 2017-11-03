@@ -6,9 +6,9 @@ const ReactMarkdown = require('react-markdown');
 
 class Notification extends PureComponent {
 
-  handleActionClicked = () => {
-    const { id, actionTarget } = this.props;
-    this.props.onActionClick({ id, actionTarget });
+  handleActionClicked = (contributionAmount) => {
+    const { id, actionTarget, type } = this.props;
+    this.props.onActionClick({ id, actionTarget, type, contributionAmount });
   }
 
   render() {

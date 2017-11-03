@@ -13,7 +13,12 @@ const iconSize = 34;
 class NotificationAction extends PureComponent {
 
   handleActionButtonClicked = () => {
-    this.props.onClick();
+    let contributionAmount = 0;
+    const { type } = this.props;
+    if(type === 'MICRO_TASK'){
+      contributionAmount = 5;
+    }
+    this.props.onClick(contributionAmount);
   }
 
   renderNotificationAction = (icon, title) => (
