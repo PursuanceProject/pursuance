@@ -49,3 +49,18 @@ export const addPostedRootTaskToHierarchy = (task) =>
 
 export const addPostedSubTaskToHierarchy = (task) =>
   ({ type: 'ADD_POSTED_SUB_TASK', task });
+  
+export const setMicroTaskNotification = ({ id, content, userAction }) =>
+  ({ type: 'SET_NOTIFICATION', id, notificationType: 'MICRO_TASK', content, userAction });
+
+export const setAppreciationNotification = ({ id, content, userAction }) =>
+  ({ type: 'SET_NOTIFICATION', id, notificationType: 'APPRECIATION', content, userAction });
+
+export const setMentionNotification = ({ id, content, userAction }) =>
+  ({ type: 'SET_NOTIFICATION', id, notificationType: 'MENTION', content, userAction });
+  
+export const setHelpWantedNotification = ({ id, content, userAction }) =>
+  ({ type: 'SET_NOTIFICATION', id, notificationType: 'HELP_WANTED', content, userAction });
+  
+export const setProgressNotification = ({ id, content, userAction }) =>
+  ({ type: 'SET_NOTIFICATION', id, notificationType: 'PROGRESS', content, userAction });
