@@ -6,17 +6,17 @@ import Notification from './Notification';
 class NotificationList extends PureComponent {
 
   handleActionClicked = ({ id, actionTarget, type, contributionAmount }) => {
-    if(contributionAmount && contributionAmount > 0) {
+    if (contributionAmount && contributionAmount > 0) {
       this.props.onIncreaseContributionAmount(contributionAmount);
     }
-    if(actionTarget) {
+    if (actionTarget) {
       this.props.history.push(actionTarget);
     }
 
     this.props.onRemoveNotification(id)
   }
 
-  render () {
+  render() {
     const { notifications } = this.props;
     return (
         <ListGroup>

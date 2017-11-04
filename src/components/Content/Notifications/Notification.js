@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react';
+import { RenderMarkdown } from '../../../utils/markdown';
 import NotificationIcon from './NotificationIcon';
 import NotificationAction from './NotificationAction';
 import './Notification.css';
-const ReactMarkdown = require('react-markdown');
 
 class Notification extends PureComponent {
 
@@ -19,15 +19,7 @@ class Notification extends PureComponent {
           <NotificationIcon type={type} />
         </div>
         <div className="NotificationContentContainer">
-          <ReactMarkdown
-            source={content}
-            renderers={{Link: props => {
-              if (props.href.startsWith('/')) {
-                return <a href={props.href}>{props.children}</a>;
-              }
-              // If link to external site, open in new tab
-              return <a href={props.href} target="_blank">{props.children}</a>;
-            }}} />
+          <RenderMarkdown content={content} />
         </div>
         <div className="NotificationActionContainer">
           <NotificationAction type={type} onClick={this.handleActionClicked} />
