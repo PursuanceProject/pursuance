@@ -19,7 +19,15 @@ class Notification extends PureComponent {
           <NotificationIcon type={type} />
         </div>
         <div className="NotificationContentContainer">
-          <ReactMarkdown source={content} />
+          <ReactMarkdown
+            source={content}
+            renderers={{Link: props => {
+              if (props.href.startsWith('/')) {
+                return <a href={props.href}>{props.children}</a>;
+              }
+              // If link to external site, open in new tab
+              return <a href={props.href} target="_blank">{props.children}</a>;
+            }}} />
         </div>
         <div className="NotificationActionContainer">
           <NotificationAction type={type} onClick={this.handleActionClicked} />
