@@ -77,6 +77,7 @@ class Task extends Component {
     const task = taskData;
     const assignedPursuanceId = task.assigned_to_pursuance_id;
     const { showChildren, showTaskForm } = this.state;
+    const leaf = !task.subtask_gids.length;
     return (
       <li className="li-task-ctn">
         <div className="task-ctn">
@@ -114,7 +115,7 @@ class Task extends Component {
               {this.mapSubTasks(task)}
             </ul>
         }
-        {showTaskForm && <TaskForm parentGid={task.gid} />}
+        {showTaskForm && <TaskForm leaf={leaf} parentGid={task.gid} />}
       </li>
     );
   }
