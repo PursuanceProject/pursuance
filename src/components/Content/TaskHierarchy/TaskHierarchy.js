@@ -79,13 +79,13 @@ class TaskHierarchy extends Component {
   }
 
   render() {
-    const { pursuances } = this.props;
+    const { pursuances, currentPursuanceId } = this.props;
     return (
       <div className="content-ctn">
         <div id="task-hierarchy">
           <div id="task-hierarchy-title">
             <h2 id="tasks-title">Tasks:&nbsp;</h2>
-            <h2 id="pursuance-title">{pursuances['1'] && pursuances['1'].name}</h2>
+            <h2 id="pursuance-title">{pursuances[currentPursuanceId] && pursuances[currentPursuanceId].name}</h2>
           </div>
           {this.renderHierarchy()}
           <TaskForm topLevel={true}/>
