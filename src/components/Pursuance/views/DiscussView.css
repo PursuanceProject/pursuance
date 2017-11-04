@@ -1,0 +1,32 @@
+#discuss-ctn {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+#leapchat-frame {
+  height: 100%;
+  width: 100%;
+  border: 1px solid #6d6d6d;
+  border-right: none;
+  border-bottom-left-radius: 4px;
+}
+
+.task-description-ctn {
+  min-width: 320px;
+  border: 1px solid #6d6d6d;
+  border-radius: 0 4px 4px 0;
+}
+
+.task-assignment-ctn {
+  display: flex;
+  justify-content: space-between;
+  height: 80px;
+  border-bottom: 1px solid #6d6d6d;
+}
+
+.icon-ctn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

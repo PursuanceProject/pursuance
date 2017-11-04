@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import * as postgrest from '../../../../api/postgrest';
 import TiPlus from 'react-icons/lib/ti/plus';
 import TiMinus from 'react-icons/lib/ti/minus';
-import FaArrowCircleDown from 'react-icons/lib/fa/arrow-circle-down';
 import FaHandODown from 'react-icons/lib/fa/hand-o-down';
 import FaCommentsO from 'react-icons/lib/fa/comments-o';
 import TaskForm from '../../TaskManager/TaskForm/TaskForm';
@@ -56,21 +55,18 @@ class Task extends Component {
   getTaskIcon = (task, showChildren) => {
     if (task.subtask_gids.length < 1) {
       return (
-        <FaArrowCircleDown
-          className="new-form-btn"
-          onClick={this.toggleNewForm}/>
-
+        <div className="toggle-icon-ctn-disable" />
       );
     } else if (showChildren) {
       return (
         <div className="toggle-icon-ctn" onClick={this.toggleChildren}>
-          <TiMinus />
+          <TiMinus className="minus-icon" />
         </div>
       );
     } else {
       return (
         <div className="toggle-icon-ctn" onClick={this.toggleChildren}>
-          <TiPlus />
+          <TiPlus className="plus-icon" />
         </div>
       );
     }
@@ -92,15 +88,20 @@ class Task extends Component {
               {task.title}
             </div>
             <div className="task-icons-ctn">
-              <FaHandODown
-                onClick={this.toggleNewForm} />
-              <FaCommentsO />
+              <div className="icon-ctn" onClick={this.toggleNewForm}>
+                <FaHandODown />
+              </div>
+              <div className="icon-ctn">
+                <FaCommentsO />
+              </div>
             </div>
             <div className="task-assigned-to">
-              { (task.assigned_to && '@' + task.assigned_to)
-                ||
-                (assignedPursuanceId && pursuances[assignedPursuanceId].suggestionName)
-              }
+              <span>
+                { (task.assigned_to && '@' + task.assigned_to)
+                  ||
+                  (assignedPursuanceId && pursuances[assignedPursuanceId].suggestionName)
+                }
+              </span>
             </div>
             <div className="task-due-date">
               {task.due_date && postgrest.formatDate(task.due_date)}

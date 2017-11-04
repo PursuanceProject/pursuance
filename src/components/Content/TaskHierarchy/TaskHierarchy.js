@@ -3,6 +3,7 @@ import Task from './Task/Task';
 import TaskForm from '../TaskManager/TaskForm/TaskForm';
 import { connect } from 'react-redux';
 import {
+  getPursuances,
   getUsers,
   getTasks,
   addPostedRootTaskToHierarchy,
@@ -21,7 +22,8 @@ class TaskHierarchy extends Component {
   }
 
   componentWillMount() {
-    const { getUsers, getTasks, currentPursuanceId } = this.props;
+    const { getPursuances, getUsers, getTasks, currentPursuanceId } = this.props;
+    getPursuances();
     getUsers();
     getTasks(currentPursuanceId);
   }
@@ -77,9 +79,14 @@ class TaskHierarchy extends Component {
   }
 
   render() {
+    const { pursuances } = this.props;
     return (
       <div className="content-ctn">
-        <div id="task-hierarchy" className="overflow-y-ctn">
+        <div id="task-hierarchy">
+          <div id="task-hierarchy-title">
+            <h2 id="tasks-title">Tasks:&nbsp;</h2>
+            <h2 id="pursuance-title">{pursuances['1'] && pursuances['1'].name}</h2>
+          </div>
           {this.renderHierarchy()}
           <TaskForm topLevel={true}/>
         </div>
@@ -88,10 +95,11 @@ class TaskHierarchy extends Component {
   }
 }
 
-export default connect(({ currentPursuanceId, tasks }) =>
-  ({ currentPursuanceId, tasks }), {
-     getUsers,
-     getTasks,
-     addPostedRootTaskToHierarchy,
-     addPostedSubTaskToHierarchy
+export default connect(({ pursuances, currentPursuanceId, tasks }) =>
+  ({ pursuances, currentPursuanceId, tasks }), {
+    getPursuances,
+    getUsers,
+    getTasks,
+    addPostedRootTaskToHierarchy,
+    addPostedSubTaskToHierarchy
 })(TaskHierarchy);
