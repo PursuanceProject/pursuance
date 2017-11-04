@@ -3,7 +3,7 @@
 }
 
 .nested-form {
-  padding-left: 32px;
+  padding-left: 72px;
 }
 
 .leaf-form {
@@ -22,6 +22,7 @@
 }
 
 #input-task-title {
+  border-color: #a5a5a5;
   border-radius: 4px 0 0 4px;
 }
 
@@ -32,19 +33,20 @@
 }
 
 .at-symbol {
-  background-color: #eee;
-  border: 1px solid #ccc;
+  background-color: #333333;
+  border: 1px solid #a5a5a5;
   padding: 6px 2px;
   text-align: center;
   font-weight: normal;
   font-size: 14px;
-  color: #555;
+  color: #d6d6d6;
 }
 
 .assign-to {
   position: relative;
   min-width: 150px;
   border-radius: 0;
+  border-color: #a5a5a5;
 }
 
 .date-picker-ctn {
@@ -62,9 +64,17 @@
 .react-datepicker__input-container input {
   height: 100%;
   padding: 6px 12px;
-  border: 1px solid #ccc;
+  border: 1px solid #a5a5a5;
 }
 
 .save-task-btn {
+  background-color: #23527c;
+  color: #d6d6d6;
   border-radius: 0 4px 4px 0;
+  border-color: #a5a5a5;
+}
+
+.save-task-btn:hover {
+  background-color: #288bd6;
+  color: #282828;
 }

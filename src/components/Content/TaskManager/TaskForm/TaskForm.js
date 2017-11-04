@@ -30,9 +30,7 @@ class TaskForm extends Component {
   }
 
   getClassName = () => {
-    if (this.props.leaf) {
-      return 'task-form-ctn leaf-form';
-    } else if (this.props.topLevel) {
+    if (this.props.topLevel) {
       return 'task-form-ctn';
     } else {
       return 'task-form-ctn nested-form';
