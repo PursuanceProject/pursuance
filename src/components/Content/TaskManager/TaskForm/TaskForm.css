@@ -3,6 +3,10 @@
 }
 
 .nested-form {
+  padding-left: 32px;
+}
+
+.leaf-form {
   padding-left: 64px;
 }
 

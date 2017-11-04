@@ -77,6 +77,14 @@
   padding: 0 8px;
 }
 
+.icon-ctn svg {
+  color: #23527c;
+}
+
+.icon-ctn:hover svg {
+  color: #288bd6;
+}
+
 .icon-ctn:hover {
   cursor: pointer;
 }
