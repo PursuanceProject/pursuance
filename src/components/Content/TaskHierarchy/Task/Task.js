@@ -97,9 +97,10 @@ class Task extends Component {
             </div>
             <div className="task-assigned-to">
               <span>
-                { (task.assigned_to && '@' + task.assigned_to)
-                  ||
+                {
                   (assignedPursuanceId && pursuances[assignedPursuanceId].suggestionName)
+                  ||
+                  (task.assigned_to && '@' + task.assigned_to)
                 }
               </span>
             </div>
