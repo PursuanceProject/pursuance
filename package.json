@@ -1,11 +1,15 @@
 {
-  "name": "ensue",
+  "name": "pursuance",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "react": "^15.6.1",
+    "react-animated-number": "^0.4.3",
     "react-bootstrap": "^0.31.3",
+    "react-datepicker": "^0.56.0",
     "react-dom": "^15.6.1",
+    "react-icons": "^2.2.7",
+    "react-markdown": "^2.5.0",
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
     "redux": "^3.7.2",
@@ -19,6 +23,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
+    "watch": "node scripts/watch.js",
     "eject": "react-scripts eject"
-  }
+  },
+  "proxy": "http://localhost:8082/"
 }

@@ -1,0 +1,14 @@
+#pursuance-btn-group button {
+  background-color: #212121;
+  border-right: none;
+  border-color: #6d6d6d;
+  width: 100px;
+}
+
+#pursuance-top-btn {
+  border-top-right-radius: 0px;
+}
+
+#pursuance-bottom-btn {
+  border-bottom-right-radius: 0px;
+}

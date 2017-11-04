@@ -3,13 +3,16 @@ import { Navbar, NavItem, Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import SignUp from './SignUp/SignUp';
 import LogIn from './LogIn/LogIn';
+import NotificationsPopover from './NotificationsPopover';
+import UserSettingsPopover from './UserSettingsPopover';
 import './NavBar.css';
 
 class NavBar extends Component {
 
   render() {
+    const { authenticated, username, contributionPoints } = this.props;
     return (
-      <Navbar inverse collapseOnSelect>
+      <Navbar collapseOnSelect>
         <Navbar.Header>
           <Navbar.Brand>
             <Link to="/">Pursuance</Link>
@@ -23,14 +26,41 @@ class NavBar extends Component {
             </li>
           </ul>
           <Nav pullRight>
-            <NavItem data-toggle="modal" data-target="#sign-up-modal">
-              Sign Up
-            </NavItem>
-            <SignUp />
-            <NavItem data-toggle="modal" data-target="#log-in-modal">
-              Log In
-            </NavItem>
-            <LogIn />
+            {
+              !authenticated && (
+                <NavItem data-toggle="modal" data-target="#sign-up-modal">
+                  Sign Up
+                </NavItem>)
+            }
+            {
+              !authenticated && <SignUp />
+            }
+            {
+              !authenticated && (
+                <NavItem data-toggle="modal" data-target="#log-in-modal">
+                  Log In
+                </NavItem>)
+            }
+            {
+              !authenticated && <LogIn />
+            }
+            {
+              authenticated && (
+                <NavItem>
+                  <UserSettingsPopover username={username} contributionPoints={contributionPoints} />
+                </NavItem>
+              )
+            }
+            {
+              authenticated && (
+                <NavItem>
+                  <NotificationsPopover
+                    onIncreaseContributionAmount={this.props.onIncreaseContributionAmount}
+                    onRemoveNotification={this.props.onRemoveNotification}
+                  />
+                </NavItem>
+              )
+            }
           </Nav>
         </Navbar.Collapse>
       </Navbar>

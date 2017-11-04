@@ -1,10 +1,22 @@
 .navbar {
+  position: fixed;
+  background-color: #141414;
   border-radius: 0px;
-  margin: 0px;
+  border: none;
+  margin: 0;
+  height: 60px;
+  width: 100%;
+  top: 0;
 }
 
 .navbar .container {
+  align-items: center;
   width: 86%;
+}
+
+
+.modal-title {
+  text-align: center;
 }
 
 .modal-btn-ctn {
@@ -14,4 +26,44 @@
 
 .modal-btn-ctn .btn {
   margin-left: 10px;
+}
+
+.navbar-header {
+  height: 100%
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 60px;
+  color: #fcfcfc !important;
+}
+
+.navbar-brand:hover {
+  color: #8662ea !important;
+}
+
+.navbar-nav {
+  height: 60px;
+}
+
+.navbar-nav li {
+  height: 60px;
+}
+
+.navbar-nav li a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 60px;
+  color: #d6d6d6 !important;
+}
+
+.navbar-nav li a:hover {
+  color: #1fc7d3 !important;
+}
+
+.navbar-nav li a button {
+  padding-bottom: 2px;
 }

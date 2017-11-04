@@ -1,7 +1,34 @@
 #dashboard {
-  background: url('../../static/placeholder/1280x720.png');
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-  height: calc(100vh - 120px);
+  background-color: #1c1c1c;
+  height: calc(100vh - 110px);
   padding: 30px;
+  margin-top: 60px;
+}
+
+#dashboard-title {
+  text-align: center;
+  color: #fcfcfc;
+}
+
+#dash-first-row {
+  display: flex;
+}
+
+#dash-second-row {
+  display: flex;
+}
+
+.dash-ctn {
+  flex: 1;
+  padding: 10px;
+}
+
+.dash-box {
+  padding: 12px;
+  border: 2px solid grey;
+  border-radius: 6px;
+}
+
+.dash-box-title {
+  color: #cecece;
 }

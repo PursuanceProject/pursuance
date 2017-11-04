@@ -1,0 +1,9 @@
+.NotificationAction {
+  font-size: 10px;
+  min-width: 40px;
+  text-align: center;
+}
+
+.NotificationAction span {
+  display: block;
+}
