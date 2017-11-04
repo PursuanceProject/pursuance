@@ -24,24 +24,39 @@
   border-radius: 6px;
 }
 
+.toggle-icon-ctn-disable {
+  background-color: #333333;
+  width: 26px;
+  height: 26px;
+  border: 2px solid black;
+  border-radius: 6px;
+}
+
 .toggle-icon-ctn:hover {
-  background-color: LightGrey;
+  background-color: #666666;
   cursor: pointer;
 }
 
-.new-form-btn {
-}
-
-.new-form-btn:hover {
-  cursor: pointer;
+.minus-icon {
   color: #8662ea;
+}
+
+.toggle-icon-ctn:hover .minus-icon {
+  color: #2d069b;
+}
+
+.plus-icon {
+  color: #288bd6;
+}
+
+.toggle-icon-ctn:hover .plus-icon {
+  color: #135f99;
 }
 
 .task-row-ctn {
   flex: 1;
   display: flex;
-  justify-content: space-between;
-  border: 1px solid LightGrey;
+  border: 1px solid #666666;
   border-radius: 5px;
   padding: 2px 2px 1px 2px;
 }
@@ -50,13 +65,28 @@
   padding-left: 10px;
 }
 
+.task-icons-ctn {
+  display: flex;
+  float: right;
+  margin-left: auto;
+  width: 80px;
+  margin-right: 30px;
+}
+
+.icon-ctn {
+  padding: 0 8px;
+}
+
+.icon-ctn:hover {
+  cursor: pointer;
+}
+
 .task-assigned-to {
   width: 190px;
   padding: 0 4px;
-  margin-left: auto;
 }
 
-.task-assigned-to:hover {
+.task-assigned-to span:hover {
   cursor: pointer;
   color: #1fc7d3;
 }

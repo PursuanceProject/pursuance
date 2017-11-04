@@ -1,9 +1,12 @@
 .navbar {
+  position: fixed;
   background-color: #141414;
   border-radius: 0px;
   border: none;
+  margin: 0;
   height: 60px;
-  margin: 0px;
+  width: 100%;
+  top: 0;
 }
 
 .navbar .container {

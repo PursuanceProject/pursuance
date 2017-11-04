@@ -2,6 +2,17 @@
   height: 100%;
 }
 
+#task-hierarchy-title {
+  text-align: center;
+  padding-bottom: 18px;
+}
+
+#task-hierarchy-title h2 {
+  display: inline-block;
+  color: #fcfcfc;
+  margin: 0;
+}
+
 ul {
   list-style-type: none;
 }

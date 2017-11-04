@@ -2,19 +2,22 @@
   background-color: #1c1c1c;
   display: flex;
   flex-direction: row;
-  height: calc(100vh - 110px);
+  min-height: calc(100vh - 110px);
   width: 100%;
   margin: 0;
   padding: 12px;
+  margin-top: 60px;
 }
 
 .pursuance-page > article {
   display: flex;
   flex: 1;
   order: 2;
+  margin-left: 100px;
 }
 
 .pursuance-page > nav {
+  position: fixed;
   flex: 0 0 5em;
   order: 1;
 }

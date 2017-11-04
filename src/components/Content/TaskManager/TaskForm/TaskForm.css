@@ -3,7 +3,7 @@
 }
 
 .nested-form {
-  padding-left: 32px;
+  padding-left: 64px;
 }
 
 .task-form {
@@ -14,7 +14,7 @@
 }
 
 #input-task-title-ctn {
-  width: 60%;
+  width: 100%;
 }
 
 #input-task-title {
@@ -39,6 +39,7 @@
 
 .assign-to {
   position: relative;
+  min-width: 150px;
   border-radius: 0;
 }
 
