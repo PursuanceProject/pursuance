@@ -12,8 +12,7 @@ class DiscussView extends Component {
   render() {
     const { match: { params: { pursuanceId } }, pursuances, tasks } = this.props;
     // TODO: Un-hardcode after demo
-    const taskGid = '1_195';
-    console.log('tasks.taskMap', tasks.taskMap);
+    const taskGid = '1_1';
     const task = tasks.taskMap[taskGid];
     const assignedPursuanceId = task.assigned_to_pursuance_id;
     return (
