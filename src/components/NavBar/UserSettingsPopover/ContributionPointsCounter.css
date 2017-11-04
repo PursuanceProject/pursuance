@@ -1,17 +1,20 @@
-.ContributionPointsAmount {
-  vertical-align: middle;
-}
-
-.ContributionPointsLabel {
-  background-color: teal;
+.points-ctn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #288bd6;
+  color: #f4f4f4;
   display: inline;
   padding: .2em .6em .3em;
   font-size: 75%;
   font-weight: 700;
   line-height: 1;
-  color: #fff;
   text-align: center;
   white-space: nowrap;
   vertical-align: baseline;
   border-radius: .25em;
+}
+
+.point-total {
+  vertical-align: middle;
 }
