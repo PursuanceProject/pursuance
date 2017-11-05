@@ -6,7 +6,9 @@ import TiPlus from 'react-icons/lib/ti/plus';
 import TiMinus from 'react-icons/lib/ti/minus';
 import FaHandODown from 'react-icons/lib/fa/hand-o-down';
 import FaCommentsO from 'react-icons/lib/fa/comments-o';
+import FaTrashO from 'react-icons/lib/fa/trash-o';
 import TaskForm from '../../TaskManager/TaskForm/TaskForm';
+import deleteTask from '../../../../actions';
 import './Task.css';
 
 class Task extends Component {
@@ -36,6 +38,12 @@ class Task extends Component {
 
   redirectToDiscuss = () => {
     // this.props.history.push('/pursuance/1/discuss');
+  }
+
+  deleteTaskBtn = () => {
+    console.log(this.state);
+    // delete from api
+    // delete row
   }
 
   styleUl = () => {
@@ -98,6 +106,9 @@ class Task extends Component {
               </div>
               <div className="icon-ctn" onClick={this.redirectToDiscuss}>
                 <FaCommentsO />
+              </div>
+              <div className="icon-ctn" onClick={this.deleteTaskBtn}>
+                <FaTrashO />
               </div>
             </div>
             <div className="task-assigned-to">

@@ -1,6 +1,6 @@
 import { getUsersReq } from '../api/users';
 import { getPursuancesReq } from '../api/pursuances';
-import { postTaskReq, getTasksReq } from '../api/tasks';
+import { postTaskReq, getTasksReq, deleteTaskReq } from '../api/tasks';
 
 export const updateFormField = (formId, fieldId, value) =>
   ({ type: 'TASK_FIELD_UPDATE', formId, fieldId, value })
@@ -17,11 +17,14 @@ export const getUsers = () =>
 export const getPursuances = () =>
   ({ type: 'GET_PURSUANCES', payload: getPursuancesReq() });
 
-  export const getTasks = (pursuanceId) =>
+export const getTasks = (pursuanceId) =>
   ({ type:'GET_TASKS', payload: getTasksReq(pursuanceId) });
 
 export const postTask = (task) =>
   ({ type: 'POST_TASK', payload: postTaskReq(task) });
+
+export const deleteTask = (taskId) =>
+  ({ type: 'DELETE_TASK', payload: deleteTaskReq(taskId) });
 
 export const startSuggestions = (value, filterSuggestion, list, formId) =>
   ({ type: 'START_SUGGESTIONS', suggestions: filterSuggestion(value, list), formId });

@@ -18,6 +18,16 @@ export const getTasksReq = (pursuanceId) => {
     });
 }
 
+export const deleteTaskReq = (taskId) => {
+  return postgrest.deleteJSON(`/tasks?id=eq.${taskId}`,)
+    .then((ok) => {
+      return ok;
+    })
+    .catch((err) => {
+      console.log('Error fetching tasks:', err);
+    });
+}
+
 const buildTaskHierarchy = (tasks) => {
   const taskMap = {};
   const rootTaskGids = [];
