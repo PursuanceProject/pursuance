@@ -8,13 +8,23 @@ export const postTaskReq = (task) => {
 
 
 export const getTasksReq = (pursuanceId) => {
-  return postgrest.getJSON(`/tasks?pursuance_id=eq.${pursuanceId}&order=created.asc,id.asc`,)
+  return postgrest.getJSON(`/tasks?pursuance_id=eq.${pursuanceId}&order=created.asc,id.asc`)
     .then((tasks) => {
       const { taskMap, rootTaskGids } = buildTaskHierarchy(tasks);
       return { taskMap, rootTaskGids };
     })
     .catch((err) => {
       console.log('Error fetching tasks:', err);
+    });
+}
+
+export const deleteTaskReq = (taskGid) => {
+  return postgrest.deleteJSON(`/tasks?gid=eq.${taskGid}`)
+    .then((ok) => {
+      return ok;
+    })
+    .catch((err) => {
+      console.log(`Error deleting task '${taskGid}':`, err);
     });
 }
 

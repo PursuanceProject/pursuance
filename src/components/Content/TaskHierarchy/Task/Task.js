@@ -6,7 +6,9 @@ import TiPlus from 'react-icons/lib/ti/plus';
 import TiMinus from 'react-icons/lib/ti/minus';
 import FaHandODown from 'react-icons/lib/fa/hand-o-down';
 import FaCommentsO from 'react-icons/lib/fa/comments-o';
+import FaTrashO from 'react-icons/lib/fa/trash-o';
 import TaskForm from '../../TaskManager/TaskForm/TaskForm';
+import { deleteTask } from '../../../../actions';
 import './Task.css';
 
 class Task extends Component {
@@ -36,6 +38,10 @@ class Task extends Component {
 
   redirectToDiscuss = () => {
     // this.props.history.push('/pursuance/1/discuss');
+  }
+
+  deleteTaskBtn = () => {
+    this.props.deleteTask(this.props.taskData.gid);
   }
 
   styleUl = () => {
@@ -99,6 +105,9 @@ class Task extends Component {
               <div className="icon-ctn" onClick={this.redirectToDiscuss}>
                 <FaCommentsO />
               </div>
+              <div className="icon-ctn" onClick={this.deleteTaskBtn}>
+                <FaTrashO />
+              </div>
             </div>
             <div className="task-assigned-to">
               <span>
@@ -126,4 +135,7 @@ class Task extends Component {
   }
 }
 
-export default withRouter(connect(({ pursuances }) => ({ pursuances }))(Task));
+export default withRouter(connect(({ pursuances }) =>
+  ({ pursuances }), {
+    deleteTask,
+})(Task));
