@@ -5,6 +5,7 @@ import './utils/detect_browser';
 import store from './store';
 import App from './App';
 import './index.css';
+import './utils/origin_polyfill';
 
 ReactDOM.render(
   <Provider store={store}>
