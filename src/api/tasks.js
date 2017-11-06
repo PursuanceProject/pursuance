@@ -18,8 +18,8 @@ export const getTasksReq = (pursuanceId) => {
     });
 }
 
-export const deleteTaskReq = (taskId) => {
-  return postgrest.deleteJSON(`/tasks?id=eq.${taskId}`,)
+export const deleteTaskReq = (taskGid) => {
+  return postgrest.deleteJSON(`/tasks?gid=eq.${taskGid}`,)
     .then((ok) => {
       return ok;
     })

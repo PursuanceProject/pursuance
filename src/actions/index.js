@@ -23,8 +23,8 @@ export const getTasks = (pursuanceId) =>
 export const postTask = (task) =>
   ({ type: 'POST_TASK', payload: postTaskReq(task) });
 
-export const deleteTask = (taskId) =>
-  ({ type: 'DELETE_TASK', payload: deleteTaskReq(taskId) });
+export const deleteTask = (taskGid) =>
+  ({ type: 'DELETE_TASK', payload: deleteTaskReq(taskGid), meta: {gid: taskGid} });
 
 export const startSuggestions = (value, filterSuggestion, list, formId) =>
   ({ type: 'START_SUGGESTIONS', suggestions: filterSuggestion(value, list), formId });

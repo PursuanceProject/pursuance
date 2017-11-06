@@ -8,7 +8,7 @@ import FaHandODown from 'react-icons/lib/fa/hand-o-down';
 import FaCommentsO from 'react-icons/lib/fa/comments-o';
 import FaTrashO from 'react-icons/lib/fa/trash-o';
 import TaskForm from '../../TaskManager/TaskForm/TaskForm';
-import deleteTask from '../../../../actions';
+import { deleteTask } from '../../../../actions';
 import './Task.css';
 
 class Task extends Component {
@@ -41,9 +41,7 @@ class Task extends Component {
   }
 
   deleteTaskBtn = () => {
-    console.log(this.state);
-    // delete from api
-    // delete row
+    this.props.deleteTask(this.props.taskData.gid);
   }
 
   styleUl = () => {
@@ -136,4 +134,7 @@ class Task extends Component {
   }
 }
 
-export default withRouter(connect(({ pursuances }) => ({ pursuances }))(Task));
+export default withRouter(connect(({ pursuances }) =>
+  ({ pursuances }), {
+    deleteTask,
+})(Task));

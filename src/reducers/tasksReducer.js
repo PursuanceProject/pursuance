@@ -32,6 +32,24 @@ export default function (state = initialState, action) {
     case 'POST_TASK_REJECTED':
       return state;
 
+    case 'DELETE_TASK_PENDING':
+      return state;
+
+    case 'DELETE_TASK_REJECTED':
+      return state;
+
+    case 'DELETE_TASK_FULFILLED':
+      const newState = JSON.parse(JSON.stringify(state));
+
+      delete newState.taskMap[action.meta.gid];
+      var ndx = newState.rootTaskGids.indexOf(action.meta.gid);
+      if (ndx > -1) {
+        newState.rootTaskGids.splice(ndx, 1);
+      }
+      newState.recentlyAddedTask = null;
+
+      return newState;
+
     case 'ADD_POSTED_ROOT_TASK':
       const { task } = action;
       return Object.assign({}, state, {
