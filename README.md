@@ -55,7 +55,7 @@ Linux or OS X.)
 Then, in another terminal session run this (**an error about not
 finding `github.com/PursuanceProject/pursuance` is OK here**) --
 
-``` $ go get ./.. ```
+``` $ go get ./... ```
 
 ``` $ npm run build ```
 
