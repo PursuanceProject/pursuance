@@ -24,7 +24,7 @@ export const deleteTaskReq = (taskGid) => {
       return ok;
     })
     .catch((err) => {
-      console.log('Error fetching tasks:', err);
+      console.log("Error deleting task '${taskGid}':", err);
     });
 }
 

@@ -39,7 +39,7 @@ export default function (state = initialState, action) {
       return state;
 
     case 'DELETE_TASK_FULFILLED':
-      const newState = JSON.parse(JSON.stringify(state));
+      const newState = { ...state };
 
       delete newState.taskMap[action.meta.gid];
       var ndx = newState.rootTaskGids.indexOf(action.meta.gid);
