@@ -16,7 +16,7 @@ class ParticipantList extends React.Component {
 
     return Object.keys(users).sort().reduce((acc, key) => {
       const { username } = users[key];
-      return acc.concat(<Participant username={username} />)
+      return acc.concat(<Participant key={username} username={username} />)
     }, []);
   }
 
