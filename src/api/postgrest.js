@@ -5,7 +5,7 @@ export const formatDate = (rfc3339, displayFormat="YYYY-MM-DD") => {
 }
 
 
-export let URL_PREFIX = document.origin + '/postgrest';
+export let URL_PREFIX = window.location.origin + '/postgrest';
 
 export const postJSON = (pathSuffix, payload, additionalHeaders = {}) => {
   const headers = {
