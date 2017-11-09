@@ -13,11 +13,14 @@ class ParticipantList extends React.Component {
 
   renderList() {
     const { users } = this.props;
+    const participants = [];
 
-    return Object.keys(users).sort().reduce((acc, key) => {
+    for(const key in users) {
       const { username } = users[key];
-      return acc.concat(<Participant key={username} username={username} />)
-    }, []);
+      participants.push(<Participant key={username} username={username} />);
+    }
+
+    return participants;
   }
 
   render() {
