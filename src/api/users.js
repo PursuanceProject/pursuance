@@ -1,8 +1,8 @@
-import * as postgrest from "./postgrest";
+import * as postgrest from './postgrest';
 
 export const getUsersReq = () => {
   return postgrest
-    .getJSON("/users?select=username")
+    .getJSON('/users?select=username')
     .then(usersArray => {
       const usersObject = {};
       for (var i = 0; i < usersArray.length; i++) {
@@ -12,5 +12,5 @@ export const getUsersReq = () => {
       }
       return usersObject;
     })
-    .catch(err => console.log("Error fetching users:", err));
+    .catch(err => console.log('Error fetching users:', err));
 };

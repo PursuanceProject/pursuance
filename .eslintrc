@@ -1,3 +1,27 @@
 {
-  "extends": ["prettier", "react-app"]
+  "extends": [
+    "prettier"
+  ],
+  "plugins": [
+    "prettier"
+  ],
+  "rules": {
+    "prettier/prettier": ["error", {
+      "singleQuote": true,
+      "trailingComma": "none",
+      "bracketSpacing": false,
+      "jsxBracketSameLine": true
+  }]
+  },
+  "parserOptions": {
+    "ecmaVersion": 7,
+    "sourceType": "module",
+    "ecmaFeatures": {
+        "jsx": true,
+        "modules": true,
+        "arrowFunctions": true,
+        "classes": true,
+        "experimentalObjectRestSpread": true
+    }
+  }
 }
