@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import '../SignUpLogInModal.css';
 import './LogIn.css';
 
 class LogIn extends Component {
@@ -34,7 +35,7 @@ class LogIn extends Component {
     } else {
       localStorage.removeItem('username');
     }
-    // Front End Validation
+    // TODO: Front End Validation
     // Post Request LogIn
     // Clear user info from RAM
     this.usernameRemembered = '';
@@ -45,16 +46,16 @@ class LogIn extends Component {
   render() {
     return (
       <div className="modal fade" id="log-in-modal" tabIndex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div className="modal-dialog" role="document">
-          <div className="modal-content">
+        <div className="modal-dialog sign-login-dialog" role="document">
+          <div className="modal-content signup-login-content">
             <div className="modal-header">
-              <button type="button" className="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h4 className="modal-title">Log In</h4>
+              <button className="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 className="modal-title sign-login-title">Log In</h4>
             </div>
-            <div className="modal-body">
+            <div className="modal-body signup-login-body">
               <form className="form-horizontal" onSubmit={this.handleSubmit}>
                 <div className="form-group">
-                  <label htmlFor="input-username-login" className="col-sm-2 control-label">Username</label>
+                  <label className="col-sm-2 control-label signup-login-label" htmlFor="input-username-login">Username</label>
                   <div className="col-sm-10">
                     <input type="text" className="form-control" id="input-username-login" placeholder="Username"
                     defaultValue={this.usernameRemembered}
@@ -62,9 +63,9 @@ class LogIn extends Component {
                   </div>
                 </div>
                 <div className="form-group">
-                  <label htmlFor="input-password-login" className="col-sm-2 control-label">Password</label>
+                  <label className="col-sm-2 control-label signup-login-label"  htmlFor="input-password-login">Password</label>
                   <div className="col-sm-10">
-                    <input type="password" className="form-control" id="input-password-login" placeholder="minimum of 8 characters" onChange={this.setPassword}/>
+                    <input type="password" className="form-control" id="input-password-login" placeholder="" onChange={this.setPassword}/>
                   </div>
                 </div>
                 <div className="form-group">
@@ -76,10 +77,10 @@ class LogIn extends Component {
                   </div>
                 </div>
                 <div className="form-group modal-btn-ctn">
-                  <button type="button" className="btn btn-default" data-dismiss="modal">
+                  <button className="btn btn-default btn-close" type="button" data-dismiss="modal">
                     Close
                   </button>
-                  <button type="submit" className="btn btn-primary">
+                  <button className="btn btn-primary" type="submit">
                     Submit
                   </button>
                 </div>

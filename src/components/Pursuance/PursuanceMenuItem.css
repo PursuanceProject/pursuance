@@ -1,0 +1,25 @@
+.menu-item {
+  display: block;
+  text-align: center;
+  font-size: 9px;
+}
+
+.menu-item:hover {
+  text-decoration: none;
+}
+
+.menu-item span {
+  display: block;
+}
+
+.menu-item {
+  color: #288bd6;
+}
+
+.menu-item.Active {
+  color: #8662ea;
+}
+
+.menu-btn-label {
+  font-size: 1.42em;
+}

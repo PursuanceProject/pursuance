@@ -1,3 +1,7 @@
 .App {
-  text-align: center;
+
+}
+
+.overflow-y-ctn {
+  overflow-y: auto;
 }

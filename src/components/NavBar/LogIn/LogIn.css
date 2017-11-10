@@ -3,8 +3,12 @@
   padding-left: 20px;
 }
 
-.checkbox input {
+#remember-username {
   height: 16px;
   width: 16px;
   margin-top: 2px;
+}
+
+.checkbox span {
+  color: #d6d6d6;
 }

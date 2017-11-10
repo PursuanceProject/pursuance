@@ -1,0 +1,21 @@
+.UserSettingsButton {
+  background: none;
+  border: none;
+  color: white;
+}
+
+.UserSettingsButton span.Username {
+  vertical-align: middle;
+}
+
+.UserSettingsButton span {
+  margin-left: 5px;
+}
+
+.ContributionPointsContainer {
+  position: relative;
+}
+
+.ContributionPointsContainer .ContributionStar {  
+  position: absolute;
+}
