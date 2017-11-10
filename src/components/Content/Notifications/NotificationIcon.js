@@ -8,20 +8,20 @@ import FaRocket from 'react-icons/lib/fa/rocket';
 
 const iconSize = 34;
 
-const NotificationIcon = ({ type }) => {
+const NotificationIcon = ({type}) => {
   switch (type) {
     case 'MICRO_TASK':
-      return <FaBolt size={iconSize} />
+      return <FaBolt size={iconSize} />;
     case 'APPRECIATION':
-      return <FaThumbsUpO size={iconSize} />
+      return <FaThumbsUpO size={iconSize} />;
     case 'MENTION':
-      return <FaAt size={iconSize} />
+      return <FaAt size={iconSize} />;
     case 'HELP_WANTED':
-      return <FaExclamation size={iconSize} />
+      return <FaExclamation size={iconSize} />;
     case 'PROGRESS':
-      return <FaRocket size={iconSize} />
+      return <FaRocket size={iconSize} />;
     default:
-      return <FaBell size={iconSize} />
+      return <FaBell size={iconSize} />;
   }
 };
 

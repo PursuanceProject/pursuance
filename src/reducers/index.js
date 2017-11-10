@@ -1,4 +1,4 @@
-import { combineReducers } from 'redux';
+import {combineReducers} from 'redux';
 import taskForm from './taskFormReducer';
 import users from './usersReducer';
 import pursuances from './pursuancesReducer';
@@ -16,6 +16,5 @@ const rootReducer = combineReducers({
   currentPursuanceId,
   tasks
 });
-
 
 export default rootReducer;

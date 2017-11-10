@@ -1,19 +1,17 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import PursuanceList from '../Content/PursuanceList/PursuanceList';
 import './Dashboard.css';
-import { getPursuances } from '../../actions';
-import { connect } from 'react-redux';
-
+import {getPursuances} from '../../actions';
+import {connect} from 'react-redux';
 
 class Dashboard extends Component {
-
   componentWillMount() {
     // TODO: Once we add auth, only grab pursuances that the logged-in
     // user is a mumber of
     this.props.getPursuances();
   }
 
-  render () {
+  render() {
     return (
       <div id="dashboard">
         <div id="dashboard-title">
@@ -49,4 +47,4 @@ class Dashboard extends Component {
   }
 }
 
-export default connect(null, { getPursuances })(Dashboard);
+export default connect(null, {getPursuances})(Dashboard);

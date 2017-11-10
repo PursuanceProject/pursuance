@@ -1,17 +1,16 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { setCurrentPursuance } from '../../actions';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import {setCurrentPursuance} from '../../actions';
 import PursuanceMenu from './PursuanceMenu';
 import TaskListView from './views/TaskListView';
 import DiscussView from './views/DiscussView';
 import './PursuancePage.css';
-import ParticipantsView from "./views/ParticipantsView";
+import ParticipantsView from './views/ParticipantsView';
 
 class PursuancePage extends Component {
-
   componentWillMount() {
-    const { setCurrentPursuance, match } = this.props;
+    const {setCurrentPursuance, match} = this.props;
     const currentPursuanceId = Number(match.params.pursuanceId);
     setCurrentPursuance(currentPursuanceId);
   }
@@ -25,17 +24,32 @@ class PursuancePage extends Component {
           </nav>
           <article>
             <Switch>
-              <Route exact path="/pursuance/:pursuanceId" component={TaskListView} />
-              <Route exact path="/pursuance/:pursuanceId/tasks" component={TaskListView} />
-              <Route exact path="/pursuance/:pursuanceId/discuss" component={DiscussView} />
-              <Route exact path="/pursuance/:pursuanceId/participants" component={ParticipantsView} />
+              <Route
+                exact
+                path="/pursuance/:pursuanceId"
+                component={TaskListView}
+              />
+              <Route
+                exact
+                path="/pursuance/:pursuanceId/tasks"
+                component={TaskListView}
+              />
+              <Route
+                exact
+                path="/pursuance/:pursuanceId/discuss"
+                component={DiscussView}
+              />
+              <Route
+                exact
+                path="/pursuance/:pursuanceId/participants"
+                component={ParticipantsView}
+              />
             </Switch>
           </article>
         </div>
       </Router>
     );
   }
-
 }
 
-export default connect(null, { setCurrentPursuance })(PursuancePage);
+export default connect(null, {setCurrentPursuance})(PursuancePage);

@@ -1,18 +1,16 @@
 const initialState = {
-  taskMap : {},
+  taskMap: {},
   rootTaskGids: [],
   recentlyAddedTask: null
-}
+};
 
-export default function (state = initialState, action) {
-
+export default function(state = initialState, action) {
   switch (action.type) {
-
     case 'GET_TASKS_PENDING':
       return state;
 
     case 'GET_TASKS_FULFILLED':
-      const { taskMap, rootTaskGids } = action.payload;
+      const {taskMap, rootTaskGids} = action.payload;
       return Object.assign({}, state, {
         taskMap,
         rootTaskGids
@@ -33,7 +31,7 @@ export default function (state = initialState, action) {
       return state;
 
     case 'ADD_POSTED_ROOT_TASK':
-      const { task } = action;
+      const {task} = action;
       return Object.assign({}, state, {
         rootTaskGids: [...state.rootTaskGids, task.gid],
         taskMap: Object.assign({}, state.taskMap, {
@@ -55,7 +53,6 @@ export default function (state = initialState, action) {
       });
 
     default:
-      return state
+      return state;
   }
-
 }

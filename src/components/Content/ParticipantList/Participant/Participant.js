@@ -1,12 +1,12 @@
 import React from 'react';
 
-const Participant = ({ username }) => {
-  return <div className="participant-ctn">
-    <div className="participant-avatar"></div>
-    <div className="participant-name">
-      {username}
+const Participant = ({username}) => {
+  return (
+    <div className="participant-ctn">
+      <div className="participant-avatar" />
+      <div className="participant-name">{username}</div>
     </div>
-  </div>
+  );
 };
 
 export default Participant;

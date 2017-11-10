@@ -1,7 +1,5 @@
-export default function (state = {}, action) {
-
+export default function(state = {}, action) {
   switch (action.type) {
-
     case 'GET_PURSUANCES_PENDING':
       return state;
 
@@ -14,5 +12,4 @@ export default function (state = {}, action) {
     default:
       return state;
   }
-
 }
