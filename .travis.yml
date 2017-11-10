@@ -1,5 +1,16 @@
 dist: trusty
 
+language: node_js
+node_js:
+  - 7
+cache:
+  directories:
+  - node_modules
+script:
+  - npm run test src/App.test.js
+  - npm run build
+
+
 language: go
 go:
   - 1.8
