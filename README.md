@@ -2,10 +2,10 @@
 
 ## WARNING
 
-Do not expose the server in this branch (`demo`) to the world; for the
-moment, it is meant for presentation purposes only, as we are
-proparing to demo this software and to have users test it locally
-before adding a combination of miniLock-based cryptographic auth and
+Do not expose the server in this branch (`develop`) to the world; for
+the moment, it is meant for presentation/demonstration purposes only,
+as we are proparing to demo this software and to have users test it
+locally before adding a combination of cryptographic auth and
 PostgREST's JWTs (JSON Web Tokens) shortly after our demo on November
 4, 2017.  Hang tight!
 
