@@ -54,7 +54,7 @@ export default function (state = initialState, action) {
         newState.rootTaskGids.splice(ndx, 1);
       }
 
-      if (newState.recentlyAddedTask.gid == taskGid) {
+      if (newState.recentlyAddedTask != null && newState.recentlyAddedTask.gid == taskGid) {
         // TODO: Depending on how this is used, we may want to replace it with the last "recently" created task
         newState.recentlyAddedTask = null;
       }
