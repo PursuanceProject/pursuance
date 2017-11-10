@@ -1,0 +1,22 @@
+#participant-list {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.participant-ctn {
+    color: #d6d6d6;
+    padding: 0.5em;
+}
+
+.participant-avatar {
+    height: 75px;
+    width: 75px;
+    border: 1px solid #666666;
+    border-radius: 5px;
+    vertical-align: center;
+    text-align: center;
+}
+
+.participant-name {
+    text-align: center;
+}
