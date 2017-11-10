@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import NotificationIcon from './NotificationIcon';
 import NotificationAction from './NotificationAction';
 import './Notification.css';
+
 const ReactMarkdown = require('react-markdown');
 
 class Notification extends PureComponent {
@@ -27,7 +28,8 @@ class Notification extends PureComponent {
               }
               // If link to external site, open in new tab
               return <a href={props.href} target="_blank">{props.children}</a>;
-            }}} />
+            }}}
+          />
         </div>
         <div className="NotificationActionContainer">
           <NotificationAction type={type} onClick={this.handleActionClicked} />

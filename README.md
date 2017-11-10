@@ -57,6 +57,8 @@ finding `github.com/PursuanceProject/pursuance` is OK here**) --
 
 ``` $ go get ./... ```
 
+``` $ npm run build ```
+
 ``` $ go build ```
 
 ``` $ ./pursuance ```
