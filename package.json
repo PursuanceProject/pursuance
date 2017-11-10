@@ -17,6 +17,9 @@
     "redux-thunk": "^2.2.0"
   },
   "devDependencies": {
+    "eslint": "^4.10.0",
+    "eslint-config-prettier": "^2.7.0",
+    "eslint-config-react-app": "^2.0.1",
     "prettier": "^1.8.2",
     "react-scripts": "1.0.13"
   },
@@ -26,8 +29,9 @@
     "test": "react-scripts test --env=jsdom",
     "watch": "node scripts/watch.js",
     "eject": "react-scripts eject",
-    "lint-fix": "prettier --write ./src/**/*.js",
-    "lint": "prettier --list-different src/**/*.js"
+    "format-code": "prettier --write ./src/**/*.js",
+    "lint-fix": "eslint ./src --fix",
+    "lint": "eslint ./src"
   },
   "proxy": "http://localhost:8082/"
 }
