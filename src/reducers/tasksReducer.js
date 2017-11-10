@@ -40,13 +40,24 @@ export default function (state = initialState, action) {
 
     case 'DELETE_TASK_FULFILLED':
       const newState = { ...state };
+      const taskGid = action.meta.gid;
 
-      delete newState.taskMap[action.meta.gid];
-      var ndx = newState.rootTaskGids.indexOf(action.meta.gid);
+      if (newState.taskMap[taskGid].parent_task_gid != null) {
+        var parentGid = newState.taskMap[taskGid].parent_task_gid;
+        var parentNdx = newState.taskMap[parentGid].subtask_gids.indexOf(taskGid);
+        newState.taskMap[parentGid].subtask_gids.splice(parentNdx, 1);
+      }
+
+      delete newState.taskMap[taskGid];
+      var ndx = newState.rootTaskGids.indexOf(taskGid);
       if (ndx > -1) {
         newState.rootTaskGids.splice(ndx, 1);
       }
-      newState.recentlyAddedTask = null;
+
+      if (newState.recentlyAddedTask.gid == taskGid) {
+        // TODO: Depending on how this is used, we may want to replace it with the last "recently" created task
+        newState.recentlyAddedTask = null;
+      }
 
       return newState;
 
