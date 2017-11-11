@@ -20,7 +20,7 @@ class DiscussView extends Component {
     return (
       <div id="discuss-ctn">
         <iframe id="leapchat-frame" title="Leapchat" src={leapChatUrl} />
-        <div className="task-description-ctn">
+        <div className="task-details-ctn">
           <div className="task-assignment-ctn">
             <div className="assigned-to-ctn">
               <span>
