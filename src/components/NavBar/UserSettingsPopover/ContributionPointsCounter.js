@@ -1,5 +1,5 @@
 import React from 'react';
-import { Badge, Label } from 'react-bootstrap';
+import { Label } from 'react-bootstrap';
 import FaStar from 'react-icons/lib/fa/star';
 import AnimatedNumber from 'react-animated-number';
 import './ContributionPointsCounter.css';
