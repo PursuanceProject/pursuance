@@ -8,10 +8,10 @@ export let URL_PREFIX = window.location.origin + '/postgrest';
 
 const defaultHeaders = {
   'Content-Type': 'application/json; charset=utf-8'
-}
+};
 
 const createHeaders = (additionalHeaders) => {
-  const headers = {}
+  const headers = {};
   Object.assign(headers, defaultHeaders);
   Object.assign(headers, additionalHeaders);
   return headers;
