@@ -16,10 +16,10 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <NavBar 
-            authenticated={ this.props.authenticated } 
+          <NavBar
+            authenticated={ this.props.authenticated }
             contributionPoints={ this.props.contributionPoints }
-            username={ this.props.username } 
+            username={ this.props.username }
             onRemoveNotification={this.props.removeNotification}
             onIncreaseContributionAmount={this.props.increaseContributionAmount}
             />
