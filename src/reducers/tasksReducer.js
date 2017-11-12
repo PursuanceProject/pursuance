@@ -32,6 +32,49 @@ export default function (state = initialState, action) {
     case 'POST_TASK_REJECTED':
       return state;
 
+    case 'DELETE_TASK_PENDING':
+      return state;
+
+    case 'DELETE_TASK_REJECTED':
+      return state;
+
+    case 'DELETE_TASK_FULFILLED':
+      // This currently only works for leaf tasks,
+      // deleting a parent won't delete it's children
+      const newState = { ...state };
+      const taskGid = action.meta.gid;
+
+      var parentGid = null;
+      if (newState.taskMap[taskGid].parent_task_gid != null) {
+        parentGid = newState.taskMap[taskGid].parent_task_gid;
+      }
+
+      //FIXME: We do not remove a task from state.recentlyAddTask
+
+      return Object.assign({}, state, {
+        taskMap: Object.keys(state.taskMap).reduce((acc, gid) => {
+          if (gid !== taskGid) {
+            acc[gid] = state.taskMap[gid];
+          }
+
+          if (parentGid !== null) {
+            if (gid === parentGid) {
+              acc[gid].subtask_gids = state.taskMap[gid].subtask_gids.filter(function(subtask_gid) {
+                if (subtask_gid !== taskGid) {
+                  return subtask_gid;
+                }
+              });
+            }
+          }
+          return acc;
+        }, {}),
+        rootTaskGids: state.rootTaskGids.filter(function(gid){
+          if (gid !== taskGid) {
+            return gid;
+          }
+        })
+      });
+
     case 'ADD_POSTED_ROOT_TASK':
       const { task } = action;
       return Object.assign({}, state, {

@@ -89,6 +89,15 @@
   cursor: pointer;
 }
 
+.icon-ctn-disabled svg,
+.icon-ctn-disabled:hover svg {
+  color: #666;
+}
+
+.icon-ctn:hover {
+  cursor: initial;
+}
+
 .task-assigned-to {
   width: 190px;
   padding: 0 4px;
