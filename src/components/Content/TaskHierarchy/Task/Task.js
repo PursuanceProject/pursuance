@@ -41,6 +41,10 @@ class Task extends Component {
   }
 
   deleteTaskBtn = () => {
+    //TODO: Consider adding a confirmation box
+    if (this.props.taskData.subtask_gids.length !== 0) {
+      return;
+    }
     this.props.deleteTask(this.props.taskData.gid);
   }
 
@@ -59,7 +63,8 @@ class Task extends Component {
         key={gid}
         taskData={this.props.taskMap[gid]}
         taskMap={this.props.taskMap}
-        pursuances={pursuances} />;
+        pursuances={pursuances}
+        deleteTask={this.props.deleteTask} />;
     });
   }
 

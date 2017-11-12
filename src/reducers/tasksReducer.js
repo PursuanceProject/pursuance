@@ -39,27 +39,41 @@ export default function (state = initialState, action) {
       return state;
 
     case 'DELETE_TASK_FULFILLED':
+      // This currently only works for leaf tasks,
+      // deleting a parent won't delete it's children
       const newState = { ...state };
       const taskGid = action.meta.gid;
 
+      var parentGid = null;
       if (newState.taskMap[taskGid].parent_task_gid != null) {
         var parentGid = newState.taskMap[taskGid].parent_task_gid;
-        var parentNdx = newState.taskMap[parentGid].subtask_gids.indexOf(taskGid);
-        newState.taskMap[parentGid].subtask_gids.splice(parentNdx, 1);
       }
 
-      delete newState.taskMap[taskGid];
-      var ndx = newState.rootTaskGids.indexOf(taskGid);
-      if (ndx > -1) {
-        newState.rootTaskGids.splice(ndx, 1);
-      }
+      //FIXME: We do not remove a task from state.recentlyAddTask
 
-      if (newState.recentlyAddedTask != null && newState.recentlyAddedTask.gid == taskGid) {
-        // TODO: Depending on how this is used, we may want to replace it with the last "recently" created task
-        newState.recentlyAddedTask = null;
-      }
+      return Object.assign({}, state, {
+        taskMap: Object.keys(state.taskMap).reduce((acc, gid) => {
+          if (gid !== taskGid) {
+            acc[gid] = state.taskMap[gid];
+          }
 
-      return newState;
+          if (parentGid !== null) {
+            if (gid == parentGid) {
+              acc[gid].subtask_gids = state.taskMap[gid].subtask_gids.filter(function(subtask_gid){
+                if (subtask_gid !== taskGid) {
+                  return subtask_gid;
+                }
+              });
+            }
+          }
+          return acc;
+        }, {}),
+        rootTaskGids: state.rootTaskGids.filter(function(gid){
+          if (gid !== taskGid) {
+            return gid;
+          }
+        })
+      });
 
     case 'ADD_POSTED_ROOT_TASK':
       const { task } = action;
