@@ -46,7 +46,7 @@ export default function (state = initialState, action) {
 
       var parentGid = null;
       if (newState.taskMap[taskGid].parent_task_gid != null) {
-        var parentGid = newState.taskMap[taskGid].parent_task_gid;
+        parentGid = newState.taskMap[taskGid].parent_task_gid;
       }
 
       //FIXME: We do not remove a task from state.recentlyAddTask
@@ -58,8 +58,8 @@ export default function (state = initialState, action) {
           }
 
           if (parentGid !== null) {
-            if (gid == parentGid) {
-              acc[gid].subtask_gids = state.taskMap[gid].subtask_gids.filter(function(subtask_gid){
+            if (gid === parentGid) {
+              acc[gid].subtask_gids = state.taskMap[gid].subtask_gids.filter(function(subtask_gid) {
                 if (subtask_gid !== taskGid) {
                   return subtask_gid;
                 }
