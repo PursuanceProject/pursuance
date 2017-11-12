@@ -1,6 +1,6 @@
 export default function(state = {}, action) {
   switch (action.type) {
-    case "TASK_FIELD_UPDATE":
+    case 'TASK_FIELD_UPDATE':
       const { formId, fieldId, value } = action;
       return Object.assign({}, state, {
         [formId]: Object.assign({}, state[formId], {
@@ -8,17 +8,17 @@ export default function(state = {}, action) {
         })
       });
 
-    case "TASK_FORM_CLEAR_FIELDS": {
+    case 'TASK_FORM_CLEAR_FIELDS': {
       // ...except parent_task_gid
       const { formId } = action;
       return Object.assign({}, state, {
         [formId]: {
-          parent_task_gid: state[formId]["parent_task_gid"]
+          parent_task_gid: state[formId]['parent_task_gid']
         }
       });
     }
 
-    case "TASK_FORM_SET_PARENT_GID": {
+    case 'TASK_FORM_SET_PARENT_GID': {
       const { formId, newParentGid } = action;
       return Object.assign({}, state, {
         [formId]: Object.assign(
@@ -30,26 +30,26 @@ export default function(state = {}, action) {
       });
     }
 
-    case "START_SUGGESTIONS":
+    case 'START_SUGGESTIONS':
       return Object.assign({}, state, {
         suggestions: action.suggestions,
         highlightedSuggestion: 0,
         suggestionForm: action.formId || state.suggestionForm
       });
 
-    case "SHOW_USERS":
+    case 'SHOW_USERS':
       return Object.assign({}, state, {
         suggestions: action.users,
         suggestionForm: action.suggestionForm
       });
 
-    case "STOP_SUGGESTIONS":
+    case 'STOP_SUGGESTIONS':
       return Object.assign({}, state, {
         suggestions: null,
         suggestionForm: null
       });
 
-    case "ADD_SUGGESTION":
+    case 'ADD_SUGGESTION':
       const suggestionForm = state.suggestionForm;
       return Object.assign({}, state, {
         [suggestionForm]: Object.assign({}, state[suggestionForm], {
@@ -58,7 +58,7 @@ export default function(state = {}, action) {
         suggestions: null
       });
 
-    case "DOWN_SUGGESTION":
+    case 'DOWN_SUGGESTION':
       return Object.assign({}, state, {
         highlightedSuggestion: state.suggestions[
           state.highlightedSuggestion + 1
@@ -67,7 +67,7 @@ export default function(state = {}, action) {
           : 0
       });
 
-    case "UP_SUGGESTION":
+    case 'UP_SUGGESTION':
       return Object.assign({}, state, {
         highlightedSuggestion: state.suggestions[
           state.highlightedSuggestion - 1

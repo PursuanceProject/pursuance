@@ -1,18 +1,18 @@
 const initialState = {
   authenticated: true,
-  username: "elimisteve",
+  username: 'elimisteve',
   contributionPoints: 160
 };
 
 export default function(state = initialState, action) {
   switch (action.type) {
-    case "ADD_CONTRIBUTION_POINTS":
+    case 'ADD_CONTRIBUTION_POINTS':
       return {
         ...state,
         contributionPoints: state.contributionPoints + action.amount
       };
 
-    case "POST_TASK_FULFILLED":
+    case 'POST_TASK_FULFILLED':
       return {
         ...state,
         contributionPoints: state.contributionPoints + 3

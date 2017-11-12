@@ -1,9 +1,9 @@
-import * as postgrest from "./postgrest";
-import { PURSUANCE_DISPLAY_PREFIX } from "../constants";
+import * as postgrest from './postgrest';
+import { PURSUANCE_DISPLAY_PREFIX } from '../constants';
 
 export const getPursuancesReq = () => {
   return postgrest
-    .getJSON("/pursuances")
+    .getJSON('/pursuances')
     .then(pursuances => {
       const pursuancesObject = {};
       for (var i = 0; i < pursuances.length; i++) {
@@ -14,6 +14,6 @@ export const getPursuancesReq = () => {
       return pursuancesObject;
     })
     .catch(err => {
-      console.log("Error fetching pursuances:", err);
+      console.log('Error fetching pursuances:', err);
     });
 };

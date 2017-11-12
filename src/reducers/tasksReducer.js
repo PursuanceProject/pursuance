@@ -6,31 +6,31 @@ const initialState = {
 
 export default function(state = initialState, action) {
   switch (action.type) {
-    case "GET_TASKS_PENDING":
+    case 'GET_TASKS_PENDING':
       return state;
 
-    case "GET_TASKS_FULFILLED":
+    case 'GET_TASKS_FULFILLED':
       const { taskMap, rootTaskGids } = action.payload;
       return Object.assign({}, state, {
         taskMap,
         rootTaskGids
       });
 
-    case "GET_TASKS_REJECTED":
+    case 'GET_TASKS_REJECTED':
       return state;
 
-    case "POST_TASK_PENDING":
+    case 'POST_TASK_PENDING':
       return state;
 
-    case "POST_TASK_FULFILLED":
+    case 'POST_TASK_FULFILLED':
       return Object.assign({}, state, {
         recentlyAddedTask: action.payload
       });
 
-    case "POST_TASK_REJECTED":
+    case 'POST_TASK_REJECTED':
       return state;
 
-    case "ADD_POSTED_ROOT_TASK":
+    case 'ADD_POSTED_ROOT_TASK':
       const { task } = action;
       return Object.assign({}, state, {
         rootTaskGids: [...state.rootTaskGids, task.gid],
@@ -39,7 +39,7 @@ export default function(state = initialState, action) {
         })
       });
 
-    case "ADD_POSTED_SUB_TASK":
+    case 'ADD_POSTED_SUB_TASK':
       const subTask = action.task;
       const parentTaskGid = subTask.parent_task_gid;
       const parentTask = state.taskMap[parentTaskGid];

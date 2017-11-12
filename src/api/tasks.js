@@ -1,10 +1,10 @@
-import * as postgrest from "./postgrest";
+import * as postgrest from './postgrest';
 
 export const postTaskReq = task => {
   return postgrest
-    .postJSON("/tasks", task, { Prefer: "return=representation" })
+    .postJSON('/tasks', task, { Prefer: 'return=representation' })
     .then(taskJSON => taskJSON[0])
-    .catch(err => console.log("Error posting task:", err));
+    .catch(err => console.log('Error posting task:', err));
 };
 
 export const getTasksReq = pursuanceId => {
@@ -15,7 +15,7 @@ export const getTasksReq = pursuanceId => {
       return { taskMap, rootTaskGids };
     })
     .catch(err => {
-      console.log("Error fetching tasks:", err);
+      console.log('Error fetching tasks:', err);
     });
 };
 
