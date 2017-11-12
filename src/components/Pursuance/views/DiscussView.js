@@ -11,7 +11,7 @@ const leapChatUrl = "http://localhost:8080/#GiddinessPuttRegisterKioskLucidityJo
 class DiscussView extends Component {
 
   render() {
-    const { match: { params: { pursuanceId } }, pursuances, tasks } = this.props;
+    const { pursuances, tasks } = this.props;
     // TODO: Un-hardcode after demo
     const taskGid = '1_195';
     console.log('tasks.taskMap', tasks.taskMap);
