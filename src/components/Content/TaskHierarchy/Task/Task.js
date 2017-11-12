@@ -48,6 +48,14 @@ class Task extends Component {
     this.props.deleteTask(this.props.taskData.gid);
   }
 
+  deleteTaskBtnClasses = () => {
+    var btnClasses = "icon-ctn";
+    if (this.props.taskData.subtask_gids.length !== 0) {
+      btnClasses += " icon-ctn-disabled";
+    }
+    return btnClasses;
+  }
+
   styleUl = () => {
     if (this.state.showChildren) {
       return { display: 'block' };
@@ -110,7 +118,7 @@ class Task extends Component {
               <div className="icon-ctn" onClick={this.redirectToDiscuss}>
                 <FaCommentsO />
               </div>
-              <div className="icon-ctn" onClick={this.deleteTaskBtn}>
+              <div className={this.deleteTaskBtnClasses()} onClick={this.deleteTaskBtn}>
                 <FaTrashO />
               </div>
             </div>
