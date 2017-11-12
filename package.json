@@ -18,6 +18,8 @@
     "redux-thunk": "^2.2.0"
   },
   "devDependencies": {
+    "eslint-config-prettier": "^2.7.0",
+    "prettier": "^1.8.2",
     "react-scripts": "1.0.13"
   },
   "scripts": {
@@ -25,7 +27,13 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "watch": "node scripts/watch.js",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "format:check": "prettier -l ./src/**/*.js",
+    "format:fix": "prettier --write ./src/**/*.js",
+    "lint:check": "eslint ./src",
+    "lint:fix": "eslint --fix ./src && npm run format:fix",
+    "verify-eslint-rules": "eslint --print-config .eslintrc | eslint-config-prettier-check",
+    "ci": "npm run verify-eslint-rules && npm run format:check && npm run lint:check"
   },
   "proxy": "http://localhost:8082/"
 }
