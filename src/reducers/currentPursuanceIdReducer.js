@@ -1,7 +1,5 @@
-export default function (state = null, action) {
-
+export default function(state = null, action) {
   switch (action.type) {
-
     case 'SET_CURRENT_PURSUANCE':
       return action.currentPursuanceId;
 
@@ -9,7 +7,6 @@ export default function (state = null, action) {
       return action.payload.id;
 
     default:
-      return state
+      return state;
   }
-
 }

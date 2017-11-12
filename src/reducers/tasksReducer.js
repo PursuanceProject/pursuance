@@ -1,13 +1,11 @@
 const initialState = {
-  taskMap : {},
+  taskMap: {},
   rootTaskGids: [],
   recentlyAddedTask: null
-}
+};
 
-export default function (state = initialState, action) {
-
+export default function(state = initialState, action) {
   switch (action.type) {
-
     case 'GET_TASKS_PENDING':
       return state;
 
@@ -55,7 +53,6 @@ export default function (state = initialState, action) {
       });
 
     default:
-      return state
+      return state;
   }
-
 }

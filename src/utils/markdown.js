@@ -6,15 +6,19 @@ export const RenderMarkdown = ({ content }) => {
   return (
     <ReactMarkdown
       source={content}
-      renderers={{Link: props => {
-        if (props.href.startsWith('/')) {
-          return <Link to={props.href}>{props.children}</Link>;
+      renderers={{
+        Link: props => {
+          if (props.href.startsWith('/')) {
+            return <Link to={props.href}>{props.children}</Link>;
+          }
+          // If link to external site, open in new tab
+          return (
+            <Link to={props.href} target="_blank">
+              {props.children}
+            </Link>
+          );
         }
-        // If link to external site, open in new tab
-        return (
-          <Link to={props.href} target="_blank">{props.children}</Link>
-        )
-      }}}
+      }}
     />
-  )
-}
+  );
+};

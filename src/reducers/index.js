@@ -21,5 +21,4 @@ const rootReducer = combineReducers({
   createPursuance
 });
 
-
 export default rootReducer;

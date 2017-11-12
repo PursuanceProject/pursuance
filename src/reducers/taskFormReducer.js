@@ -1,5 +1,4 @@
-export default function (state = {}, action) {
-
+export default function(state = {}, action) {
   switch (action.type) {
     case 'TASK_FIELD_UPDATE':
       const { formId, fieldId, value } = action;
@@ -22,15 +21,18 @@ export default function (state = {}, action) {
     case 'TASK_FORM_SET_PARENT_GID': {
       const { formId, newParentGid } = action;
       return Object.assign({}, state, {
-        [formId]: Object.assign({}, {
-          parent_task_gid: newParentGid
-        })
+        [formId]: Object.assign(
+          {},
+          {
+            parent_task_gid: newParentGid
+          }
+        )
       });
     }
 
     case 'START_SUGGESTIONS':
       return Object.assign({}, state, {
-        suggestions :  action.suggestions,
+        suggestions: action.suggestions,
         highlightedSuggestion: 0,
         suggestionForm: action.formId || state.suggestionForm
       });
@@ -50,24 +52,28 @@ export default function (state = {}, action) {
     case 'ADD_SUGGESTION':
       const suggestionForm = state.suggestionForm;
       return Object.assign({}, state, {
-        [suggestionForm] : Object.assign({}, state[suggestionForm], {
-          assigned_to : action.suggestion
+        [suggestionForm]: Object.assign({}, state[suggestionForm], {
+          assigned_to: action.suggestion
         }),
         suggestions: null
       });
 
     case 'DOWN_SUGGESTION':
       return Object.assign({}, state, {
-        highlightedSuggestion: state.suggestions[state.highlightedSuggestion + 1]
-        ? ++state.highlightedSuggestion
-        : 0
+        highlightedSuggestion: state.suggestions[
+          state.highlightedSuggestion + 1
+        ]
+          ? ++state.highlightedSuggestion
+          : 0
       });
 
     case 'UP_SUGGESTION':
       return Object.assign({}, state, {
-        highlightedSuggestion: state.suggestions[state.highlightedSuggestion - 1]
-        ? --state.highlightedSuggestion
-        : state.suggestions.length - 1
+        highlightedSuggestion: state.suggestions[
+          state.highlightedSuggestion - 1
+        ]
+          ? --state.highlightedSuggestion
+          : state.suggestions.length - 1
       });
 
     default:
