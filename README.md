@@ -76,7 +76,7 @@ Please follow these naming and spacing conventions when submitting a pull reques
 
 We use a combination of [Prettier](https://prettier.io/docs/en/index.html) and [Eslint](https://eslint.org/docs/user-guide/getting-started). Prettier is an opinionated code formatter but does not care about code-quality rules. It only concerns formatting rules. This is why we use Eslint for code-quality rules but not for formatting rules. Read more about the difference between linters and Prettier here: <https://prettier.io/docs/en/comparison.html>. Not ever do we want formatting rules in the `.eslintrc` configuration file. Not implicitly or explicitly. To make sure of that we have a NPM script called verify-eslint-rules (`npm run verify-eslint-rules`) that gives an error if there are Eslint rules somewhere in our `.eslintrc` configuration that conflicts with Prettiers formatting rules.
 
-A PR will not be merged until it passes all the Eslint rules and is properly formatted with Prettier.
+Before submitting PRs, please fix and format your code using `npm run lint`?
 
 
 ## NPM scripts
