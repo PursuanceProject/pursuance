@@ -7,7 +7,7 @@ cache:
   directories:
   - node_modules
 script:
-  - npm run test src/App.test.js
+  - npm run ci
   - npm run build
 
 

@@ -28,10 +28,10 @@
     "watch": "node scripts/watch.js",
     "eject": "react-scripts eject",
     "format:check": "prettier -l ./src/**/*.js",
-    "format:fix": "prettier --write ./src/**/*.js",
+    "format": "prettier --write ./src/**/*.js",
     "lint:check": "eslint ./src",
-    "lint:fix": "eslint --fix ./src && npm run format:fix",
     "verify-eslint-rules": "eslint --print-config .eslintrc | eslint-config-prettier-check",
+    "lint": "npm run verify-eslint-rules && eslint --fix ./src && npm run format",
     "ci": "npm run verify-eslint-rules && npm run format:check && npm run lint:check"
   },
   "proxy": "http://localhost:8082/"
