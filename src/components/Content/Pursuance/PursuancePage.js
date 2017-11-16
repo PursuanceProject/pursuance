@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { setCurrentPursuance } from '../../actions';
+import { setCurrentPursuance } from '../../../actions';
 import PursuanceMenu from './PursuanceMenu';
 import TaskListView from './views/TaskListView';
 import DiscussView from './views/DiscussView';
+import ParticipantsView from './views/ParticipantsView';
 import './PursuancePage.css';
-import ParticipantsView from "./views/ParticipantsView";
 
 class PursuancePage extends Component {
 

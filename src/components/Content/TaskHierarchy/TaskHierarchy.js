@@ -58,9 +58,9 @@ class TaskHierarchy extends Component {
 
   styleLi = () => {
     if (this.state.displayLi) {
-      return { display: 'block' }
+      return { display: 'block' };
     } else {
-      return { display: 'none' }
+      return { display: 'none' };
     }
   }
 

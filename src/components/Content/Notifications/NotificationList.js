@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { withRouter } from 'react-router'
+import { withRouter } from 'react-router-dom'
 import { ListGroup, ListGroupItem } from 'react-bootstrap';
 import Notification from './Notification';
 
@@ -23,10 +23,10 @@ class NotificationList extends PureComponent {
         {
           notifications.length > 0 ? notifications.map(({ id, notificationType, content, actionTarget }) => (
             <ListGroupItem key={id}>
-              <Notification 
+              <Notification
                 id={id}
-                type={notificationType} 
-                content={content} 
+                type={notificationType}
+                content={content}
                 onActionClick={this.handleActionClicked}
                 actionTarget={actionTarget} />
               </ListGroupItem>

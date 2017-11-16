@@ -23,4 +23,5 @@ yarn-error.log*
 
 # Custom
 *~
+*.swp
 /pursuance

@@ -1,5 +1,5 @@
 import React from 'react';
-import TaskHierarchy from '../../Content/TaskHierarchy/TaskHierarchy';
+import TaskHierarchy from '../../TaskHierarchy/TaskHierarchy';
 
 const TaskListView = ({ match: { params: { pursuanceId } } }) => {
   return (

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import ParticipantList from '../../Content/ParticipantList/ParticipantList';
+import ParticipantList from '../../ParticipantList/ParticipantList';
 
 const ParticipantsView = ({ match: { params: { pursuanceId } } }) => {
   return (
