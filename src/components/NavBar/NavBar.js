@@ -27,37 +27,43 @@ class NavBar extends Component {
           </ul>
           <Nav pullRight>
             {
-              !authenticated && (
+              !authenticated &&
+              (
                 <NavItem data-toggle="modal" data-target="#sign-up-modal">
                   Sign Up
-                </NavItem>)
+                </NavItem>
+              )
             }
             {
               !authenticated && <SignUp />
             }
             {
-              !authenticated && (
+              !authenticated &&
+              (
                 <NavItem data-toggle="modal" data-target="#log-in-modal">
                   Log In
-                </NavItem>)
+                </NavItem>
+              )
             }
             {
               !authenticated && <LogIn />
             }
             {
-              authenticated && (
-                <NavItem>
-                  <UserSettingsPopover username={username} contributionPoints={contributionPoints} />
-                </NavItem>
-              )
-            }
-            {
-              authenticated && (
+              authenticated &&
+              (
                 <NavItem>
                   <NotificationsPopover
                     onIncreaseContributionAmount={this.props.onIncreaseContributionAmount}
                     onRemoveNotification={this.props.onRemoveNotification}
                   />
+                </NavItem>
+              )
+            }
+            {
+              authenticated &&
+              (
+                <NavItem>
+                  <UserSettingsPopover username={username} contributionPoints={contributionPoints} />
                 </NavItem>
               )
             }
