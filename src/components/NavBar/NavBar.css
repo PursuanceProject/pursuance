@@ -38,6 +38,8 @@
   justify-content: center;
   height: 60px;
   color: #fcfcfc !important;
+  padding-left: 0 !important;
+  margin-left: 0 !important;
 }
 
 .navbar-brand:hover {
@@ -66,4 +68,10 @@
 
 .navbar-nav li a button {
   padding-bottom: 2px;
+}
+
+.add-icon {
+  float: left;
+  color: rgb(255, 255, 255);
+  margin-right: 5px;
 }

@@ -1,5 +1,5 @@
 import { getUsersReq } from '../api/users';
-import { getPursuancesReq } from '../api/pursuances';
+import { getPursuancesReq, postPursuanceReq } from '../api/pursuances';
 import { postTaskReq, getTasksReq } from '../api/tasks';
 
 export const updateFormField = (formId, fieldId, value) =>
@@ -49,7 +49,7 @@ export const addPostedRootTaskToHierarchy = (task) =>
 
 export const addPostedSubTaskToHierarchy = (task) =>
   ({ type: 'ADD_POSTED_SUB_TASK', task });
-  
+
 export const setMicroTaskNotification = ({ id, content, userAction }) =>
   ({ type: 'SET_NOTIFICATION', id, notificationType: 'MICRO_TASK', content, userAction });
 
@@ -58,15 +58,27 @@ export const setAppreciationNotification = ({ id, content, userAction }) =>
 
 export const setMentionNotification = ({ id, content, userAction }) =>
   ({ type: 'SET_NOTIFICATION', id, notificationType: 'MENTION', content, userAction });
-  
+
 export const setHelpWantedNotification = ({ id, content, userAction }) =>
   ({ type: 'SET_NOTIFICATION', id, notificationType: 'HELP_WANTED', content, userAction });
-  
+
 export const setProgressNotification = ({ id, content, userAction }) =>
   ({ type: 'SET_NOTIFICATION', id, notificationType: 'PROGRESS', content, userAction });
 
 export const removeNotification = (id) =>
   ({ type: 'REMOVE_NOTIFICATION', id });
 
-export const addContributionPoints = (amount) => 
+export const addContributionPoints = (amount) =>
   ({ type: 'ADD_CONTRIBUTION_POINTS', amount });
+
+export const toggleSettingsInfoModal = () =>
+  ({ type: 'TOGGLE_SETTINGS_INFO_MODAL' });
+
+export const updatePursuanceFormField = (fieldId, value) =>
+  ({ type: 'UPDATE_CREATE_PURSUANCE_FORM', fieldId, value });
+
+export const postPursuance = (pursuance) =>
+  ({ type: 'POST_PURSUANCE', payload: postPursuanceReq(pursuance) });
+
+export const clearPursuanceFormFields = () =>
+  ({ type: 'PURSUANCE_FORM_CLEAR_FIELDS' });

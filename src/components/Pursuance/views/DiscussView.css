@@ -1,11 +1,12 @@
-#discuss-ctn {
+.discuss-ctn {
   display: flex;
-  height: 100%;
   width: 100%;
+  background-color: #1c1c1c;
 }
 
-#leapchat-frame {
-  height: 100%;
+.leapchat-frame {
+  height: calc(100vh - 60px);
+  padding-bottom: 50px;
   width: 100%;
   border: 1px solid #6d6d6d;
   border-right: none;
@@ -14,8 +15,9 @@
 
 .task-description-ctn {
   min-width: 320px;
+  background-color: #fff;
   border: 1px solid #6d6d6d;
-  border-radius: 0 4px 4px 0;
+  height: calc(100vh - 110px);
 }
 
 .task-assignment-ctn {

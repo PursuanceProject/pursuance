@@ -4,6 +4,9 @@ footer {
   align-items: center;
   justify-content: center;
   height: 50px;
+  bottom: 0;
+  position: absolute;
+  width: 100%;
   font-size: 0.90em;
   color: #d6d6d6;
 }

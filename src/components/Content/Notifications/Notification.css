@@ -9,6 +9,7 @@
 .NotificationContentContainer {
   padding: 5px;
   max-width: 360px;
+  overflow: auto;
 }
 
 .NotificationContentContainer a {

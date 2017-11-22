@@ -5,8 +5,8 @@ import FaStar from 'react-icons/lib/fa/star';
 import './UserSettingsPopover.css';
 
 const UserSettingsPopover = ({ username, contributionPoints }) => (
-  <OverlayTrigger 
-    trigger="focus" 
+  <OverlayTrigger
+    trigger="focus"
     placement="bottom" 
     overlay={(
       <Popover id="popover-positioned-bottom" title={username}>

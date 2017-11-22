@@ -1,8 +1,10 @@
 #dashboard {
   background-color: #1c1c1c;
-  height: calc(100vh - 110px);
+  height: calc(100vh - 60px);
   padding: 30px;
   margin-top: 60px;
+  padding-bottom: 50px;
+  overflow: auto;
 }
 
 #dashboard-title {

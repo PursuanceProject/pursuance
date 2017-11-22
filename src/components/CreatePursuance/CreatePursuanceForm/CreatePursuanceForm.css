@@ -1,0 +1,40 @@
+.create-pursuance-form {
+  width: 70%;
+  margin: 0 auto;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+}
+
+.create-pursuance-input {
+  width: 80%;
+  margin: 7px auto;
+  font-size: 18px;
+  border-radius: 5px;
+}
+
+.create-pursuance-setting {
+  display: flex;
+  flex-direction: row;
+  margin-left: 10%;
+  width: 45%;
+}
+
+.create-pursuance-info-icon {
+  cursor: pointer;
+  margin: 0 10px;
+  color: white;
+}
+
+.radio-field-span {
+  margin: 0 15px 0 5px;
+  color: rgb(255, 255, 255);
+}
+
+.create-pursuance-button {
+  font-size: 26px;
+  width: 40%;
+  margin: 15px auto;
+  border-radius: 10px;
+  background-color: #288bd6;
+}

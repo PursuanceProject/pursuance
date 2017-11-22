@@ -10,9 +10,9 @@ import './PursuancePage.css';
 class PursuancePage extends Component {
 
   componentWillMount() {
-    const { setCurrentPursuance, match } = this.props;
-    const currentPursuanceId = Number(match.params.pursuanceId);
-    setCurrentPursuance(currentPursuanceId);
+    let { setCurrentPursuance, match, currentPursuanceId } = this.props;
+      currentPursuanceId = Number(match.params.pursuanceId) || currentPursuanceId;
+      setCurrentPursuance(currentPursuanceId);
   }
 
   render() {
@@ -30,10 +30,13 @@ class PursuancePage extends Component {
             </Switch>
           </article>
         </div>
-      </Router>
+       </Router>
     );
   }
 
 }
 
-export default connect(null, { setCurrentPursuance })(PursuancePage);
+export default connect(({currentPursuanceId}) =>
+  ({ currentPursuanceId }), {
+   setCurrentPursuance
+})(PursuancePage);

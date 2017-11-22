@@ -1,5 +1,6 @@
 import React from 'react';
-import  ReactMarkdown  from 'react-markdown';
+import ReactMarkdown from 'react-markdown';
+import { Link } from 'react-router-dom';
 
 export const RenderMarkdown = ({ content }) => {
   return (
@@ -7,11 +8,11 @@ export const RenderMarkdown = ({ content }) => {
       source={content}
       renderers={{Link: props => {
         if (props.href.startsWith('/')) {
-          return <a href={props.href}>{props.children}</a>;
+          return <Link to={props.href}>{props.children}</Link>;
         }
         // If link to external site, open in new tab
         return (
-          <a href={props.href} target="_blank">{props.children}</a>
+          <Link to={props.href} target="_blank">{props.children}</Link>
         )
       }}}
     />

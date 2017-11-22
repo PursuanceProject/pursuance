@@ -1,0 +1,16 @@
+.create-pursuance-container {
+  text-align: center;
+  background-color: #1c1c1c;
+  margin-top: 60px;
+  width: 100%;
+  height: calc(100vh - 60px);
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.create-pursuance-header{
+  color: rgb(255, 255, 255);
+  padding-top: 20px;
+}

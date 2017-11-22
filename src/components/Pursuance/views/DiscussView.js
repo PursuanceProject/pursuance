@@ -4,20 +4,31 @@ import * as postgrest from '../../../api/postgrest';
 import { RenderMarkdown } from '../../../utils/markdown';
 import FaEllipsisH from 'react-icons/lib/fa/ellipsis-h';
 import './DiscussView.css';
+import { getTasks } from '../../../actions';
 
 const leapChatUrl = "http://localhost:8080/#GiddinessPuttRegisterKioskLucidityJockstrapTastebudFactoryPegboardOpticalEstrogenGoatskinHatchlingDittoPseudoNegotiatorLunchboxLightbulbUploadSyllableTulipQuiltJurorRuptureAorta";
 
 class DiscussView extends Component {
+
+  componentWillMount(){
+    const { match: { params: { pursuanceId } }, tasks, getTasks } = this.props;
+    if (!tasks.taskMap['1_1']) {
+      getTasks(pursuanceId);
+    }
+  }
 
   render() {
     const { match: { params: { pursuanceId } }, pursuances, tasks } = this.props;
     // TODO: Un-hardcode after demo
     const taskGid = '1_1';
     const task = tasks.taskMap[taskGid];
+    if(!task){
+      return <div>Ain't nobody got task fo' that.</div>
+    }
     const assignedPursuanceId = task.assigned_to_pursuance_id;
     return (
-      <div id="discuss-ctn">
-        <iframe id="leapchat-frame" title="Leapchat" src={leapChatUrl} />
+      <div className="discuss-ctn">
+        <iframe className="leapchat-frame" title="Leapchat" src={leapChatUrl} />
         <div className="task-description-ctn">
           <div className="task-assignment-ctn">
             <div className="assigned-to-ctn">
@@ -53,4 +64,4 @@ class DiscussView extends Component {
   };
 }
 
-export default connect(({pursuances, tasks}) => ({pursuances, tasks}))(DiscussView);
+export default connect(({pursuances, tasks}) => ({pursuances, tasks}), { getTasks })(DiscussView);

@@ -11,6 +11,11 @@ export default function (state = {}, action) {
     case 'GET_PURSUANCES_REJECTED':
       return state;
 
+    case 'POST_PURSUANCE_FULFILLED':
+      return Object.assign({}, state, {
+        [action.payload.id]: action.payload
+      });
+
     default:
       return state;
   }

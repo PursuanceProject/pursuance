@@ -2,11 +2,12 @@
   background-color: #1c1c1c;
   display: flex;
   flex-direction: row;
-  min-height: calc(100vh - 110px);
+  min-height: calc(100vh - 60px);
   width: 100%;
   margin: 0;
   padding: 12px;
   margin-top: 60px;
+  padding-bottom: 50px;
 }
 
 .pursuance-page > article {

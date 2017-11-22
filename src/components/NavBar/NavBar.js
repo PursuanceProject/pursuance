@@ -5,6 +5,7 @@ import SignUp from './SignUp/SignUp';
 import LogIn from './LogIn/LogIn';
 import NotificationsPopover from './NotificationsPopover';
 import UserSettingsPopover from './UserSettingsPopover';
+import FaPlusCircle from 'react-icons/lib/fa/plus-circle';
 import './NavBar.css';
 
 class NavBar extends Component {
@@ -14,6 +15,9 @@ class NavBar extends Component {
     return (
       <Navbar collapseOnSelect>
         <Navbar.Header>
+          <Link to="/pursuance/create">
+          <FaPlusCircle className={"add-icon navbar-nav"} size={26}/>
+          </Link>
           <Navbar.Brand>
             <Link to="/">Pursuance</Link>
           </Navbar.Brand>
