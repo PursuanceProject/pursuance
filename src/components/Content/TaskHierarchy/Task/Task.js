@@ -35,7 +35,11 @@ class Task extends Component {
   }
 
   redirectToDiscuss = () => {
-    // this.props.history.push('/pursuance/1/discuss');
+    const { history, taskData } = this.props;
+    history.push({
+      pathname: '/pursuance/1/discuss',
+      task: taskData
+    });
   }
 
   styleUl = () => {
@@ -47,13 +51,14 @@ class Task extends Component {
   }
 
   mapSubTasks = (task) => {
-    const { pursuances } = this.props;
+    const { pursuances, history, taskMap } = this.props;
     return task.subtask_gids.map((gid) => {
       return <Task
         key={gid}
-        taskData={this.props.taskMap[gid]}
-        taskMap={this.props.taskMap}
-        pursuances={pursuances} />;
+        taskData={taskMap[gid]}
+        taskMap={taskMap}
+        pursuances={pursuances}
+        history={history}/>;
     });
   }
 

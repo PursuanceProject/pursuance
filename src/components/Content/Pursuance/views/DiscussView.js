@@ -19,18 +19,19 @@ class DiscussView extends Component {
   }
 
   render() {
-    const { pursuances, tasks } = this.props;
+    console.log(this.props.location, 'props in discuss view')
+    const { pursuances, tasks, location } = this.props;
     // TODO: Un-hardcode after demo
-    const taskGid = '1_1';
-    const task = tasks.taskMap[taskGid];
+    const task = location.task;
     if(!task){
-      return <div>Ain't nobody got task fo' that.</div>
+      return <div className="no-task">Ain't nobody got task fo' that.</div>
     }
+    const taskGid = task.gid;
     const assignedPursuanceId = task.assigned_to_pursuance_id;
     return (
       <div className="discuss-ctn">
-        <iframe className="leapchat-frame" title="Leapchat" src={leapChatUrl} />
-        <div className="task-description-ctn">
+        <iframe className="leapchat-frame" title="Leapchat" src={leapChatUrl + taskGid} />
+        <div className="task-details-ctn">
           <div className="task-assignment-ctn">
             <div className="assigned-to-ctn">
               <span>
