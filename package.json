@@ -28,10 +28,10 @@
     "test": "react-scripts test --env=jsdom",
     "watch": "node scripts/watch.js",
     "eject": "react-scripts eject",
-    "format:check": "prettier -l ./src/**/*.js",
-    "format:fix": "prettier --write ./src/**/*.js",
+    "lint": "npm run verify-eslint-rules && eslint --fix ./src && npm run format",
     "lint:check": "eslint ./src",
-    "lint:fix": "eslint --fix ./src && npm run format:fix",
+    "format": "prettier --write ./src/**/*.js",
+    "format:check": "prettier -l ./src/**/*.js",
     "verify-eslint-rules": "eslint --print-config .eslintrc | eslint-config-prettier-check",
     "ci": "npm run verify-eslint-rules && npm run format:check && npm run lint:check"
   },

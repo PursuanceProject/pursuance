@@ -5,13 +5,12 @@ import NavBar from './components/NavBar/NavBar';
 import Footer from './components/Footer/Footer';
 import HomePage from './components/HomePage/HomePage';
 import Dashboard from './components/Dashboard/Dashboard';
-import PursuancePage from './components/Pursuance/PursuancePage';
+import PursuancePage from './components/Content/Pursuance/PursuancePage';
 import NotFound from './components/NotFound/NotFound';
-import DiscussView from './components/Pursuance/views/DiscussView';
+import DiscussView from './components/Content/Pursuance/views/DiscussView';
 import CreatePursuance from './components/CreatePursuance/CreatePursuance';
 import { removeNotification, addContributionPoints } from './actions';
 import './App.css';
-
 
 class App extends Component {
   render() {
@@ -19,9 +18,9 @@ class App extends Component {
       <Router>
         <div className="App">
           <NavBar
-            authenticated={ this.props.authenticated }
-            contributionPoints={ this.props.contributionPoints }
-            username={ this.props.username }
+            authenticated={this.props.authenticated}
+            contributionPoints={this.props.contributionPoints}
+            username={this.props.username}
             onRemoveNotification={this.props.removeNotification}
             onIncreaseContributionAmount={this.props.increaseContributionAmount}
             />

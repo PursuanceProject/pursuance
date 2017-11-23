@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import * as postgrest from '../../../api/postgrest';
-import { RenderMarkdown } from '../../../utils/markdown';
-import FaEllipsisH from 'react-icons/lib/fa/ellipsis-h';
+import * as postgrest from '../../../../api/postgrest';
+import ReactMarkdown from 'react-markdown';
+import FaEllipsisV from 'react-icons/lib/fa/ellipsis-v';
+import FaCircleO from 'react-icons/lib/fa/circle-o';
 import './DiscussView.css';
-import { getTasks } from '../../../actions';
+import { getTasks } from '../../../../actions';
 
 const leapChatUrl = "http://localhost:8080/#GiddinessPuttRegisterKioskLucidityJockstrapTastebudFactoryPegboardOpticalEstrogenGoatskinHatchlingDittoPseudoNegotiatorLunchboxLightbulbUploadSyllableTulipQuiltJurorRuptureAorta";
 
@@ -18,7 +19,7 @@ class DiscussView extends Component {
   }
 
   render() {
-    const { match: { params: { pursuanceId } }, pursuances, tasks } = this.props;
+    const { pursuances, tasks } = this.props;
     // TODO: Un-hardcode after demo
     const taskGid = '1_1';
     const task = tasks.taskMap[taskGid];
@@ -45,18 +46,35 @@ class DiscussView extends Component {
             </div>
             <div className="task-discuss-icons-ctn">
               <div className="icon-ctn">
-                <FaEllipsisH />
+                <FaEllipsisV size={20} />
               </div>
             </div>
           </div>
-          <div className="pursuance-task-title-ctn">
-            <div className="pursuance-title-ctn">
-              <span className="pursuance-title">{pursuances[task.pursuance_id] && pursuances[task.pursuance_id].title}</span>
-              <span className="task-title">{task.title}</span>
+          <div className="pursuance-discuss-ctn">
+            <div className="pursuance-task-title-ctn">
+              <div className="pursuance-title-ctn">
+                <span className="pursuance-title">
+                  {pursuances[task.pursuance_id] && pursuances[task.pursuance_id].name}
+                </span>
+              </div>
+              <div className="discuss-task-title-ctn">
+                <FaCircleO />
+                <span className="discuss-task-title">{task.title}</span>
+              </div>
             </div>
-          </div>
-          <div className="task-deliverables-ctn">
-            <span><RenderMarkdown content={task.deliverables} /></span>
+            <div className="task-deliverables-ctn">
+              <span>
+                <ReactMarkdown
+                  source={task.deliverables}
+                  render={{Link: props => {
+                    if (props.href.startsWith('/')) {
+                      return <a href={props.href}>{props.children}</a>;
+                    }
+                    // If link to external site, open in new tab
+                    return <a href={props.href} target="_blank">{props.children}</a>;
+                  }}} />
+              </span>
+            </div>
           </div>
         </div>
       </div>

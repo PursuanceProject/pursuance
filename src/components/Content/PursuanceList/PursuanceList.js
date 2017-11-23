@@ -13,7 +13,7 @@ class PursuanceList extends Component {
         <Link to={`/pursuance/${pursuance.id}`}>
           <h3>{pursuance.name}</h3>
         </Link>
-        <p>{pursuance.mission}</p>
+        {pursuance.mission && <p><strong>Mission:</strong> {pursuance.mission}</p>}
       </div>
     ));
   }

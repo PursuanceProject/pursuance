@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import * as postgrest from '../../../../api/postgrest';
 import TiPlus from 'react-icons/lib/ti/plus';
 import TiMinus from 'react-icons/lib/ti/minus';
@@ -31,6 +32,10 @@ class Task extends Component {
       showTaskForm: !this.state.showTaskForm
     });
     // TODO: Post route for nested form
+  }
+
+  redirectToDiscuss = () => {
+    // this.props.history.push('/pursuance/1/discuss');
   }
 
   styleUl = () => {
@@ -91,7 +96,7 @@ class Task extends Component {
               <div className="icon-ctn" onClick={this.toggleNewForm}>
                 <FaHandODown />
               </div>
-              <div className="icon-ctn">
+              <div className="icon-ctn" onClick={this.redirectToDiscuss}>
                 <FaCommentsO />
               </div>
             </div>
@@ -121,4 +126,4 @@ class Task extends Component {
   }
 }
 
-export default connect(({ pursuances }) => ({ pursuances }))(Task);
+export default withRouter(connect(({ pursuances }) => ({ pursuances }))(Task));

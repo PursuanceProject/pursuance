@@ -116,7 +116,7 @@ class TaskForm extends Component {
       console.log("Thou shalt not submit empty TaskForm!");
       return;
     }
-    if ( assignedTo && assignedTo.startsWith(PURSUANCE_DISPLAY_PREFIX)) {
+    if (assignedTo && assignedTo.startsWith(PURSUANCE_DISPLAY_PREFIX)) {
       for (var key in pursuances) {
         if (pursuances[key].suggestionName === assignedTo) {
           task.assigned_to_pursuance_id = pursuances[key].id;

@@ -16,6 +16,7 @@ const PursuanceMenuItem = ({ pursuanceId, label, action, icon, defaultItem }) =>
       {icon}
       <span className="menu-btn-label"><b>{label}</b></span>
     </NavLink>
-)};
+  )
+};
 
 export default PursuanceMenuItem;

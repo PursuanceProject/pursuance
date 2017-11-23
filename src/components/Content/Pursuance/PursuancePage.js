@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { setCurrentPursuance } from '../../actions';
+import { setCurrentPursuance } from '../../../actions';
 import PursuanceMenu from './PursuanceMenu';
 import TaskListView from './views/TaskListView';
 import DiscussView from './views/DiscussView';
+import ParticipantsView from './views/ParticipantsView';
 import './PursuancePage.css';
 
 class PursuancePage extends Component {
@@ -27,6 +28,7 @@ class PursuancePage extends Component {
               <Route exact path="/pursuance/:pursuanceId" component={TaskListView} />
               <Route exact path="/pursuance/:pursuanceId/tasks" component={TaskListView} />
               <Route exact path="/pursuance/:pursuanceId/discuss" component={DiscussView} />
+              <Route exact path="/pursuance/:pursuanceId/participants" component={ParticipantsView} />
             </Switch>
           </article>
         </div>

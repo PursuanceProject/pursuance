@@ -1,7 +1,6 @@
 import React from 'react';
-import { Popover, OverlayTrigger, Button, Badge } from 'react-bootstrap';
+import { Popover, OverlayTrigger, Button } from 'react-bootstrap';
 import ContributionPointsCounter from './ContributionPointsCounter';
-import FaStar from 'react-icons/lib/fa/star';
 import './UserSettingsPopover.css';
 
 const UserSettingsPopover = ({ username, contributionPoints }) => (

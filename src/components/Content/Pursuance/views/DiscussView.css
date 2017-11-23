@@ -1,0 +1,117 @@
+/*.discuss-ctn {
+  display: flex;
+  width: 100%;
+  background-color: #1c1c1c;
+}*/
+
+/*.leapchat-frame {
+  height: calc(100vh - 60px);
+  padding-bottom: 50px;
+  width: 100%;
+  border: 1px solid #6d6d6d;
+  border-right: none;
+  border-bottom-left-radius: 4px;
+}*/
+
+/*.task-details-ctn {
+  min-width: 320px;
+  border: 1px solid #6d6d6d;
+  border-radius: 0 4px 4px 0;
+  color: #d6d6d6;
+  font-size: 1.1em;
+}*/
+
+/*.task-assignment-ctn {
+  display: flex;
+  justify-content: space-between;
+  height: 80px;
+  border-bottom: 1px solid #6d6d6d;
+  color: #d6d6d6;
+}*/
+
+/*.assigned-to-ctn {
+  flex: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}*/
+
+/*.assigned-to-ctn span:hover {
+  cursor: pointer;
+  color: #1fc7d3;
+}*/
+
+/*.due-date-ctn {
+  flex: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}*/
+
+/*.icon-ctn {
+  flex: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}*/
+
+/*.pursuance-discuss-ctn {
+  padding: 16px;
+}*/
+
+/*.pursuance-title-ctn {
+  padding: 10px 0;
+}*/
+
+
+/*.discuss-task-title-ctn {
+  display: flex;
+  align-items: center;
+  padding-left: 12px;
+}*/
+
+/*.discuss-task-title {
+  padding-left: 8px;
+  font-size: 1.3em;
+  color: #fcfcfc;
+}*/
+
+/*.task-deliverables-ctn {
+  padding-top: 16px;
+}*/
+
+.discuss-ctn {
+  display: flex;
+  width: 100%;
+  background-color: #1c1c1c;
+}
+
+.leapchat-frame {
+  height: calc(100vh - 60px);
+  padding-bottom: 50px;
+  width: 100%;
+  border: 1px solid #6d6d6d;
+  border-right: none;
+  border-bottom-left-radius: 4px;
+}
+
+.task-description-ctn {
+  min-width: 320px;
+  background-color: #fff;
+  border: 1px solid #6d6d6d;
+  height: calc(100vh - 110px);
+}
+
+.task-assignment-ctn {
+  display: flex;
+  justify-content: space-between;
+  height: 80px;
+  border-bottom: 1px solid #6d6d6d;
+}
+
+.icon-ctn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
