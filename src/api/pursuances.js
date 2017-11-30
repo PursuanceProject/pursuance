@@ -3,7 +3,7 @@ import { PURSUANCE_DISPLAY_PREFIX } from '../constants';
 
 export const getPursuancesReq = () => {
   return postgrest
-    .getJSON('/pursuances?select=id,name,mission')
+    .getJSON('/pursuances')
     .then(pursuances => {
       const pursuancesObject = {};
       for (var i = 0; i < pursuances.length; i++) {
