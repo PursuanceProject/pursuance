@@ -3,7 +3,8 @@ import './HomePage.css';
 import Footer from '../../components/Footer/Footer';
 
 const HomePage = () => (
-  <div id="home-background">
+  <div id="home-page-ctn">
+    <div id="home-background" />
     <Footer />
   </div>
 );

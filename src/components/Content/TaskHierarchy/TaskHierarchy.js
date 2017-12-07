@@ -82,12 +82,16 @@ class TaskHierarchy extends Component {
     const { rootTaskGids, taskMap } = this.props.tasks;
     return (
         <ul id="root-ul-ctn" className="ul-ctn">
-          {rootTaskGids.map((gid) => {
-            return <Task
-                     key={gid}
-                     taskData={taskMap[gid]}
-                     taskMap={taskMap} />
-          })}
+          {
+            rootTaskGids.map((gid) => {
+              return (
+                <Task
+                 key={gid}
+                 taskData={taskMap[gid]}
+                 taskMap={taskMap} />
+              );
+            })
+          }
         </ul>
     )
   }
@@ -95,21 +99,46 @@ class TaskHierarchy extends Component {
   render() {
     const { pursuances, currentPursuanceId } = this.props;
     return (
-      <div className="content-ctn">
+      <div className="content">
         <div id="task-hierarchy">
           <div id="task-hierarchy-title">
             <h2 id="tasks-title">Tasks:&nbsp;</h2>
-            <h2 id="pursuance-title">{pursuances[currentPursuanceId] && pursuances[currentPursuanceId].name}</h2>
+            <h2 id="pursuance-title">
+              {
+                pursuances[currentPursuanceId] && pursuances[currentPursuanceId].name
+              }
+            </h2>
+          </div>
+          <div id="task-labels">
+            <div>
+              <span>
+                Title
+              </span>
+            </div>
+            <div className="label-task-icons">
+              <span>
+
+              </span>
+            </div>
+            <div className="label-assigned-to">
+              <span>
+                Assigned To
+              </span>
+            </div>
+            <div className="label-due-date">
+              <span>
+                Due Date
+              </span>
+            </div>
           </div>
           <ToastContainer
               position="top-center"
               type="success"
               autoClose={4000}
               hideProgressBar={false}
-              newestOnTop={false}
-            />
+              newestOnTop={false} />
           {this.renderHierarchy()}
-          <TaskForm topLevel={true}/>
+          <TaskForm topLevel={true} />
         </div>
       </div>
     );

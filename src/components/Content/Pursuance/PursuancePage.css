@@ -1,5 +1,4 @@
-.pursuance-page {
-  background-color: #1c1c1c;
+#pursuance-page {
   display: flex;
   flex-direction: row;
   min-height: calc(100vh - 60px);
@@ -9,14 +8,14 @@
   padding: 0px 12px;
 }
 
-.pursuance-page > article {
+#pursuance-page > article {
   display: flex;
   flex: 1;
   order: 2;
   margin-left: 100px;
 }
 
-.pursuance-page > nav {
+#pursuance-page > nav {
   position: fixed;
   flex: 0 0 5em;
   order: 1;

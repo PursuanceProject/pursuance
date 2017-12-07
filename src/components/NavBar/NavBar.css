@@ -11,7 +11,8 @@
 
 .navbar .container {
   align-items: center;
-  width: 86%;
+  width: 100%;
+  padding: 0 80px;
 }
 
 
