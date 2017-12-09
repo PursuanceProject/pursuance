@@ -104,3 +104,8 @@
   padding: 0 4px;
   text-align: center;
 }
+
+.edit-assignee-button {
+  border-radius: 5px;
+  background-color: #288bd6;
+}

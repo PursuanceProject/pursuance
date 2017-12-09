@@ -5,6 +5,7 @@ import moment from 'moment';
 import { connect } from 'react-redux';
 import { filterSuggestion } from '../../../../utils/suggestions';
 import AssignerSuggestions from './Suggestions/AssignerSuggestions';
+import AssignerInput from './AssignerInput';
 import { PURSUANCE_DISPLAY_PREFIX } from '../../../../constants';
 import {
   updateFormField,
@@ -80,8 +81,8 @@ class TaskForm extends Component {
   }
 
   onAssignerKeyDown = (e) => {
-    const { addSuggestion, taskForm, upSuggestion, downSuggestion } = this.props;
-    const { highlightedSuggestion, suggestions } = taskForm;
+    const { addSuggestion, autoComplete, upSuggestion, downSuggestion } = this.props;
+    const { highlightedSuggestion, suggestions } = autoComplete;
 
     if (e.key === 'Enter' && suggestions.length > 0) {
       e.preventDefault();
@@ -152,8 +153,9 @@ class TaskForm extends Component {
   focusDatePicker = () => this.datePickerRef.input.focus();
 
   render() {
-    const { taskForm } = this.props;
+    const { taskForm, autoComplete } = this.props;
     const { title, assigned_to, due_date_raw } = taskForm[this.id] || {};
+    console.log('suggestions', autoComplete)
     return (
       <div className={this.getClassName()}>
         <form className="task-form" name={this.id} autoComplete="off">
@@ -173,13 +175,13 @@ class TaskForm extends Component {
           </div>
           <div className="assign-autocomplete-ctn">
             {
-              taskForm.suggestions
+              autoComplete.suggestions
               &&
-              this.id === taskForm.suggestionForm
+              this.id === autoComplete.suggestionForm
               &&
               <AssignerSuggestions focusDatePicker={this.focusDatePicker}/>
             }
-            <div className="at-symbol">
+            {/* <div className="at-symbol">
               <span>@</span>
             </div>
             <input
@@ -192,7 +194,12 @@ class TaskForm extends Component {
               onFocus={this.onFocus}
               onBlur={this.onBlur}
               onKeyDown={this.onAssignerKeyDown}
-            />
+            /> */}
+            <AssignerInput
+               placeholder={"Assigned To"}
+               formId={this.id}
+               assigned_to={assigned_to}
+             />
           </div>
           <div className="date-picker-ctn">
             <DatePicker
@@ -213,8 +220,8 @@ class TaskForm extends Component {
   }
 }
 
-export default connect(({ users, taskForm, currentPursuanceId, pursuances, tasks }) =>
-  ({ users, taskForm, currentPursuanceId, pursuances, tasks }), {
+export default connect(({ users, taskForm, currentPursuanceId, pursuances, tasks, autoComplete }) =>
+  ({ users, taskForm, currentPursuanceId, pursuances, tasks, autoComplete }), {
    updateFormField,
    clearTaskFormFields,
    setTaskFormParentGid,
