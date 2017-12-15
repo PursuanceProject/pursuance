@@ -23,7 +23,7 @@ class DiscussView extends Component {
     // TODO: Un-hardcode after demo
     const taskGid = '1_1';
     const task = tasks.taskMap[taskGid];
-    if(!task){
+    if (!task) {
       return <div>Ain't nobody got task fo' that.</div>
     }
     const assignedPursuanceId = task.assigned_to_pursuance_id;
