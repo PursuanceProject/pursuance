@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import Task from './Task/Task';
 import TaskForm from '../TaskManager/TaskForm/TaskForm';
+import { toast, ToastContainer } from 'react-toastify';
 import { connect } from 'react-redux';
 import {
-  getPursuances,
   getUsers,
   getTasks,
+  getPursuances,
   addPostedRootTaskToHierarchy,
-  addPostedSubTaskToHierarchy
+  addPostedSubTaskToHierarchy,
+  removeSuccessToast
 } from '../../../actions';
 import './TaskHierarchy.css';
 import '../Content.css';
@@ -21,11 +23,23 @@ class TaskHierarchy extends Component {
     };
   }
 
-  componentWillMount() {
-    const { getPursuances, getUsers, getTasks, currentPursuanceId } = this.props;
-    getPursuances();
+  componentDidMount() {
+    const { getPursuances, getUsers, getTasks, currentPursuanceId, showSuccessToast, pursuances } = this.props;
     getUsers();
     getTasks(currentPursuanceId);
+    if (Object.keys(pursuances).length === 0) {
+      getPursuances()
+    }
+    if (showSuccessToast) {
+      toast.success('New pursuance created! Ready to rock.');
+    }
+  }
+
+  componentWillUnmount(){
+    const { showSuccessToast, removeSuccessToast } = this.props;
+    if (showSuccessToast) {
+      removeSuccessToast();
+    }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -87,6 +101,13 @@ class TaskHierarchy extends Component {
             <h2 id="tasks-title">Tasks:&nbsp;</h2>
             <h2 id="pursuance-title">{pursuances[currentPursuanceId] && pursuances[currentPursuanceId].name}</h2>
           </div>
+          <ToastContainer
+              position="top-center"
+              type="success"
+              autoClose={4000}
+              hideProgressBar={false}
+              newestOnTop={false}
+            />
           {this.renderHierarchy()}
           <TaskForm topLevel={true}/>
         </div>
@@ -95,11 +116,12 @@ class TaskHierarchy extends Component {
   }
 }
 
-export default connect(({ pursuances, currentPursuanceId, tasks }) =>
-  ({ pursuances, currentPursuanceId, tasks }), {
-    getPursuances,
+export default connect(({ pursuances, currentPursuanceId, tasks, showSuccessToast }) =>
+  ({ pursuances, currentPursuanceId, tasks, showSuccessToast }), {
     getUsers,
     getTasks,
+    getPursuances,
     addPostedRootTaskToHierarchy,
-    addPostedSubTaskToHierarchy
+    addPostedSubTaskToHierarchy,
+    removeSuccessToast
 })(TaskHierarchy);

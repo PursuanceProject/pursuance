@@ -3,7 +3,8 @@ import PursuanceList from '../Content/PursuanceList/PursuanceList';
 import './Dashboard.css';
 import { getPursuances } from '../../actions';
 import { connect } from 'react-redux';
-
+import { Link } from 'react-router-dom';
+import FaPlusCircle from 'react-icons/lib/fa/plus-circle';
 
 class Dashboard extends Component {
 
@@ -22,7 +23,12 @@ class Dashboard extends Component {
         <div id="dash-first-row">
           <div className="dash-ctn">
             <div className="dash-box">
-              <h2 className="dash-box-title">My Pursuances</h2>
+              <div className="dash-box-header">
+                <h2 className="dash-box-title">My Pursuances</h2>
+                <Link to="/pursuance/create">
+                  <FaPlusCircle className={"add-icon"} size={26}/>
+                </Link>
+            </div>
               <PursuanceList />
             </div>
           </div>

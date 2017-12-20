@@ -35,7 +35,10 @@ class Task extends Component {
   }
 
   redirectToDiscuss = () => {
-    // this.props.history.push('/pursuance/1/discuss');
+    const { history, taskData, match: { params: { pursuanceId } } } = this.props;
+    history.push({
+      pathname: `/pursuance/${pursuanceId}/discuss/task/${taskData.gid}`
+    });
   }
 
   styleUl = () => {
@@ -47,13 +50,15 @@ class Task extends Component {
   }
 
   mapSubTasks = (task) => {
-    const { pursuances } = this.props;
+    const { pursuances, history, taskMap, match } = this.props;
     return task.subtask_gids.map((gid) => {
       return <Task
         key={gid}
-        taskData={this.props.taskMap[gid]}
-        taskMap={this.props.taskMap}
-        pursuances={pursuances} />;
+        taskData={taskMap[gid]}
+        taskMap={taskMap}
+        pursuances={pursuances}
+        history={history}
+        match={match}/>;
     });
   }
 
@@ -78,9 +83,17 @@ class Task extends Component {
   }
 
   render() {
-    const { pursuances, taskData } = this.props;
+    const { pursuances, taskData, match: { params: { pursuanceId } } } = this.props;
     const task = taskData;
     const assignedPursuanceId = task.assigned_to_pursuance_id;
+    const assignedByAnotherPursuance = assignedPursuanceId === Number(pursuanceId);
+    let assignedTo = "";
+    if (assignedPursuanceId && !assignedByAnotherPursuance) {
+        assignedTo = pursuances[assignedPursuanceId].suggestionName;
+    }
+    else if (task.assigned_to) {
+        assignedTo = '@' + task.assigned_to;
+    }
     const { showChildren, showTaskForm } = this.state;
     return (
       <li className="li-task-ctn">
@@ -102,11 +115,7 @@ class Task extends Component {
             </div>
             <div className="task-assigned-to">
               <span>
-                {
-                  (assignedPursuanceId && pursuances[assignedPursuanceId].suggestionName)
-                  ||
-                  (task.assigned_to && '@' + task.assigned_to)
-                }
+                {assignedTo}
               </span>
             </div>
             <div className="task-due-date">
