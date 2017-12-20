@@ -12,8 +12,8 @@ class PursuancePage extends Component {
 
   componentWillMount() {
     let { setCurrentPursuance, match, currentPursuanceId } = this.props;
-      currentPursuanceId = Number(match.params.pursuanceId) || currentPursuanceId;
-      setCurrentPursuance(currentPursuanceId);
+    currentPursuanceId = Number(match.params.pursuanceId) || currentPursuanceId;
+    setCurrentPursuance(currentPursuanceId);
   }
 
   render() {
@@ -32,7 +32,7 @@ class PursuancePage extends Component {
             </Switch>
           </article>
         </div>
-       </Router>
+      </Router>
     );
   }
 

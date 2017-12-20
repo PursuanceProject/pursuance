@@ -20,7 +20,6 @@ class DiscussView extends Component {
 
   render() {
     const { pursuances, tasks, match: { params: { taskGid } } } = this.props;
-    // TODO: Un-hardcode after demo
     const task = tasks.taskMap[taskGid];
     if(!task){
       return <div className="no-task">Ain't nobody got task fo' that.</div>
@@ -77,11 +76,13 @@ class DiscussView extends Component {
             </div>
             <div className="subtasks-ctn">
               {subtaskGids.length > 0 && <h4>Subtasks</h4>}
-            <ul className="subtasks-list">
-            {subtaskGids.map((gid, ind)=> {
-              return <li key={ind} className="subtask-item"><FaCircleO size={10} className="fa-circle-o" />{tasks.taskMap[gid].title}</li>
-            })}
-          </ul>
+              <ul className="subtasks-list">
+                {subtaskGids.map((gid, i)=> {
+                  return <li key={i} className="subtask-item">
+                    <FaCircleO size={10} className="fa-circle-o" />{tasks.taskMap[gid].title}
+                  </li>
+                })}
+              </ul>
           </div>
           </div>
         </div>

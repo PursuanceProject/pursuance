@@ -28,7 +28,6 @@ class App extends Component {
             <Route exact path="/dashboard" component={Dashboard} />
             <Route exact path="/pursuance/create" component={CreatePursuance} />
             <Route path="/pursuance/:pursuanceId" component={PursuancePage} />
-            {/* <Route path="/pursuance/:pursuanceId/discuss/:taskGid" component={PursuancePage}/> */}
             <Route path="/*" component={NotFound} />
           </Switch>
           <Footer />

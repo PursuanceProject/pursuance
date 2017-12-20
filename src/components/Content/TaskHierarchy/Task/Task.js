@@ -83,9 +83,17 @@ class Task extends Component {
   }
 
   render() {
-    const { pursuances, taskData } = this.props;
+    const { pursuances, taskData, match: { params: { pursuanceId } } } = this.props;
     const task = taskData;
     const assignedPursuanceId = task.assigned_to_pursuance_id;
+    const assignedByAnotherPursuance = assignedPursuanceId === Number(pursuanceId);
+    let assignedTo = "";
+    if (assignedPursuanceId && !assignedByAnotherPursuance) {
+        assignedTo = pursuances[assignedPursuanceId].suggestionName;
+    }
+    else if (task.assigned_to) {
+        assignedTo = '@' + task.assigned_to;
+    }
     const { showChildren, showTaskForm } = this.state;
     return (
       <li className="li-task-ctn">
@@ -107,12 +115,7 @@ class Task extends Component {
             </div>
             <div className="task-assigned-to">
               <span>
-                {
-                  assignedPursuanceId && pursuances[assignedPursuanceId].suggestionName
-                }
-                {
-                  (task.assigned_to && '@' + task.assigned_to)
-                }
+                {assignedTo}
               </span>
             </div>
             <div className="task-due-date">
