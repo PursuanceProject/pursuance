@@ -35,10 +35,9 @@ class Task extends Component {
   }
 
   redirectToDiscuss = () => {
-    const { history, taskData } = this.props;
+    const { history, taskData, match: { params: { pursuanceId } } } = this.props;
     history.push({
-      pathname: '/pursuance/1/discuss',
-      task: taskData
+      pathname: `/pursuance/${pursuanceId}/discuss/task/${taskData.gid}`
     });
   }
 
@@ -51,14 +50,15 @@ class Task extends Component {
   }
 
   mapSubTasks = (task) => {
-    const { pursuances, history, taskMap } = this.props;
+    const { pursuances, history, taskMap, match } = this.props;
     return task.subtask_gids.map((gid) => {
       return <Task
         key={gid}
         taskData={taskMap[gid]}
         taskMap={taskMap}
         pursuances={pursuances}
-        history={history}/>;
+        history={history}
+        match={match}/>;
     });
   }
 
@@ -108,8 +108,9 @@ class Task extends Component {
             <div className="task-assigned-to">
               <span>
                 {
-                  (assignedPursuanceId && pursuances[assignedPursuanceId].suggestionName)
-                  ||
+                  assignedPursuanceId && pursuances[assignedPursuanceId].suggestionName
+                }
+                {
                   (task.assigned_to && '@' + task.assigned_to)
                 }
               </span>

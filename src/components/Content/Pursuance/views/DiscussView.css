@@ -81,6 +81,23 @@
   padding-top: 16px;
 }
 
+.subtasks-ctn {
+  margin-top: 50px;
+}
+
+.subtasks-list {
+  list-style: none;
+  padding-left: 0
+}
+
+.subtask-item {
+  margin-left: 0;
+}
+
+.fa-circle-o {
+  margin-bottom: 2px;
+  margin-right: 3px;
+}
 /*.discuss-ctn {
   display: flex;
   width: 100%;

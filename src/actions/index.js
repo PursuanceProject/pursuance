@@ -140,3 +140,7 @@ export const postPursuance = pursuance => ({
 export const clearPursuanceFormFields = () => ({
   type: 'PURSUANCE_FORM_CLEAR_FIELDS'
 });
+
+export const removeSuccessToast = () => ({
+  type: 'REMOVE_SUCCESS_TOAST'
+});

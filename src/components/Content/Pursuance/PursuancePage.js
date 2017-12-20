@@ -27,7 +27,7 @@ class PursuancePage extends Component {
             <Switch>
               <Route exact path="/pursuance/:pursuanceId" component={TaskListView} />
               <Route exact path="/pursuance/:pursuanceId/tasks" component={TaskListView} />
-              <Route exact path="/pursuance/:pursuanceId/discuss" component={DiscussView} />
+              <Route exact path="/pursuance/:pursuanceId/discuss/task/:taskGid" component={DiscussView} />
               <Route exact path="/pursuance/:pursuanceId/participants" component={ParticipantsView} />
             </Switch>
           </article>
