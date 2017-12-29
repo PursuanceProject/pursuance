@@ -179,7 +179,9 @@ class TaskForm extends Component {
               &&
               this.id === autoComplete.suggestionForm
               &&
-              <AssignerSuggestions focusDatePicker={this.focusDatePicker}/>
+              <AssignerSuggestions
+                focusDatePicker={this.focusDatePicker}
+                suggestionForm={this.id}/>
             }
             {/* <div className="at-symbol">
               <span>@</span>
@@ -199,6 +201,7 @@ class TaskForm extends Component {
                placeholder={"Assigned To"}
                formId={this.id}
                assigned_to={assigned_to}
+               focusDatePicker={this.focusDatePicker}
              />
           </div>
           <div className="date-picker-ctn">

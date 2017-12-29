@@ -51,9 +51,10 @@ export const showUsers = (users, suggestionForm) => ({
 
 export const stopSuggestions = () => ({ type: 'STOP_SUGGESTIONS' });
 
-export const addSuggestion = suggestion => ({
+export const addSuggestion = (suggestion, suggestionForm) => ({
   type: 'ADD_SUGGESTION',
-  suggestion
+  suggestion,
+  suggestionForm
 });
 
 export const upSuggestion = () => ({ type: 'UP_SUGGESTION' });

@@ -1,7 +1,7 @@
 export default function (state = {}, action) {
 
   switch (action.type) {
-    
+
         case 'START_SUGGESTIONS':
           return Object.assign({}, state, {
             suggestions: action.suggestions,
@@ -22,11 +22,7 @@ export default function (state = {}, action) {
           });
 
         case 'ADD_SUGGESTION':
-          const suggestionForm = state.suggestionForm;
           return Object.assign({}, state, {
-            [suggestionForm]: Object.assign({}, state[suggestionForm], {
-              assigned_to: action.suggestion
-            }),
             suggestions: null
           });
 

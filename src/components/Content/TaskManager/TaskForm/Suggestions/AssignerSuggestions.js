@@ -4,7 +4,7 @@ import { addSuggestion } from '../../../../../actions';
 import { scrollIntoViewOptions } from '../../../../../utils/suggestions';
 import './AssignerSuggestions.css';
 
-const AssignerSuggestions = ({ autoComplete, addSuggestion, focusDatePicker }) => (
+const AssignerSuggestions = ({ autoComplete, addSuggestion, focusDatePicker, suggestionForm }) => (
   <div className='suggestions-container'>
     <ul className='suggestion-list'>
       {autoComplete.suggestions.map((suggestion, i) => {
@@ -13,7 +13,7 @@ const AssignerSuggestions = ({ autoComplete, addSuggestion, focusDatePicker }) =
         let props = {
           key : i,
           onMouseDown : () =>  {
-            addSuggestion(suggestionName);
+            addSuggestion(suggestionName, suggestionForm);
             if (focusDatePicker) {
               focusDatePicker();
             }

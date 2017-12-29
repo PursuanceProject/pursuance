@@ -14,7 +14,21 @@ import {
   postTask
 } from '../../../../actions';
 
-const AssignerInput = ({ updateFormField, formId, assigned_to, startSuggestions, pursuances, currentPursuanceId, users }) => {
+const AssignerInput = (props) => {
+
+  const {
+    updateFormField,
+    formId,
+    assigned_to,
+    startSuggestions,
+    pursuances,
+    currentPursuanceId,
+    users,
+    autoComplete,
+    upSuggestion,
+    downSuggestion,
+    addSuggestion,
+    focusDatePicker  } = props;
 
   const onChange = (e) => {
     const { value, name } = e.target;
@@ -29,6 +43,29 @@ const AssignerInput = ({ updateFormField, formId, assigned_to, startSuggestions,
     delete suggestions[currentPursuanceId];
     startSuggestions(e.target.value, filterSuggestion, suggestions, formId);
   }
+
+  const onKeyDown = (e) => {
+    // const { autoComplete, upSuggestion, downSuggestion, addSuggestion } = this.props;
+    const { highlightedSuggestion, suggestions } = autoComplete;
+
+    if (e.key === 'Enter' && suggestions.length > 0) {
+      e.preventDefault();
+      // updateFormField(formId, e.target.name, suggestions[highlightedSuggestion].suggestionName)
+      addSuggestion(suggestions[highlightedSuggestion].suggestionName, formId);
+      if (focusDatePicker) {
+        focusDatePicker();
+      }
+    }
+    if (e.key === 'ArrowUp' && suggestions) {
+      e.preventDefault();
+      upSuggestion();
+    }
+    if (e.key === 'ArrowDown' && suggestions) {
+      e.preventDefault();
+      downSuggestion();
+    }
+  }
+
   return (
     <div>
     <div className="at-symbol">
@@ -43,14 +80,18 @@ const AssignerInput = ({ updateFormField, formId, assigned_to, startSuggestions,
       onChange={onChange}
       onFocus={onFocus}
       // onBlur={this.onBlur}
-      // onKeyDown={this.onAssignerKeyDown}
+      onKeyDown={onKeyDown}
     />
   </div>
   )
 }
 
-export default connect(({ pursuances, currentPursuanceId, users }) =>
-  ({ pursuances, currentPursuanceId, users }), {
+export default connect(({ pursuances, currentPursuanceId, users, autoComplete }) =>
+  ({ pursuances, currentPursuanceId, users, autoComplete}), {
    updateFormField,
-   startSuggestions })
+   startSuggestions,
+   upSuggestion,
+   downSuggestion,
+   addSuggestion
+})
 (AssignerInput);
