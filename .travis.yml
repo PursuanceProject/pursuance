@@ -1,15 +1,21 @@
 dist: trusty
-language: node_js
-node_js:
-  - 7
-cache:
-  directories:
-  - node_modules
-go:
-  - 1.8
-  - 1.9
-  - tip
-script:
-  - npm run ci
-  - npm run build
-  - go test -race -v ./...
+
+matrix:
+	include:
+		- language: node_js
+			node_js:
+				- 7
+			cache:
+				directories:
+				- node_modules
+			script:
+				- npm run ci
+				- npm run build
+
+		- language: go
+			go:
+				- 1.8
+				- 1.9
+				- tip
+			script:
+				- go test -race -v ./...
