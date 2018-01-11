@@ -18,6 +18,23 @@ export const getPursuancesReq = () => {
     });
 };
 
+export const getPublicPursuancesReq = () => {
+  return postgrest
+    .getJSON('/pursuances?is_encrypted=is.false')
+    .then(pursuances => {
+      const pursuancesObject = {};
+      for (let i = 0; i < pursuances.length; i++) {
+        pursuancesObject[pursuances[i].id] = pursuances[i];
+        pursuancesObject[pursuances[i].id].suggestionName =
+          PURSUANCE_DISPLAY_PREFIX + pursuances[i].name;
+      }
+      return pursuancesObject;
+    })
+    .catch(err => {
+      console.log('Error fetching public pursuances:', err);
+  });
+};
+
 export const postPursuanceReq = pursuance => {
   delete pursuance.isPending;
   delete pursuance.redirect;
