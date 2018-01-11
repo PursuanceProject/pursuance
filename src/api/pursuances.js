@@ -32,7 +32,7 @@ export const getPublicPursuancesReq = () => {
     })
     .catch(err => {
       console.log('Error fetching public pursuances:', err);
-  });
+    });
 };
 
 export const postPursuanceReq = pursuance => {

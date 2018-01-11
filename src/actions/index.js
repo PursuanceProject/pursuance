@@ -1,5 +1,9 @@
 import { getUsersReq } from '../api/users';
-import { getPursuancesReq, getPublicPursuancesReq, postPursuanceReq } from '../api/pursuances';
+import {
+  getPursuancesReq,
+  getPublicPursuancesReq,
+  postPursuanceReq
+} from '../api/pursuances';
 import { postTaskReq, getTasksReq } from '../api/tasks';
 
 export const updateFormField = (formId, fieldId, value) => ({

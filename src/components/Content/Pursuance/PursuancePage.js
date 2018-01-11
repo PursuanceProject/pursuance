@@ -40,5 +40,5 @@ class PursuancePage extends Component {
 
 export default connect(({currentPursuanceId}) =>
   ({ currentPursuanceId }), {
-   setCurrentPursuance
+		setCurrentPursuance
 })(PursuancePage);
