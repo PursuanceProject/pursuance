@@ -27,8 +27,8 @@ class App extends Component {
             />
           <Switch>
             <Route exact path="/" component={HomePage} />
-						<Route exact path="/all" component={PublicPursuances} />
             <Route exact path="/dashboard" component={Dashboard} />
+            <Route exact path="/pursuance/all" component={PublicPursuances} />
             <Route exact path="/pursuance/create" component={CreatePursuance} />
             <Route exact path="/pursuance/:pursuanceId" component={PursuancePage} />
             <Route path="/pursuance/:pursuanceId/discuss" component={DiscussView}/>
