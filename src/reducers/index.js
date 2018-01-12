@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 import taskForm from './taskFormReducer';
 import users from './usersReducer';
 import pursuances from './pursuancesReducer';
+import publicPursuances from './publicPursuancesReducer';
 import currentPursuanceId from './currentPursuanceIdReducer';
 import tasks from './tasksReducer';
 import notificationsReducer from './notificationsReducer';
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
   taskForm,
   users,
   pursuances,
+  publicPursuances,
   currentPursuanceId,
   tasks,
   showSettingsInfoModal,
