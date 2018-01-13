@@ -5,6 +5,11 @@ import * as postgrest from '../../api/postgrest';
 
 
 class PublicPursuanceList extends Component {
+  constructor() {
+    super();
+    this.state = {orderBy: "created"};
+    this.handleChange = this.handleChange.bind(this);
+  }
   
   getPublicPursuanceList = () => {
     const pursuanceArr = Object.values(this.props.publicPursuances);
@@ -19,9 +24,28 @@ class PublicPursuanceList extends Component {
     ));
   }
   
+  orderPursuances = () => {
+    
+  }
+  
+  // handlers
+  
+  handleChange(event) {
+    this.setState({orderBy: event.target.value});
+  }
+  
   render() {
     return (
       <div className="pursuance-list">
+        <div className="filter">Filter by:
+          <form>
+            <select value={this.state.value} onChange={this.handleChange}>
+              <option value="created">Date Created</option>
+              <option value="created">Name</option>
+            </select>
+          </form>
+          <h2 className="dash-box-title">Recently Created</h2>
+        </div>
         {this.getPublicPursuanceList()}
       </div>
     )
