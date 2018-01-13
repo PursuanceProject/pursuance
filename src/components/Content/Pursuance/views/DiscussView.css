@@ -80,3 +80,30 @@
 .task-deliverables-ctn {
   padding-top: 16px;
 }
+
+.subtasks-ctn {
+  margin-top: 50px;
+}
+
+.subtasks-list {
+  list-style: none;
+  padding-left: 0
+}
+
+.subtask-item {
+  margin-left: 0;
+}
+
+.fa-circle-o {
+  margin-bottom: 2px;
+  margin-right: 3px;
+}
+
+.no-task {
+  height: calc(100vh - 110px);
+  margin-top: 60px;
+  text-align: center;
+  color: #fff;
+  width: 100%;
+  font-size: 36px;
+}

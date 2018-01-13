@@ -12,24 +12,23 @@ const leapChatUrl = "http://localhost:8080/#GiddinessPuttRegisterKioskLucidityJo
 class DiscussView extends Component {
 
   componentWillMount(){
-    const { match: { params: { pursuanceId } }, tasks, getTasks } = this.props;
-    if (!tasks.taskMap['1_1']) {
+    const { match: { params: { pursuanceId, taskGid } }, tasks, getTasks } = this.props;
+    if (!tasks.taskMap[taskGid]) {
       getTasks(pursuanceId);
     }
   }
 
   render() {
-    const { pursuances, tasks } = this.props;
-    // TODO: Un-hardcode after demo
-    const taskGid = '1_1';
+    const { pursuances, tasks, match: { params: { taskGid } } } = this.props;
     const task = tasks.taskMap[taskGid];
-    if (!task) {
-      return <div>Ain't nobody got task fo' that.</div>
+    if(!task){
+      return <div className="no-task">Ain't nobody got task fo' that.</div>
     }
     const assignedPursuanceId = task.assigned_to_pursuance_id;
+    const subtaskGids = task.subtask_gids;
     return (
       <div className="discuss-ctn">
-        <iframe className="leapchat-frame" title="Leapchat" src={leapChatUrl} />
+        <iframe className="leapchat-frame" title="Leapchat" src={leapChatUrl + taskGid} />
         <div className="task-details-ctn">
           <div className="task-assignment-ctn">
             <div className="assigned-to-ctn">
@@ -75,6 +74,16 @@ class DiscussView extends Component {
                   }}} />
               </span>
             </div>
+            <div className="subtasks-ctn">
+              {subtaskGids.length > 0 && <h4>Subtasks</h4>}
+              <ul className="subtasks-list">
+                {subtaskGids.map((gid, i)=> {
+                  return <li key={i} className="subtask-item">
+                    <FaCircleO size={10} className="fa-circle-o" />{tasks.taskMap[gid].title}
+                  </li>
+                })}
+              </ul>
+          </div>
           </div>
         </div>
       </div>

@@ -9,6 +9,7 @@ import notificationsReducer from './notificationsReducer';
 import userReducer from './userReducer';
 import showSettingsInfoModal from './settingsInfoReducer';
 import createPursuance from './createPursuanceReducer';
+import showSuccessToast from './showSuccessToastReducer';
 
 const rootReducer = combineReducers({
   notifications: notificationsReducer,
@@ -20,7 +21,8 @@ const rootReducer = combineReducers({
   currentPursuanceId,
   tasks,
   showSettingsInfoModal,
-  createPursuance
+  createPursuance,
+  showSuccessToast
 });
 
 export default rootReducer;

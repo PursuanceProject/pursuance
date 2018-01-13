@@ -8,7 +8,6 @@ import PublicPursuances from './components/PublicPursuances/PublicPursuances';
 import Dashboard from './components/Dashboard/Dashboard';
 import PursuancePage from './components/Content/Pursuance/PursuancePage';
 import NotFound from './components/NotFound/NotFound';
-import DiscussView from './components/Content/Pursuance/views/DiscussView';
 import CreatePursuance from './components/CreatePursuance/CreatePursuance';
 import { removeNotification, addContributionPoints } from './actions';
 import './App.css';
@@ -27,11 +26,10 @@ class App extends Component {
             />
           <Switch>
             <Route exact path="/" component={HomePage} />
-						<Route exact path="/all" component={PublicPursuances} />
             <Route exact path="/dashboard" component={Dashboard} />
+            <Route exact path="/pursuance/all" component={PublicPursuances} />
             <Route exact path="/pursuance/create" component={CreatePursuance} />
-            <Route exact path="/pursuance/:pursuanceId" component={PursuancePage} />
-            <Route path="/pursuance/:pursuanceId/discuss" component={DiscussView}/>
+            <Route path="/pursuance/:pursuanceId" component={PursuancePage} />
             <Route path="/*" component={NotFound} />
           </Switch>
           <Footer />

@@ -43,12 +43,12 @@ class CreatePursuanceForm extends Component {
     const { createPursuance, postPursuance } = this.props;
     const { mission, name } = createPursuance;
     if (name.length === 0) {
-      return toast.error('please enter Pursuance name!');
+      return toast.error('Please enter pursuance Name!');
     }
     if (mission.length === 0) {
-      return toast.error('please enter Pursuance mission!');
+      return toast.error('Please enter pursuance Mission!');
     }
-    toast.info('Creating Pursuance')
+    toast.info('Creating new pursuance...');
     postPursuance(createPursuance);
   }
 
