@@ -82,6 +82,18 @@ class Task extends Component {
     }
   }
 
+  showTitle(task) {
+    if (task.parent_task_gid) {
+      return (
+        <div>{task.title}</div>
+      );
+    }
+    // Bold top-level tasks
+    return (
+      <strong>{task.title}</strong>
+    );
+  }
+
   render() {
     const { pursuances, taskData, match: { params: { pursuanceId } } } = this.props;
     const task = taskData;
@@ -103,7 +115,7 @@ class Task extends Component {
           </div>
           <div className="task-row-ctn">
             <div className="task-title">
-              {task.title}
+              {this.showTitle(task)}
             </div>
             <div className="task-icons-ctn">
               <div className="icon-ctn" onClick={this.toggleNewForm}>
