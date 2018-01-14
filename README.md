@@ -110,6 +110,36 @@ go build
 Pursuance should now be running on <http://localhost:8080>!
 
 
+### Production Deployment Build
+
+Same as the Linux commands above, but replace
+
+```
+npm run start
+```
+
+with
+
+```
+npm run build
+```
+
+and replace
+
+```
+go build
+./pursuance
+```
+
+with
+
+```
+go build
+sudo setcap cap_net_bind_service=+ep pursuance
+./pursuance -prod -domain YOURDOMAINNAMEGOESHERE.com -http :80 -https :443
+```
+
+
 ## Conventions
 
 Please follow these naming and spacing conventions when submitting a pull request:
