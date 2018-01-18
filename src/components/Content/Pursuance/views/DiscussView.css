@@ -6,7 +6,6 @@
 
 .leapchat-frame {
   height: calc(100vh - 60px);
-  padding-bottom: 50px;
   width: 100%;
   border: 1px solid #6d6d6d;
   border-right: none;
