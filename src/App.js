@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import NavBar from './components/NavBar/NavBar';
-import Footer from './components/Footer/Footer';
 import HomePage from './components/HomePage/HomePage';
 import PublicPursuances from './components/PublicPursuances/PublicPursuances';
 import Dashboard from './components/Dashboard/Dashboard';
@@ -32,7 +31,6 @@ class App extends Component {
             <Route path="/pursuance/:pursuanceId" component={PursuancePage} />
             <Route path="/*" component={NotFound} />
           </Switch>
-          <Footer />
         </div>
       </Router>
     );
