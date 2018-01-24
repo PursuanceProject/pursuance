@@ -12,58 +12,132 @@ PostgREST's JWTs (JSON Web Tokens) shortly after our demo on November
 
 ## Getting Started
 
-Please fork and clone down this repository to your local machine.
+#### Go
 
-If you don't have React.js globally installed, run this command:
-
-```
-npm install -g create-react-app
-```
-
-Next, `cd` into the `pursuance` folder.
-
-Run this command to install node modules:
+Make sure that [Go](https://golang.org/dl/) version 1.8 or newer is
+installed (`$ go version` will tell you), then run
 
 ```
+go get github.com/PursuanceProject/pursuance
+```
+
+#### React
+
+If you don't have React.js globally installed, run
+
+```
+[sudo] npm install -g create-react-app
+```
+
+(The `sudo` may or may not be required, depending on your system.)
+
+
+### macOS Instructions
+
+If you don't already have Postgres 9.5 or newer installed and running,
+install it with Homebrew:
+
+```
+brew install postgresql
+```
+
+Install JS dependencies and start Pursuance's auto-reloading dev server:
+
+```
+cd $(go env GOPATH)/src/github.com/PursuanceProject/pursuance
 npm install
+npm run start
 ```
 
-To run the React App on localhost and watch for updates:
+**In another terminal**, run database migrations, download
+`postgrest`, and have `postgrest` connect to Postgres:
+
+```
+cd $(go env GOPATH)/src/github.com/PursuanceProject/pursuance/db
+sudo -u $USER bash init_sql.sh
+wget https://github.com/begriffs/postgrest/releases/download/v0.4.3.0/postgrest-v0.4.3.0-osx.tar.xz
+tar xvf postgrest-v0.4.3.0-osx.tar.xz
+./postgrest postgrest.conf
+```
+
+**In a 3rd terminal**, run Pursuance's Go backend:
+
+```
+cd $(go env GOPATH)/src/github.com/PursuanceProject/pursuance
+go build
+./pursuance
+```
+
+Pursuance should now be running on <http://localhost:8080>!
+
+
+### Linux Instructions (Debian/Ubuntu or similar)
+
+If you don't already have Postgres 9.5 or newer installed and running,
+install it:
+
+```
+sudo apt-get install postgresql postgresql-contrib
+```
+
+Install JS dependencies and start Pursuance's auto-reloading dev server:
+
+```
+cd $(go env GOPATH)/src/github.com/PursuanceProject/pursuance
+npm install
+npm run start
+```
+
+**In another terminal**, run database migrations, download
+`postgrest`, and have `postgrest` connect to Postgres:
+
+```
+cd $(go env GOPATH)/src/github.com/PursuanceProject/pursuance/db
+sudo -u postgres bash init_sql.sh
+wget https://github.com/begriffs/postgrest/releases/download/v0.4.3.0/postgrest-v0.4.3.0-ubuntu.tar.xz
+tar xvf postgrest-v0.4.3.0-ubuntu.tar.xz
+./postgrest postgrest.conf
+```
+
+**In a 3rd terminal**, run Pursuance's Go backend:
+
+```
+cd $(go env GOPATH)/src/github.com/PursuanceProject/pursuance
+go build
+./pursuance
+```
+
+Pursuance should now be running on <http://localhost:8080>!
+
+
+### Production Deployment Build
+
+Same as the Linux commands above, but replace
 
 ```
 npm run start
 ```
 
-Then, in another terminal, to set up the database and run PostgREST,
-which our Go code uses for persistence, run:
+with
 
-``` $ cd db/ ```
+```
+npm run build
+```
 
-If you're on Linux, now run
+and replace
 
-``` $ sudo -u postgres bash init_sql.sh ```
+```
+go build
+./pursuance
+```
 
-On Mac OS X, instead run
+with
 
-``` $ sudo -u $USER bash init_sql.sh ```
-
-(The following commands should be run regardless of whether you're on
-Linux or OS X.)
-
-``` $ postgrest postgrest.conf ```
-
-Then, in another terminal session run this (**an error about not
-finding `github.com/PursuanceProject/pursuance` is OK here**) --
-
-``` $ go get ./... ```
-
-``` $ npm run build ```
-
-``` $ go build ```
-
-``` $ ./pursuance ```
-
-Then view <http://localhost:8080>.
+```
+go build
+sudo setcap cap_net_bind_service=+ep pursuance
+./pursuance -prod -domain YOURDOMAINNAMEGOESHERE.com -http :80 -https :443
+```
 
 
 ## Conventions

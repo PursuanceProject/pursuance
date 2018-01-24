@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import * as postgrest from '../../../../api/postgrest';
+import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import TiPlus from 'react-icons/lib/ti/plus';
 import TiMinus from 'react-icons/lib/ti/minus';
 import FaHandODown from 'react-icons/lib/fa/hand-o-down';
@@ -82,6 +83,34 @@ class Task extends Component {
     }
   }
 
+  showTitle(task) {
+    if (task.parent_task_gid) {
+      return (
+        <div>{task.title}</div>
+      );
+    }
+    // Bold top-level tasks
+    return (
+      <strong>{task.title}</strong>
+    );
+  }
+
+  getTooltip = (icon) => {
+    if (icon === 'hands-down') {
+      return (
+        <Tooltip id="tooltip-hands-down">
+          <strong>Create Subtask</strong>
+        </Tooltip>
+      );
+    } else if (icon === 'chat') {
+      return (
+        <Tooltip id="tooltip-chat">
+          <strong>Discuss Task</strong>
+        </Tooltip>
+      );
+    }
+  }
+
   render() {
     const { pursuances, taskData, match: { params: { pursuanceId } } } = this.props;
     const task = taskData;
@@ -103,15 +132,23 @@ class Task extends Component {
           </div>
           <div className="task-row-ctn">
             <div className="task-title">
-              {task.title}
+              {this.showTitle(task)}
             </div>
             <div className="task-icons-ctn">
-              <div className="icon-ctn" onClick={this.toggleNewForm}>
-                <FaHandODown />
-              </div>
-              <div className="icon-ctn" onClick={this.redirectToDiscuss}>
-                <FaCommentsO />
-              </div>
+              <OverlayTrigger
+                placement="bottom"
+                overlay={this.getTooltip('hands-down')}>
+                <div className="icon-ctn" onClick={this.toggleNewForm}>
+                  <FaHandODown />
+                </div>
+              </OverlayTrigger>
+              <OverlayTrigger
+                placement="bottom"
+                overlay={this.getTooltip('chat')}>
+                <div className="icon-ctn" onClick={this.redirectToDiscuss}>
+                  <FaCommentsO />
+                </div>
+              </OverlayTrigger>
             </div>
             <div className="task-assigned-to">
               <span>

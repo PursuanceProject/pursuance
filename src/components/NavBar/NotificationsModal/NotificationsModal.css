@@ -1,0 +1,100 @@
+#notifications-modal {
+  z-index: 1050;
+}
+
+#notifications-modal:hover {
+  cursor: pointer;
+}
+
+.triangle-pointer {
+  position: fixed;
+  z-index: 1051;
+  width: 0;
+  height: 0;
+  top: 50px;
+  right: 282px;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 12px solid #808080;
+}
+
+.notifications-dialog {
+  position: fixed;
+  margin-top: 60px;
+  width: 400px;
+  right: 262px;
+}
+
+.notifications-content {
+  background-color: #1c1c1c;
+  width: 400px;
+  border: 2px solid #808080;
+  border-radius: 0 0 6px 6px;
+}
+
+.notifications-content:hover {
+  cursor: default;
+}
+
+.notifications-header {
+  display: flex;
+  padding: 4px 10px;
+  border-color: #808080;
+}
+
+#notifications-title {
+  flex: 1;
+  display: flex;
+  color: #8662ea;
+}
+
+#notifications-filter-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  margin-left: 10px;
+  color: #d6d6d6;
+}
+
+#notifications-filter-btn:hover {
+  cursor: pointer;
+  color: #1fc7d3;
+}
+
+#mark-as-read {
+  flex: 1;
+  color: #d6d6d6;
+}
+
+#mark-as-read span {
+  float: right;
+}
+
+#mark-as-read span:hover {
+  cursor: pointer;
+  color: #1fc7d3;
+}
+
+.notifications-body {
+  padding: 36px 26px 12px 26px;
+}
+
+.notifications-footer {
+  padding: 6px 12px;
+  border-color: #808080;
+}
+
+#see-all-notifications {
+  display: flex;
+  justify-content: center;
+}
+
+#see-all-notifications span {
+  color: #d6d6d6;
+}
+
+#see-all-notifications span:hover {
+  cursor: pointer;
+  color: #1fc7d3;
+}

@@ -19,7 +19,7 @@ class PursuancePage extends Component {
   render() {
     return (
       <Router>
-        <div className="pursuance-page">
+        <div id="pursuance-page" className="content-ctn">
           <nav id="pursuance-nav">
             <PursuanceMenu />
           </nav>

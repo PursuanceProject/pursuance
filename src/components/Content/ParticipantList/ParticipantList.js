@@ -24,7 +24,7 @@ class ParticipantList extends React.Component {
   }
 
   render() {
-    return <div className="content-ctn">
+    return <div className="content">
       <div id="participant-list">
         {this.renderList()}
       </div>

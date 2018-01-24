@@ -35,7 +35,7 @@
     "set",
     "xss"
   ]
-  revision = "1f52a46e08581b1ebc2bad7a630e5d42f35b5d6f"
+  revision = "9b5880940d723db2811e5a23b58abcf5ca6fcf46"
 
 [[projects]]
   branch = "master"
@@ -112,7 +112,7 @@
     "scrypt",
     "ssh/terminal"
   ]
-  revision = "b3c9a1d25cfbbbab0ff4780b71c4f54e6e92a0de"
+  revision = "13931e22f9e72ea58bb73048bc752b48c6d4d4ac"
 
 [[projects]]
   branch = "master"

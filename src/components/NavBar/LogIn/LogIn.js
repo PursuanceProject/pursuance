@@ -45,7 +45,7 @@ class LogIn extends Component {
 
   render() {
     return (
-      <div className="modal fade" id="log-in-modal" tabIndex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div  id="log-in-modal" className="modal fade" tabIndex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div className="modal-dialog sign-login-dialog" role="document">
           <div className="modal-content signup-login-content">
             <div className="modal-header">
