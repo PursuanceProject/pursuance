@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 import taskForm from './taskFormReducer';
 import users from './usersReducer';
 import pursuances from './pursuancesReducer';
+import publicOrder from './publicOrderReducer';
 import publicPursuances from './publicPursuancesReducer';
 import currentPursuanceId from './currentPursuanceIdReducer';
 import tasks from './tasksReducer';
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
   taskForm,
   users,
   pursuances,
+  publicOrder,
   publicPursuances,
   currentPursuanceId,
   tasks,

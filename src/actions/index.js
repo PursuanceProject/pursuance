@@ -37,6 +37,11 @@ export const getPursuances = () => ({
   payload: getPursuancesReq()
 });
 
+export const setPublicOrder = publicOrder => ({
+  type: 'SET_PUBLIC_ORDER',
+  publicOrder
+});
+
 export const getPublicPursuances = () => ({
   type: 'GET_PUBLIC_PURSUANCES',
   payload: getPublicPursuancesReq()

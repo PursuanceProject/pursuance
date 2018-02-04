@@ -9,11 +9,6 @@ export default function(state = {}, action) {
     case 'GET_PUBLIC_PURSUANCES_REJECTED':
       return state;
 
-    case 'POST_PUBLIC_PURSUANCE_FULFILLED':
-      return Object.assign({}, state, {
-        [action.payload.id]: action.payload
-      });
-
     default:
       return state;
   }
