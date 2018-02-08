@@ -96,17 +96,30 @@ class TaskHierarchy extends Component {
     )
   }
 
+  produceOptions = () => {
+    const pursuanceArr = Object.values(this.props.pursuances);
+    return pursuanceArr.map((pursuance) => (
+      <option key={pursuance.id} value={pursuance.id}>{pursuance.name}</option>
+    ));
+  }
+
+  handleChange = (event) => {
+    window.location.href=event.target.value;
+  }
+
   render() {
     const { pursuances, currentPursuanceId } = this.props;
     return (
       <div className="content">
         <div id="task-hierarchy">
           <div id="task-hierarchy-title">
-            <h2 id="tasks-title">Tasks:&nbsp;</h2>
+            <h2 id="tasks-title">Tasks for:&nbsp;</h2>
             <h2 id="pursuance-title">
-              {
-                pursuances[currentPursuanceId] && pursuances[currentPursuanceId].name
-              }
+              <form className="custom-dropdown big">
+                <select value={this.props.currentPursuanceId} onChange={this.handleChange}>
+                {this.produceOptions()}
+                </select>
+              </form>
             </h2>
           </div>
           <div id="task-labels">
