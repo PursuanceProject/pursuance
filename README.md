@@ -10,18 +10,53 @@ PostgREST's JWTs (JSON Web Tokens) shortly after our demo on November
 4, 2017.  Hang tight!
 
 
+## Linux Quickstart
+
+If you're trying to run Pursuance on a Debian-based Linux distro (such
+as Ubuntu) that does _not_ already have Go installed, then just run
+this one command:
+
+```
+curl https://raw.githubusercontent.com/PursuanceProject/pursuance/develop/install_linux.sh | bash
+```
+
+You'll be asked to type in your `sudo` password, then to type two
+other commands, but after that, Pursuance should be running on your
+system!
+
+
 ## Getting Started
 
 #### Go
 
-Make sure that [Go](https://golang.org/dl/) version 1.8 or newer is
-installed (`$ go version` will tell you), then run
+If you're on Linux or macOS, and if you don't already have
+[Go](https://golang.org/dl/) version 1.8 or newer installed
+(`$ go version` will tell you), install Go by running
+
+```
+curl https://raw.githubusercontent.com/PursuanceProject/install-go/master/install-go.sh | bash
+source ~/.bashrc
+```
+
+then grab and build the `pursuance` source:
 
 ```
 go get github.com/PursuanceProject/pursuance
 ```
 
-#### React
+
+#### JavaScript
+
+If you're on Linux, and if you don't already have Node 7.x installed,
+install Node by running
+
+```
+curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash -
+sudo apt-get install nodejs
+```
+
+
+###### React
 
 If you don't have React.js globally installed, run
 
