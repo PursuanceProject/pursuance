@@ -98,6 +98,9 @@ class TaskHierarchy extends Component {
 
   produceOptions = () => {
     const pursuanceArr = Object.values(this.props.pursuances);
+    pursuanceArr.sort((p1, p2) => {
+      return p1.name.localeCompare(p2.name);
+    });
     return pursuanceArr.map((pursuance) => (
       <option key={pursuance.id} value={pursuance.id}>{pursuance.name}</option>
     ));
