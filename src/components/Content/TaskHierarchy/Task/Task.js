@@ -123,9 +123,9 @@ class RawTask extends Component {
     const { pursuances, taskData, match: { params: { pursuanceId } } } = this.props;
     const task = taskData;
     const assignedPursuanceId = task.assigned_to_pursuance_id;
-    const assignedByAnotherPursuance = assignedPursuanceId === Number(pursuanceId);
+    const assignedByThisPursuance = assignedPursuanceId === Number(pursuanceId);
     let assignedTo = "";
-    if (assignedPursuanceId && !assignedByAnotherPursuance) {
+    if (assignedPursuanceId && !assignedByThisPursuance && pursuances[assignedPursuanceId]) {
         assignedTo = pursuances[assignedPursuanceId].suggestionName;
     }
     else if (task.assigned_to) {
