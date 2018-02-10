@@ -22,7 +22,7 @@ export default function(state = {}, action) {
       const { formId, newParentGid } = action;
       return Object.assign({}, state, {
         [formId]: Object.assign(
-          {},
+          state[formId] || {},
           {
             parent_task_gid: newParentGid
           }
