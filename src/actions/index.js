@@ -18,10 +18,11 @@ export const clearTaskFormFields = formId => ({
   formId
 });
 
-export const setTaskFormParentGid = (formId, newParentGid) => ({
+export const setTaskFormParentGid = (formId, newParentGid, oldParentGid) => ({
   type: 'TASK_FORM_SET_PARENT_GID',
   formId,
-  newParentGid
+  newParentGid,
+  oldParentGid
 });
 
 export const getUsers = () => ({ type: 'GET_USERS', payload: getUsersReq() });
@@ -82,6 +83,18 @@ export const addPostedRootTaskToHierarchy = task => ({
 export const addPostedSubTaskToHierarchy = task => ({
   type: 'ADD_POSTED_SUB_TASK',
   task
+});
+
+export const addTaskFormToHierarchy = (parentTaskGid, taskFormId) => ({
+  type: 'TASK_FORM_ADD_TO_HIERARCHY',
+  parentTaskGid,
+  taskFormId
+});
+
+export const removeTaskFormFromHierarchy = (parentTaskGid, taskFormId) => ({
+  type: 'TASK_FORM_REMOVE_FROM_HIERARCHY',
+  parentTaskGid,
+  taskFormId
 });
 
 export const setMicroTaskNotification = ({ id, content, userAction }) => ({

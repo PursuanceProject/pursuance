@@ -2,21 +2,25 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import * as postgrest from '../../../../api/postgrest';
+import generateId from '../../../../utils/generateId';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import TiPlus from 'react-icons/lib/ti/plus';
 import TiMinus from 'react-icons/lib/ti/minus';
 import FaHandODown from 'react-icons/lib/fa/hand-o-down';
 import FaCommentsO from 'react-icons/lib/fa/comments-o';
 import TaskForm from '../../TaskManager/TaskForm/TaskForm';
+import {
+  addTaskFormToHierarchy,
+  removeTaskFormFromHierarchy
+} from '../../../../actions';
 import './Task.css';
 
-class Task extends Component {
+class RawTask extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      showChildren: true,
-      showTaskForm: false
+      showChildren: true
     };
   }
 
@@ -28,11 +32,17 @@ class Task extends Component {
   }
 
   toggleNewForm = () => {
-    this.setState({
-      ...this.state,
-      showTaskForm: !this.state.showTaskForm
-    });
-    // TODO: Post route for nested form
+    const {
+      taskData,
+      addTaskFormToHierarchy,
+      removeTaskFormFromHierarchy
+    } = this.props;
+
+    if (!taskData.subtaskform_id) {
+      addTaskFormToHierarchy(taskData.gid, generateId('task'));
+    } else {
+      removeTaskFormFromHierarchy(taskData.gid, taskData.subtaskform_id);
+    }
   }
 
   redirectToDiscuss = () => {
@@ -51,15 +61,13 @@ class Task extends Component {
   }
 
   mapSubTasks = (task) => {
-    const { pursuances, history, taskMap, match } = this.props;
+    const { taskMap, taskForm } = this.props;
     return task.subtask_gids.map((gid) => {
       return <Task
         key={gid}
         taskData={taskMap[gid]}
         taskMap={taskMap}
-        pursuances={pursuances}
-        history={history}
-        match={match}/>;
+        taskForm={taskForm} />;
     });
   }
 
@@ -123,7 +131,7 @@ class Task extends Component {
     else if (task.assigned_to) {
         assignedTo = '@' + task.assigned_to;
     }
-    const { showChildren, showTaskForm } = this.state;
+    const { showChildren } = this.state;
     return (
       <li className="li-task-ctn">
         <div className="task-ctn">
@@ -166,10 +174,24 @@ class Task extends Component {
               {this.mapSubTasks(task)}
             </ul>
         }
-        {showTaskForm && <TaskForm parentGid={task.gid} />}
+        {task.subtaskform_id && <TaskForm
+                                  parentGid={task.gid}
+                                  id={task.subtaskform_id} />}
       </li>
     );
   }
 }
 
-export default withRouter(connect(({ pursuances }) => ({ pursuances }))(Task));
+const Task = withRouter(connect(
+  ({ pursuances }) => ({ pursuances }), {
+  addTaskFormToHierarchy,
+  removeTaskFormFromHierarchy
+})(RawTask));
+
+// Why RawTask _and_ Task? Because Task.mapSubTasks() recursively
+// renders Task components which weren't wrapped in a Redux connect()
+// call (until calling the original component 'RawTask' and the
+// wrapped component 'Task'), and thus `this.props` wasn't being
+// populated by Redux within mapSubTasks(). More info:
+// https://stackoverflow.com/a/37081592/197160
+export default Task;

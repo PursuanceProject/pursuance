@@ -28,7 +28,7 @@ class TaskHierarchy extends Component {
     getUsers();
     getTasks(currentPursuanceId);
     if (Object.keys(pursuances).length === 0) {
-      getPursuances()
+      getPursuances();
     }
     if (showSuccessToast) {
       toast.success('New pursuance created! Ready to rock.');
@@ -145,8 +145,8 @@ class TaskHierarchy extends Component {
   }
 }
 
-export default connect(({ pursuances, currentPursuanceId, tasks, showSuccessToast }) =>
-  ({ pursuances, currentPursuanceId, tasks, showSuccessToast }), {
+export default connect(({ pursuances, taskForm, currentPursuanceId, tasks, showSuccessToast }) =>
+  ({ pursuances, taskForm, currentPursuanceId, tasks, showSuccessToast }), {
     getUsers,
     getTasks,
     getPursuances,
