@@ -1,6 +1,6 @@
 import { getUsersReq } from '../api/users';
 import { getPursuancesReq, postPursuanceReq } from '../api/pursuances';
-import { postTaskReq, getTasksReq } from '../api/tasks';
+import { postTaskReq, getTasksReq, patchTaskReq } from '../api/tasks';
 
 export const updateFormField = (formId, fieldId, value) => ({
   type: 'TASK_FIELD_UPDATE',
@@ -140,4 +140,9 @@ export const postPursuance = pursuance => ({
 
 export const clearPursuanceFormFields = () => ({
   type: 'PURSUANCE_FORM_CLEAR_FIELDS'
+});
+
+export const patchTask = task => ({
+  type: 'PATCH_TASK',
+  payload: patchTaskReq(task)
 });

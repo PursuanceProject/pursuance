@@ -5,7 +5,7 @@ import moment from 'moment';
 import { connect } from 'react-redux';
 import { filterSuggestion } from '../../../../utils/suggestions';
 import AssignerSuggestions from './Suggestions/AssignerSuggestions';
-import AssignerInput from './AssignerInput';
+import AssignerInput from './AssignerInput/AssignerInput';
 import { PURSUANCE_DISPLAY_PREFIX } from '../../../../constants';
 import {
   updateFormField,
@@ -181,7 +181,9 @@ class TaskForm extends Component {
               &&
               <AssignerSuggestions
                 focusDatePicker={this.focusDatePicker}
-                suggestionForm={this.id}/>
+                suggestionForm={this.id}
+                editMode={false}
+              />
             }
             {/* <div className="at-symbol">
               <span>@</span>
@@ -202,6 +204,7 @@ class TaskForm extends Component {
                formId={this.id}
                assigned_to={assigned_to}
                focusDatePicker={this.focusDatePicker}
+               editMode={false}
              />
           </div>
           <div className="date-picker-ctn">

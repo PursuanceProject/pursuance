@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addSuggestion } from '../../../../../actions';
+import { addSuggestion, patchTask } from '../../../../../actions';
 import { scrollIntoViewOptions } from '../../../../../utils/suggestions';
 import './AssignerSuggestions.css';
 
-const AssignerSuggestions = ({ autoComplete, addSuggestion, focusDatePicker, suggestionForm }) => (
+const AssignerSuggestions = ({ autoComplete, addSuggestion, focusDatePicker, suggestionForm, patchTask, editMode }) => (
   <div className='suggestions-container'>
     <ul className='suggestion-list'>
       {autoComplete.suggestions.map((suggestion, i) => {
@@ -13,7 +13,15 @@ const AssignerSuggestions = ({ autoComplete, addSuggestion, focusDatePicker, sug
         let props = {
           key : i,
           onMouseDown : () =>  {
+            if (editMode) {
+            const patchedTask = {
+              assigned_to: suggestionName,
+              gid: suggestionForm
+            };
+            patchTask(patchedTask);
+          }else {
             addSuggestion(suggestionName, suggestionForm);
+          }
             if (focusDatePicker) {
               focusDatePicker();
             }
@@ -31,4 +39,4 @@ const AssignerSuggestions = ({ autoComplete, addSuggestion, focusDatePicker, sug
 </div>
 )
 
-export default connect(({ autoComplete }) => ({ autoComplete }), { addSuggestion })(AssignerSuggestions);
+export default connect(({ autoComplete }) => ({ autoComplete }), { addSuggestion, patchTask })(AssignerSuggestions);

@@ -52,6 +52,13 @@ export default function(state = initialState, action) {
         })
       });
 
+    case 'PATCH_TASK_PENDING':
+      return state;
+
+    case 'PATCH_TASK_FULFILLED':
+      console.log(action.payload.assigned_to, 'payload');
+      return state;
+
     default:
       return state;
   }

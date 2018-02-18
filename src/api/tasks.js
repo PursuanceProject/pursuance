@@ -7,6 +7,13 @@ export const postTaskReq = task => {
     .catch(err => console.log('Error posting task:', err));
 };
 
+export const patchTaskReq = task => {
+  return postgrest
+    .patchJSON(`/tasks?gid=eq.${task.gid}`, task, { Prefer: 'return=representation' })
+    .then(taskJSON => taskJSON[0])
+    .catch(err => console.log('Error patching task:', err));
+};
+
 export const getTasksReq = pursuanceId => {
   return postgrest
     .getJSON(`/tasks?pursuance_id=eq.${pursuanceId}&order=created.asc,id.asc`)

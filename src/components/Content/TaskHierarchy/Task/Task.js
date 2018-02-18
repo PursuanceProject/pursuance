@@ -8,6 +8,7 @@ import FaHandODown from 'react-icons/lib/fa/hand-o-down';
 import FaCommentsO from 'react-icons/lib/fa/comments-o';
 import TaskForm from '../../TaskManager/TaskForm/TaskForm';
 import AssignerSuggestions from '../../TaskManager/TaskForm/Suggestions/AssignerSuggestions';
+import AssignerInput from '../../TaskManager/TaskForm/AssignerInput/AssignerInput';
 import { filterSuggestion } from '../../../../utils/suggestions';
 import { startSuggestions } from '../../../../actions';
 import './Task.css';
@@ -37,10 +38,6 @@ class Task extends Component {
       showTaskForm: !this.state.showTaskForm
     });
     // TODO: Post route for nested form
-  }
-
-  redirectToDiscuss = () => {
-    // this.props.history.push('/pursuance/1/discuss');
   }
 
   styleUl = () => {
@@ -105,7 +102,6 @@ class Task extends Component {
     if (Number.isInteger(assignedTo)) {
       placeholder = pursuances[assignedTo].suggestionName;
     }
-    console.log(this.props, 'props in task')
     return (
       <li className="li-task-ctn">
         <div className="task-ctn">
@@ -125,19 +121,24 @@ class Task extends Component {
               </div>
             </div>
             <div className="task-assigned-to">
-              <span>
                 {
-                  showEditAssignee &&             <input
-                                className="form-control assign-to"
-                                type="text"
-                                placeholder={placeholder || 'Assigned To'}
-                                value={''}
-                                name={'assigned_to'}
-                                // onChange={this.onChange}
-                                onFocus={this.onFocus}
-                                onBlur={this.onBlur}
-                                // onKeyDown={this.onAssignerKeyDown}
-                              />
+                  showEditAssignee &&
+                   <div className="assign-autocomplete-ctn">
+                     {
+                       autoComplete.suggestions
+                       &&
+                       task.gid === autoComplete.suggestionForm
+                       &&
+                       <AssignerSuggestions
+                         suggestionForm={task.gid}
+                         editMode={true}
+                       />
+                     }
+                    <AssignerInput
+                      formId={task.gid}
+                      editMode={true}
+                    />
+                  </div>
                   ||
                   (assignedPursuanceId && pursuances[assignedPursuanceId].suggestionName)
                     &&
@@ -149,14 +150,6 @@ class Task extends Component {
                   ||
                   <button className="edit-assignee-button" onClick={this.showEditAssignee}>Assign</button>
                 }
-                {
-                  autoComplete.suggestions
-                  &&
-                  task.gid === autoComplete.suggestionForm
-                  &&
-                  <AssignerSuggestions />
-                }
-              </span>
             </div>
             <div className="task-due-date">
               {task.due_date && postgrest.formatDate(task.due_date)}
