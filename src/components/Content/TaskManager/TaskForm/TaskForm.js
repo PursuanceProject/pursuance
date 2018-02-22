@@ -24,8 +24,9 @@ import './TaskForm.css';
 class TaskForm extends Component {
 
   componentWillMount() {
-    const { parentGid, updateFormField } = this.props;
-    this.id = generateId('task');
+    const { parentGid, updateFormField, id } = this.props;
+    // Use `id` from props or create new one
+    this.id = id || generateId('task');
     updateFormField(this.id, 'parent_task_gid', parentGid || null);
   }
 
@@ -62,7 +63,9 @@ class TaskForm extends Component {
         }
       }
       console.log(this.id, 'newParentGid:', newParentGid);
-      this.props.setTaskFormParentGid(this.id, newParentGid || null);
+      if (newParentGid) {
+        this.props.setTaskFormParentGid(this.id, newParentGid, parentGid);
+      }
     }
   }
 
@@ -100,7 +103,7 @@ class TaskForm extends Component {
 
   handleDateSelect = (date) => {
     if (date) {
-      //currently ignored untill date Picker input is updating Redux value
+      // Currently ignored until date Picker input is updating Redux value
       this.props.updateFormField(this.id, 'due_date_raw', date);
     }
   }

@@ -52,6 +52,46 @@ export default function(state = initialState, action) {
         })
       });
 
+    case 'TASK_FORM_SET_PARENT_GID': {
+      const { formId, newParentGid, oldParentGid } = action;
+      const newParent = state.taskMap[newParentGid];
+      const oldParent = state.taskMap[oldParentGid];
+      return Object.assign({}, state, {
+        taskMap: Object.assign({}, state.taskMap, {
+          [newParentGid]: Object.assign({}, newParent, {
+            subtaskform_id: formId
+          }),
+          [oldParentGid]: Object.assign({}, oldParent, {
+            subtaskform_id: null
+          }),
+        })
+      });
+    }
+
+    case 'TASK_FORM_ADD_TO_HIERARCHY': {
+      const { parentTaskGid, taskFormId } = action;
+      const parentTask = state.taskMap[parentTaskGid];
+      return Object.assign({}, state, {
+        taskMap: Object.assign({}, state.taskMap, {
+          [parentTaskGid]: Object.assign({}, parentTask, {
+            subtaskform_id: taskFormId
+          })
+        })
+      });
+    }
+
+    case 'TASK_FORM_REMOVE_FROM_HIERARCHY': {
+      const { parentTaskGid } = action;
+      const parentTask = state.taskMap[parentTaskGid];
+      return Object.assign({}, state, {
+        taskMap: Object.assign({}, state.taskMap, {
+          [parentTaskGid]: Object.assign({}, parentTask, {
+            subtaskform_id: null
+          })
+        })
+      });
+    }
+
     default:
       return state;
   }
