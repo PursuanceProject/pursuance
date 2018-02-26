@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Task from './Task/Task';
-import TaskForm from '../TaskManager/TaskForm/TaskForm';
 import { toast, ToastContainer } from 'react-toastify';
 import { connect } from 'react-redux';
 import {
@@ -86,9 +85,9 @@ class TaskHierarchy extends Component {
             rootTaskGids.map((gid) => {
               return (
                 <Task
-                 key={gid}
-                 taskData={taskMap[gid]}
-                 taskMap={taskMap} />
+                  key={gid}
+                  taskData={taskMap[gid]}
+                  taskMap={taskMap} />
               );
             })
           }
@@ -138,7 +137,6 @@ class TaskHierarchy extends Component {
               hideProgressBar={false}
               newestOnTop={false} />
           {this.renderHierarchy()}
-          <TaskForm topLevel={true} />
         </div>
       </div>
     );
