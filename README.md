@@ -81,6 +81,7 @@ Install JS dependencies and start Pursuance's auto-reloading dev server:
 ```
 cd $(go env GOPATH)/src/github.com/PursuanceProject/pursuance
 npm install
+npm run build
 npm run start
 ```
 
