@@ -21,7 +21,7 @@
   width: 26px;
   height: 26px;
   border: 2px solid black;
-  border-radius: 6px;
+  border-radius: 5px;
 }
 
 .toggle-icon-ctn-disable {
@@ -29,7 +29,7 @@
   width: 26px;
   height: 26px;
   border: 2px solid black;
-  border-radius: 6px;
+  border-radius: 5px;
 }
 
 .toggle-icon-ctn:hover {
@@ -56,9 +56,15 @@
 .task-row-ctn {
   flex: 1;
   display: flex;
-  border: 1px solid #666666;
+  background-color: #2c2c2c;
+  border: 1px solid #444;
   border-radius: 5px;
-  padding: 2px 2px 1px 2px;
+  padding: 2px 2px 1px 0px;
+  margin: 0px 0px 3px 0px;
+}
+
+.task-row-ctn:hover {
+  border: 1px solid #d6d6d6;
 }
 
 .task-title {
