@@ -92,7 +92,9 @@ func ProductionServer(srv *http.Server, httpsAddr string, domain string, manager
 }
 
 func GetIndex(w http.ResponseWriter, req *http.Request) {
-	_ = templates.ExecuteTemplate(w, "index.html", nil)
+	// Passing req into index.html is never cached (so it can be
+	// changed without restarting this Go server)
+	_ = templates.ExecuteTemplate(w, "index.html", req)
 }
 
 func Login(m *miniware.Mapper) func(w http.ResponseWriter, req *http.Request) {
