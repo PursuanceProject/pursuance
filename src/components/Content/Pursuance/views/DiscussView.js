@@ -62,17 +62,17 @@ class DiscussView extends Component {
           </div>
           <div className="pursuance-discuss-ctn">
             <div className="pursuance-task-title-ctn">
+              <div className="discuss-task-title-ctn">
+                <span className="discuss-task-title">{task.title}</span>
+              </div>
               <div className="pursuance-title-ctn">
                 <span className="pursuance-title">
-                  {pursuances[task.pursuance_id] && pursuances[task.pursuance_id].name}
+                  Created in {pursuances[task.pursuance_id] && <em>{pursuances[task.pursuance_id].name}</em>}
                 </span>
-              </div>
-              <div className="discuss-task-title-ctn">
-                <FaCircleO />
-                <span className="discuss-task-title">{task.title}</span>
               </div>
             </div>
             <div className="task-deliverables-ctn">
+              <h4><strong>Description / Deliverables</strong></h4>
               <span>
                 <ReactMarkdown
                   source={task.deliverables}
@@ -86,15 +86,15 @@ class DiscussView extends Component {
               </span>
             </div>
             <div className="subtasks-ctn">
-              {subtaskGids.length > 0 && <h4>Subtasks</h4>}
+              <h4><strong>Subtasks</strong></h4>
               <ul className="subtasks-list">
                 {subtaskGids.map((gid, i)=> {
                   return <li key={i} className="subtask-item">
-                    <FaCircleO size={10} className="fa-circle-o" />{tasks.taskMap[gid].title}
+                    <FaCircleO size={8} className="fa-circle-o" />{tasks.taskMap[gid].title}
                   </li>
                 })}
               </ul>
-          </div>
+            </div>
           </div>
         </div>
       </div>

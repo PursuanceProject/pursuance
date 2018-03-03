@@ -13,18 +13,18 @@
 }
 
 .task-details-ctn {
-  min-width: 320px;
+  min-width: 400px;
   border: 1px solid #6d6d6d;
   border-radius: 0 4px 4px 0;
   color: #d6d6d6;
-  font-size: 1.1em;
+  font-size: 1.2em;
 }
 
 .task-assignment-ctn {
   display: flex;
-  justify-content: space-between;
-  height: 80px;
-  border-bottom: 1px solid #6d6d6d;
+  justify-content: space-around;
+  height: 72px;
+  margin: 0 16px;
   color: #d6d6d6;
 }
 
@@ -32,7 +32,7 @@
   flex: 2;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 .assigned-to-ctn span:hover {
@@ -44,44 +44,51 @@
   flex: 2;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 .icon-ctn {
   flex: 2;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
+  padding: 0 0;
+  margin: 0 -6px 0 0;
   height: 100%;
 }
 
 .pursuance-discuss-ctn {
-  padding: 16px;
+  padding: 0 16px;
 }
 
 .pursuance-title-ctn {
-  padding: 10px 0;
+  padding: 4px 0 0 0;
 }
 
 
 .discuss-task-title-ctn {
   display: flex;
   align-items: center;
-  padding-left: 12px;
+  border-top: 1px solid #6d6d6d;
+  padding-top: 12px;
 }
 
 .discuss-task-title {
-  padding-left: 8px;
-  font-size: 1.3em;
+  font-size: 1.5em;
   color: #fcfcfc;
 }
 
 .task-deliverables-ctn {
-  padding-top: 16px;
+  border-top: 1px solid #6d6d6d;
+  padding-top: 8px;
+  margin-top: 16px;
+  margin-bottom: 32px;
+  min-height: 64px;
 }
 
 .subtasks-ctn {
-  margin-top: 50px;
+  border-top: 1px solid #6d6d6d;
+  padding-top: 8px;
 }
 
 .subtasks-list {
