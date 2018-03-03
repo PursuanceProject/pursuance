@@ -27,6 +27,11 @@ export const setTaskFormParentGid = (formId, newParentGid, oldParentGid) => ({
 
 export const getUsers = () => ({ type: 'GET_USERS', payload: getUsersReq() });
 
+export const getPursuancesByIds = (pursuanceIds) => ({
+  type: 'GET_PURSUANCES_BY_IDS',
+  payload: getPursuancesReq(pursuanceIds)
+});
+
 export const getPursuances = () => ({
   type: 'GET_PURSUANCES',
   payload: getPursuancesReq()

@@ -5,16 +5,27 @@ import ReactMarkdown from 'react-markdown';
 import FaEllipsisV from 'react-icons/lib/fa/ellipsis-v';
 import FaCircleO from 'react-icons/lib/fa/circle-o';
 import './DiscussView.css';
-import { getTasks } from '../../../../actions';
+import { getPursuancesByIds, getTasks } from '../../../../actions';
 
 const leapChatUrl = "http://localhost:8080/#GiddinessPuttRegisterKioskLucidityJockstrapTastebudFactoryPegboardOpticalEstrogenGoatskinHatchlingDittoPseudoNegotiatorLunchboxLightbulbUploadSyllableTulipQuiltJurorRuptureAorta";
 
 class DiscussView extends Component {
 
   componentWillMount(){
-    const { match: { params: { pursuanceId, taskGid } }, tasks, getTasks } = this.props;
+    const {
+      match: { params: { pursuanceId, taskGid } },
+      pursuances,
+      tasks,
+      getPursuancesByIds,
+      getTasks
+    } = this.props;
+
     if (!tasks.taskMap[taskGid]) {
       getTasks(pursuanceId);
+    }
+
+    if (!pursuances[pursuanceId]) {
+      getPursuancesByIds([pursuanceId]);
     }
   }
 
@@ -91,4 +102,4 @@ class DiscussView extends Component {
   };
 }
 
-export default connect(({pursuances, tasks}) => ({pursuances, tasks}), { getTasks })(DiscussView);
+export default connect(({pursuances, tasks}) => ({pursuances, tasks}), { getPursuancesByIds, getTasks })(DiscussView);
