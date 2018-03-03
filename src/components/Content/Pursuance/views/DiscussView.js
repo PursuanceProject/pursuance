@@ -11,45 +11,76 @@ const leapChatUrl = "http://localhost:8080/#GiddinessPuttRegisterKioskLucidityJo
 
 class DiscussView extends Component {
 
-  componentWillMount(){
+  componentWillMount() {
     const {
       match: { params: { pursuanceId, taskGid } },
-      pursuances,
       tasks,
-      getPursuancesByIds,
       getTasks
     } = this.props;
 
     if (!tasks.taskMap[taskGid]) {
       getTasks(pursuanceId);
     }
+  }
 
-    if (!pursuances[pursuanceId]) {
-      getPursuancesByIds([pursuanceId]);
+  showAssignee = () => {
+    const {
+      match: { params: { taskGid } },
+      pursuances,
+      tasks,
+      getPursuancesByIds
+    } = this.props;
+
+    const task = tasks.taskMap[taskGid];
+    if (!task) {
+      return (
+        <span></span>
+      )
     }
+
+    const assignedPursuanceId = task.assigned_to_pursuance_id;
+
+    // Get details of pursuances missing from Redux
+    const ids = [];
+    if (!pursuances[task.pursuance_id]) {
+      ids.push(task.pursuance_id);
+    }
+    if (assignedPursuanceId && !pursuances[assignedPursuanceId]) {
+      ids.push(assignedPursuanceId);
+    }
+    if (ids.length > 0) {
+      getPursuancesByIds(ids);
+      return (
+        <span></span>
+      )
+    }
+
+    return (
+      <span>
+        {
+          (assignedPursuanceId && pursuances[assignedPursuanceId] && pursuances[assignedPursuanceId].suggestionName)
+          ||
+          (task.assigned_to && '@' + task.assigned_to)
+        }
+      </span>
+    )
   }
 
   render() {
     const { pursuances, tasks, match: { params: { taskGid } } } = this.props;
     const task = tasks.taskMap[taskGid];
-    if(!task){
+    if (!task) {
       return <div className="no-task">Ain't nobody got task fo' that.</div>
     }
-    const assignedPursuanceId = task.assigned_to_pursuance_id;
     const subtaskGids = task.subtask_gids;
+
     return (
       <div className="discuss-ctn">
         <iframe className="leapchat-frame" title="Leapchat" src={leapChatUrl + taskGid} />
         <div className="task-details-ctn">
           <div className="task-assignment-ctn">
             <div className="assigned-to-ctn">
-              <span>
-                {
-                  (assignedPursuanceId && pursuances[assignedPursuanceId].suggestionName)
-                  ||
-                  (task.assigned_to && '@' + task.assigned_to)
-                }
-              </span>
+              {this.showAssignee()}
             </div>
             <div className="due-date-ctn">
               {task.due_date && postgrest.formatDate(task.due_date)}
