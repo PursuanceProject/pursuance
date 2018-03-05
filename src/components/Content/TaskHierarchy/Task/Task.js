@@ -21,7 +21,7 @@ class Task extends Component {
       showChildren: true,
       showTaskForm: false,
       showEditAssignee: false,
-      assignedTo: props.taskData.assigned_to || props.taskData.assigned_to_pursuance_id
+      assignedTo: props.taskData.assigned_to_pursuance_id || props.taskData.assigned_to
     };
   }
 
@@ -83,7 +83,13 @@ class Task extends Component {
   showEditAssignee = () => {
     this.setState({
       showEditAssignee: true
-    })
+    });
+  }
+
+  hideEditAssignee = () => {
+    this.setState({
+      showEditAssignee: false
+    });
   }
 
   onFocus = (e) => {
@@ -132,11 +138,13 @@ class Task extends Component {
                        <AssignerSuggestions
                          suggestionForm={task.gid}
                          editMode={true}
+                         hideEditAssignee={this.hideEditAssignee}
                        />
                      }
                     <AssignerInput
                       formId={task.gid}
                       editMode={true}
+                      hideEditAssignee={this.hideEditAssignee}
                     />
                   </div>
                   ||
