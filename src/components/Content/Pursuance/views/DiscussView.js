@@ -4,6 +4,7 @@ import * as postgrest from '../../../../api/postgrest';
 import ReactMarkdown from 'react-markdown';
 import FaEllipsisV from 'react-icons/lib/fa/ellipsis-v';
 import FaCircleO from 'react-icons/lib/fa/circle-o';
+import TaskStatus from '../../TaskStatus/TaskStatus';
 import './DiscussView.css';
 import { getPursuancesByIds, getTasks } from '../../../../actions';
 
@@ -79,6 +80,9 @@ class DiscussView extends Component {
         <iframe className="leapchat-frame" title="Leapchat" src={leapChatUrl + taskGid} />
         <div className="task-details-ctn">
           <div className="task-assignment-ctn">
+            <TaskStatus
+              status={task.status}
+            />
             <div className="assigned-to-ctn">
               {this.showAssignee()}
             </div>

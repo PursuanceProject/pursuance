@@ -5,16 +5,18 @@
 }
 
 .leapchat-frame {
+  display: flex;
+  flex: 66;
   height: calc(100vh - 60px);
-  width: 100%;
   border: 1px solid #6d6d6d;
   border-right: none;
   border-bottom-left-radius: 4px;
 }
 
 .task-details-ctn {
-  min-width: 420px;
-  max-width: 60vw;
+  display: flex;
+  flex-direction: column;
+  flex: 34;
   border: 1px solid #6d6d6d;
   border-radius: 0 4px 4px 0;
   color: #d6d6d6;
@@ -24,13 +26,13 @@
 .task-assignment-ctn {
   display: flex;
   justify-content: center;
-  height: 80px;
+  height: 40px;
   margin: 0 16px;
   color: #d6d6d6;
 }
 
 .assigned-to-ctn {
-  flex: 2;
+  flex: 1;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -43,7 +45,7 @@
 }
 
 .due-date-ctn {
-  flex: 2;
+  flex: 1;
   display: flex;
   align-items: center;
   justify-content: space-between;

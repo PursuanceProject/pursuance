@@ -1,0 +1,11 @@
+.task-status-ctn {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: flex-start;
+  min-width: 130px;
+  max-width: 9vw;
+  font-size: 0.85em;
+  word-spacing: -0.08em;
+  white-space: nowrap;
+}
