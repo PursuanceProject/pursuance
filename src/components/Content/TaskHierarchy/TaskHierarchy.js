@@ -119,6 +119,11 @@ class TaskHierarchy extends Component {
 
               </span>
             </div>
+            <div className="label-status">
+              <span>
+                Status
+              </span>
+            </div>
             <div className="label-assigned-to">
               <span>
                 Assigned To
