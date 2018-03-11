@@ -9,12 +9,12 @@ import * as postgrest from '../../api/postgrest';
 class PublicPursuanceList extends Component {
 
   orderByDateDesc = (p1, p2) => {
-    p1["parsedDate"] = Date.parse(p1.created);
-    p2["parsedDate"] = Date.parse(p2.created);
-    return p2.parsedDate - p1.parsedDate;
+    p1["created_parsed"] = Date.parse(p1.created);
+    p2["created_parsed"] = Date.parse(p2.created);
+    return p2.created_parsed - p1.created_parsed;
   }
   orderByDateAsc = (p1, p2) => {
-    return p1.parsedDate - p2.parsedDate;
+    return p1.created_parsed - p2.created_parsed;
   }
   orderByNameAsc = (p1, p2) => {
     return p1.name.localeCompare(p2.name);
