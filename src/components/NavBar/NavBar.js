@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Nav, Navbar, NavDropdown, NavItem, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import FaBell from 'react-icons/lib/fa/bell';
-import { connect } from 'react-redux';
+import Info from 'react-icons/lib/fa/info-circle';
 import SignUp from './SignUp/SignUp';
 import LogIn from './LogIn/LogIn';
 import NotificationsModal from './NotificationsModal/NotificationsModal';
@@ -55,16 +56,17 @@ class NavBar extends Component {
             </li>
           </ul>
           <Nav pullRight>
-            {/* empty state if not on a pursuance page */}
             {authenticated && (
               <NavDropdown
-              id="jump-to-pursuance"
-              title={this.showCurrentPursuance(pursuances)}
-              onSelect={this.handleJumpToPursuance}>
-                {jumpToPursuanceOptions(pursuances)}
+                id="jump-to-pursuance"
+                title={this.showCurrentPursuance(pursuances)}
+                onSelect={this.handleJumpToPursuance}
+                >
+                  {jumpToPursuanceOptions(pursuances)}
               </NavDropdown>
               )
             }
+            {authenticated && <NavItem><Info size={18}/></NavItem>}
             {
               !authenticated &&
               (
