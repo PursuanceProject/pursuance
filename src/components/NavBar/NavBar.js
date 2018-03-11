@@ -19,11 +19,13 @@ class NavBar extends Component {
     </Tooltip>
   );
 
-  showCurrentPursuance = () => {
-    if (!this.props.currentPursuanceId) {
-      return "Jump to a Pursuance";
+  showCurrentPursuance = (pursuances) => {
+    let id = parseInt(window.location.pathname.slice(-1));
+    let rawPursuance = pursuances[id];
+    if (rawPursuance !== undefined) {
+      return rawPursuance.name;
     } else {
-      return this.props.currentPursuanceId;
+      return "Jump to pursuance";
     }
   }
 
@@ -32,7 +34,12 @@ class NavBar extends Component {
   }
 
   render() {
-    const { authenticated, username, contributionPoints } = this.props;
+    const {
+      authenticated,
+      username,
+      contributionPoints,
+      pursuances
+    } = this.props;
     return (
       <Navbar collapseOnSelect>
         <Navbar.Header>
@@ -52,13 +59,12 @@ class NavBar extends Component {
             {authenticated && (
               <NavDropdown
               id="jump-to-pursuance"
-              title={this.showCurrentPursuance()}
-              onSelect={this.handleJumpToPursuance}
-              >
-                  {jumpToPursuanceOptions(this.props.pursuances)}
-                </NavDropdown>
-
-              )}
+              title={this.showCurrentPursuance(pursuances)}
+              onSelect={this.handleJumpToPursuance}>
+                {jumpToPursuanceOptions(pursuances)}
+              </NavDropdown>
+              )
+            }
             {
               !authenticated &&
               (

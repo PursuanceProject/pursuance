@@ -77,6 +77,13 @@ class TaskHierarchy extends Component {
     }
   }
 
+  getPursuanceName = (pursuances, id) => {
+    const rawPursuance = pursuances[id];
+    if (rawPursuance !== undefined) {
+      return rawPursuance.name;
+    }
+  }
+
   renderHierarchy = () => {
     const { rootTaskGids, taskMap } = this.props.tasks;
     return (
@@ -96,12 +103,12 @@ class TaskHierarchy extends Component {
   }
 
   render() {
-    const { currentPursuanceId } = this.props;
+    const { currentPursuanceId, pursuances } = this.props;
     return (
       <div className="content">
         <div id="task-hierarchy">
           <div id="task-hierarchy-title">
-            <h2 id="tasks-title">{currentPursuanceId}</h2>
+            <h2 id="tasks-title">{ this.getPursuanceName(pursuances, currentPursuanceId) }</h2>
           </div>
           <div id="task-labels">
             <div>
