@@ -9,6 +9,7 @@ import TiMinus from 'react-icons/lib/ti/minus';
 import FaHandODown from 'react-icons/lib/fa/hand-o-down';
 import FaCommentsO from 'react-icons/lib/fa/comments-o';
 import TaskForm from '../../TaskManager/TaskForm/TaskForm';
+import TaskStatus from '../../TaskStatus/TaskStatus';
 import {
   addTaskFormToHierarchy,
   removeTaskFormFromHierarchy
@@ -158,6 +159,9 @@ class RawTask extends Component {
                 </div>
               </OverlayTrigger>
             </div>
+            <TaskStatus
+              status={task.status}
+            />
             <div className="task-assigned-to">
               <span>
                 {assignedTo}

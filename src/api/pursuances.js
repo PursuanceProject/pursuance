@@ -1,9 +1,9 @@
 import * as postgrest from './postgrest';
 import { PURSUANCE_DISPLAY_PREFIX } from '../constants';
 
-export const getPursuancesReq = () => {
+export const getPursuancesReq = (pursuanceIds) => {
   return postgrest
-    .getJSON('/pursuances')
+    .getJSON('/pursuances' + (pursuanceIds ? '?id=in.('+pursuanceIds.join(',')+')' : ''))
     .then(pursuances => {
       const pursuancesObject = {};
       for (let i = 0; i < pursuances.length; i++) {

@@ -25,6 +25,14 @@
   margin-left: auto;
 }
 
+.label-status {
+  display: flex;
+  flex: 1;
+  justify-content: flex-start;
+  min-width: 130px;
+  max-width: 9vw;
+}
+
 .label-assigned-to {
   width: 190px;
   padding: 0 4px;

@@ -81,6 +81,7 @@ Install JS dependencies and start Pursuance's auto-reloading dev server:
 ```
 cd $(go env GOPATH)/src/github.com/PursuanceProject/pursuance
 npm install
+npm run build
 npm run start
 ```
 
@@ -89,6 +90,7 @@ npm run start
 
 ```
 cd $(go env GOPATH)/src/github.com/PursuanceProject/pursuance/db
+createdb
 sudo -u $USER bash init_sql.sh
 wget https://github.com/begriffs/postgrest/releases/download/v0.4.3.0/postgrest-v0.4.3.0-osx.tar.xz
 tar xvf postgrest-v0.4.3.0-osx.tar.xz
