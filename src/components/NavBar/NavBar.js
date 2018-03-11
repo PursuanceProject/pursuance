@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Navbar, NavItem, Nav, OverlayTrigger, Tooltip } from 'react-bootstrap';
+import { Nav, Navbar, NavDropdown, NavItem, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import FaBell from 'react-icons/lib/fa/bell';
+import { connect } from 'react-redux';
 import SignUp from './SignUp/SignUp';
 import LogIn from './LogIn/LogIn';
 import NotificationsModal from './NotificationsModal/NotificationsModal';
 import UserSettingsPopover from './UserSettingsPopover';
+import jumpToPursuanceOptions from './JumpToPursuance/JumpToPursuance';
+import { getPursuances } from '../../actions';
 import './NavBar.css';
 
 class NavBar extends Component {
@@ -15,6 +18,18 @@ class NavBar extends Component {
       <strong>Notifications</strong>
     </Tooltip>
   );
+
+  showCurrentPursuance = () => {
+    if (!this.props.currentPursuanceId) {
+      return "Jump to a Pursuance";
+    } else {
+      return this.props.currentPursuanceId;
+    }
+  }
+
+  handleJumpToPursuance = (e) => {
+    window.location.replace(`/pursuance/${e}`);
+  }
 
   render() {
     const { authenticated, username, contributionPoints } = this.props;
@@ -33,6 +48,17 @@ class NavBar extends Component {
             </li>
           </ul>
           <Nav pullRight>
+            {/* empty state if not on a pursuance page */}
+            {authenticated && (
+              <NavDropdown
+              id="jump-to-pursuance"
+              title={this.showCurrentPursuance()}
+              onSelect={this.handleJumpToPursuance}
+              >
+                  {jumpToPursuanceOptions(this.props.pursuances)}
+                </NavDropdown>
+
+              )}
             {
               !authenticated &&
               (
@@ -85,4 +111,7 @@ class NavBar extends Component {
   }
 }
 
-export default NavBar;
+export default connect(({ pursuances, currentPursuanceId }) =>
+  ({ pursuances, currentPursuanceId }), {
+    getPursuances
+})(NavBar);

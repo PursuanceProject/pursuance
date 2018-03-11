@@ -95,34 +95,13 @@ class TaskHierarchy extends Component {
     )
   }
 
-  produceOptions = () => {
-    const pursuanceArr = Object.values(this.props.pursuances);
-    pursuanceArr.sort((p1, p2) => {
-      return p1.name.localeCompare(p2.name);
-    });
-    return pursuanceArr.map((pursuance) => (
-      <option key={pursuance.id} value={pursuance.id}>{pursuance.name}</option>
-    ));
-  }
-
-  handleChange = (event) => {
-    window.location.href=event.target.value;
-  }
-
   render() {
-    const { pursuances, currentPursuanceId } = this.props;
+    const { currentPursuanceId } = this.props;
     return (
       <div className="content">
         <div id="task-hierarchy">
           <div id="task-hierarchy-title">
-            <h2 id="tasks-title">Tasks for:&nbsp;</h2>
-            <h2 id="pursuance-title">
-              <form className="custom-dropdown big">
-                <select value={this.props.currentPursuanceId} onChange={this.handleChange}>
-                {this.produceOptions()}
-                </select>
-              </form>
-            </h2>
+            <h2 id="tasks-title">{currentPursuanceId}</h2>
           </div>
           <div id="task-labels">
             <div>
