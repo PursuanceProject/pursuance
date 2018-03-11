@@ -20,7 +20,7 @@ class NavBar extends Component {
   );
 
   showCurrentPursuance = (pursuances) => {
-    let id = parseInt(window.location.pathname.slice(-1));
+    let id = parseInt(window.location.pathname.slice(-1), 10);
     let rawPursuance = pursuances[id];
     if (rawPursuance !== undefined) {
       return rawPursuance.name;
