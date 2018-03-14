@@ -9,3 +9,7 @@
   word-spacing: -0.08em;
   white-space: nowrap;
 }
+
+.task-status-done {
+  color: #2bde2b;
+}

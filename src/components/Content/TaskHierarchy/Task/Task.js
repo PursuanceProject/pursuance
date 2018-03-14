@@ -93,14 +93,19 @@ class RawTask extends Component {
   }
 
   showTitle(task) {
+    const statusLower = (task.status || "New").toLowerCase();
+    const statusClassName = "task-title-status-" + statusLower;
+
     if (task.parent_task_gid) {
       return (
-        <div>{task.title}</div>
+        <div className={statusClassName}>{task.title}</div>
       );
     }
     // Bold top-level tasks
     return (
-      <strong>{task.title}</strong>
+      <div className={statusClassName}>
+        <strong>{task.title}</strong>
+      </div>
     );
   }
 
