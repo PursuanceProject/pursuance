@@ -29,7 +29,7 @@
   display: flex;
   flex: 1;
   justify-content: flex-start;
-  min-width: 130px;
+  min-width: 140px;
   max-width: 9vw;
 }
 
