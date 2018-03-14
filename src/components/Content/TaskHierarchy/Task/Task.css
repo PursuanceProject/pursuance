@@ -106,6 +106,10 @@
 }
 
 .task-assigned-to {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
   width: 190px;
   min-width: 190px;
   padding: 0 4px;
@@ -117,6 +121,10 @@
 }
 
 .task-due-date {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
   width: 106px;
   min-width: 106px;
   padding: 0 4px;
