@@ -70,6 +70,9 @@
 .task-title {
   max-width: 47vw;
   padding-left: 10px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .task-title-status-done {
