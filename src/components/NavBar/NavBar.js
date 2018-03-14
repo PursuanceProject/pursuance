@@ -32,10 +32,7 @@ class NavBar extends Component {
 
   handleJumpToPursuance = (e) => {
     const { history } = this.props; 
-   history.push({ 
-     pathname: `/pursuance/${e}` 
-   }); 
-    //window.location.replace(`/pursuance/${e}`);
+    window.location.replace(`/pursuance/${e}`);
   }
 
   render() {
