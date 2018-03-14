@@ -108,7 +108,7 @@ class TaskHierarchy extends Component {
       <div className="content">
         <div id="task-hierarchy">
           <div id="task-hierarchy-title">
-            <h2 id="tasks-title">{ this.getPursuanceName(pursuances, currentPursuanceId) }</h2>
+            <h2 id="pursuance-title">{ this.getPursuanceName(pursuances, currentPursuanceId) }</h2>
           </div>
           <div id="task-labels">
             <div>

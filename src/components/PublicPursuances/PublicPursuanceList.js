@@ -1,5 +1,3 @@
-// dumb component
-
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -17,10 +15,10 @@ class PublicPursuanceList extends Component {
     return p1.created_parsed - p2.created_parsed;
   }
   orderByNameAsc = (p1, p2) => {
-    return p1.name.localeCompare(p2.name);
+    return p1.name..toLowerCase().localeCompare(p2.name.toLowerCase());
   }
   orderByNameDesc = (p1, p2) => {
-    return p2.name.localeCompare(p1.name);
+    return p2.name.toLowerCase().localeCompare(p1.name.toLowerCase());
   }
   orderBy = () => {
     switch(this.props.publicOrder) {
