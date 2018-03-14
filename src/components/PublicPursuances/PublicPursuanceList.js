@@ -15,7 +15,7 @@ class PublicPursuanceList extends Component {
     return p1.created_parsed - p2.created_parsed;
   }
   orderByNameAsc = (p1, p2) => {
-    return p1.name..toLowerCase().localeCompare(p2.name.toLowerCase());
+    return p1.name.toLowerCase().localeCompare(p2.name.toLowerCase());
   }
   orderByNameDesc = (p1, p2) => {
     return p2.name.toLowerCase().localeCompare(p1.name.toLowerCase());
