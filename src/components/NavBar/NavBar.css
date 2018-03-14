@@ -12,7 +12,7 @@
 .navbar .container {
   align-items: center;
   width: 100%;
-  padding: 0 80px;
+  padding: 0 36px 0 132px;
 }
 
 
@@ -30,7 +30,7 @@
 }
 
 .navbar-header {
-  height: 100%
+  height: 100%;
 }
 
 .navbar-brand {
