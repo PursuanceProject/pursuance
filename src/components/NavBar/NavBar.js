@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { Nav, Navbar, NavDropdown, NavItem, OverlayTrigger, Tooltip } from 'react-bootstrap';
+import { Button, Nav, Navbar, NavDropdown, NavItem, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import FaBell from 'react-icons/lib/fa/bell';
 import Info from 'react-icons/lib/fa/info-circle';
 import SignUp from './SignUp/SignUp';
@@ -31,7 +31,11 @@ class NavBar extends Component {
   }
 
   handleJumpToPursuance = (e) => {
-    window.location.replace(`/pursuance/${e}`);
+    const { history } = this.props; 
+   history.push({ 
+     pathname: `/pursuance/${e}` 
+   }); 
+    //window.location.replace(`/pursuance/${e}`);
   }
 
   render() {

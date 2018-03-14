@@ -1,5 +1,3 @@
-// smart component
-
 import React, { Component } from 'react';
 import PublicPursuanceList from './PublicPursuanceList';
 import { setPublicOrder, getPublicPursuances } from '../../actions';
