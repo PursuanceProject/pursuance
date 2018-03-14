@@ -3,11 +3,25 @@
   flex: 1;
   align-items: center;
   justify-content: flex-start;
-  min-width: 140px;
-  max-width: 9vw;
   font-size: 0.85em;
   word-spacing: -0.08em;
-  white-space: nowrap;
+}
+
+/* Desktop */
+@media (min-width: 1367px) {
+  .task-status-ctn {
+    min-width: 130px;
+    max-width: 9vw;
+    white-space: nowrap;
+  }
+}
+
+/* Mobile */
+@media (max-width: 1366px) {
+  .task-status-ctn {
+    min-width: 90px;
+    max-width: 7vw;
+  }
 }
 
 .task-status-done {
