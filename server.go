@@ -3,7 +3,7 @@ package main
 import (
 	"crypto/tls"
 	"fmt"
-	"html/template"
+	"io/ioutil"
 	"net/http"
 	"net/http/httputil"
 	"net/url"
@@ -32,10 +32,6 @@ const (
 	MINILOCK_ID_KEY = "minilock_id"
 
 	POSTGREST_BASE_URL = "http://localhost:3000"
-)
-
-var (
-	templates = template.Must(template.ParseFiles("build/index.html"))
 )
 
 func NewRouter(m *miniware.Mapper) *mux.Router {
@@ -92,9 +88,14 @@ func ProductionServer(srv *http.Server, httpsAddr string, domain string, manager
 }
 
 func GetIndex(w http.ResponseWriter, req *http.Request) {
-	// Passing req into index.html is never cached (so it can be
-	// changed without restarting this Go server)
-	_ = templates.ExecuteTemplate(w, "index.html", req)
+	contents, err := ioutil.ReadFile("build/index.html")
+	if err != nil {
+		log.Errorf("Error serving index.html: %v\n", err)
+		w.WriteHeader(http.StatusInternalServerError)
+		w.Write([]byte("Error: couldn't serve you index.html!"))
+		return
+	}
+	w.Write(contents)
 }
 
 func Login(m *miniware.Mapper) func(w http.ResponseWriter, req *http.Request) {
