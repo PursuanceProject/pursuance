@@ -9,7 +9,7 @@
 
 .leapchat-frame {
   display: flex;
-  flex: 66;
+  flex: 62;
   height: calc(100vh - 60px);
   border: 1px solid #6d6d6d;
   border-right: none;
@@ -19,7 +19,7 @@
 .task-details-ctn {
   display: flex;
   flex-direction: column;
-  flex: 34;
+  flex: 38;
   border: 1px solid #6d6d6d;
   border-radius: 0 4px 4px 0;
   color: #d6d6d6;
@@ -29,28 +29,16 @@
 .task-assignment-ctn {
   display: flex;
   justify-content: center;
-  margin: 0 16px;
+  margin: 4px 16px;
   color: #d6d6d6;
-}
-
-/* Desktop */
-@media (min-width: 1367px) {
-  .task-assignment-ctn {
-    height: 40px;
-  }
-}
-
-/* Mobile */
-@media (max-width: 1366px) {
-  .task-assignment-ctn {
-    height: 72px;
-  }
+  max-height: 72px;
+  overflow: hidden;
 }
 
 .assigned-to-ctn {
   flex: 1;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   margin: 0 12px;
 }
