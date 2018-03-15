@@ -75,12 +75,12 @@
   word-break: break-word;
 }
 
-.task-title-status-done {
+.task-title-status-Done {
   color: #999;
   text-decoration: line-through;
 }
 
-.task-title-status-done:hover {
+.task-title-status-Done:hover {
   color: #d6d6d6;
   text-decoration: none;
 }
