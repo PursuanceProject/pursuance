@@ -93,8 +93,8 @@ class RawTask extends Component {
   }
 
   getStatusClassName = (task) => {
-    const statusLower = (task.status || "New").toLowerCase();
-    return ("task-title-status-" + statusLower);
+    const status = task.status || "New";
+    return ("task-title-status-" + status);
   }
 
   showTitle = (task) => {

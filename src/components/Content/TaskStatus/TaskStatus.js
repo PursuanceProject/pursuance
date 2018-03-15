@@ -7,7 +7,7 @@ class TaskStatus extends Component {
     const status = this.props.status || "New";
 
     return (
-      <div className={"task-status-ctn task-status-"+status.toLowerCase()}>
+      <div className={"task-status-ctn task-status-" + status}>
         <span>
           {status.replace(/([a-z])([A-Z])/g, "$1 $2")}
         </span>
