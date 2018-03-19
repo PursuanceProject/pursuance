@@ -91,6 +91,7 @@
   margin-left: auto;
   width: 80px;
   min-width: 80px;
+  align-items: center;
 }
 
 .icon-ctn {
