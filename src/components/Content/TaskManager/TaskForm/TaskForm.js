@@ -185,20 +185,6 @@ class TaskForm extends Component {
                 editMode={false}
               />
             }
-            {/* <div className="at-symbol">
-              <span>@</span>
-            </div>
-            <input
-              className="form-control assign-to"
-              type="text"
-              placeholder="Assigned To"
-              value={assigned_to || ''}
-              name={'assigned_to'}
-              onChange={this.onChange}
-              onFocus={this.onFocus}
-              onBlur={this.onBlur}
-              onKeyDown={this.onAssignerKeyDown}
-            /> */}
             <AssignerInput
                placeholder={"Assigned To"}
                formId={this.id}

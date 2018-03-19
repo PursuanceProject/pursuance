@@ -8,6 +8,7 @@
   color: #d6d6d6;
   display: flex;
   justify-content: center;
+  min-height: 40px;
 }
 
 .toggle-ctn {
@@ -75,18 +76,21 @@
 
 .icon-ctn {
   padding: 0 8px;
+  background-color: #288bd6;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, .5);
+  margin-right: 10px;
+  max-height: 34px;
 }
 
 .icon-ctn svg {
-  color: #288bd6;
-}
-
-.icon-ctn:hover svg {
-  color: #23527c;
+  color: #eee;
 }
 
 .icon-ctn:hover {
   cursor: pointer;
+  color: #eaeaea;
+  border-color: #fff;
 }
 
 .task-assigned-to {
@@ -108,4 +112,22 @@
 .edit-assignee-button {
   border-radius: 5px;
   background-color: #288bd6;
+}
+
+.edit-assignee-button:hover {
+  border-color: #fff;
+}
+
+.assignee-button {
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 90%;
+  border-radius: 5px;
+  background-color: #aa00ff;
+}
+
+.assignee-button:hover {
+  border-color: #fff;
 }

@@ -20,7 +20,7 @@ class Task extends Component {
     this.state = {
       showChildren: true,
       showTaskForm: false,
-      showEditAssignee: false,
+      showAssigneeInput: false,
       assignedTo: props.taskData.assigned_to_pursuance_id || props.taskData.assigned_to
     };
   }
@@ -49,7 +49,7 @@ class Task extends Component {
   }
 
   mapSubTasks = (task) => {
-    const { pursuances, autoComplete, taskData, taskMap } = this.props;
+    const { pursuances, autoComplete, taskMap } = this.props;
     return task.subtask_gids.map((gid) => {
       return <Task
         key={gid}
@@ -80,15 +80,15 @@ class Task extends Component {
     }
   }
 
-  showEditAssignee = () => {
+  showAssigneeInput = () => {
     this.setState({
-      showEditAssignee: true
+      showAssigneeInput: true
     });
   }
 
   hideEditAssignee = () => {
     this.setState({
-      showEditAssignee: false
+      showAssigneeInput: false
     });
   }
 
@@ -99,11 +99,12 @@ class Task extends Component {
     startSuggestions(e.target.value, filterSuggestion, suggestions, taskData.gid);
   }
 
+
   render() {
     const { pursuances, taskData, autoComplete } = this.props;
     const task = taskData;
     const assignedPursuanceId = task.assigned_to_pursuance_id;
-    const { showChildren, showTaskForm, assignedTo, showEditAssignee } = this.state;
+    const { showChildren, showTaskForm, assignedTo, showAssigneeInput } = this.state;
     let placeholder = assignedTo;
     if (Number.isInteger(assignedTo)) {
       placeholder = pursuances[assignedTo].suggestionName;
@@ -128,7 +129,7 @@ class Task extends Component {
             </div>
             <div className="task-assigned-to">
                 {
-                  showEditAssignee &&
+                  showAssigneeInput &&
                    <div className="assign-autocomplete-ctn">
                      {
                        autoComplete.suggestions
@@ -145,18 +146,19 @@ class Task extends Component {
                       formId={task.gid}
                       editMode={true}
                       hideEditAssignee={this.hideEditAssignee}
+                      placeholder={placeholder}
                     />
                   </div>
                   ||
                   (assignedPursuanceId && pursuances[assignedPursuanceId].suggestionName)
                     &&
-                    <button onClick={this.showEditAssignee}>{pursuances[assignedPursuanceId].suggestionName}</button>
+                    <button onClick={this.showAssigneeInput} className="assignee-button">{pursuances[assignedPursuanceId].suggestionName}</button>
                   ||
                   (task.assigned_to && '@' + task.assigned_to)
                     &&
-                    <button onClick={this.showEditAssignee}>{'@' + task.assigned_to}</button>
+                    <button onClick={this.showAssigneeInput} className="assignee-button">{'@' + task.assigned_to}</button>
                   ||
-                  <button className="edit-assignee-button" onClick={this.showEditAssignee}>Assign</button>
+                  <button className="edit-assignee-button" onClick={this.showAssigneeInput}>Assign</button>
                 }
             </div>
             <div className="task-due-date">

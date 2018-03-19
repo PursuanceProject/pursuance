@@ -26,7 +26,6 @@ const AssignerSuggestions = (props) => {
             key : i,
             onMouseDown : () =>  {
               if (editMode) {
-                console.log(suggestionForm, 'gid');
                 const patchedTask = {
                   gid: suggestionForm
                 };
@@ -35,7 +34,6 @@ const AssignerSuggestions = (props) => {
                   patchedTask.assigned_to = null;
                 } else {
                   patchedTask.assigned_to = suggestionName;
-                  patchedTask.assigned_to_pursuance_id = null;
                 }
                 patchTask(patchedTask);
                 hideEditAssignee();
