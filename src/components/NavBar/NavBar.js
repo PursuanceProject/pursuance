@@ -1,23 +1,26 @@
 import React, { Component } from 'react';
-import { Navbar, NavItem, Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { Navbar, NavItem, Nav, OverlayTrigger, Tooltip } from 'react-bootstrap';
+import FaBell from 'react-icons/lib/fa/bell';
 import SignUp from './SignUp/SignUp';
 import LogIn from './LogIn/LogIn';
-import NotificationsPopover from './NotificationsPopover';
+import NotificationsModal from './NotificationsModal/NotificationsModal';
 import UserSettingsPopover from './UserSettingsPopover';
-import FaPlusCircle from 'react-icons/lib/fa/plus-circle';
 import './NavBar.css';
 
 class NavBar extends Component {
+
+  getTooltip = () => (
+    <Tooltip id="tooltip-bell">
+      <strong>Notifications</strong>
+    </Tooltip>
+  );
 
   render() {
     const { authenticated, username, contributionPoints } = this.props;
     return (
       <Navbar collapseOnSelect>
         <Navbar.Header>
-          <Link to="/pursuance/create">
-          <FaPlusCircle className={"add-icon navbar-nav"} size={26}/>
-          </Link>
           <Navbar.Brand>
             <Link to="/">Pursuance</Link>
           </Navbar.Brand>
@@ -38,9 +41,7 @@ class NavBar extends Component {
                 </NavItem>
               )
             }
-            {
-              !authenticated && <SignUp />
-            }
+            {!authenticated && <SignUp />}
             {
               !authenticated &&
               (
@@ -49,19 +50,25 @@ class NavBar extends Component {
                 </NavItem>
               )
             }
-            {
-              !authenticated && <LogIn />
-            }
+            {!authenticated && <LogIn />}
             {
               authenticated &&
               (
-                <NavItem>
-                  <NotificationsPopover
-                    onIncreaseContributionAmount={this.props.onIncreaseContributionAmount}
-                    onRemoveNotification={this.props.onRemoveNotification}
-                  />
-                </NavItem>
+                <OverlayTrigger
+                  placement="bottom"
+                  overlay={this.getTooltip()}>
+                  <NavItem data-toggle="modal"
+                    data-target="#notifications-modal">
+                    <FaBell size={24} />
+                  </NavItem>
+                </OverlayTrigger>
               )
+            }
+            {
+              authenticated &&
+                <NotificationsModal
+                  onIncreaseContributionAmount={this.props.onIncreaseContributionAmount}
+                  onRemoveNotification={this.props.onRemoveNotification} />
             }
             {
               authenticated &&

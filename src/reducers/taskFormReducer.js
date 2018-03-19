@@ -22,7 +22,7 @@ export default function(state = {}, action) {
       const { formId, newParentGid } = action;
       return Object.assign({}, state, {
         [formId]: Object.assign(
-          {},
+          state[formId] || {},
           {
             parent_task_gid: newParentGid
           }
@@ -38,6 +38,24 @@ export default function(state = {}, action) {
           assigned_to: action.suggestion
         })
       });
+
+    // Also handled in ./tasksReducer.js
+    case 'TASK_FORM_ADD_TO_HIERARCHY': {
+      const { parentTaskGid, taskFormId } = action;
+      return Object.assign({}, state, {
+        [taskFormId]: Object.assign({}, state[taskFormId] || {}, {
+          parent_task_gid: parentTaskGid
+        })
+      });
+    }
+
+    // Also handled in ./tasksReducer.js
+    case 'TASK_FORM_REMOVE_FROM_HIERARCHY': {
+      const { taskFormId } = action;
+      return Object.assign({}, state, {
+        [taskFormId]: {}
+      });
+    }
 
     default:
       return state;

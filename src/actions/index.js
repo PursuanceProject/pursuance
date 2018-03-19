@@ -1,5 +1,9 @@
 import { getUsersReq } from '../api/users';
-import { getPursuancesReq, postPursuanceReq } from '../api/pursuances';
+import {
+  getPursuancesReq,
+  getPublicPursuancesReq,
+  postPursuanceReq
+} from '../api/pursuances';
 import { postTaskReq, getTasksReq, patchTaskReq } from '../api/tasks';
 
 export const updateFormField = (formId, fieldId, value) => ({
@@ -14,17 +18,28 @@ export const clearTaskFormFields = formId => ({
   formId
 });
 
-export const setTaskFormParentGid = (formId, newParentGid) => ({
+export const setTaskFormParentGid = (formId, newParentGid, oldParentGid) => ({
   type: 'TASK_FORM_SET_PARENT_GID',
   formId,
-  newParentGid
+  newParentGid,
+  oldParentGid
 });
 
 export const getUsers = () => ({ type: 'GET_USERS', payload: getUsersReq() });
 
+export const getPursuancesByIds = (pursuanceIds) => ({
+  type: 'GET_PURSUANCES_BY_IDS',
+  payload: getPursuancesReq(pursuanceIds)
+});
+
 export const getPursuances = () => ({
   type: 'GET_PURSUANCES',
   payload: getPursuancesReq()
+});
+
+export const getPublicPursuances = () => ({
+  type: 'GET_PUBLIC_PURSUANCES',
+  payload: getPublicPursuancesReq()
 });
 
 export const getTasks = pursuanceId => ({
@@ -74,6 +89,18 @@ export const addPostedRootTaskToHierarchy = task => ({
 export const addPostedSubTaskToHierarchy = task => ({
   type: 'ADD_POSTED_SUB_TASK',
   task
+});
+
+export const addTaskFormToHierarchy = (parentTaskGid, taskFormId) => ({
+  type: 'TASK_FORM_ADD_TO_HIERARCHY',
+  parentTaskGid,
+  taskFormId
+});
+
+export const removeTaskFormFromHierarchy = (parentTaskGid, taskFormId) => ({
+  type: 'TASK_FORM_REMOVE_FROM_HIERARCHY',
+  parentTaskGid,
+  taskFormId
 });
 
 export const setMicroTaskNotification = ({ id, content, userAction }) => ({
@@ -145,4 +172,8 @@ export const clearPursuanceFormFields = () => ({
 export const patchTask = task => ({
   type: 'PATCH_TASK',
   payload: patchTaskReq(task)
+});
+
+export const removeSuccessToast = () => ({
+  type: 'REMOVE_SUCCESS_TOAST'
 });

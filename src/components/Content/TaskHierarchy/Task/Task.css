@@ -22,7 +22,7 @@
   width: 26px;
   height: 26px;
   border: 2px solid black;
-  border-radius: 6px;
+  border-radius: 5px;
 }
 
 .toggle-icon-ctn-disable {
@@ -30,7 +30,7 @@
   width: 26px;
   height: 26px;
   border: 2px solid black;
-  border-radius: 6px;
+  border-radius: 5px;
 }
 
 .toggle-icon-ctn:hover {
@@ -57,21 +57,40 @@
 .task-row-ctn {
   flex: 1;
   display: flex;
-  border: 1px solid #666666;
+  background-color: #2c2c2c;
+  border: 1px solid #444;
   border-radius: 5px;
-  padding: 2px 2px 1px 2px;
+  padding: 2px 2px 1px 0px;
+  margin: 0px 0px 3px 0px;
+}
+
+.task-row-ctn:hover {
+  border: 1px solid #d6d6d6;
 }
 
 .task-title {
-  padding-left: 10px;
+  max-width: 46vw;
+  padding: 0 10px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.task-title-status-Done {
+  color: #999;
+  text-decoration: line-through;
+}
+
+.task-title-status-Done:hover {
+  color: #d6d6d6;
+  text-decoration: none;
 }
 
 .task-icons-ctn {
   display: flex;
-  float: right;
   margin-left: auto;
   width: 80px;
-  margin-right: 30px;
+  min-width: 80px;
 }
 
 .icon-ctn {
@@ -94,7 +113,12 @@
 }
 
 .task-assigned-to {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
   width: 190px;
+  min-width: 190px;
   padding: 0 4px;
 }
 
@@ -104,9 +128,13 @@
 }
 
 .task-due-date {
-  width: 96px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  width: 106px;
+  min-width: 106px;
   padding: 0 4px;
-  text-align: center;
 }
 
 .edit-assignee-button {

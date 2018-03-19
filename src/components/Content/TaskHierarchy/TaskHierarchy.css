@@ -5,12 +5,56 @@
 #task-hierarchy-title {
   text-align: center;
   padding-bottom: 18px;
+  margin: 8px 0;
 }
 
 #task-hierarchy-title h2 {
   display: inline-block;
   color: #fcfcfc;
   margin: 0;
+}
+
+#task-labels {
+  display: flex;
+  padding: 0 3px 3px 40px;
+  color: #eaeaea;
+  font-size: 1.36em;
+  text-decoration: underline;
+}
+
+.label-task-icons {
+  margin-left: auto;
+}
+
+.label-status {
+  display: flex;
+  flex: 1;
+  justify-content: flex-start;
+  max-width: 8vw;
+}
+
+/* Desktop */
+@media (min-width: 1367px) {
+  .label-status {
+    min-width: 130px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 1366px) {
+  .label-status {
+    min-width: 110px;
+  }
+}
+
+.label-assigned-to {
+  width: 190px;
+  padding: 0 4px;
+}
+
+.label-due-date {
+  width: 106px;
+  padding: 0 4px;
 }
 
 ul {

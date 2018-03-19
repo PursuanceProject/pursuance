@@ -7,7 +7,7 @@ class TaskManager extends Component {
 
   render () {
     return (
-      <div className="content-ctn">
+      <div className="content">
         <TaskForm />
       </div>
     );

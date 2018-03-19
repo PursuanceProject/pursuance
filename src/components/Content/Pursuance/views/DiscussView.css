@@ -2,38 +2,45 @@
   display: flex;
   width: 100%;
   background-color: #1c1c1c;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .leapchat-frame {
+  display: flex;
+  flex: 62;
   height: calc(100vh - 60px);
-  padding-bottom: 50px;
-  width: 100%;
   border: 1px solid #6d6d6d;
   border-right: none;
   border-bottom-left-radius: 4px;
 }
 
 .task-details-ctn {
-  min-width: 320px;
+  display: flex;
+  flex-direction: column;
+  flex: 38;
   border: 1px solid #6d6d6d;
   border-radius: 0 4px 4px 0;
   color: #d6d6d6;
-  font-size: 1.1em;
+  font-size: 1.2em;
 }
 
 .task-assignment-ctn {
   display: flex;
-  justify-content: space-between;
-  height: 80px;
-  border-bottom: 1px solid #6d6d6d;
+  justify-content: center;
+  margin: 4px 16px;
   color: #d6d6d6;
+  max-height: 72px;
+  overflow: hidden;
 }
 
 .assigned-to-ctn {
-  flex: 2;
+  flex: 1;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin: 0 12px;
 }
 
 .assigned-to-ctn span:hover {
@@ -42,41 +49,76 @@
 }
 
 .due-date-ctn {
-  flex: 2;
+  flex: 1;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  margin: 0 12px;
 }
 
 .icon-ctn {
-  flex: 2;
+  flex: 1;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  padding: 0 0;
+  margin: 0 -6px 0 0;
   height: 100%;
 }
 
 .pursuance-discuss-ctn {
-  padding: 16px;
+  padding: 0 16px;
 }
 
 .pursuance-title-ctn {
-  padding: 10px 0;
+  padding: 4px 0 0 0;
 }
 
 
 .discuss-task-title-ctn {
   display: flex;
   align-items: center;
-  padding-left: 12px;
+  border-top: 1px solid #6d6d6d;
+  padding-top: 12px;
 }
 
 .discuss-task-title {
-  padding-left: 8px;
-  font-size: 1.3em;
+  font-size: 1.5em;
   color: #fcfcfc;
 }
 
 .task-deliverables-ctn {
-  padding-top: 16px;
+  border-top: 1px solid #6d6d6d;
+  padding-top: 8px;
+  margin-top: 16px;
+  margin-bottom: 32px;
+  min-height: 64px;
+}
+
+.subtasks-ctn {
+  border-top: 1px solid #6d6d6d;
+  padding-top: 8px;
+}
+
+.subtasks-list {
+  list-style: none;
+  padding-left: 0
+}
+
+.subtask-item {
+  margin-left: 0;
+}
+
+.fa-circle-o {
+  margin-bottom: 2px;
+  margin-right: 3px;
+}
+
+.no-task {
+  height: calc(100vh - 110px);
+  margin-top: 60px;
+  text-align: center;
+  color: #fff;
+  width: 100%;
+  font-size: 36px;
 }

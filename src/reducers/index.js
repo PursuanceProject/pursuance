@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 import taskForm from './taskFormReducer';
 import users from './usersReducer';
 import pursuances from './pursuancesReducer';
+import publicPursuances from './publicPursuancesReducer';
 import currentPursuanceId from './currentPursuanceIdReducer';
 import tasks from './tasksReducer';
 import notificationsReducer from './notificationsReducer';
@@ -9,6 +10,7 @@ import userReducer from './userReducer';
 import showSettingsInfoModal from './settingsInfoReducer';
 import createPursuance from './createPursuanceReducer';
 import autoComplete from './autoCompleteReducer';
+import showSuccessToast from './showSuccessToastReducer';
 
 const rootReducer = combineReducers({
   notifications: notificationsReducer,
@@ -16,11 +18,13 @@ const rootReducer = combineReducers({
   taskForm,
   users,
   pursuances,
+  publicPursuances,
   currentPursuanceId,
   tasks,
   showSettingsInfoModal,
   createPursuance,
-  autoComplete
+  autoComplete,
+  showSuccessToast
 });
 
 export default rootReducer;

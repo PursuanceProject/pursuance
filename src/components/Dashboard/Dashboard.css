@@ -27,10 +27,22 @@
 
 .dash-box {
   padding: 12px;
-  border: 2px solid grey;
+  border: 2px solid #808080;
   border-radius: 6px;
+}
+
+.dash-box-header {
+  position: relative;
 }
 
 .dash-box-title {
   color: #cecece;
+  display: inline;
+}
+
+.add-icon {
+  color: rgb(255, 255, 255);
+  position: absolute;
+  margin-left: 15px;
+  margin-top: 5px;
 }

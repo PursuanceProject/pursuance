@@ -2,6 +2,21 @@
   position: relative;
 }
 
+.overflow-x-ctn {
+  overflow-x: auto;
+}
+
 .overflow-y-ctn {
   overflow-y: auto;
+}
+
+.content-ctn {
+  background-color: #1c1c1c;
+  min-height: calc(100vh - 110px);
+  margin-top: 60px;
+  width: 100%;
+}
+
+.modal-backdrop {
+  position: relative;
 }

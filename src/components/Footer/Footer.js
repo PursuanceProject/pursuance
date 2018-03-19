@@ -3,7 +3,7 @@ import './Footer.css';
 
 const Footer = () => (
   <footer>
-    Copyright © 2017 Pursuance
+    Copyright © 2018 Pursuance
   </footer>
 );
 

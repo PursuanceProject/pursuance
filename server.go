@@ -3,7 +3,7 @@ package main
 import (
 	"crypto/tls"
 	"fmt"
-	"html/template"
+	"io/ioutil"
 	"net/http"
 	"net/http/httputil"
 	"net/url"
@@ -32,10 +32,6 @@ const (
 	MINILOCK_ID_KEY = "minilock_id"
 
 	POSTGREST_BASE_URL = "http://localhost:3000"
-)
-
-var (
-	templates = template.Must(template.ParseFiles("build/index.html"))
 )
 
 func NewRouter(m *miniware.Mapper) *mux.Router {
@@ -78,20 +74,28 @@ func NewServer(m *miniware.Mapper, httpAddr string) *http.Server {
 	}
 }
 
-func ProductionServer(srv *http.Server, httpsAddr string, domain string) {
+func ProductionServer(srv *http.Server, httpsAddr string, domain string, manager *autocert.Manager) {
 	gotWarrant := false
 	middleware := alice.New(canary.GetHandler(&gotWarrant),
-		csp.GetHandler(domain), hsts.PreloadHandler, frame.DenyHandler,
-		content.GetHandler, xss.GetHandler, referrer.NoHandler)
+		csp.GetCustomHandlerStyleUnsafeInline(domain, domain),
+		hsts.PreloadHandler, frame.DenyHandler, content.GetHandler,
+		xss.GetHandler, referrer.NoHandler)
 
-	srv.Handler = middleware.Then(srv.Handler)
+	srv.Handler = middleware.Then(manager.HTTPHandler(srv.Handler))
 
 	srv.Addr = httpsAddr
-	srv.TLSConfig = getTLSConfig(domain)
+	srv.TLSConfig = getTLSConfig(domain, manager)
 }
 
 func GetIndex(w http.ResponseWriter, req *http.Request) {
-	_ = templates.ExecuteTemplate(w, "index.html", nil)
+	contents, err := ioutil.ReadFile("build/index.html")
+	if err != nil {
+		log.Errorf("Error serving index.html: %v\n", err)
+		w.WriteHeader(http.StatusInternalServerError)
+		w.Write([]byte("Error: couldn't serve you index.html!"))
+		return
+	}
+	w.Write(contents)
 }
 
 func Login(m *miniware.Mapper) func(w http.ResponseWriter, req *http.Request) {
@@ -147,7 +151,7 @@ func parseMinilockID(req *http.Request) (string, *taber.Keys, error) {
 	return mID, keypair, nil
 }
 
-func redirectToHTTPS(httpAddr, httpsPort string) {
+func redirectToHTTPS(httpAddr, httpsPort string, manager *autocert.Manager) {
 	srv := &http.Server{
 		Addr:         httpAddr,
 		ReadTimeout:  5 * time.Second,
@@ -163,13 +167,15 @@ func redirectToHTTPS(httpAddr, httpsPort string) {
 	log.Fatal(srv.ListenAndServe())
 }
 
-func getTLSConfig(domain string) *tls.Config {
-	m := autocert.Manager{
+func getAutocertManager(domain string) *autocert.Manager {
+	return &autocert.Manager{
 		Prompt:     autocert.AcceptTOS,
 		HostPolicy: autocert.HostWhitelist(domain),
 		Cache:      autocert.DirCache("./" + domain),
 	}
+}
 
+func getTLSConfig(domain string, manager *autocert.Manager) *tls.Config {
 	return &tls.Config{
 		PreferServerCipherSuites: true,
 		CurvePreferences: []tls.CurveID{
@@ -185,6 +191,6 @@ func getTLSConfig(domain string) *tls.Config {
 			tls.TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,
 			tls.TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,
 		},
-		GetCertificate: m.GetCertificate,
+		GetCertificate: manager.GetCertificate,
 	}
 }
