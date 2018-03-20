@@ -5,7 +5,7 @@
 }
 
 .task-ctn {
-  color: #d6d6d6;
+  color: #e0e0e0;
   display: flex;
   justify-content: center;
   min-height: 40px;
@@ -65,7 +65,7 @@
 }
 
 .task-row-ctn:hover {
-  border: 1px solid #d6d6d6;
+  border: 1px solid #e0e0e0;
 }
 
 .task-title {
@@ -82,13 +82,14 @@
 }
 
 .task-title-status-Done:hover {
-  color: #d6d6d6;
+  color: #e0e0e0;
   text-decoration: none;
 }
 
 .task-icons-ctn {
   display: flex;
   margin-left: auto;
+  margin-right: 8px;
   width: 80px;
   min-width: 80px;
   align-items: center;
@@ -152,7 +153,7 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 90%;
+  max-width: 95%;
   border-radius: 5px;
   background-color: #aa00ff;
 }

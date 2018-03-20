@@ -37,8 +37,8 @@ const AssignerInput = (props) => {
 
   const isFromCurrentPursuance = formId.startsWith(currentPursuanceId + '_');
 
-  //If task was assigned to currently viewed pursuance, then we can't reassign to
-  //another pursuance
+  // If task was assigned to currently viewed pursuance, then we can't reassign
+  // to another pursuance
   const onlyShowUsers = () => !isFromCurrentPursuance && editMode;
 
   const onChange = (e) => {

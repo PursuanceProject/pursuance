@@ -55,6 +55,8 @@
 
 .react-datepicker-wrapper {
   height: 34px;
+  margin-top: 1px;
+  margin-bottom: -1px;
 }
 
 .react-datepicker__input-container {
@@ -64,7 +66,6 @@
 .react-datepicker__input-container input {
   height: 100%;
   padding: 6px 12px;
-  border: 1px solid #a5a5a5;
 }
 
 .save-task-btn {
@@ -72,6 +73,8 @@
   color: #d6d6d6;
   border-radius: 0 4px 4px 0;
   border-color: #a5a5a5;
+  margin-top: 1px;
+  margin-bottom: -1px;
 }
 
 .save-task-btn:hover {
