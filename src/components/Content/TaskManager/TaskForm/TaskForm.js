@@ -158,7 +158,6 @@ class TaskForm extends Component {
   render() {
     const { taskForm, autoComplete } = this.props;
     const { title, assigned_to, due_date_raw } = taskForm[this.id] || {};
-    console.log('suggestions', autoComplete)
     return (
       <div className={this.getClassName()}>
         <form className="task-form" name={this.id} autoComplete="off">
