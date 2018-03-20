@@ -57,10 +57,10 @@ export default function(state = initialState, action) {
 
     case 'PATCH_TASK_FULFILLED':
       const patchedTask = action.payload;
-      patchedTask.subtask_gids = state.taskMap[action.payload.gid];
+      patchedTask.subtask_gids = state.taskMap[patchedTask.gid].subtask_gids || [];
       return Object.assign({}, state, {
         taskMap: Object.assign({}, state.taskMap, {
-          [action.payload.gid]: patchedTask
+          [patchedTask.gid]: patchedTask
         })
       });
 
