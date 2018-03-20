@@ -26,9 +26,7 @@ class RawTask extends Component {
 
     this.state = {
       showChildren: true,
-      showTaskForm: false,
-      showAssigneeInput: false,
-      assignedTo: props.taskData.assigned_to_pursuance_id || props.taskData.assigned_to
+      showAssigneeInput: false
     };
   }
 
@@ -160,7 +158,7 @@ class RawTask extends Component {
 
   render() {
     const { pursuances, taskData, autoComplete, currentPursuanceId } = this.props;
-    const { showChildren, showTaskForm, assignedTo, showAssigneeInput } = this.state;
+    const { showChildren, showAssigneeInput } = this.state;
     const task = taskData;
     const assignedPursuanceId = task.assigned_to_pursuance_id;
     const assignedByThisPursuance = assignedPursuanceId === currentPursuanceId;
@@ -225,7 +223,7 @@ class RawTask extends Component {
                     />
                   </div>
                   ||
-                  (assignedPursuanceId && pursuances[assignedPursuanceId].suggestionName)
+                  (assignedPursuanceId && pursuances[assignedPursuanceId] && pursuances[assignedPursuanceId].suggestionName)
                     &&
                     <button onClick={this.showAssigneeInput} className="assignee-button">{pursuances[assignedPursuanceId].suggestionName}</button>
                   ||

@@ -37,8 +37,8 @@ const AssignerInput = (props) => {
 
   const isFromCurrentPursuance = formId.startsWith(currentPursuanceId + '_');
 
-  //If task was assigned to currently viewed pursuance, then we can't reassign to
-  //another pursuance
+  // If task was assigned to currently viewed pursuance, then we can't reassign
+  // to another pursuance
   const onlyShowUsers = () => !isFromCurrentPursuance && editMode;
 
   const onChange = (e) => {
@@ -56,26 +56,48 @@ const AssignerInput = (props) => {
   }
 
   const onKeyDown = (e) => {
+    if (e.key === 'Escape') {
+      onBlur();
+      return;
+    }
+
     const { highlightedSuggestion, suggestions } = autoComplete;
     const suggestion = suggestions[highlightedSuggestion];
 
     if (e.key === 'Enter' && suggestions.length > 0) {
-      const { suggestionName } = suggestion;
       e.preventDefault();
+      const { suggestionName } = suggestion;
       if (editMode) {
         const patchedTask = {
           gid: formId
         };
-        if (suggestionName.startsWith(PURSUANCE_DISPLAY_PREFIX)) {
-          patchedTask.assigned_to_pursuance_id = suggestion.id;
-          patchedTask.assigned_to = null;
+        if (isFromCurrentPursuance) {
+          // Outsourcing from this pursuance to another pursuance
+          if (suggestionName.startsWith(PURSUANCE_DISPLAY_PREFIX)) {
+            patchedTask.assigned_to_pursuance_id = suggestion.id;
+            patchedTask.assigned_to = null;
+          } else {
+            // Assigning to a user in the current pursuance
+            patchedTask.assigned_to_pursuance_id = null;
+            patchedTask.assigned_to = suggestionName;
+          }
         } else {
-          patchedTask.assigned_to = suggestionName;
+          // This task has been outsourced to the current pursuance
+
+          // We are re-outsourcing this task to another pursuance
+          // (shouldn't happen!... unless we change the design)
+          if (suggestionName.startsWith(PURSUANCE_DISPLAY_PREFIX)) {
+            patchedTask.assigned_to_pursuance_id = suggestion.id;
+            patchedTask.assigned_to = null;
+          } else {
+            // Assigning this outsourced-to-us task to a member of the
+            // current pursuance
+            patchedTask.assigned_to = suggestionName;
+          }
         }
         patchTask(patchedTask);
         hideEditAssignee();
-      }
-      else{
+      } else {
         addSuggestion(suggestionName, formId);
       }
       if (focusDatePicker) {
