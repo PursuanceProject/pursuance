@@ -9,19 +9,24 @@ import TiMinus from 'react-icons/lib/ti/minus';
 import FaHandODown from 'react-icons/lib/fa/hand-o-down';
 import FaCommentsO from 'react-icons/lib/fa/comments-o';
 import TaskForm from '../../TaskManager/TaskForm/TaskForm';
+import AssignerSuggestions from '../../TaskManager/TaskForm/Suggestions/AssignerSuggestions';
+import AssignerInput from '../../TaskManager/TaskForm/AssignerInput/AssignerInput';
 import TaskStatus from '../../TaskStatus/TaskStatus';
+import { filterSuggestion } from '../../../../utils/suggestions';
+import './Task.css';
 import {
   addTaskFormToHierarchy,
-  removeTaskFormFromHierarchy
+  removeTaskFormFromHierarchy,
+  startSuggestions
 } from '../../../../actions';
-import './Task.css';
 
 class RawTask extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      showChildren: true
+      showChildren: true,
+      showAssigneeInput: false
     };
   }
 
@@ -62,12 +67,14 @@ class RawTask extends Component {
   }
 
   mapSubTasks = (task) => {
-    const { taskMap, taskForm } = this.props;
+    const { pursuances, autoComplete, taskMap, taskForm } = this.props;
     return task.subtask_gids.map((gid) => {
       return <Task
         key={gid}
         taskData={taskMap[gid]}
         taskMap={taskMap}
+        pursuances={pursuances}
+        autoComplete={autoComplete}
         taskForm={taskForm} />;
     });
   }
@@ -90,6 +97,25 @@ class RawTask extends Component {
         </div>
       );
     }
+  }
+
+  showAssigneeInput = () => {
+    this.setState({
+      showAssigneeInput: true
+    });
+  }
+
+  hideEditAssignee = () => {
+    this.setState({
+      showAssigneeInput: false
+    });
+  }
+
+  onFocus = (e) => {
+    const { users, pursuances, startSuggestions, currentPursuanceId, taskData } = this.props;
+    const suggestions = Object.assign({}, pursuances, users);
+    delete suggestions[currentPursuanceId];
+    startSuggestions(e.target.value, filterSuggestion, suggestions, taskData.gid);
   }
 
   getStatusClassName = (task) => {
@@ -129,19 +155,24 @@ class RawTask extends Component {
     }
   }
 
+
   render() {
-    const { pursuances, taskData, match: { params: { pursuanceId } } } = this.props;
+    const { pursuances, taskData, autoComplete, currentPursuanceId } = this.props;
+    const { showChildren, showAssigneeInput } = this.state;
     const task = taskData;
     const assignedPursuanceId = task.assigned_to_pursuance_id;
-    const assignedByThisPursuance = assignedPursuanceId === Number(pursuanceId);
-    let assignedTo = "";
+    const assignedByThisPursuance = assignedPursuanceId === currentPursuanceId;
+    let placeholder = "";
+    let assignedTo;
     if (assignedPursuanceId && !assignedByThisPursuance && pursuances[assignedPursuanceId]) {
-        assignedTo = pursuances[assignedPursuanceId].suggestionName;
+        placeholder = pursuances[assignedPursuanceId].suggestionName;
+        assignedTo = pursuances[assignedPursuanceId].id;
     }
     else if (task.assigned_to) {
-        assignedTo = '@' + task.assigned_to;
+        placeholder = '@' + task.assigned_to;
+        assignedTo = task.assigned_to;
     }
-    const { showChildren } = this.state;
+
     return (
       <li className="li-task-ctn">
         <div className="task-ctn">
@@ -172,9 +203,39 @@ class RawTask extends Component {
               status={task.status}
             />
             <div className="task-assigned-to">
-              <span>
-                {assignedTo}
-              </span>
+                {
+                  showAssigneeInput &&
+                   <div className="assign-autocomplete-ctn">
+                     {
+                       autoComplete.suggestions
+                       &&
+                       task.gid === autoComplete.suggestionForm
+                       &&
+                       <AssignerSuggestions
+                         suggestionForm={task.gid}
+                         editMode={true}
+                         hideEditAssignee={this.hideEditAssignee}
+                       />
+                     }
+                    <AssignerInput
+                      formId={task.gid}
+                      editMode={true}
+                      hideEditAssignee={this.hideEditAssignee}
+                      placeholder={placeholder}
+                      assignedTo={assignedTo}
+                    />
+                  </div>
+                  ||
+                  (assignedPursuanceId && pursuances[assignedPursuanceId] && pursuances[assignedPursuanceId].suggestionName)
+                    &&
+                    <button onClick={this.showAssigneeInput} className="assignee-button">{pursuances[assignedPursuanceId].suggestionName}</button>
+                  ||
+                  (task.assigned_to && '@' + task.assigned_to)
+                    &&
+                    <button onClick={this.showAssigneeInput} className="assignee-button">{'@' + task.assigned_to}</button>
+                  ||
+                  <button className="edit-assignee-button" onClick={this.showAssigneeInput}>Assign</button>
+                }
             </div>
             <div className="task-due-date">
               {task.due_date && postgrest.formatDate(task.due_date)}
@@ -196,9 +257,11 @@ class RawTask extends Component {
 }
 
 const Task = withRouter(connect(
-  ({ pursuances }) => ({ pursuances }), {
+  ({ pursuances, users, currentPursuanceId, autoComplete }) =>
+   ({ pursuances, users, currentPursuanceId, autoComplete }), {
   addTaskFormToHierarchy,
-  removeTaskFormFromHierarchy
+  removeTaskFormFromHierarchy,
+  startSuggestions
 })(RawTask));
 
 // Why RawTask _and_ Task? Because Task.mapSubTasks() recursively

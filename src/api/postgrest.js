@@ -34,3 +34,18 @@ export const getJSON = (pathSuffix, additionalHeaders = {}) => {
     return resp.json();
   });
 };
+
+export const patchJSON = (pathSuffix, payload, additionalHeaders = {}) => {
+  const headers = {
+    'Content-Type': 'application/json; charset=utf-8'
+  };
+  Object.assign(headers, additionalHeaders);
+
+  return fetch(URL_PREFIX + pathSuffix, {
+    method: 'PATCH',
+    headers: headers,
+    body: JSON.stringify(payload)
+  }).then(resp => {
+    return resp.json();
+  });
+};

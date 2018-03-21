@@ -35,6 +35,7 @@
   font-size: 15px;
   padding: 3px;
   padding-left: 8px;
+  color: #333;
 }
 
 .suggestion:nth-child(odd) {

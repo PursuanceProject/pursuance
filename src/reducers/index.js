@@ -9,6 +9,7 @@ import notificationsReducer from './notificationsReducer';
 import userReducer from './userReducer';
 import showSettingsInfoModal from './settingsInfoReducer';
 import createPursuance from './createPursuanceReducer';
+import autoComplete from './autoCompleteReducer';
 import showSuccessToast from './showSuccessToastReducer';
 
 const rootReducer = combineReducers({
@@ -22,6 +23,7 @@ const rootReducer = combineReducers({
   tasks,
   showSettingsInfoModal,
   createPursuance,
+  autoComplete,
   showSuccessToast
 });
 
