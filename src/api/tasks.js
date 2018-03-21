@@ -9,7 +9,9 @@ export const postTaskReq = task => {
 
 export const patchTaskReq = task => {
   return postgrest
-    .patchJSON(`/tasks?gid=eq.${task.gid}`, task, { Prefer: 'return=representation' })
+    .patchJSON(`/tasks?gid=eq.${task.gid}`, task, {
+      Prefer: 'return=representation'
+    })
     .then(taskJSON => taskJSON[0])
     .catch(err => console.log('Error patching task:', err));
 };

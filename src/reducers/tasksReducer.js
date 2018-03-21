@@ -57,7 +57,8 @@ export default function(state = initialState, action) {
 
     case 'PATCH_TASK_FULFILLED':
       const patchedTask = action.payload;
-      patchedTask.subtask_gids = state.taskMap[patchedTask.gid].subtask_gids || [];
+      patchedTask.subtask_gids =
+        state.taskMap[patchedTask.gid].subtask_gids || [];
       return Object.assign({}, state, {
         taskMap: Object.assign({}, state.taskMap, {
           [patchedTask.gid]: patchedTask
@@ -75,7 +76,7 @@ export default function(state = initialState, action) {
           }),
           [oldParentGid]: Object.assign({}, oldParent, {
             subtaskform_id: null
-          }),
+          })
         })
       });
     }

@@ -21,12 +21,9 @@ export default function(state = {}, action) {
     case 'TASK_FORM_SET_PARENT_GID': {
       const { formId, newParentGid } = action;
       return Object.assign({}, state, {
-        [formId]: Object.assign(
-          state[formId] || {},
-          {
-            parent_task_gid: newParentGid
-          }
-        )
+        [formId]: Object.assign(state[formId] || {}, {
+          parent_task_gid: newParentGid
+        })
       });
     }
 

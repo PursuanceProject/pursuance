@@ -126,22 +126,22 @@ const AssignerInput = (props) => {
 
   return (
     <div className="assign-autocomplete-ctn">
-    <div className="at-symbol">
-      <span>@</span>
+      <div className="at-symbol">
+        <span>@</span>
+      </div>
+      <input
+        className="form-control assign-to"
+        type="text"
+        placeholder={placeholder || 'Assigned To'}
+        value={assigned_to}
+        name={'assigned_to'}
+        onChange={onChange}
+        onFocus={onFocus}
+        onBlur={onBlur}
+        onKeyDown={onKeyDown}
+        autoFocus={autoFocus}
+      />
     </div>
-    <input
-      className="form-control assign-to"
-      type="text"
-      placeholder={placeholder || 'Assigned To'}
-      value={assigned_to}
-      name={'assigned_to'}
-      onChange={onChange}
-      onFocus={onFocus}
-      onBlur={onBlur}
-      onKeyDown={onKeyDown}
-      autoFocus={autoFocus}
-    />
-  </div>
   )
 }
 
