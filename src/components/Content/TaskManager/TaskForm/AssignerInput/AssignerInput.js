@@ -32,7 +32,8 @@ const AssignerInput = (props) => {
     editMode,
     hideEditAssignee,
     patchTask,
-    placeholder
+    placeholder,
+    assignedTo
   } = props;
 
   const isFromCurrentPursuance = formId.startsWith(currentPursuanceId + '_');
@@ -44,6 +45,9 @@ const AssignerInput = (props) => {
   const onChange = (e) => {
     const { value, name } = e.target;
     const suggestions = onlyShowUsers() ? users : Object.assign({}, pursuances, users);
+    if (suggestions[assignedTo]) {
+      delete suggestions[assignedTo]
+    }
     delete suggestions[currentPursuanceId];
     updateFormField(formId, name, value);
     startSuggestions(value, filterSuggestion, suggestions, formId);
@@ -51,6 +55,9 @@ const AssignerInput = (props) => {
 
   const onFocus = (e) => {
     const suggestions = onlyShowUsers() ? users : Object.assign({}, pursuances, users);
+    if (suggestions[assignedTo]) {
+      delete suggestions[assignedTo]
+    }
     delete suggestions[currentPursuanceId];
     startSuggestions(e.target.value, filterSuggestion, suggestions, formId);
   }
@@ -71,30 +78,19 @@ const AssignerInput = (props) => {
         const patchedTask = {
           gid: formId
         };
-        if (isFromCurrentPursuance) {
+        if (suggestionName.startsWith(PURSUANCE_DISPLAY_PREFIX)) {
+          patchedTask.assigned_to_pursuance_id = suggestion.id;
+          patchedTask.assigned_to = null;
+        } else if(isFromCurrentPursuance){
           // Outsourcing from this pursuance to another pursuance
-          if (suggestionName.startsWith(PURSUANCE_DISPLAY_PREFIX)) {
-            patchedTask.assigned_to_pursuance_id = suggestion.id;
-            patchedTask.assigned_to = null;
-          } else {
             // Assigning to a user in the current pursuance
             patchedTask.assigned_to_pursuance_id = null;
             patchedTask.assigned_to = suggestionName;
-          }
         } else {
-          // This task has been outsourced to the current pursuance
-
-          // We are re-outsourcing this task to another pursuance
-          // (shouldn't happen!... unless we change the design)
-          if (suggestionName.startsWith(PURSUANCE_DISPLAY_PREFIX)) {
-            patchedTask.assigned_to_pursuance_id = suggestion.id;
-            patchedTask.assigned_to = null;
-          } else {
             // Assigning this outsourced-to-us task to a member of the
             // current pursuance
             patchedTask.assigned_to = suggestionName;
           }
-        }
         patchTask(patchedTask);
         hideEditAssignee();
       } else {

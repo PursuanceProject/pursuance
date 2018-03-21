@@ -162,14 +162,16 @@ class RawTask extends Component {
     const task = taskData;
     const assignedPursuanceId = task.assigned_to_pursuance_id;
     const assignedByThisPursuance = assignedPursuanceId === currentPursuanceId;
-    let assignedToName = "";
+    let placeholder = "";
+    let assignedTo;
     if (assignedPursuanceId && !assignedByThisPursuance && pursuances[assignedPursuanceId]) {
-        assignedToName = pursuances[assignedPursuanceId].suggestionName;
+        placeholder = pursuances[assignedPursuanceId].suggestionName;
+        assignedTo = pursuances[assignedPursuanceId].id;
     }
     else if (task.assigned_to) {
-        assignedToName = '@' + task.assigned_to;
+        placeholder = '@' + task.assigned_to;
+        assignedTo = task.assigned_to;
     }
-    const placeholder = assignedToName;
 
     return (
       <li className="li-task-ctn">
@@ -220,6 +222,7 @@ class RawTask extends Component {
                       editMode={true}
                       hideEditAssignee={this.hideEditAssignee}
                       placeholder={placeholder}
+                      assignedTo={assignedTo}
                     />
                   </div>
                   ||

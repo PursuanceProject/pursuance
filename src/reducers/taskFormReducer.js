@@ -32,7 +32,6 @@ export default function(state = {}, action) {
 
     case 'ADD_SUGGESTION':
       const suggestionForm = action.suggestionForm;
-      console.log(suggestionForm, 'suggestionForm');
       return Object.assign({}, state, {
         [suggestionForm]: Object.assign({}, state[suggestionForm], {
           assigned_to: action.suggestion

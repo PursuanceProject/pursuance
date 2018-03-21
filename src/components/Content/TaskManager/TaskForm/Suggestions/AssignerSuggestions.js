@@ -13,8 +13,11 @@ const AssignerSuggestions = (props) => {
     suggestionForm,
     patchTask,
     editMode,
-    hideEditAssignee
+    hideEditAssignee,
+    currentPursuanceId
   } = props;
+
+  const isFromCurrentPursuance = suggestionForm.startsWith(currentPursuanceId + '_');
 
   return (
     <div className='suggestions-container'>
@@ -32,12 +35,20 @@ const AssignerSuggestions = (props) => {
                 if (suggestionName.startsWith(PURSUANCE_DISPLAY_PREFIX)) {
                   patchedTask.assigned_to_pursuance_id = suggestion.id;
                   patchedTask.assigned_to = null;
+                } else if(isFromCurrentPursuance){
+                  // Outsourcing from this pursuance to another pursuance
+                    // Assigning to a user in the current pursuance
+                    patchedTask.assigned_to_pursuance_id = null;
+                    patchedTask.assigned_to = suggestionName;
                 } else {
-                  patchedTask.assigned_to = suggestionName;
-                }
+                    // Assigning this outsourced-to-us task to a member of the
+                    // current pursuance
+                    patchedTask.assigned_to = suggestionName;
+                  }
                 patchTask(patchedTask);
                 hideEditAssignee();
-              }else {
+              }
+               else {
                 addSuggestion(suggestionName, suggestionForm);
               }
               if (focusDatePicker) {
@@ -58,4 +69,4 @@ const AssignerSuggestions = (props) => {
   )
 }
 
-export default connect(({ autoComplete }) => ({ autoComplete }), { addSuggestion, patchTask })(AssignerSuggestions);
+export default connect(({ autoComplete, currentPursuanceId }) => ({ autoComplete, currentPursuanceId }), { addSuggestion, patchTask })(AssignerSuggestions);
