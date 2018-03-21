@@ -81,8 +81,7 @@ const AssignerInput = (props) => {
         if (suggestionName.startsWith(PURSUANCE_DISPLAY_PREFIX)) {
           patchedTask.assigned_to_pursuance_id = suggestion.id;
           patchedTask.assigned_to = null;
-        } else if(isFromCurrentPursuance){
-          // Outsourcing from this pursuance to another pursuance
+        } else if (isFromCurrentPursuance) {
             // Assigning to a user in the current pursuance
             patchedTask.assigned_to_pursuance_id = null;
             patchedTask.assigned_to = suggestionName;

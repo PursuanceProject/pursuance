@@ -155,7 +155,7 @@
   text-overflow: ellipsis;
   max-width: 95%;
   border-radius: 5px;
-  background-color: #aa00ff;
+  background-color: rgba(170, 0, 255, .9);
 }
 
 .assignee-button:hover {
