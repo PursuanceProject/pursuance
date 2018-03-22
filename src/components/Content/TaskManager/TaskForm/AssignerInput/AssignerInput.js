@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { filterSuggestion } from '../../../../../utils/suggestions';
 import { PURSUANCE_DISPLAY_PREFIX } from '../../../../../constants';
 import './AssignerInput.css';
+import FaUserTimes from 'react-icons/lib/fa/user-times';
 import {
   updateFormField,
   startSuggestions,
@@ -117,6 +118,17 @@ const AssignerInput = (props) => {
     }
   }
 
+  const clearAssignee = () => {
+    const patchedTask = {
+      gid: formId,
+      assigned_to: null
+    }
+    if (placeholder[0] === '(') {
+      patchedTask.assigned_to_pursuance_id = null;
+    }
+    patchTask(patchedTask);
+  }
+
   let assigned_to = taskForm[formId] ? taskForm[formId].assigned_to : '';
   let autoFocus;
 
@@ -141,6 +153,11 @@ const AssignerInput = (props) => {
         onKeyDown={onKeyDown}
         autoFocus={autoFocus}
       />
+      { editMode &&
+        <div className="unassign-user-icon" onMouseDown={clearAssignee}>
+          <FaUserTimes size={32}/>
+        </div>
+      }
     </div>
   )
 }

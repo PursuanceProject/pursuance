@@ -21,3 +21,19 @@
   border-radius: 0;
   border-color: #a5a5a5;
 }
+
+.unassign-user-icon {
+  position: absolute;
+  width: 55px;
+  height: 36px;
+  top: -2px;
+  right: -55px;
+  text-align: center;
+  border-radius: 5px;
+  border: 1px solid rgba(255, 255, 255, .5);
+  background-color: #288bd6;
+}
+
+.unassign-user-icon:hover {
+  cursor: pointer;
+}
