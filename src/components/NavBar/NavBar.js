@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { Button, Nav, Navbar, NavDropdown, NavItem, OverlayTrigger, Tooltip } from 'react-bootstrap';
+import { Link, withRouter } from 'react-router-dom';
+import { Nav, Navbar, NavDropdown, NavItem, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import FaBell from 'react-icons/lib/fa/bell';
-import Info from 'react-icons/lib/fa/info-circle';
 import SignUp from './SignUp/SignUp';
 import LogIn from './LogIn/LogIn';
 import NotificationsModal from './NotificationsModal/NotificationsModal';
@@ -14,6 +13,12 @@ import './NavBar.css';
 
 class NavBar extends Component {
 
+  componentWillMount() {
+    // TODO: Once we add auth, only grab pursuances that the logged-in
+    // user is a mumber of
+    this.props.getPursuances();
+  }
+
   getTooltip = () => (
     <Tooltip id="tooltip-bell">
       <strong>Notifications</strong>
@@ -21,7 +26,8 @@ class NavBar extends Component {
   );
 
   showCurrentPursuance = (pursuances) => {
-    let id = parseInt(window.location.pathname.slice(-1), 10);
+    const { location } = this.props;
+    let id = parseInt(location.pathname.slice(-1), 10);
     let rawPursuance = pursuances[id];
     if (rawPursuance !== undefined) {
       return rawPursuance.name;
@@ -31,17 +37,14 @@ class NavBar extends Component {
   }
 
   handleJumpToPursuance = (e) => {
-    const { history } = this.props; 
-    window.location.replace(`/pursuance/${e}`);
+    const { history } = this.props;
+    history.push(`/pursuance/${e}`);
+    history.go();
   }
 
   render() {
-    const {
-      authenticated,
-      username,
-      contributionPoints,
-      pursuances
-    } = this.props;
+    const { user, pursuances } = this.props;
+    const { authenticated, username, contributionPoints } = user;
     return (
       <Navbar collapseOnSelect>
         <Navbar.Header>
@@ -67,7 +70,6 @@ class NavBar extends Component {
               </NavDropdown>
               )
             }
-            {authenticated && <NavItem><Info size={18}/></NavItem>}
             {
               !authenticated &&
               (
@@ -120,7 +122,7 @@ class NavBar extends Component {
   }
 }
 
-export default connect(({ pursuances, currentPursuanceId }) =>
-  ({ pursuances, currentPursuanceId }), {
+export default withRouter(connect(
+  ({ user, pursuances }) => ({ user, pursuances }), {
     getPursuances
-})(NavBar);
+  })(NavBar));
