@@ -17,6 +17,7 @@ class NavBar extends Component {
     // TODO: Once we add auth, only grab pursuances that the logged-in
     // user is a mumber of
     this.props.getPursuances();
+
   }
 
   getTooltip = () => (
@@ -27,7 +28,7 @@ class NavBar extends Component {
 
   showCurrentPursuance = (pursuances) => {
     const { location } = this.props;
-    let id = parseInt(location.pathname.slice(-1), 10);
+    let id = parseInt(location.pathname.split('/')[2], 10);
     let rawPursuance = pursuances[id];
     if (rawPursuance !== undefined) {
       return rawPursuance.name;
