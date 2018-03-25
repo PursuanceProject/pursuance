@@ -16,13 +16,7 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <NavBar
-            authenticated={this.props.authenticated}
-            contributionPoints={this.props.contributionPoints}
-            username={this.props.username}
-            onRemoveNotification={this.props.removeNotification}
-            onIncreaseContributionAmount={this.props.increaseContributionAmount}
-            />
+        <Route component={NavBar} />
           <Switch>
             <Route exact path="/" component={HomePage} />
             <Route exact path="/dashboard" component={Dashboard} />
