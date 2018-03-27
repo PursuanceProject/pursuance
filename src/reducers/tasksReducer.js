@@ -52,6 +52,19 @@ export default function(state = initialState, action) {
         })
       });
 
+    case 'PATCH_TASK_PENDING':
+      return state;
+
+    case 'PATCH_TASK_FULFILLED':
+      const patchedTask = action.payload;
+      patchedTask.subtask_gids =
+        state.taskMap[patchedTask.gid].subtask_gids || [];
+      return Object.assign({}, state, {
+        taskMap: Object.assign({}, state.taskMap, {
+          [patchedTask.gid]: patchedTask
+        })
+      });
+
     case 'TASK_FORM_SET_PARENT_GID': {
       const { formId, newParentGid, oldParentGid } = action;
       const newParent = state.taskMap[newParentGid];
@@ -63,7 +76,7 @@ export default function(state = initialState, action) {
           }),
           [oldParentGid]: Object.assign({}, oldParent, {
             subtaskform_id: null
-          }),
+          })
         })
       });
     }

@@ -4,7 +4,7 @@ import {
   getPublicPursuancesReq,
   postPursuanceReq
 } from '../api/pursuances';
-import { postTaskReq, getTasksReq } from '../api/tasks';
+import { postTaskReq, getTasksReq, patchTaskReq } from '../api/tasks';
 
 export const updateFormField = (formId, fieldId, value) => ({
   type: 'TASK_FIELD_UPDATE',
@@ -27,7 +27,7 @@ export const setTaskFormParentGid = (formId, newParentGid, oldParentGid) => ({
 
 export const getUsers = () => ({ type: 'GET_USERS', payload: getUsersReq() });
 
-export const getPursuancesByIds = (pursuanceIds) => ({
+export const getPursuancesByIds = pursuanceIds => ({
   type: 'GET_PURSUANCES_BY_IDS',
   payload: getPursuancesReq(pursuanceIds)
 });
@@ -66,9 +66,10 @@ export const showUsers = (users, suggestionForm) => ({
 
 export const stopSuggestions = () => ({ type: 'STOP_SUGGESTIONS' });
 
-export const addSuggestion = suggestion => ({
+export const addSuggestion = (suggestion, suggestionForm) => ({
   type: 'ADD_SUGGESTION',
-  suggestion
+  suggestion,
+  suggestionForm
 });
 
 export const upSuggestion = () => ({ type: 'UP_SUGGESTION' });
@@ -166,6 +167,11 @@ export const postPursuance = pursuance => ({
 
 export const clearPursuanceFormFields = () => ({
   type: 'PURSUANCE_FORM_CLEAR_FIELDS'
+});
+
+export const patchTask = task => ({
+  type: 'PATCH_TASK',
+  payload: patchTaskReq(task)
 });
 
 export const removeSuccessToast = () => ({

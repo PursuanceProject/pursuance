@@ -1,5 +1,4 @@
 export const filterSuggestion = (value, suggestionsObj) => {
-  console.log('suggestionsObj', suggestionsObj);
   const suggestionsArr = Object.values(suggestionsObj);
   const lowerCaseVal = value.toLowerCase();
   const filtered = suggestionsArr.filter(suggestion => {
