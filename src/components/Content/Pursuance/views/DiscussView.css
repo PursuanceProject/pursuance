@@ -56,13 +56,17 @@
   margin: 0 12px;
 }
 
-.icon-ctn {
+.discuss-icon-ctn {
   flex: 1;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 8px;
   height: 100%;
+}
+
+.discuss-icon-ctn:hover {
+  cursor: pointer;
 }
 
 .pursuance-discuss-ctn {

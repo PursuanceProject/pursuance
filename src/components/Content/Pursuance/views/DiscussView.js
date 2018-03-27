@@ -90,7 +90,7 @@ class DiscussView extends Component {
               {task.due_date && postgrest.formatDate(task.due_date)}
             </div>
             <div className="task-discuss-icons-ctn">
-              <div className="icon-ctn">
+              <div className="discuss-icon-ctn">
                 <FaEllipsisV size={20} />
               </div>
             </div>
