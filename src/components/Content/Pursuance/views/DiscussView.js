@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as postgrest from '../../../../api/postgrest';
+import { getPursuancesByIds, getTasks } from '../../../../actions';
 import ReactMarkdown from 'react-markdown';
 import FaEllipsisV from 'react-icons/lib/fa/ellipsis-v';
 import FaCircleO from 'react-icons/lib/fa/circle-o';
 import TaskStatus from '../../TaskStatus/TaskStatus';
 import './DiscussView.css';
-import { getPursuancesByIds, getTasks } from '../../../../actions';
 
 const leapChatUrl = "http://localhost:8080/#GiddinessPuttRegisterKioskLucidityJockstrapTastebudFactoryPegboardOpticalEstrogenGoatskinHatchlingDittoPseudoNegotiatorLunchboxLightbulbUploadSyllableTulipQuiltJurorRuptureAorta";
 

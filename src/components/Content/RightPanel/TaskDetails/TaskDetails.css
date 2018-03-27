@@ -1,27 +1,6 @@
-.discuss-ctn {
-  display: flex;
-  width: 100%;
-  background-color: #1c1c1c;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-  word-break: break-word;
-}
-
-.leapchat-frame {
-  display: flex;
-  flex: 66;
-  height: calc(100vh - 60px);
-  border: 1px solid #6d6d6d;
-  border-right: none;
-  border-bottom-left-radius: 4px;
-}
-
 .task-details-ctn {
-  display: flex;
-  flex-direction: column;
-  flex: 34;
-  border: 1px solid #6d6d6d;
-  border-right: none;
+  min-width: 420px;
+  max-width: 60vw;
   color: #d6d6d6;
   font-size: 1.2em;
 }
@@ -29,26 +8,13 @@
 .task-assignment-ctn {
   display: flex;
   justify-content: center;
+  height: 80px;
   margin: 0 16px;
   color: #d6d6d6;
 }
 
-/* Desktop */
-@media (min-width: 1367px) {
-  .task-assignment-ctn {
-    height: 40px;
-  }
-}
-
-/* Mobile */
-@media (max-width: 1366px) {
-  .task-assignment-ctn {
-    height: 72px;
-  }
-}
-
 .assigned-to-ctn {
-  flex: 1;
+  flex: 2;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -61,7 +27,7 @@
 }
 
 .due-date-ctn {
-  flex: 1;
+  flex: 2;
   display: flex;
   align-items: center;
   justify-content: space-between;
