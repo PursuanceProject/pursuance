@@ -155,7 +155,7 @@ const AssignerInput = (props) => {
       />
       { editMode &&
         <div className="unassign-user-icon" onMouseDown={clearAssignee}>
-          <FaUserTimes size={32}/>
+          <FaUserTimes size={16}/>
         </div>
       }
     </div>

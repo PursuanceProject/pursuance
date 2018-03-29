@@ -13,6 +13,7 @@ import AssignerSuggestions from '../../TaskManager/TaskForm/Suggestions/Assigner
 import AssignerInput from '../../TaskManager/TaskForm/AssignerInput/AssignerInput';
 import TaskStatus from '../../TaskStatus/TaskStatus';
 import { filterSuggestion } from '../../../../utils/suggestions';
+import AssignerButton from './AssignerButton/AssignerButton';
 import './Task.css';
 import {
   addTaskFormToHierarchy,
@@ -202,6 +203,8 @@ class RawTask extends Component {
             <TaskStatus
               status={task.status}
             />
+            <AssignerButton assignedTo={assignedTo}  placeholder={placeholder}/>
+
             <div className="task-assigned-to">
                 {
                   showAssigneeInput &&

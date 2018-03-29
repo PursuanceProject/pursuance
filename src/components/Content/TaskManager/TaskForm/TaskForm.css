@@ -10,6 +10,10 @@
   padding-left: 64px;
 }
 
+.form-control {
+  height: 32px;
+}
+
 .task-form {
   display: flex;
   align-items: center;
@@ -37,9 +41,8 @@
 }
 
 .react-datepicker-wrapper {
-  height: 34px;
+  height: 32px;
   margin-top: 1px;
-  margin-bottom: -1px;
 }
 
 .react-datepicker__input-container {
@@ -56,8 +59,7 @@
   color: #d6d6d6;
   border-radius: 0 4px 4px 0;
   border-color: #a5a5a5;
-  margin-top: 1px;
-  margin-bottom: -1px;
+  height: 32px;
 }
 
 .save-task-btn:hover {
