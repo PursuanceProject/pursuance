@@ -1,0 +1,8 @@
+.about {
+  padding: 30px;
+  overflow: auto;
+}
+
+.about h1, h2 {
+  color: #fcfcfc;
+}

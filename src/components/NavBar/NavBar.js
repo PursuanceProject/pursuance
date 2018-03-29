@@ -33,7 +33,7 @@ class NavBar extends Component {
     if (rawPursuance !== undefined) {
       return rawPursuance.name;
     } else {
-      return "Jump to pursuance";
+      return "Jump to a pursuance";
     }
   }
 
@@ -47,78 +47,58 @@ class NavBar extends Component {
     const { user, pursuances } = this.props;
     const { authenticated, username, contributionPoints } = user;
     return (
-      <Navbar collapseOnSelect>
+      <nav className="nav-container">
         <Navbar.Header>
           <Navbar.Brand>
             <Link to="/">Pursuance</Link>
           </Navbar.Brand>
-          <Navbar.Toggle />
         </Navbar.Header>
-        <Navbar.Collapse>
-          <ul className="nav navbar-nav">
-            <li role="presentation">
-              <Link to="/dashboard">Dashboard</Link>
-            </li>
-          </ul>
-          <Nav pullRight>
-            {authenticated && (
-              <NavDropdown
-                id="jump-to-pursuance"
-                title={this.showCurrentPursuance(pursuances)}
-                onSelect={this.handleJumpToPursuance}
-                >
-                  {jumpToPursuanceOptions(pursuances)}
-              </NavDropdown>
-              )
-            }
-            {
-              !authenticated &&
-              (
-                <NavItem data-toggle="modal" data-target="#sign-up-modal">
-                  Sign Up
-                </NavItem>
-              )
-            }
-            {!authenticated && <SignUp />}
-            {
-              !authenticated &&
-              (
-                <NavItem data-toggle="modal" data-target="#log-in-modal">
-                  Log In
-                </NavItem>
-              )
-            }
-            {!authenticated && <LogIn />}
-            {
-              authenticated &&
-              (
-                <OverlayTrigger
-                  placement="bottom"
-                  overlay={this.getTooltip()}>
-                  <NavItem data-toggle="modal"
-                    data-target="#notifications-modal">
-                    <FaBell size={24} />
-                  </NavItem>
-                </OverlayTrigger>
-              )
-            }
-            {
-              authenticated &&
-                <NotificationsModal
-                  onIncreaseContributionAmount={this.props.onIncreaseContributionAmount}
-                  onRemoveNotification={this.props.onRemoveNotification} />
-            }
-            {
-              authenticated &&
-              (
-                <NavItem>
-                  <UserSettingsPopover username={username} contributionPoints={contributionPoints} />
-                </NavItem>
-              )
-            }
-          </Nav>
-        </Navbar.Collapse>
-      </Navbar>
+        <Link to="/dashboard">Dashboard</Link>
+        <div className="nav-center">
+        {authenticated && (
+          <NavDropdown
+            id="jump-to-pursuance"
+            title={this.showCurrentPursuance(pursuances)}
+            onSelect={this.handleJumpToPursuance}
+            >
+              {jumpToPursuanceOptions(pursuances)}
+          </NavDropdown>
+          )
+        }
+        </div>
+        <div className="nav-pull-right">
+        {!authenticated &&
+          (<span>
+            <NavItem data-toggle="modal" data-target="#sign-up-modal">
+              Sign Up
+            </NavItem>
+            <SignUp />
+            <NavItem data-toggle="modal" data-target="#log-in-modal">
+              Log In
+            </NavItem>
+            <LogIn />
+          </span>
+          )
+        }
+        {authenticated &&
+          (<span>
+            <OverlayTrigger
+              placement="bottom"
+              overlay={this.getTooltip()}>
+              <NavItem data-toggle="modal"
+                data-target="#notifications-modal">
+                <FaBell size={24} />
+              </NavItem>
+            </OverlayTrigger>
+            <NotificationsModal
+                onIncreaseContributionAmount={this.props.onIncreaseContributionAmount}
+                onRemoveNotification={this.props.onRemoveNotification} />
+            <UserSettingsPopover username={username} contributionPoints={contributionPoints} />
+          </span>
+          )
+        }
+        </div>
+      </nav>
     );
   }
 }
