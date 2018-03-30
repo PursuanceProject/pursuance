@@ -1,5 +1,10 @@
 .right-panel-ctn {
   display: flex;
+  right: 0;
+  height: 100%;
+  max-height: calc(100vh - 60px);
+  position: fixed;
+  overflow-y: auto;
 }
 
 .right-panel-content-ctn {
@@ -12,10 +17,13 @@
   background-color: #1c1c1c;
   position: absolute;
   height: 100%;
+  max-height: calc(100vh - 60px);
   width: 100%;
   max-width: 30vw;
   right: 50px;
   border-right: none;
+  position: fixed;
+  overflow-y: auto;
 }
 
 #right-panel {
