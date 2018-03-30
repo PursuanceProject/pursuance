@@ -17,7 +17,9 @@ import './Task.css';
 import {
   addTaskFormToHierarchy,
   removeTaskFormFromHierarchy,
-  startSuggestions
+  startSuggestions,
+  showTaskDetails,
+  toggleRightPanel
 } from '../../../../actions';
 
 class RawTask extends Component {
@@ -69,13 +71,16 @@ class RawTask extends Component {
   mapSubTasks = (task) => {
     const { pursuances, autoComplete, taskMap, taskForm } = this.props;
     return task.subtask_gids.map((gid) => {
-      return <Task
-        key={gid}
-        taskData={taskMap[gid]}
-        taskMap={taskMap}
-        pursuances={pursuances}
-        autoComplete={autoComplete}
-        taskForm={taskForm} />;
+      return (
+          <Task
+            key={gid}
+            taskData={taskMap[gid]}
+            taskMap={taskMap}
+            pursuances={pursuances}
+            autoComplete={autoComplete}
+            taskForm={taskForm}
+          />
+      )
     });
   }
 
@@ -155,6 +160,21 @@ class RawTask extends Component {
     }
   }
 
+  selectTaskInHierarchy = () => {
+    const {
+      taskData,
+      rightPanel,
+      showTaskDetails,
+      toggleRightPanel
+    } = this.props;
+
+    if (rightPanel.show && rightPanel.tab === 'TaskDetails' && rightPanel.taskGid === taskData.gid) {
+      toggleRightPanel();
+      return;
+    }
+    showTaskDetails({taskGid: taskData.gid});
+  }
+
 
   render() {
     const { pursuances, taskData, autoComplete, currentPursuanceId } = this.props;
@@ -180,8 +200,10 @@ class RawTask extends Component {
             {this.getTaskIcon(task, showChildren)}
           </div>
           <div className="task-row-ctn">
-            <div className="task-title">
+            <div className="task-title" onClick={this.selectTaskInHierarchy}>
               {this.showTitle(task)}
+            </div>
+            <div className="task-title-buffer" onClick={this.selectTaskInHierarchy}>
             </div>
             <div className="task-icons-ctn">
               <OverlayTrigger
@@ -257,11 +279,13 @@ class RawTask extends Component {
 }
 
 const Task = withRouter(connect(
-  ({ pursuances, users, currentPursuanceId, autoComplete }) =>
-   ({ pursuances, users, currentPursuanceId, autoComplete }), {
+  ({ pursuances, users, currentPursuanceId, autoComplete, rightPanel }) =>
+   ({ pursuances, users, currentPursuanceId, autoComplete, rightPanel }), {
   addTaskFormToHierarchy,
   removeTaskFormFromHierarchy,
-  startSuggestions
+  startSuggestions,
+  showTaskDetails,
+  toggleRightPanel
 })(RawTask));
 
 // Why RawTask _and_ Task? Because Task.mapSubTasks() recursively

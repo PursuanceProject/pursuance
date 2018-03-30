@@ -1,6 +1,7 @@
 .task-details-ctn {
-  min-width: 420px;
-  max-width: 60vw;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
   color: #d6d6d6;
   font-size: 1.2em;
 }
@@ -8,15 +9,16 @@
 .task-assignment-ctn {
   display: flex;
   justify-content: center;
-  height: 80px;
-  margin: 0 16px;
+  margin: 4px 16px;
   color: #d6d6d6;
+  max-height: 72px;
+  overflow: hidden;
 }
 
 .assigned-to-ctn {
-  flex: 2;
+  flex: 1;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   margin: 0 12px;
 }
@@ -27,11 +29,28 @@
 }
 
 .due-date-ctn {
-  flex: 2;
+  flex: 1;
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin: 0 12px;
+}
+
+.task-discuss-icons-ctn {
+  display: flex;
+  flex: 0.1;
+  align-items: center;
+  justify-content: flex-end;
+  margin: 0 -8px;
+}
+
+.icon-ctn {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 8px;
+  height: 100%;
 }
 
 .pursuance-discuss-ctn {
@@ -45,7 +64,6 @@
 
 .discuss-task-title-ctn {
   display: flex;
-  align-items: center;
   border-top: 1px solid #6d6d6d;
   padding-top: 12px;
 }

@@ -76,6 +76,13 @@
   word-break: break-word;
 }
 
+.task-title-buffer {
+  display: flex;
+  flex: 1;
+  height: 100%;
+  width: 100%;
+}
+
 .task-title-status-Done {
   color: #999;
   text-decoration: line-through;
