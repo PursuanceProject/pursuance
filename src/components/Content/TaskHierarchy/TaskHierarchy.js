@@ -80,19 +80,19 @@ class TaskHierarchy extends Component {
   renderHierarchy = () => {
     const { rootTaskGids, taskMap } = this.props.tasks;
     return (
-        <ul id="root-ul-ctn" className="ul-ctn">
-          {
-            rootTaskGids.map((gid) => {
-              return (
-                <Task
-                  key={gid}
-                  taskData={taskMap[gid]}
-                  taskMap={taskMap} />
-              );
-            })
-          }
-        </ul>
-    )
+      <ul id="root-ul-ctn" className="ul-ctn">
+        {
+          rootTaskGids.map((gid) => {
+            return (
+              <Task
+                key={gid}
+                taskData={taskMap[gid]}
+                taskMap={taskMap} />
+            );
+          })
+        }
+      </ul>
+    );
   }
 
   render() {
