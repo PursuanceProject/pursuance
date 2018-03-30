@@ -173,6 +173,7 @@ class TaskForm extends Component {
               ref={(input) => this.titleRef = input}
               onChange={this.onChange}
               onKeyDown={this.onTitleKeyDown}
+              maxLength={200}
             />
           </div>
           <div className="assign-autocomplete-ctn">
