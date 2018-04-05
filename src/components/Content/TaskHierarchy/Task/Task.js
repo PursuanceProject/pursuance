@@ -203,8 +203,6 @@ class RawTask extends Component {
             <TaskStatus
               status={task.status}
             />
-            <AssignerButton assignedTo={assignedTo}  placeholder={placeholder}/>
-
             <div className="task-assigned-to">
                 {
                   showAssigneeInput &&
@@ -229,15 +227,10 @@ class RawTask extends Component {
                     />
                   </div>
                   ||
-                  (assignedPursuanceId && pursuances[assignedPursuanceId] && pursuances[assignedPursuanceId].suggestionName)
-                    &&
-                    <button onClick={this.showAssigneeInput} className="assignee-button">{pursuances[assignedPursuanceId].suggestionName}</button>
-                  ||
-                  (task.assigned_to && '@' + task.assigned_to)
-                    &&
-                    <button onClick={this.showAssigneeInput} className="assignee-button">{'@' + task.assigned_to}</button>
-                  ||
-                  <button className="edit-assignee-button" onClick={this.showAssigneeInput}>Assign</button>
+                    <AssignerButton
+                      showAssigneeInput={this.showAssigneeInput}
+                      placeholder={placeholder}
+                    /> 
                 }
             </div>
             <div className="task-due-date">
