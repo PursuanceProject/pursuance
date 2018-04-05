@@ -3,6 +3,7 @@
   height: 100%;
   width: 100%;
   padding: 20px;
-  border-radius: 0px 5px 5px 5px;
+  border-bottom-left-radius: 5px;
   border: 1px solid #6d6d6d;
+  border-right: none;
 }

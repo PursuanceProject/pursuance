@@ -90,6 +90,7 @@ class CreatePursuanceForm extends Component {
           name={'mission'}
           value={mission}
           onChange={this.onChange}
+          maxLength={200}
         />
         <div className="create-pursuance-setting">
           <input

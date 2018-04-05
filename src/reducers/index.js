@@ -12,6 +12,7 @@ import showSettingsInfoModal from './settingsInfoReducer';
 import createPursuance from './createPursuanceReducer';
 import autoComplete from './autoCompleteReducer';
 import showSuccessToast from './showSuccessToastReducer';
+import rightPanel from './rightPanelReducer';
 
 const rootReducer = combineReducers({
   notifications: notificationsReducer,
@@ -26,7 +27,8 @@ const rootReducer = combineReducers({
   showSettingsInfoModal,
   createPursuance,
   autoComplete,
-  showSuccessToast
+  showSuccessToast,
+  rightPanel
 });
 
 export default rootReducer;

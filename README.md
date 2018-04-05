@@ -55,18 +55,6 @@ curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash -
 sudo apt-get install nodejs
 ```
 
-
-###### React
-
-If you don't have React.js globally installed, run
-
-```
-[sudo] npm install -g create-react-app
-```
-
-(The `sudo` may or may not be required, depending on your system.)
-
-
 ### macOS Instructions
 
 If you don't already have Postgres 9.5 or newer installed and running,
