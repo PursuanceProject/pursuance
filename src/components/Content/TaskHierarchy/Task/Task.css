@@ -5,7 +5,7 @@
 }
 
 .task-ctn {
-  color: #e0e0e0;
+  color: #efefef;
   display: flex;
   justify-content: center;
   min-height: 40px;
@@ -34,24 +34,23 @@
 }
 
 .toggle-icon-ctn:hover {
-  background-color: #666666;
   cursor: pointer;
 }
 
 .minus-icon {
-  color: #8662ea;
+  color: #9b77ff;
 }
 
 .toggle-icon-ctn:hover .minus-icon {
-  color: #2d069b;
+  color: #bb97ff;
 }
 
 .plus-icon {
-  color: #288bd6;
+  color: #50b3fe;
 }
 
 .toggle-icon-ctn:hover .plus-icon {
-  color: #135f99;
+  color: #71d4ff;
 }
 
 .task-row-ctn {
@@ -96,7 +95,7 @@
 .task-icons-ctn {
   display: flex;
   margin-left: auto;
-  margin-right: 8px;
+  margin-right: 10px;
   width: 80px;
   min-width: 80px;
   align-items: center;
@@ -107,20 +106,19 @@
   align-items: center;
   height: 100%;
   max-height: 34px;
-  padding: 0 8px;
-  background-color: #288bd6;
+  max-width: 36px;
+  background-color: rgba(80, 179, 254, .96);
   border-radius: 8px;
   border: 1px solid rgba(255, 255, 255, .5);
-  margin-right: 10px;
+  margin-right: 8px;
 }
 
 .icon-ctn svg {
-  color: #eee;
+  color: #333;
 }
 
 .icon-ctn:hover {
   cursor: pointer;
-  color: #eaeaea;
   border-color: #fff;
 }
 
@@ -151,7 +149,8 @@
 
 .edit-assignee-button {
   border-radius: 5px;
-  background-color: #288bd6;
+  background-color: rgba(80, 179, 254, .96);
+  color: #000;
 }
 
 .edit-assignee-button:hover {

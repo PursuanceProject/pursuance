@@ -1,7 +1,12 @@
 .pursuance-list p {
-  color: #d4d4d4;
+  color: #efefef;
+}
+
+.pursuance-list a {
+  color: #50b3fe;
+  text-decoration: none;
 }
 
 .pursuance-list-ctn a:hover {
-  text-decoration: none;
+  text-decoration: underline;
 }

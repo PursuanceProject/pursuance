@@ -6,7 +6,7 @@ import generateId from '../../../../utils/generateId';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import TiPlus from 'react-icons/lib/ti/plus';
 import TiMinus from 'react-icons/lib/ti/minus';
-import FaHandODown from 'react-icons/lib/fa/hand-o-down';
+import TiFlowChildren from 'react-icons/lib/ti/flow-children';
 import FaCommentsO from 'react-icons/lib/fa/comments-o';
 import TaskForm from '../../TaskManager/TaskForm/TaskForm';
 import AssignerSuggestions from '../../TaskManager/TaskForm/Suggestions/AssignerSuggestions';
@@ -210,14 +210,14 @@ class RawTask extends Component {
                 placement="bottom"
                 overlay={this.getTooltip('hands-down')}>
                 <div className="icon-ctn" onClick={this.toggleNewForm}>
-                  <FaHandODown />
+                  <TiFlowChildren size={20} />
                 </div>
               </OverlayTrigger>
               <OverlayTrigger
                 placement="bottom"
                 overlay={this.getTooltip('chat')}>
                 <div className="icon-ctn" onClick={this.redirectToDiscuss}>
-                  <FaCommentsO />
+                  <FaCommentsO size={20} />
                 </div>
               </OverlayTrigger>
             </div>
