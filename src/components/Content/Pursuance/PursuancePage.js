@@ -6,6 +6,7 @@ import PursuanceMenu from './PursuanceMenu';
 import TaskListView from './views/TaskListView';
 import DiscussView from './views/DiscussView';
 import ParticipantsView from './views/ParticipantsView';
+import RightPanel from '../RightPanel/RightPanel';
 import './PursuancePage.css';
 
 class PursuancePage extends Component {
@@ -30,6 +31,7 @@ class PursuancePage extends Component {
               <Route exact path="/pursuance/:pursuanceId/discuss/task/:taskGid" component={DiscussView} />
               <Route exact path="/pursuance/:pursuanceId/participants" component={ParticipantsView} />
             </Switch>
+            <RightPanel />
           </article>
         </div>
       </Router>

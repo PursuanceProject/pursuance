@@ -3,7 +3,6 @@ import DatePicker from 'react-datepicker';
 import generateId from '../../../../utils/generateId';
 import moment from 'moment';
 import { connect } from 'react-redux';
-import { filterSuggestion } from '../../../../utils/suggestions';
 import AssignerSuggestions from './Suggestions/AssignerSuggestions';
 import AssignerInput from './AssignerInput/AssignerInput';
 import { PURSUANCE_DISPLAY_PREFIX } from '../../../../constants';
@@ -11,12 +10,6 @@ import {
   updateFormField,
   clearTaskFormFields,
   setTaskFormParentGid,
-  startSuggestions,
-  showUsers,
-  stopSuggestions,
-  addSuggestion,
-  upSuggestion,
-  downSuggestion,
   postTask
 } from '../../../../actions';
 import './ReactDatePicker.css';
@@ -71,35 +64,10 @@ class TaskForm extends Component {
   }
 
   onChange = (e) => {
-    const { updateFormField, startSuggestions, users, pursuances, currentPursuanceId } = this.props;
+    const { updateFormField } = this.props;
     const { value, name } = e.target;
 
     updateFormField(this.id, name, value);
-
-    if (name === 'assigned_to') {
-      const suggestions = Object.assign({}, pursuances, users);
-      delete suggestions[currentPursuanceId];
-      startSuggestions(value, filterSuggestion, suggestions, this.id);
-    }
-  }
-
-  onAssignerKeyDown = (e) => {
-    const { addSuggestion, autoComplete, upSuggestion, downSuggestion } = this.props;
-    const { highlightedSuggestion, suggestions } = autoComplete;
-
-    if (e.key === 'Enter' && suggestions.length > 0) {
-      e.preventDefault();
-      addSuggestion(suggestions[highlightedSuggestion].suggestionName);
-      this.focusDatePicker();
-    }
-    if (e.key === 'ArrowUp' && suggestions) {
-      e.preventDefault();
-      upSuggestion();
-    }
-    if (e.key === 'ArrowDown' && suggestions) {
-      e.preventDefault();
-      downSuggestion();
-    }
   }
 
   handleDateSelect = (date) => {
@@ -142,17 +110,6 @@ class TaskForm extends Component {
     this.titleRef.focus();
   }
 
-  onFocus = (e) => {
-    const { users, pursuances, startSuggestions, currentPursuanceId } = this.props;
-    const suggestions = Object.assign({}, pursuances, users);
-    delete suggestions[currentPursuanceId];
-    startSuggestions(e.target.value, filterSuggestion, suggestions, this.id);
-  }
-
-  onBlur = () => {
-    this.props.stopSuggestions();
-  }
-
   focusDatePicker = () => this.datePickerRef.input.focus();
 
   render() {
@@ -173,6 +130,7 @@ class TaskForm extends Component {
               ref={(input) => this.titleRef = input}
               onChange={this.onChange}
               onKeyDown={this.onTitleKeyDown}
+              maxLength={200}
             />
           </div>
           <div className="assign-autocomplete-ctn">
@@ -214,16 +172,10 @@ class TaskForm extends Component {
   }
 }
 
-export default connect(({ users, taskForm, currentPursuanceId, pursuances, tasks, autoComplete }) =>
-  ({ users, taskForm, currentPursuanceId, pursuances, tasks, autoComplete }), {
+export default connect(({ taskForm, currentPursuanceId, pursuances, tasks, autoComplete }) =>
+  ({ taskForm, currentPursuanceId, pursuances, tasks, autoComplete }), {
    updateFormField,
    clearTaskFormFields,
    setTaskFormParentGid,
-   startSuggestions,
-   showUsers,
-   stopSuggestions,
-   addSuggestion,
-   upSuggestion,
-   downSuggestion,
    postTask
 })(TaskForm);

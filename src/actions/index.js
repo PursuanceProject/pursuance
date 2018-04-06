@@ -177,3 +177,13 @@ export const patchTask = task => ({
 export const removeSuccessToast = () => ({
   type: 'REMOVE_SUCCESS_TOAST'
 });
+
+export const showTaskDetails = ({taskGid, show = true}) => ({
+  type: 'RIGHT_PANEL_SHOW_TASK_DETAILS',
+  taskGid,
+  show
+});
+
+export const toggleRightPanel = () => ({
+  type: 'RIGHT_PANEL_TOGGLE'
+});

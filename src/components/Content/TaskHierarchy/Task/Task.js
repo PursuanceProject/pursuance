@@ -9,16 +9,16 @@ import TiMinus from 'react-icons/lib/ti/minus';
 import FaHandODown from 'react-icons/lib/fa/hand-o-down';
 import FaCommentsO from 'react-icons/lib/fa/comments-o';
 import TaskForm from '../../TaskManager/TaskForm/TaskForm';
-import AssignerSuggestions from '../../TaskManager/TaskForm/Suggestions/AssignerSuggestions';
-import AssignerInput from '../../TaskManager/TaskForm/AssignerInput/AssignerInput';
 import TaskStatus from '../../TaskStatus/TaskStatus';
+import TaskAssigner from './TaskAssigner/TaskAssigner';
 import { filterSuggestion } from '../../../../utils/suggestions';
-import AssignerButton from './AssignerButton/AssignerButton';
 import './Task.css';
 import {
   addTaskFormToHierarchy,
   removeTaskFormFromHierarchy,
-  startSuggestions
+  startSuggestions,
+  showTaskDetails,
+  toggleRightPanel
 } from '../../../../actions';
 
 class RawTask extends Component {
@@ -70,13 +70,16 @@ class RawTask extends Component {
   mapSubTasks = (task) => {
     const { pursuances, autoComplete, taskMap, taskForm } = this.props;
     return task.subtask_gids.map((gid) => {
-      return <Task
-        key={gid}
-        taskData={taskMap[gid]}
-        taskMap={taskMap}
-        pursuances={pursuances}
-        autoComplete={autoComplete}
-        taskForm={taskForm} />;
+      return (
+          <Task
+            key={gid}
+            taskData={taskMap[gid]}
+            taskMap={taskMap}
+            pursuances={pursuances}
+            autoComplete={autoComplete}
+            taskForm={taskForm}
+          />
+      )
     });
   }
 
@@ -98,18 +101,6 @@ class RawTask extends Component {
         </div>
       );
     }
-  }
-
-  showAssigneeInput = () => {
-    this.setState({
-      showAssigneeInput: true
-    });
-  }
-
-  hideEditAssignee = () => {
-    this.setState({
-      showAssigneeInput: false
-    });
   }
 
   onFocus = (e) => {
@@ -156,10 +147,25 @@ class RawTask extends Component {
     }
   }
 
+  selectTaskInHierarchy = () => {
+    const {
+      taskData,
+      rightPanel,
+      showTaskDetails,
+      toggleRightPanel
+    } = this.props;
+
+    if (rightPanel.show && rightPanel.tab === 'TaskDetails' && rightPanel.taskGid === taskData.gid) {
+      toggleRightPanel();
+      return;
+    }
+    showTaskDetails({taskGid: taskData.gid});
+  }
+
 
   render() {
-    const { pursuances, taskData, autoComplete, currentPursuanceId } = this.props;
-    const { showChildren, showAssigneeInput } = this.state;
+    const { pursuances, taskData, currentPursuanceId } = this.props;
+    const { showChildren } = this.state;
     const task = taskData;
     const assignedPursuanceId = task.assigned_to_pursuance_id;
     const assignedByThisPursuance = assignedPursuanceId === currentPursuanceId;
@@ -181,8 +187,10 @@ class RawTask extends Component {
             {this.getTaskIcon(task, showChildren)}
           </div>
           <div className="task-row-ctn">
-            <div className="task-title">
+            <div className="task-title" onClick={this.selectTaskInHierarchy}>
               {this.showTitle(task)}
+            </div>
+            <div className="task-title-buffer" onClick={this.selectTaskInHierarchy}>
             </div>
             <div className="task-icons-ctn">
               <OverlayTrigger
@@ -204,34 +212,11 @@ class RawTask extends Component {
               status={task.status}
             />
             <div className="task-assigned-to">
-                {
-                  showAssigneeInput &&
-                   <div className="assign-autocomplete-ctn">
-                     {
-                       autoComplete.suggestions
-                       &&
-                       task.gid === autoComplete.suggestionForm
-                       &&
-                       <AssignerSuggestions
-                         suggestionForm={task.gid}
-                         editMode={true}
-                         hideEditAssignee={this.hideEditAssignee}
-                       />
-                     }
-                    <AssignerInput
-                      formId={task.gid}
-                      editMode={true}
-                      hideEditAssignee={this.hideEditAssignee}
-                      placeholder={placeholder}
-                      assignedTo={assignedTo}
-                    />
-                  </div>
-                  ||
-                    <AssignerButton
-                      showAssigneeInput={this.showAssigneeInput}
-                      placeholder={placeholder}
-                    /> 
-                }
+              <TaskAssigner
+                taskGid={task.gid}
+                placeholder={placeholder}
+                assignedTo={assignedTo}
+              />
             </div>
             <div className="task-due-date">
               {task.due_date && postgrest.formatDate(task.due_date)}
@@ -253,11 +238,13 @@ class RawTask extends Component {
 }
 
 const Task = withRouter(connect(
-  ({ pursuances, users, currentPursuanceId, autoComplete }) =>
-   ({ pursuances, users, currentPursuanceId, autoComplete }), {
+  ({ pursuances, users, currentPursuanceId, autoComplete, rightPanel }) =>
+   ({ pursuances, users, currentPursuanceId, autoComplete, rightPanel }), {
   addTaskFormToHierarchy,
   removeTaskFormFromHierarchy,
-  startSuggestions
+  startSuggestions,
+  showTaskDetails,
+  toggleRightPanel
 })(RawTask));
 
 // Why RawTask _and_ Task? Because Task.mapSubTasks() recursively

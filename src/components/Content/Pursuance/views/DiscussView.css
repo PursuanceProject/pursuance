@@ -9,115 +9,14 @@
 
 .leapchat-frame {
   display: flex;
-  flex: 62;
+  flex: 1;
   height: calc(100vh - 60px);
   border: 1px solid #6d6d6d;
   border-right: none;
   border-bottom-left-radius: 4px;
+  margin-right: 50px;
 }
 
-.task-details-ctn {
-  display: flex;
-  flex-direction: column;
-  flex: 38;
-  border: 1px solid #6d6d6d;
-  border-radius: 0 4px 4px 0;
-  color: #d6d6d6;
-  font-size: 1.2em;
-}
-
-.task-assignment-ctn {
-  display: flex;
-  justify-content: center;
-  margin: 4px 16px;
-  color: #d6d6d6;
-  max-height: 72px;
-  overflow: hidden;
-}
-
-.assigned-to-ctn {
-  flex: 1;
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  margin: 0 12px;
-}
-
-.assigned-to-ctn span:hover {
-  cursor: pointer;
-  color: #1fc7d3;
-}
-
-.due-date-ctn {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin: 0 12px;
-}
-
-.icon-ctn {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 8px;
-  height: 100%;
-}
-
-.pursuance-discuss-ctn {
-  padding: 0 16px;
-}
-
-.pursuance-title-ctn {
-  padding: 4px 0 0 0;
-}
-
-
-.discuss-task-title-ctn {
-  display: flex;
-  align-items: center;
-  border-top: 1px solid #6d6d6d;
-  padding-top: 12px;
-}
-
-.discuss-task-title {
-  font-size: 1.5em;
-  color: #fcfcfc;
-}
-
-.task-deliverables-ctn {
-  border-top: 1px solid #6d6d6d;
-  padding-top: 8px;
-  margin-top: 16px;
-  margin-bottom: 32px;
-  min-height: 64px;
-}
-
-.subtasks-ctn {
-  border-top: 1px solid #6d6d6d;
-  padding-top: 8px;
-}
-
-.subtasks-list {
-  list-style: none;
-  padding-left: 0
-}
-
-.subtask-item {
-  margin-left: 0;
-}
-
-.fa-circle-o {
-  margin-bottom: 2px;
-  margin-right: 3px;
-}
-
-.no-task {
-  height: calc(100vh - 110px);
-  margin-top: 60px;
-  text-align: center;
-  color: #fff;
-  width: 100%;
-  font-size: 36px;
+.leapchat-frame-narrow {
+  max-width: calc(70vw - 162px);
 }

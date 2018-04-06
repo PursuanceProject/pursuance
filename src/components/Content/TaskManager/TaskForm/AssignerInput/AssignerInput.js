@@ -55,6 +55,8 @@ const AssignerInput = (props) => {
   }
 
   const onFocus = (e) => {
+    const { value, name } = e.target;
+    updateFormField(formId, name, value);
     const suggestions = onlyShowUsers() ? users : Object.assign({}, pursuances, users);
     if (suggestions[assignedTo]) {
       delete suggestions[assignedTo]
@@ -82,8 +84,7 @@ const AssignerInput = (props) => {
         if (suggestionName.startsWith(PURSUANCE_DISPLAY_PREFIX)) {
           patchedTask.assigned_to_pursuance_id = suggestion.id;
           patchedTask.assigned_to = null;
-        } else if(isFromCurrentPursuance){
-          // Outsourcing from this pursuance to another pursuance
+        } else if (isFromCurrentPursuance) {
             // Assigning to a user in the current pursuance
             patchedTask.assigned_to_pursuance_id = null;
             patchedTask.assigned_to = suggestionName;
@@ -115,6 +116,7 @@ const AssignerInput = (props) => {
     stopSuggestions();
     if (editMode) {
       hideEditAssignee();
+      updateFormField(formId, 'assigned_to', '');
     }
   }
 
@@ -145,7 +147,7 @@ const AssignerInput = (props) => {
         className="form-control assign-to"
         type="text"
         placeholder={placeholder || 'Assigned To'}
-        value={assigned_to}
+        value={assigned_to || ''}
         name={'assigned_to'}
         onChange={onChange}
         onFocus={onFocus}

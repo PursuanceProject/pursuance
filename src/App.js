@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import NavBar from './components/NavBar/NavBar';
-import HomePage from './components/HomePage/HomePage';
 import PublicPursuances from './components/PublicPursuances/PublicPursuances';
 import Dashboard from './components/Dashboard/Dashboard';
 import PursuancePage from './components/Content/Pursuance/PursuancePage';
@@ -24,7 +23,8 @@ class App extends Component {
             onIncreaseContributionAmount={this.props.increaseContributionAmount}
             />
           <Switch>
-            <Route exact path="/" component={HomePage} />
+            {/* Temporary redirect from /; will use HomePage component */ }
+            <Route exact path="/" render={() => <Redirect to="/dashboard" />} />
             <Route exact path="/dashboard" component={Dashboard} />
             <Route exact path="/pursuance/all" component={PublicPursuances} />
             <Route exact path="/pursuance/create" component={CreatePursuance} />
