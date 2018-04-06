@@ -1,0 +1,21 @@
+.task-assigned-to {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  width: 190px;
+  min-width: 190px;
+  padding: 0 4px;
+}
+
+.task-assigned-to span:hover {
+  cursor: pointer;
+  color: #1fc7d3;
+}
+
+.assign-autocomplete-ctn {
+  position: relative;
+  display: flex;
+  width: 240px;
+  max-height: 32px;
+}
