@@ -107,14 +107,14 @@
   height: 100%;
   max-height: 34px;
   max-width: 36px;
-  background-color: rgba(80, 179, 254, .96);
+  background-color: #000;
   border-radius: 8px;
   border: 1px solid rgba(255, 255, 255, .5);
   margin-right: 8px;
 }
 
 .icon-ctn svg {
-  color: #333;
+  color: #fff;
 }
 
 .icon-ctn:hover {
@@ -149,8 +149,8 @@
 
 .edit-assignee-button {
   border-radius: 5px;
-  background-color: rgba(80, 179, 254, .96);
-  color: #000;
+  background-color: rgba(80, 179, 254, .9);
+  color: #fff;
 }
 
 .edit-assignee-button:hover {
@@ -164,9 +164,13 @@
   text-overflow: ellipsis;
   max-width: 95%;
   border-radius: 5px;
-  background-color: rgba(170, 0, 255, .9);
+  background-color: #000;
 }
 
 .assignee-button:hover {
   border-color: #fff;
+}
+
+.assigned-to-me {
+  background-color: rgba(170, 0, 255, .9);
 }

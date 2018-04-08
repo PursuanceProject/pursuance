@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   flex: 1;
-  color: #d6d6d6;
+  color: #efefef;
   font-size: 1.2em;
 }
 
@@ -10,7 +10,7 @@
   display: flex;
   justify-content: center;
   margin: 4px 16px;
-  color: #d6d6d6;
+  color: #efefef;
   max-height: 72px;
   overflow: hidden;
 }

@@ -160,6 +160,15 @@ class RawTask extends Component {
     }
   }
 
+  getAssignedCss = (task) => {
+    const { user } = this.props;
+    if (task.assigned_to && task.assigned_to === user.username) {
+      return " assigned-to-me";
+    } else {
+      return "";
+    }
+  }
+
   selectTaskInHierarchy = () => {
     const {
       taskData,
@@ -250,11 +259,11 @@ class RawTask extends Component {
                   ||
                   (assignedPursuanceId && pursuances[assignedPursuanceId] && pursuances[assignedPursuanceId].suggestionName)
                     &&
-                    <button onClick={this.showAssigneeInput} className="assignee-button">{pursuances[assignedPursuanceId].suggestionName}</button>
+                    <button onClick={this.showAssigneeInput} className={"assignee-button" + this.getAssignedCss(task)}>{pursuances[assignedPursuanceId].suggestionName}</button>
                   ||
                   (task.assigned_to && '@' + task.assigned_to)
                     &&
-                    <button onClick={this.showAssigneeInput} className="assignee-button">{'@' + task.assigned_to}</button>
+                    <button onClick={this.showAssigneeInput} className={"assignee-button" + this.getAssignedCss(task)}>{'@' + task.assigned_to}</button>
                   ||
                   <button className="edit-assignee-button" onClick={this.showAssigneeInput}>Assign</button>
                 }
@@ -279,8 +288,8 @@ class RawTask extends Component {
 }
 
 const Task = withRouter(connect(
-  ({ pursuances, users, currentPursuanceId, autoComplete, rightPanel }) =>
-   ({ pursuances, users, currentPursuanceId, autoComplete, rightPanel }), {
+  ({ pursuances, user, users, currentPursuanceId, autoComplete, rightPanel }) =>
+   ({ pursuances, user, users, currentPursuanceId, autoComplete, rightPanel }), {
   addTaskFormToHierarchy,
   removeTaskFormFromHierarchy,
   startSuggestions,
