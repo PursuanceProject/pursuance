@@ -187,3 +187,12 @@ export const showTaskDetails = ({taskGid, show = true}) => ({
 export const toggleRightPanel = () => ({
   type: 'RIGHT_PANEL_TOGGLE'
 });
+
+export const userLoginSuccess = ({username}) => ({
+  type: 'USER_LOGIN_SUCCESS',
+  username
+});
+
+export const userLogoutSuccess = () => ({
+  type: 'USER_LOGOUT_SUCCESS'
+});
