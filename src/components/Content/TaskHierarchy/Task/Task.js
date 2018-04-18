@@ -218,14 +218,14 @@ class RawTask extends Component {
               <OverlayTrigger
                 placement="bottom"
                 overlay={this.getTooltip('hands-down')}>
-                <div className="icon-ctn" onClick={this.toggleNewForm}>
+                <div id={'create-subtask-' + task.gid} className="icon-ctn create-subtask" onClick={this.toggleNewForm}>
                   <TiFlowChildren size={20} />
                 </div>
               </OverlayTrigger>
               <OverlayTrigger
                 placement="bottom"
                 overlay={this.getTooltip('chat')}>
-                <div className="icon-ctn" onClick={this.redirectToDiscuss}>
+                <div id={'discuss-task-' + task.gid} className="icon-ctn discuss-task" onClick={this.redirectToDiscuss}>
                   <FaCommentsO size={20} />
                 </div>
               </OverlayTrigger>
