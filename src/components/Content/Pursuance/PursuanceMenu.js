@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { ButtonGroup, Button } from 'react-bootstrap';
 import PursuanceMenuItem from './PursuanceMenuItem';
 import FaCheckSquareO from 'react-icons/lib/fa/check-square-o';
@@ -10,12 +11,13 @@ import Rocket from 'react-icons/lib/fa/rocket';
 import PlusCircle from 'react-icons/lib/fa/plus-circle';
 import './PursuanceMenu.css';
 
-const PursuanceMenu = ({ currentPursuanceId }) => {
+const PursuanceMenu = ({ currentPursuanceId, location }) => {
   return (
     <ButtonGroup vertical id="pursuance-btn-group">
       <Button id="pursuance-top-btn">
         <PursuanceMenuItem
           pursuanceId={currentPursuanceId}
+          location={location}
           label='New'
           action='add'
           icon={<PlusCircle size={28} />}
@@ -24,15 +26,16 @@ const PursuanceMenu = ({ currentPursuanceId }) => {
       <Button>
         <PursuanceMenuItem
           pursuanceId={currentPursuanceId}
+          location={location}
           label='Tasks'
           action='tasks'
-          defaultItem
           icon={<FaCheckSquareO size={28} />}
         />
       </Button>
       <Button>
         <PursuanceMenuItem
           pursuanceId={currentPursuanceId}
+          location={location}
           label='Discuss'
           action='discuss'
           icon={<CommentsO size={28} />}
@@ -41,6 +44,7 @@ const PursuanceMenu = ({ currentPursuanceId }) => {
       <Button>
         <PursuanceMenuItem
           pursuanceId={currentPursuanceId}
+          location={location}
           label='Files & Docs'
           action='docs'
           icon={<FolderOpen size={28} />}
@@ -49,6 +53,7 @@ const PursuanceMenu = ({ currentPursuanceId }) => {
       <Button>
         <PursuanceMenuItem
           pursuanceId={currentPursuanceId}
+          location={location}
           label='Participants'
           action='participants'
           icon={<Group size={28} />}
@@ -57,6 +62,7 @@ const PursuanceMenu = ({ currentPursuanceId }) => {
       <Button id="pursuance-bottom-btn">
         <PursuanceMenuItem
           pursuanceId={currentPursuanceId}
+          location={location}
           label='Progress'
           action='progress'
           icon={<Rocket size={28} />}
@@ -66,4 +72,4 @@ const PursuanceMenu = ({ currentPursuanceId }) => {
   );
 };
 
-export default connect(({ currentPursuanceId }) => ({ currentPursuanceId }))(PursuanceMenu);
+export default withRouter(connect(({ currentPursuanceId }) => ({ currentPursuanceId }))(PursuanceMenu));
