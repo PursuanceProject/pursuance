@@ -34,6 +34,12 @@ class TaskHierarchy extends Component {
     }
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.currentPursuanceId !== this.props.currentPursuanceId) {
+      this.componentDidMount();
+    }
+  }
+
   componentWillUnmount(){
     const { showSuccessToast, removeSuccessToast } = this.props;
     if (showSuccessToast) {
@@ -103,13 +109,9 @@ class TaskHierarchy extends Component {
   }
 
   render() {
-    const { currentPursuanceId, pursuances } = this.props;
     return (
       <div className="content">
         <div id="task-hierarchy">
-          <div id="task-hierarchy-title">
-            <h2 id="pursuance-title">{ this.getPursuanceName(pursuances, currentPursuanceId) }</h2>
-          </div>
           <div id="task-labels">
             <div>
               <span>

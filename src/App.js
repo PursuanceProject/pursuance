@@ -31,10 +31,6 @@ class App extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return state.user;
-}
-
 function mapDispatchToProps(dispatch) {
   return {
     removeNotification(id){
@@ -46,4 +42,4 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(({ user, currentPursuanceId }) => ({ user, currentPursuanceId }), mapDispatchToProps)(App);

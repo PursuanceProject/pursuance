@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
-import { Nav, Navbar, NavDropdown, NavItem, OverlayTrigger, Tooltip } from 'react-bootstrap';
+import { Navbar, NavDropdown, NavItem, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import FaBell from 'react-icons/lib/fa/bell';
 import SignUp from './SignUp/SignUp';
 import LogIn from './LogIn/LogIn';
 import NotificationsModal from './NotificationsModal/NotificationsModal';
 import UserSettingsPopover from './UserSettingsPopover';
 import jumpToPursuanceOptions from './JumpToPursuance/JumpToPursuance';
-import { getPursuances } from '../../actions';
+import { getPursuances, setCurrentPursuance } from '../../actions';
 import './NavBar.css';
 
 class NavBar extends Component {
@@ -17,7 +17,6 @@ class NavBar extends Component {
     // TODO: Once we add auth, only grab pursuances that the logged-in
     // user is a mumber of
     this.props.getPursuances();
-
   }
 
   getTooltip = () => (
@@ -27,9 +26,8 @@ class NavBar extends Component {
   );
 
   showCurrentPursuance = (pursuances) => {
-    const { location } = this.props;
-    let id = parseInt(location.pathname.split('/')[2], 10);
-    let rawPursuance = pursuances[id];
+    const { currentPursuanceId } = this.props;
+    const rawPursuance = pursuances[currentPursuanceId];
     if (rawPursuance !== undefined) {
       return rawPursuance.name;
     } else {
@@ -38,9 +36,12 @@ class NavBar extends Component {
   }
 
   handleJumpToPursuance = (e) => {
-    const { history } = this.props;
-    history.push(`/pursuance/${e}`);
-    history.go();
+    const { history, setCurrentPursuance } = this.props;
+    history.push({
+      pathname: `/pursuance/${e}`
+    });
+    // Needed to trigger re-render of dropdown
+    setCurrentPursuance(e);
   }
 
   render() {
@@ -104,6 +105,6 @@ class NavBar extends Component {
 }
 
 export default withRouter(connect(
-  ({ user, pursuances }) => ({ user, pursuances }), {
-    getPursuances
+  ({ user, pursuances, currentPursuanceId }) => ({ user, pursuances, currentPursuanceId }), {
+    getPursuances, setCurrentPursuance
   })(NavBar));
