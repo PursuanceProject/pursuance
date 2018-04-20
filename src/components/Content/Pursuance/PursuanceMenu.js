@@ -14,7 +14,7 @@ import './PursuanceMenu.css';
 const PursuanceMenu = ({ currentPursuanceId }) => {
   return (
     <ButtonGroup vertical id="pursuance-btn-group">
-    <Button id="pursuance-top-btn">
+      <Button id="pursuance-top-btn">
         <PursuanceMenuItem
           pursuanceId={currentPursuanceId}
           label='About'

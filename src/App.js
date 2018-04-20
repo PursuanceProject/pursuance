@@ -15,9 +15,9 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-        <Route component={NavBar} />
+          <Route component={NavBar} />
           <Switch>
-            {/* Temporary redirect from /; will use HomePage component */ }
+            {/* Temporary redirect from /; will use HomePage component */}
             <Route exact path="/" render={() => <Redirect to="/dashboard" />} />
             <Route exact path="/dashboard" component={Dashboard} />
             <Route exact path="/pursuance/all" component={PublicPursuances} />

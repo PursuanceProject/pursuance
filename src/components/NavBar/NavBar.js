@@ -61,11 +61,10 @@ class NavBar extends Component {
             id="jump-to-pursuance"
             title={this.showCurrentPursuance(pursuances)}
             onSelect={this.handleJumpToPursuance}
-            >
-              {jumpToPursuanceOptions(pursuances)}
+          >
+            {jumpToPursuanceOptions(pursuances)}
           </NavDropdown>
-          )
-        }
+        )}
         </div>
         <div className="nav-pull-right">
         {!authenticated &&

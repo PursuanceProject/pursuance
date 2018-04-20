@@ -140,11 +140,11 @@ class TaskHierarchy extends Component {
             </div>
           </div>
           <ToastContainer
-              position="top-center"
-              type="success"
-              autoClose={4000}
-              hideProgressBar={false}
-              newestOnTop={false} />
+            position="top-center"
+            type="success"
+            autoClose={4000}
+            hideProgressBar={false}
+            newestOnTop={false} />
           {this.renderHierarchy()}
         </div>
       </div>
