@@ -18,7 +18,7 @@
 }
 
 .close:hover {
-  color: #d6d6d6;
+  color: #efefef;
   opacity: 1;
 }
 
@@ -27,7 +27,7 @@
 }
 
 .signup-login-label {
-  color: #d6d6d6;
+  color: #efefef;
   font-size: 1.1em;
 }
 
@@ -37,7 +37,7 @@
 }
 
 .btn-close:hover {
-  background-color: #d6d6d6;
+  background-color: #efefef;
 }
 
 .btn-primary {

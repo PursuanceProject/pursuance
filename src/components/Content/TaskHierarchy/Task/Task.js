@@ -6,7 +6,7 @@ import generateId from '../../../../utils/generateId';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import TiPlus from 'react-icons/lib/ti/plus';
 import TiMinus from 'react-icons/lib/ti/minus';
-import FaHandODown from 'react-icons/lib/fa/hand-o-down';
+import TiFlowChildren from 'react-icons/lib/ti/flow-children';
 import FaCommentsO from 'react-icons/lib/fa/comments-o';
 import TaskForm from '../../TaskManager/TaskForm/TaskForm';
 import AssignerSuggestions from '../../TaskManager/TaskForm/Suggestions/AssignerSuggestions';
@@ -160,6 +160,15 @@ class RawTask extends Component {
     }
   }
 
+  getAssignedCss = (task) => {
+    const { user } = this.props;
+    if (task.assigned_to && task.assigned_to === user.username) {
+      return " assigned-to-me";
+    } else {
+      return "";
+    }
+  }
+
   selectTaskInHierarchy = () => {
     const {
       taskData,
@@ -209,15 +218,15 @@ class RawTask extends Component {
               <OverlayTrigger
                 placement="bottom"
                 overlay={this.getTooltip('hands-down')}>
-                <div className="icon-ctn" onClick={this.toggleNewForm}>
-                  <FaHandODown />
+                <div id={'create-subtask-' + task.gid} className="icon-ctn create-subtask" onClick={this.toggleNewForm}>
+                  <TiFlowChildren size={20} />
                 </div>
               </OverlayTrigger>
               <OverlayTrigger
                 placement="bottom"
                 overlay={this.getTooltip('chat')}>
-                <div className="icon-ctn" onClick={this.redirectToDiscuss}>
-                  <FaCommentsO />
+                <div id={'discuss-task-' + task.gid} className="icon-ctn discuss-task" onClick={this.redirectToDiscuss}>
+                  <FaCommentsO size={20} />
                 </div>
               </OverlayTrigger>
             </div>
@@ -250,11 +259,11 @@ class RawTask extends Component {
                   ||
                   (assignedPursuanceId && pursuances[assignedPursuanceId] && pursuances[assignedPursuanceId].suggestionName)
                     &&
-                    <button onClick={this.showAssigneeInput} className="assignee-button">{pursuances[assignedPursuanceId].suggestionName}</button>
+                    <button onClick={this.showAssigneeInput} className={"assignee-button" + this.getAssignedCss(task)}>{pursuances[assignedPursuanceId].suggestionName}</button>
                   ||
                   (task.assigned_to && '@' + task.assigned_to)
                     &&
-                    <button onClick={this.showAssigneeInput} className="assignee-button">{'@' + task.assigned_to}</button>
+                    <button onClick={this.showAssigneeInput} className={"assignee-button" + this.getAssignedCss(task)}>{'@' + task.assigned_to}</button>
                   ||
                   <button className="edit-assignee-button" onClick={this.showAssigneeInput}>Assign</button>
                 }
@@ -279,8 +288,8 @@ class RawTask extends Component {
 }
 
 const Task = withRouter(connect(
-  ({ pursuances, users, currentPursuanceId, autoComplete, rightPanel }) =>
-   ({ pursuances, users, currentPursuanceId, autoComplete, rightPanel }), {
+  ({ pursuances, user, users, currentPursuanceId, autoComplete, rightPanel }) =>
+   ({ pursuances, user, users, currentPursuanceId, autoComplete, rightPanel }), {
   addTaskFormToHierarchy,
   removeTaskFormFromHierarchy,
   startSuggestions,

@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { userLoginSuccess } from '../../../actions';
 import '../SignUpLogInModal.css';
 import './LogIn.css';
+
+const USERNAME_KEY = 'username';
 
 class LogIn extends Component {
   constructor(props) {
@@ -13,15 +17,15 @@ class LogIn extends Component {
   }
 
   componentWillMount() {
-    const usernameLS = localStorage.getItem('username');
-    if(usernameLS) {
+    const usernameLS = localStorage.getItem(USERNAME_KEY);
+    if (usernameLS) {
       this.usernameRemembered = usernameLS;
       this.rememberChecked = 'Checked';
     }
   }
 
   setUsername = (e) => {
-    this.username = e.target.value;
+    this.username = e.target.value.toLowerCase();
   }
 
   setPassword = (e) => {
@@ -30,14 +34,25 @@ class LogIn extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    if(document.getElementById('remember-username').checked) {
-      localStorage.setItem('username', this.username);
+    const { userLoginSuccess } = this.props;
+
+    // If user is submitting their username as populated from
+    // localStorage, this.username will be empty
+    this.username = this.username || this.usernameRemembered;
+
+    const remember = document.getElementById('remember-username').checked;
+    if (remember) {
+      localStorage.setItem(USERNAME_KEY, this.username);
     } else {
-      localStorage.removeItem('username');
+      localStorage.removeItem(USERNAME_KEY);
     }
     // TODO: Front End Validation
     // Post Request LogIn
     // Clear user info from RAM
+
+    // TODO: Actually log user in, don't just fake it
+    userLoginSuccess({username: this.username});
+
     this.usernameRemembered = '';
     this.username = '';
     this.password = '';
@@ -93,4 +108,4 @@ class LogIn extends Component {
   }
 }
 
-export default LogIn;
+export default connect(null, { userLoginSuccess })(LogIn);

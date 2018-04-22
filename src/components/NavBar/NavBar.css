@@ -45,6 +45,14 @@ nav li a:hover {
   padding-right: 16px;
 }
 
+.navbar-nav li a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 60px;
+  color: #efefef !important;
+}
+
 .modal-btn-ctn .btn {
   margin-left: 10px;
 }
