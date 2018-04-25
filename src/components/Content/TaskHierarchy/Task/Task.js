@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import * as postgrest from '../../../../api/postgrest';
 import generateId from '../../../../utils/generateId';
+import moment from 'moment';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import TiPlus from 'react-icons/lib/ti/plus';
 import TiMinus from 'react-icons/lib/ti/minus';
@@ -12,6 +13,7 @@ import TaskForm from '../../TaskManager/TaskForm/TaskForm';
 import AssignerSuggestions from '../../TaskManager/TaskForm/Suggestions/AssignerSuggestions';
 import AssignerInput from '../../TaskManager/TaskForm/AssignerInput/AssignerInput';
 import TaskStatus from '../../TaskStatus/TaskStatus';
+import DueDatePicker from '../../TaskManager/TaskForm/DatePicker/DatePicker';
 import { filterSuggestion } from '../../../../utils/suggestions';
 import './Task.css';
 import {
@@ -29,7 +31,8 @@ class RawTask extends Component {
 
     this.state = {
       showChildren: true,
-      showAssigneeInput: false
+      showAssigneeInput: false,
+      showDueDateInput: false,
     };
   }
 
@@ -185,10 +188,32 @@ class RawTask extends Component {
     showTaskDetails({taskGid: taskData.gid});
   }
 
+  onClickDueDate = () => {
+    if (!this.state.showDueDateInput) {
+      this.setState({
+        showDueDateInput: true
+      })
+    }
+  }
+
+  hideDueDateInput = () => {
+    this.setState({
+      showDueDateInput: false
+    })
+  }
+
+  onSubmitDueDate = (date) => {
+    const { taskData, patchTask } = this.props;
+    patchTask({
+      gid: taskData.gid,
+      due_date: moment(date).format()
+    })
+    this.hideDueDateInput();
+  }
 
   render() {
     const { pursuances, taskData, autoComplete, currentPursuanceId } = this.props;
-    const { showChildren, showAssigneeInput } = this.state;
+    const { showChildren, showAssigneeInput, showDueDateInput } = this.state;
     const task = taskData;
     const assignedPursuanceId = task.assigned_to_pursuance_id;
     const assignedByThisPursuance = assignedPursuanceId === currentPursuanceId;
@@ -271,8 +296,17 @@ class RawTask extends Component {
                   <button className="edit-assignee-button" onClick={this.showAssigneeInput}>Assign</button>
                 }
             </div>
-            <div className="task-due-date">
-              {task.due_date && postgrest.formatDate(task.due_date)}
+            <div className="task-due-date" onClick={this.onClickDueDate}>
+              {showDueDateInput && (
+                <DueDatePicker
+                  id={task.gid}
+                  selected={task.due_date && moment(task.due_date)}
+                  onSubmit={this.onSubmitDueDate}
+                  autoFocus={true}
+                  onBlur={this.hideDueDateInput}
+                 />
+              )}
+              {!showDueDateInput && task.due_date && postgrest.formatDate(task.due_date)}
             </div>
           </div>
         </div>

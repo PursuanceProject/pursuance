@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import DatePicker from 'react-datepicker';
 import generateId from '../../../../utils/generateId';
 import moment from 'moment';
 import { connect } from 'react-redux';
 import { filterSuggestion } from '../../../../utils/suggestions';
 import AssignerSuggestions from './Suggestions/AssignerSuggestions';
 import AssignerInput from './AssignerInput/AssignerInput';
+import DueDatePicker from './DatePicker/DatePicker';
 import { PURSUANCE_DISPLAY_PREFIX } from '../../../../constants';
 import {
   updateFormField,
@@ -19,7 +19,6 @@ import {
   downSuggestion,
   postTask
 } from '../../../../actions';
-import './ReactDatePicker.css';
 import './TaskForm.css';
 
 class TaskForm extends Component {
@@ -102,13 +101,6 @@ class TaskForm extends Component {
     }
   }
 
-  handleDateSelect = (date) => {
-    if (date) {
-      // Currently ignored until date Picker input is updating Redux value
-      this.props.updateFormField(this.id, 'due_date_raw', date);
-    }
-  }
-
   handleSubmit = (e) => {
     e.preventDefault();
     const {
@@ -153,7 +145,9 @@ class TaskForm extends Component {
     this.props.stopSuggestions();
   }
 
-  focusDatePicker = () => this.datePickerRef.input.focus();
+  focusDatePicker = () => {
+    this.dueDatePicker.datePickerRef.input.focus();
+  }
 
   render() {
     const { taskForm, autoComplete } = this.props;
@@ -196,16 +190,11 @@ class TaskForm extends Component {
                editMode={false}
              />
           </div>
-          <div className="date-picker-ctn">
-            <DatePicker
-              placeholderText="YYYY-MM-DD"
-              dateFormat="YYYY-MM-DD"
-              ref={(input) => this.datePickerRef = input}
-              selected={due_date_raw || ''}
-              onSelect={this.handleDateSelect}
-              onChange={this.handleDateSelect}
-            />
-          </div>
+          <DueDatePicker
+            id={this.id}
+            selected={due_date_raw || ''}
+            onRef={ref => (this.dueDatePicker = ref)}
+           />
           <button className="btn btn-default save-task-btn" onClick={this.handleSubmit}>
             Save
           </button>
