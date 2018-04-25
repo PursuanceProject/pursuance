@@ -14,6 +14,10 @@ const VALID_STATUSES = [
   'Done'
 ];
 
+const STATUS_IMAGES = {
+  'WorkingOn': true,
+}
+
 class TaskStatus extends Component {
 
   displayStatus = (status) => {
@@ -53,6 +57,7 @@ class TaskStatus extends Component {
           noCaret>
           {this.getDropDownItems()}
         </DropdownButton>
+        {STATUS_IMAGES[status] && <img src={`/assets/img/${status}.gif`} />}
         <div className="edit-icon-ctn">
           <TiPencil id="task-edit-icon" size={18} />
         </div>
