@@ -26,7 +26,7 @@ class PublicPursuances extends Component {
             <div className="dash-box">
               <div className="filter">
                 <form className="custom-dropdown big">
-                  <label>Order by:</label>
+                  <label className="order-by">Order by:</label>
                   <select value={this.props.publicOrder} onChange={this.handleChange}>
                     <option value="Most Recent">Most Recent</option>
                     <option value="Oldest">Oldest</option>
