@@ -16,9 +16,11 @@ export const patchTaskReq = task => {
     .catch(err => console.log('Error patching task:', err));
 };
 
-export const getTasksReq = pursuanceId => {
+export const getTasksReq = (pursuanceId, { includeArchived = false } = {}) => {
   return postgrest
-    .getJSON(`/tasks?pursuance_id=eq.${pursuanceId}&order=created.asc,id.asc`)
+    .getJSON(`/tasks?pursuance_id=eq.${pursuanceId}&order=created.asc,id.asc` +
+             (includeArchived ? '' : '&is_archived=eq.false')
+            )
     .then(tasks => {
       const { taskMap, rootTaskGids } = buildTaskHierarchy(tasks);
       return { taskMap, rootTaskGids };

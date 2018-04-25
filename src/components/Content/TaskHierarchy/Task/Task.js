@@ -19,7 +19,8 @@ import {
   removeTaskFormFromHierarchy,
   startSuggestions,
   showTaskDetails,
-  toggleRightPanel
+  toggleRightPanel,
+  patchTask
 } from '../../../../actions';
 
 class RawTask extends Component {
@@ -231,7 +232,9 @@ class RawTask extends Component {
               </OverlayTrigger>
             </div>
             <TaskStatus
+              gid={task.gid}
               status={task.status}
+              patchTask={this.props.patchTask}
             />
             <div className="task-assigned-to">
                 {
@@ -294,7 +297,8 @@ const Task = withRouter(connect(
   removeTaskFormFromHierarchy,
   startSuggestions,
   showTaskDetails,
-  toggleRightPanel
+  toggleRightPanel,
+  patchTask
 })(RawTask));
 
 // Why RawTask _and_ Task? Because Task.mapSubTasks() recursively
