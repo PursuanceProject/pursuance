@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import * as postgrest from '../../../../api/postgrest';
-import { getPursuancesByIds, getTasks } from '../../../../actions';
+import { getPursuancesByIds, getTasks, patchTask } from '../../../../actions';
 import ReactMarkdown from 'react-markdown';
 import FaEllipsisV from 'react-icons/lib/fa/ellipsis-v';
 import FaCircleO from 'react-icons/lib/fa/circle-o';
@@ -87,7 +87,9 @@ class TaskDetails extends Component {
         <div className="task-details-ctn">
           <div className="task-assignment-ctn">
             <TaskStatus
+              gid={task.gid}
               status={task.status}
+              patchTask={this.props.patchTask}
             />
             <div className="assigned-to-ctn">
               {this.showAssignee()}
@@ -143,4 +145,6 @@ class TaskDetails extends Component {
   };
 }
 
-export default withRouter(connect(({currentPursuanceId, pursuances, tasks, rightPanel}) => ({currentPursuanceId, pursuances, tasks, rightPanel}), { getPursuancesByIds, getTasks })(TaskDetails));
+export default withRouter(connect(({currentPursuanceId, pursuances, tasks, rightPanel}) => ({currentPursuanceId, pursuances, tasks, rightPanel}),
+  { getPursuancesByIds, getTasks, patchTask })
+(TaskDetails));
