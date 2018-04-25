@@ -1,8 +1,13 @@
 .about {
-  padding: 30px;
+  width: 100%;
+  padding: 0 30px;
   overflow: auto;
 }
 
-.about h1, h2 {
+.about h1, h2, h4 {
   color: #fcfcfc;
+}
+
+.about h1 {
+  text-align: center;
 }
