@@ -28,14 +28,6 @@
   color: #1fc7d3;
 }
 
-.due-date-ctn {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin: 0 12px;
-}
-
 .task-discuss-icons-ctn {
   display: flex;
   flex: 0.1;
