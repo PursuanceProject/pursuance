@@ -25,6 +25,7 @@ class TaskStatus extends Component {
   }
 
   getDropDownItems = () => {
+    // eslint-disable-next-line
     return VALID_STATUSES.map((statusName, i) => {
       if (statusName !== this.props.status) {
         return (

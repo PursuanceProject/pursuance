@@ -146,5 +146,4 @@ class TaskDetails extends Component {
 }
 
 export default withRouter(connect(({currentPursuanceId, pursuances, tasks, rightPanel}) => ({currentPursuanceId, pursuances, tasks, rightPanel}),
-  { getPursuancesByIds, getTasks, patchTask })
-(TaskDetails));
+  { getPursuancesByIds, getTasks, patchTask })(TaskDetails));
