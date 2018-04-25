@@ -47,7 +47,7 @@
 
 .task-status-ctn .dropdown ul {
   z-index: 9001;
-  border-radius: 0;
+  border-radius: 5px;
   margin: -3px 0 0 -7px;
   padding: 0;
   min-width: 0;
