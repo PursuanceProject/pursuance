@@ -82,25 +82,6 @@ class TaskForm extends Component {
     }
   }
 
-  onAssignerKeyDown = (e) => {
-    const { addSuggestion, autoComplete, upSuggestion, downSuggestion } = this.props;
-    const { highlightedSuggestion, suggestions } = autoComplete;
-
-    if (e.key === 'Enter' && suggestions.length > 0) {
-      e.preventDefault();
-      addSuggestion(suggestions[highlightedSuggestion].suggestionName);
-      this.focusDatePicker();
-    }
-    if (e.key === 'ArrowUp' && suggestions) {
-      e.preventDefault();
-      upSuggestion();
-    }
-    if (e.key === 'ArrowDown' && suggestions) {
-      e.preventDefault();
-      downSuggestion();
-    }
-  }
-
   handleSubmit = (e) => {
     e.preventDefault();
     const {
@@ -132,17 +113,6 @@ class TaskForm extends Component {
     clearTaskFormFields(this.id);
 
     this.titleRef.focus();
-  }
-
-  onFocus = (e) => {
-    const { users, pursuances, startSuggestions, currentPursuanceId } = this.props;
-    const suggestions = Object.assign({}, pursuances, users);
-    delete suggestions[currentPursuanceId];
-    startSuggestions(e.target.value, filterSuggestion, suggestions, this.id);
-  }
-
-  onBlur = () => {
-    this.props.stopSuggestions();
   }
 
   focusDatePicker = () => {
