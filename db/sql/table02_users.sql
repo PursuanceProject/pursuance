@@ -4,6 +4,6 @@ CREATE TABLE users (
     default_profile     json   NOT NULL DEFAULT '{}',
     default_profile_enc text   NOT NULL DEFAULT '',
     created             timestamp WITH time zone NOT NULL DEFAULT now()
-    /* email_id uuid */
+    /* email_id         uuid */
 );
 ALTER TABLE users OWNER TO superuser;
