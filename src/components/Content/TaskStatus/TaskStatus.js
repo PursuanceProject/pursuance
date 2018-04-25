@@ -4,65 +4,48 @@ import TiPencil from 'react-icons/lib/ti/pencil';
 import './TaskStatus.css';
 
 
+const VALID_STATUSES = [
+  'New',
+  'Started',
+  'WorkingOn',
+  'HelpWanted',
+  'ReadyForReview',
+  'Reviewing',
+  'Done'
+];
+
 class TaskStatus extends Component {
-  constructor(props) {
-    super(props);
 
-    this.state = {
-      currentStatus: ''
-    };
-
-    this.statusTypes = [
-      'New',
-      'Started',
-      'WorkingOn',
-      'HelpWanted',
-      'ReadyForReview',
-      'Reviewing',
-      'Done'
-    ];
-  }
-
-  componentDidMount() {
-    // TODO: Fetch current task status
-
-    // this.setState({
-    //   ...this.state,
-    //   currentStatus: //insert current task status
-    // });
+  displayStatus = (status) => {
+    return status.replace(/([a-z])([A-Z])/g, "$1 $2");
   }
 
   getCurrentStatus = () => {
-    return this.state.currentStatus.replace(/([a-z])([A-Z])/g, "$1 $2");
+    return this.displayStatus(this.props.status);
   }
 
   getDropDownItems = () => {
-    // eslint-disable-next-line
-    return this.statusTypes.map((statusName, i) => {
-      if (statusName !== this.state.currentStatus) {
+    return VALID_STATUSES.map((statusName, i) => {
+      if (statusName !== this.props.status) {
         return (
-          <MenuItem eventKey={i + 1} key={statusName}
+          <MenuItem eventKey={i} key={statusName}
             onClick={() => this.selectStatus(statusName)}>
-            {statusName.replace(/([a-z])([A-Z])/g, "$1 $2")}
+            {this.displayStatus(statusName)}
           </MenuItem>
         );
       }
     });
   }
 
-  selectStatus = (statusName) => {
-    // TODO: PATCH request
-
-    this.setState({
-      ...this.state,
-      currentStatus: statusName
-    });
+  selectStatus = (status) => {
+    const { gid, patchTask } = this.props;
+    patchTask({ gid, status });
   }
 
   render() {
-    const { statusName } = this.state;
+    const { status } = this.props;
     return (
-      <div className={"task-status-ctn task-status-" + statusName}>
+      <div className={"task-status-ctn task-status-" + status}>
         <DropdownButton
           id="task-status-dropdown"
           title={this.getCurrentStatus()}

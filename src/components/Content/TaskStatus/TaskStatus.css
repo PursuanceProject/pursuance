@@ -1,6 +1,6 @@
 .task-status-ctn {
-  flex: 1;
   display: flex;
+  flex: 1;
   align-items: center;
   justify-content: flex-start;
   font-size: 0.85em;
@@ -48,7 +48,7 @@
 .task-status-ctn .dropdown ul {
   z-index: 9001;
   border-radius: 0;
-  margin-top: -1px;
+  margin: -3px 0 0 -7px;
   padding: 0;
   min-width: 0;
 }
@@ -73,6 +73,6 @@
   }
 }
 
-.task-status-Done {
+.task-status-Done #task-status-dropdown {
   color: #2bde2b;
 }
