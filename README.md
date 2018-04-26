@@ -53,7 +53,7 @@ install it with Homebrew:
 brew install postgresql
 ```
 
-Next, you'll need at least three terminals.
+Next, you'll need three terminals.
 
 **In the first terminal**, run database migrations, download `postgrest`,
 and have `postgrest` connect to Postgres:
@@ -106,9 +106,10 @@ install it by running:
 sudo apt-get install postgresql postgresql-contrib
 ```
 
-Next, you'll need at least three terminals. **In the first terminal**,
-run database migrations, download `postgrest`, and have `postgrest`
-connect to Postgres:
+Next, you'll need three terminals.
+
+**In the first terminal**, run database migrations, download `postgrest`,
+and have `postgrest` connect to Postgres:
 
 ```
 cd $(go env GOPATH)/src/github.com/PursuanceProject/pursuance/db
