@@ -27,32 +27,21 @@ system!
 
 ## Getting Started
 
-#### Go
+### Install Go
 
-If you're on Linux or macOS, and if you don't already have
+If you're on Linux or macOS _and_ if don't already have
 [Go](https://golang.org/dl/) version 1.8 or newer installed
-(`$ go version` will tell you), install Go by running
+(`$ go version` will tell you), you can install Go by running:
 
 ```
 curl https://raw.githubusercontent.com/PursuanceProject/install-go/master/install-go.sh | bash
 source ~/.bashrc
 ```
 
-then grab and build the `pursuance` source:
+Then grab and build the `pursuance` source:
 
 ```
 go get github.com/PursuanceProject/pursuance
-```
-
-
-#### JavaScript
-
-If you're on Linux, and if you don't already have Node 7.x installed,
-install Node by running
-
-```
-curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash -
-sudo apt-get install nodejs
 ```
 
 ### macOS Instructions
@@ -64,17 +53,10 @@ install it with Homebrew:
 brew install postgresql
 ```
 
-Install JS dependencies and start Pursuance's auto-reloading dev server:
+Next, you'll need three terminals.
 
-```
-cd $(go env GOPATH)/src/github.com/PursuanceProject/pursuance
-npm install
-npm run build
-npm run start
-```
-
-**In another terminal**, run database migrations, download
-`postgrest`, and have `postgrest` connect to Postgres:
+**In the first terminal**, run database migrations, download `postgrest`,
+and have `postgrest` connect to Postgres:
 
 ```
 cd $(go env GOPATH)/src/github.com/PursuanceProject/pursuance/db
@@ -85,7 +67,7 @@ tar xvf postgrest-v0.4.3.0-osx.tar.xz
 ./postgrest postgrest.conf
 ```
 
-**In a 3rd terminal**, run Pursuance's Go backend:
+**In the second terminal**, run Pursuance's Go backend:
 
 ```
 cd $(go env GOPATH)/src/github.com/PursuanceProject/pursuance
@@ -93,28 +75,41 @@ go build
 ./pursuance
 ```
 
+**In the third terminal**, install JavaScript dependencies and start
+Pursuance's auto-reloading dev server:
+
+```
+cd $(go env GOPATH)/src/github.com/PursuanceProject/pursuance
+npm install
+npm run build
+npm run start
+```
+
 Pursuance should now be running on <http://localhost:8080>!
 
 
-### Linux Instructions (Debian/Ubuntu or similar)
+### Linux Instructions (for Debian, Ubuntu, and related)
+
+If you don't already have Node 7.x installed (`node --version` will tell
+you the installed version), install Node by running:
+
+```
+curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash -
+sudo apt-get install nodejs
+```
+
 
 If you don't already have Postgres 9.5 or newer installed and running,
-install it:
+install it by running:
 
 ```
 sudo apt-get install postgresql postgresql-contrib
 ```
 
-Install JS dependencies and start Pursuance's auto-reloading dev server:
+Next, you'll need three terminals.
 
-```
-cd $(go env GOPATH)/src/github.com/PursuanceProject/pursuance
-npm install
-npm run start
-```
-
-**In another terminal**, run database migrations, download
-`postgrest`, and have `postgrest` connect to Postgres:
+**In the first terminal**, run database migrations, download `postgrest`,
+and have `postgrest` connect to Postgres:
 
 ```
 cd $(go env GOPATH)/src/github.com/PursuanceProject/pursuance/db
@@ -124,7 +119,7 @@ tar xvf postgrest-v0.4.3.0-ubuntu.tar.xz
 ./postgrest postgrest.conf
 ```
 
-**In a 3rd terminal**, run Pursuance's Go backend:
+**In the second terminal**, run Pursuance's Go backend:
 
 ```
 cd $(go env GOPATH)/src/github.com/PursuanceProject/pursuance
@@ -132,12 +127,22 @@ go build
 ./pursuance
 ```
 
-Pursuance should now be running on <http://localhost:8080>!
+**In the third terminal**, install JavaScript dependencies and start
+Pursuance's auto-reloading dev server:
 
+```
+cd $(go env GOPATH)/src/github.com/PursuanceProject/pursuance
+npm install
+npm run start
+```
+
+Pursuance should now be running on <http://localhost:8080>!
 
 ### Production Deployment Build
 
-Same as the Linux commands above, but replace
+Same as the Linux commands above, with two modifications.
+
+Replace:
 
 ```
 npm run start
@@ -149,7 +154,7 @@ with
 npm run build
 ```
 
-and replace
+Replace:
 
 ```
 go build
