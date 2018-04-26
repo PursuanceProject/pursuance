@@ -11,7 +11,8 @@ import (
 )
 
 var (
-	randomServerKey *taber.Keys
+	randomServerKey      *taber.Keys
+	THIS_DOMAIN_BASE_URL string
 )
 
 func init() {
@@ -43,10 +44,14 @@ func main() {
 
 	srv := NewServer(m, *httpAddr)
 
+	go NewEmailer()
+
 	if *prod {
 		if *domain == "" {
 			log.Fatal("You must specify a -domain when using the -prod flag.")
 		}
+
+		THIS_DOMAIN_BASE_URL = "https://" + *domain
 
 		manager := getAutocertManager(*domain)
 
@@ -58,6 +63,7 @@ func main() {
 		log.Infof("Listening on %v", *httpsAddr)
 		log.Fatal(srv.ListenAndServeTLS("", ""))
 	} else {
+		THIS_DOMAIN_BASE_URL = "http://" + *httpAddr
 		log.Infof("Listening on %v", *httpAddr)
 		log.Fatal(srv.ListenAndServe())
 	}

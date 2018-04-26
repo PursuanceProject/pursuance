@@ -168,6 +168,13 @@ go build
 sudo setcap cap_net_bind_service=+ep pursuance
 ./pursuance -prod -domain YOURDOMAINNAMEGOESHERE.com -http :80 -https :443
 ```
+
+To send email notifications to users, run
+[PursueMail](https://github.com/PursuanceProject/pursuemail)
+as instructed in its
+[`README`](https://github.com/PursuanceProject/pursuemail#pursuemail).
+
+
 ## Conventions
 
 Please follow these naming and spacing conventions when submitting a pull request:

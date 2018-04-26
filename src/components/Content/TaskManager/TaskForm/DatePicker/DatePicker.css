@@ -1,0 +1,24 @@
+.date-picker-ctn {
+  height: 34px;
+  color: #333;
+}
+
+.react-datepicker-wrapper {
+  height: 34px;
+  margin-top: 1px;
+  margin-bottom: -1px;
+}
+
+.react-datepicker__input-container {
+  height: 100%;
+}
+
+.react-datepicker__input-container input {
+  height: 34px;
+  padding: 4px;
+  width: 104px;
+}
+
+.task-due-date .react-datepicker__input-container input {
+  height: 32px;
+}

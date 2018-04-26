@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import DatePicker from 'react-datepicker';
 import generateId from '../../../../utils/generateId';
 import moment from 'moment';
 import { connect } from 'react-redux';
 import { filterSuggestion } from '../../../../utils/suggestions';
 import AssignerSuggestions from './Suggestions/AssignerSuggestions';
 import AssignerInput from './AssignerInput/AssignerInput';
+import DueDatePicker from './DatePicker/DatePicker';
 import { PURSUANCE_DISPLAY_PREFIX } from '../../../../constants';
 import {
   updateFormField,
@@ -19,7 +19,6 @@ import {
   downSuggestion,
   postTask
 } from '../../../../actions';
-import './ReactDatePicker.css';
 import './TaskForm.css';
 
 class TaskForm extends Component {
@@ -83,32 +82,6 @@ class TaskForm extends Component {
     }
   }
 
-  onAssignerKeyDown = (e) => {
-    const { addSuggestion, autoComplete, upSuggestion, downSuggestion } = this.props;
-    const { highlightedSuggestion, suggestions } = autoComplete;
-
-    if (e.key === 'Enter' && suggestions.length > 0) {
-      e.preventDefault();
-      addSuggestion(suggestions[highlightedSuggestion].suggestionName);
-      this.focusDatePicker();
-    }
-    if (e.key === 'ArrowUp' && suggestions) {
-      e.preventDefault();
-      upSuggestion();
-    }
-    if (e.key === 'ArrowDown' && suggestions) {
-      e.preventDefault();
-      downSuggestion();
-    }
-  }
-
-  handleDateSelect = (date) => {
-    if (date) {
-      // Currently ignored until date Picker input is updating Redux value
-      this.props.updateFormField(this.id, 'due_date_raw', date);
-    }
-  }
-
   handleSubmit = (e) => {
     e.preventDefault();
     const {
@@ -142,18 +115,9 @@ class TaskForm extends Component {
     this.titleRef.focus();
   }
 
-  onFocus = (e) => {
-    const { users, pursuances, startSuggestions, currentPursuanceId } = this.props;
-    const suggestions = Object.assign({}, pursuances, users);
-    delete suggestions[currentPursuanceId];
-    startSuggestions(e.target.value, filterSuggestion, suggestions, this.id);
+  focusDatePicker = () => {
+    this.dueDatePicker.datePickerRef.input.focus();
   }
-
-  onBlur = () => {
-    this.props.stopSuggestions();
-  }
-
-  focusDatePicker = () => this.datePickerRef.input.focus();
 
   render() {
     const { taskForm, autoComplete } = this.props;
@@ -196,16 +160,11 @@ class TaskForm extends Component {
                editMode={false}
              />
           </div>
-          <div className="date-picker-ctn">
-            <DatePicker
-              placeholderText="YYYY-MM-DD"
-              dateFormat="YYYY-MM-DD"
-              ref={(input) => this.datePickerRef = input}
-              selected={due_date_raw || ''}
-              onSelect={this.handleDateSelect}
-              onChange={this.handleDateSelect}
-            />
-          </div>
+          <DueDatePicker
+            id={this.id}
+            selected={due_date_raw || ''}
+            onRef={ref => (this.dueDatePicker = ref)}
+           />
           <button className="btn btn-default save-task-btn" onClick={this.handleSubmit}>
             Save
           </button>

@@ -12,7 +12,6 @@
   margin: 4px 16px;
   color: #efefef;
   max-height: 72px;
-  overflow: hidden;
 }
 
 .assigned-to-ctn {
@@ -21,19 +20,12 @@
   align-items: flex-start;
   justify-content: space-between;
   margin: 0 12px;
+  overflow: hidden;
 }
 
 .assigned-to-ctn span:hover {
   cursor: pointer;
   color: #1fc7d3;
-}
-
-.due-date-ctn {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin: 0 12px;
 }
 
 .task-discuss-icons-ctn {

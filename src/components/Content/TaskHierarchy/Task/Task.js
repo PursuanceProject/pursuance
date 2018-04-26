@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import * as postgrest from '../../../../api/postgrest';
 import generateId from '../../../../utils/generateId';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import TiPlus from 'react-icons/lib/ti/plus';
@@ -12,6 +11,7 @@ import TaskForm from '../../TaskManager/TaskForm/TaskForm';
 import AssignerSuggestions from '../../TaskManager/TaskForm/Suggestions/AssignerSuggestions';
 import AssignerInput from '../../TaskManager/TaskForm/AssignerInput/AssignerInput';
 import TaskStatus from '../../TaskStatus/TaskStatus';
+import TaskDueDate from '../../TaskDueDate/TaskDueDate';
 import { filterSuggestion } from '../../../../utils/suggestions';
 import './Task.css';
 import {
@@ -19,7 +19,8 @@ import {
   removeTaskFormFromHierarchy,
   startSuggestions,
   showTaskDetails,
-  toggleRightPanel
+  toggleRightPanel,
+  patchTask
 } from '../../../../actions';
 
 class RawTask extends Component {
@@ -28,7 +29,7 @@ class RawTask extends Component {
 
     this.state = {
       showChildren: true,
-      showAssigneeInput: false
+      showAssigneeInput: false,
     };
   }
 
@@ -184,7 +185,6 @@ class RawTask extends Component {
     showTaskDetails({taskGid: taskData.gid});
   }
 
-
   render() {
     const { pursuances, taskData, autoComplete, currentPursuanceId } = this.props;
     const { showChildren, showAssigneeInput } = this.state;
@@ -231,7 +231,9 @@ class RawTask extends Component {
               </OverlayTrigger>
             </div>
             <TaskStatus
+              gid={task.gid}
               status={task.status}
+              patchTask={this.props.patchTask}
             />
             <div className="task-assigned-to">
                 {
@@ -268,9 +270,12 @@ class RawTask extends Component {
                   <button className="edit-assignee-button" onClick={this.showAssigneeInput}>Assign</button>
                 }
             </div>
-            <div className="task-due-date">
-              {task.due_date && postgrest.formatDate(task.due_date)}
-            </div>
+            <TaskDueDate
+              id={task.gid}
+              taskData={task}
+              autoFocus={true}
+              patchTask={this.props.patchTask}
+             />
           </div>
         </div>
         {
@@ -294,7 +299,8 @@ const Task = withRouter(connect(
   removeTaskFormFromHierarchy,
   startSuggestions,
   showTaskDetails,
-  toggleRightPanel
+  toggleRightPanel,
+  patchTask
 })(RawTask));
 
 // Why RawTask _and_ Task? Because Task.mapSubTasks() recursively

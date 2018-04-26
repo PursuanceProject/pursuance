@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import * as postgrest from '../../../../api/postgrest';
-import { getPursuancesByIds, getTasks } from '../../../../actions';
+import { getPursuancesByIds, getTasks, patchTask } from '../../../../actions';
 import ReactMarkdown from 'react-markdown';
 import FaEllipsisV from 'react-icons/lib/fa/ellipsis-v';
 import FaCircleO from 'react-icons/lib/fa/circle-o';
 import TaskStatus from '../../TaskStatus/TaskStatus';
+import TaskDueDate from '../../TaskDueDate/TaskDueDate';
 import './TaskDetails.css';
 
 class TaskDetails extends Component {
@@ -87,14 +87,19 @@ class TaskDetails extends Component {
         <div className="task-details-ctn">
           <div className="task-assignment-ctn">
             <TaskStatus
+              gid={task.gid}
               status={task.status}
+              patchTask={this.props.patchTask}
             />
             <div className="assigned-to-ctn">
               {this.showAssignee()}
             </div>
-            <div className="due-date-ctn">
-              {task.due_date && postgrest.formatDate(task.due_date)}
-            </div>
+            <TaskDueDate
+              id={task.gid}
+              taskData={task}
+              autoFocus={true}
+              patchTask={this.props.patchTask}
+             />
             <div className="task-discuss-icons-ctn">
               <div className="discuss-icon-ctn">
                 <FaEllipsisV size={20} />
@@ -143,4 +148,5 @@ class TaskDetails extends Component {
   };
 }
 
-export default withRouter(connect(({currentPursuanceId, pursuances, tasks, rightPanel}) => ({currentPursuanceId, pursuances, tasks, rightPanel}), { getPursuancesByIds, getTasks })(TaskDetails));
+export default withRouter(connect(({currentPursuanceId, pursuances, tasks, rightPanel}) => ({currentPursuanceId, pursuances, tasks, rightPanel}),
+  { getPursuancesByIds, getTasks, patchTask })(TaskDetails));
