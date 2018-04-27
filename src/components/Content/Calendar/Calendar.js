@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import {
-  getUsers,
   getTasks,
   getPursuances,
   showTaskDetails,
@@ -17,9 +16,20 @@ BigCalendar.momentLocalizer(moment);
 class Calendar extends Component {
 
   componentDidMount() {
-    const { getPursuances, getUsers, getTasks, currentPursuanceId, pursuances } = this.props;
-    getUsers();
-    getTasks(currentPursuanceId);
+    const {
+      getPursuances,
+      getTasks,
+      currentPursuanceId,
+      pursuances,
+      tasks
+    } = this.props;
+
+    // Fetch this pursuance's tasks if we haven't already
+    if (Object.keys(tasks.taskMap)
+        .filter(gid => gid.startsWith(currentPursuanceId + '_'))
+        .length === 0) {
+      getTasks(currentPursuanceId);
+    }
     if (Object.keys(pursuances).length === 0) {
       getPursuances();
     }
@@ -86,7 +96,6 @@ class Calendar extends Component {
 
 export default connect(({ pursuances, currentPursuanceId, tasks, rightPanel, user }) =>
   ({ pursuances, currentPursuanceId, tasks, rightPanel, user }), {
-    getUsers,
     getTasks,
     getPursuances,
     showTaskDetails,
