@@ -72,3 +72,8 @@
 .rbc-row .rbc-show-more {
   background-color: white;
 }
+
+.rbc-agenda-table .rbc-agenda-event-cell {
+  max-width: calc(100vw - 380px);
+  overflow-wrap: break-word;
+}
