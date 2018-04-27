@@ -42,6 +42,7 @@ class Calendar extends Component {
         const t = taskMap[gid];
         return t &&
           t.due_date &&
+          t.status !== 'Done' &&
           t.assigned_to === user.username &&
           (t.pursuance_id === currentPursuanceId ||
            t.assigned_to_pursuance_id === currentPursuanceId)
