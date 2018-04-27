@@ -74,6 +74,10 @@
   min-height: 64px;
 }
 
+.task-deliverables-ctn a {
+  color: #50b3fe;
+}
+
 .subtasks-ctn {
   border-top: 1px solid #6d6d6d;
   padding-top: 8px;
