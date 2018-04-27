@@ -18,8 +18,7 @@ import {
   addTaskFormToHierarchy,
   removeTaskFormFromHierarchy,
   startSuggestions,
-  showTaskDetails,
-  toggleRightPanel,
+  showTaskDetailsOrCollapse,
   patchTask
 } from '../../../../actions';
 
@@ -171,18 +170,8 @@ class RawTask extends Component {
   }
 
   selectTaskInHierarchy = () => {
-    const {
-      taskData,
-      rightPanel,
-      showTaskDetails,
-      toggleRightPanel
-    } = this.props;
-
-    if (rightPanel.show && rightPanel.tab === 'TaskDetails' && rightPanel.taskGid === taskData.gid) {
-      toggleRightPanel();
-      return;
-    }
-    showTaskDetails({taskGid: taskData.gid});
+    const { taskData, showTaskDetailsOrCollapse } = this.props;
+    showTaskDetailsOrCollapse({taskGid: taskData.gid});
   }
 
   render() {
@@ -298,8 +287,7 @@ const Task = withRouter(connect(
   addTaskFormToHierarchy,
   removeTaskFormFromHierarchy,
   startSuggestions,
-  showTaskDetails,
-  toggleRightPanel,
+  showTaskDetailsOrCollapse,
   patchTask
 })(RawTask));
 
