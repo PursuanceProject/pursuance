@@ -26,11 +26,13 @@ class Calendar extends Component {
   }
 
   getEvents = () => {
-    const { currentPursuanceId, tasks: { taskMap } } = this.props;
+    const { currentPursuanceId, user, tasks: { taskMap } } = this.props;
     return Object.keys(taskMap)
       .filter((gid) => {
         const t = taskMap[gid];
-        return t && t.due_date &&
+        return t &&
+          t.due_date &&
+          t.assigned_to === user.username &&
           (t.pursuance_id === currentPursuanceId ||
            t.assigned_to_pursuance_id === currentPursuanceId)
       })
@@ -54,7 +56,7 @@ class Calendar extends Component {
   render() {
     const { pursuances, currentPursuanceId } = this.props;
     const events = this.getEvents();
-    console.log('events:', events);
+
     return (
       <div className="content">
         <div id="calendar">
@@ -82,8 +84,8 @@ class Calendar extends Component {
   }
 }
 
-export default connect(({ pursuances, currentPursuanceId, tasks, rightPanel }) =>
-  ({ pursuances, currentPursuanceId, tasks, rightPanel }), {
+export default connect(({ pursuances, currentPursuanceId, tasks, rightPanel, user }) =>
+  ({ pursuances, currentPursuanceId, tasks, rightPanel, user }), {
     getUsers,
     getTasks,
     getPursuances,
