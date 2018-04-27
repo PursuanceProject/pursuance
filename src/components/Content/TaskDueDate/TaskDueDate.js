@@ -31,7 +31,7 @@ class TaskDueDate extends Component {
     const { id, patchTask } = this.props;
     patchTask({
       gid: id,
-      due_date: moment(date).format()
+      due_date: date ? moment(date).format() : null
     })
     this.hideInput();
   }
