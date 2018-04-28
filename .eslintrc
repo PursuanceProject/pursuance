@@ -1,4 +1,9 @@
 {
+  "plugins": ["webdriverio"],
+  "env": {
+    "webdriverio/wdio": true,
+    "mocha": true,
+  },
   "extends": ["react-app", "prettier"],
   "rules": {
     "no-unused-vars": "error"
