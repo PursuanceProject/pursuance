@@ -18,7 +18,7 @@ var (
 func init() {
 	k, err := taber.RandomKey()
 	if err != nil {
-		log.Fatalf("Error generating random server key: %v\n", err)
+		log.Fatalf("Error generating random server key: %v", err)
 	}
 
 	// Setting global var
