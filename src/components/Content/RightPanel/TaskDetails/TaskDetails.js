@@ -7,6 +7,7 @@ import ReactMarkdown from 'react-markdown';
 import FaEllipsisV from 'react-icons/lib/fa/ellipsis-v';
 import FaCircleO from 'react-icons/lib/fa/circle-o';
 import TaskStatus from '../../TaskStatus/TaskStatus';
+import TaskAssigner from '../../TaskHierarchy/Task/TaskAssigner/TaskAssigner';
 import './TaskDetails.css';
 
 class TaskDetails extends Component {
@@ -58,19 +59,13 @@ class TaskDetails extends Component {
     }
     if (ids.length > 0) {
       getPursuancesByIds(ids);
-      return (
-        <span></span>
-      )
+      return null;
     }
 
     return (
-      <span>
-        {
           (assignedPursuanceId && pursuances[assignedPursuanceId] && pursuances[assignedPursuanceId].suggestionName)
           ||
           (task.assigned_to && '@' + task.assigned_to)
-        }
-      </span>
     )
   }
 
@@ -81,6 +76,7 @@ class TaskDetails extends Component {
       return <div className="no-task">Ain't nobody got task fo' that.</div>
     }
     const subtaskGids = task.subtask_gids;
+    const assigned = this.showAssignee();
 
     return (
       <div className="discuss-ctn">
@@ -90,7 +86,11 @@ class TaskDetails extends Component {
               status={task.status}
             />
             <div className="assigned-to-ctn">
-              {this.showAssignee()}
+              <TaskAssigner
+                taskGid={taskGid}
+                placeholder={this.showAssignee()}
+                assignedTo={this.showAssignee()}
+              />
             </div>
             <div className="due-date-ctn">
               {task.due_date && postgrest.formatDate(task.due_date)}

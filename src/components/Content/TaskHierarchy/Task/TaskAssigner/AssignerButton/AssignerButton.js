@@ -8,7 +8,7 @@ const AssignerButton = ({ showAssigneeInput, placeholder }) => {
       return <Tooltip>{placeholder}</Tooltip>
   }
 
-  if (placeholder.length > 20) {
+  if (placeholder && placeholder.length > 20) {
     return (
       <OverlayTrigger
         placement="bottom"
