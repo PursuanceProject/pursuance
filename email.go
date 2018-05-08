@@ -86,16 +86,27 @@ func NewEmailer() {
 }
 
 func pgGetInto(urlPath string, obj interface{}) error {
-	log.Debugf("pgGetInto(%s)\n", urlPath)
+	log.Debugf("pgGetInto(%s)", urlPath)
 	resp, err := http.Get(POSTGREST_BASE_URL + urlPath)
 	if err != nil {
 		return err
 	}
 	defer resp.Body.Close()
 
-	body, _ := ioutil.ReadAll(resp.Body)
+	if resp.StatusCode == http.StatusNoContent {
+		return nil
+	}
+
+	body, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		return fmt.Errorf("pgGetInto(%s): Error reading resp.Body: %v",
+			urlPath, err)
+	}
 	err = json.Unmarshal(body, obj)
-	return err
+	if err != nil {
+		return fmt.Errorf("pgGetInto(%s): Error unmarshaling: %v", urlPath, err)
+	}
+	return nil
 }
 
 func Now() time.Time {
@@ -212,7 +223,14 @@ func EmailDailyDigestToUser(tasks []*Task, username string) error {
 	}
 	defer resp.Body.Close()
 
-	body, _ := ioutil.ReadAll(resp.Body)
+	if resp.StatusCode == http.StatusNoContent {
+		return nil
+	}
+
+	body, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		return fmt.Errorf("After POST to `%s` -- error reading resp.Body: %v", url, err)
+	}
 	log.Debugf("Response from PursueMail after emailing user '%s' (with email_id '%s'): `%s`",
 		username, emailID, body)
 	return nil

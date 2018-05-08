@@ -27,7 +27,7 @@ func TestRouting(t *testing.T) {
 }
 
 func testURL(t *testing.T, httpMethod string, url string, headers http.Header, handler http.Handler, wantedStatusCode int, wantedResponse string) {
-	t.Logf("Testing '%v' request to '%v'\n", httpMethod, url)
+	t.Logf("Testing '%v' request to '%v'", httpMethod, url)
 
 	req, err := http.NewRequest(httpMethod, url, nil)
 	if err != nil {
