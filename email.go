@@ -86,7 +86,7 @@ func NewEmailer() {
 }
 
 func pgGetInto(urlPath string, obj interface{}) error {
-	log.Debugf("pgGetInto(%s)\n", urlPath)
+	log.Debugf("pgGetInto(%s)", urlPath)
 	resp, err := http.Get(POSTGREST_BASE_URL + urlPath)
 	if err != nil {
 		return err
