@@ -24,7 +24,11 @@ export default function(state = initialState, action) {
     case 'RIGHT_PANEL_SHOW_TASK_DETAILS_OR_COLLAPSE': {
       const { taskGid } = action;
       // Collapse
-      if (state.tab === 'TaskDetails' && state.show && state.taskGid === taskGid) {
+      if (
+        state.tab === 'TaskDetails' &&
+        state.show &&
+        state.taskGid === taskGid
+      ) {
         return Object.assign({}, state, {
           show: false
         });

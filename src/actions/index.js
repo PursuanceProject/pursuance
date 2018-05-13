@@ -178,7 +178,7 @@ export const removeSuccessToast = () => ({
   type: 'REMOVE_SUCCESS_TOAST'
 });
 
-export const showTaskDetails = ({taskGid, show = true}) => ({
+export const showTaskDetails = ({ taskGid, show = true }) => ({
   type: 'RIGHT_PANEL_SHOW_TASK_DETAILS',
   taskGid,
   show
@@ -188,12 +188,12 @@ export const toggleRightPanel = () => ({
   type: 'RIGHT_PANEL_TOGGLE'
 });
 
-export const showTaskDetailsOrCollapse = ({taskGid}) => ({
+export const showTaskDetailsOrCollapse = ({ taskGid }) => ({
   type: 'RIGHT_PANEL_SHOW_TASK_DETAILS_OR_COLLAPSE',
   taskGid
 });
 
-export const userLoginSuccess = ({username}) => ({
+export const userLoginSuccess = ({ username }) => ({
   type: 'USER_LOGIN_SUCCESS',
   username
 });

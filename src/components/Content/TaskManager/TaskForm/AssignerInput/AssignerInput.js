@@ -125,7 +125,7 @@ const AssignerInput = (props) => {
       gid: formId,
       assigned_to: null
     }
-    if (placeholder[0] === '(') {
+    if (placeholder && placeholder[0] === '(') {
       patchedTask.assigned_to_pursuance_id = null;
     }
     patchTask(patchedTask);

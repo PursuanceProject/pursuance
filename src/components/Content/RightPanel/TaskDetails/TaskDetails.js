@@ -83,7 +83,9 @@ class TaskDetails extends Component {
         <div className="task-details-ctn">
           <div className="task-assignment-ctn">
             <TaskStatus
+              gid={task.gid}
               status={task.status}
+              patchTask={this.props.patchTask}
             />
             <div className="assigned-to-ctn">
               <TaskAssigner
