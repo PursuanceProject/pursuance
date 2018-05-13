@@ -11,6 +11,7 @@ CREATE TABLE tasks (
     due_date         timestamp WITH time zone,
     created          timestamp WITH time zone NOT NULL DEFAULT now(),
     parent_task_gid  text      REFERENCES tasks(gid),
+    /* is_archived   bool      NOT NULL DEFAULT false */
     PRIMARY KEY (id, pursuance_id),
     CHECK ((LENGTH(title) > 0 OR LENGTH(title_enc) > 0)
             AND

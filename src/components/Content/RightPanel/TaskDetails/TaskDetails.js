@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import * as postgrest from '../../../../api/postgrest';
-import { getPursuancesByIds, getTasks } from '../../../../actions';
+import { getPursuancesByIds, getTasks, patchTask } from '../../../../actions';
 import ReactMarkdown from 'react-markdown';
 import FaEllipsisV from 'react-icons/lib/fa/ellipsis-v';
 import FaCircleO from 'react-icons/lib/fa/circle-o';
 import TaskStatus from '../../TaskStatus/TaskStatus';
 import TaskAssigner from '../../TaskHierarchy/Task/TaskAssigner/TaskAssigner';
+import TaskDueDate from '../../TaskDueDate/TaskDueDate';
+
 import './TaskDetails.css';
 
 class TaskDetails extends Component {
@@ -76,7 +77,6 @@ class TaskDetails extends Component {
       return <div className="no-task">Ain't nobody got task fo' that.</div>
     }
     const subtaskGids = task.subtask_gids;
-    const assigned = this.showAssignee();
 
     return (
       <div className="discuss-ctn">
@@ -93,7 +93,12 @@ class TaskDetails extends Component {
               />
             </div>
             <div className="due-date-ctn">
-              {task.due_date && postgrest.formatDate(task.due_date)}
+              <TaskDueDate
+                id={task.gid}
+                taskData={task}
+                autoFocus={true}
+                patchTask={this.props.patchTask}
+              />
             </div>
             <div className="task-discuss-icons-ctn">
               <div className="discuss-icon-ctn">
@@ -143,4 +148,5 @@ class TaskDetails extends Component {
   };
 }
 
-export default withRouter(connect(({currentPursuanceId, pursuances, tasks, rightPanel}) => ({currentPursuanceId, pursuances, tasks, rightPanel}), { getPursuancesByIds, getTasks })(TaskDetails));
+export default withRouter(connect(({currentPursuanceId, pursuances, tasks, rightPanel}) => ({currentPursuanceId, pursuances, tasks, rightPanel}),
+  { getPursuancesByIds, getTasks, patchTask })(TaskDetails));

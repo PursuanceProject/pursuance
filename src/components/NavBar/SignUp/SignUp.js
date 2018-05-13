@@ -11,7 +11,7 @@ class SignUp extends Component {
   }
 
   setUsername = (e) => {
-    this.username = e.target.value;
+    this.username = e.target.value.toLowerCase();
   }
 
   setPassword = (e) => {

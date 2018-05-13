@@ -54,7 +54,7 @@
   justify-content: center;
   width: 36px;
   margin-left: 10px;
-  color: #d6d6d6;
+  color: #efefef;
 }
 
 #notifications-filter-btn:hover {
@@ -64,7 +64,7 @@
 
 #mark-as-read {
   flex: 1;
-  color: #d6d6d6;
+  color: #efefef;
 }
 
 #mark-as-read span {
@@ -91,7 +91,7 @@
 }
 
 #see-all-notifications span {
-  color: #d6d6d6;
+  color: #efefef;
 }
 
 #see-all-notifications span:hover {

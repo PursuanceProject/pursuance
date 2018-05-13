@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import DatePicker from 'react-datepicker';
 import generateId from '../../../../utils/generateId';
 import moment from 'moment';
 import { connect } from 'react-redux';
 import AssignerSuggestions from './Suggestions/AssignerSuggestions';
 import AssignerInput from './AssignerInput/AssignerInput';
+import DueDatePicker from './DatePicker/DatePicker';
 import { PURSUANCE_DISPLAY_PREFIX } from '../../../../constants';
 import {
   updateFormField,
@@ -12,7 +12,6 @@ import {
   setTaskFormParentGid,
   postTask
 } from '../../../../actions';
-import './ReactDatePicker.css';
 import './TaskForm.css';
 
 class TaskForm extends Component {
@@ -110,7 +109,9 @@ class TaskForm extends Component {
     this.titleRef.focus();
   }
 
-  focusDatePicker = () => this.datePickerRef.input.focus();
+  focusDatePicker = () => {
+    this.dueDatePicker.datePickerRef.input.focus();
+  }
 
   render() {
     const { taskForm, autoComplete } = this.props;
@@ -153,16 +154,11 @@ class TaskForm extends Component {
                editMode={false}
              />
           </div>
-          <div className="date-picker-ctn">
-            <DatePicker
-              placeholderText="YYYY-MM-DD"
-              dateFormat="YYYY-MM-DD"
-              ref={(input) => this.datePickerRef = input}
-              selected={due_date_raw || ''}
-              onSelect={this.handleDateSelect}
-              onChange={this.handleDateSelect}
-            />
-          </div>
+          <DueDatePicker
+            id={this.id}
+            selected={due_date_raw || ''}
+            onRef={ref => (this.dueDatePicker = ref)}
+           />
           <button className="btn btn-default save-task-btn" onClick={this.handleSubmit}>
             Save
           </button>

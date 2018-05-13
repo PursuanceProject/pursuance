@@ -12,14 +12,14 @@
   flex-direction: column;
   flex: 1;
   border: 1px solid #6d6d6d;
-  color: #d6d6d6;
+  color: #efefef;
   font-size: 1.2em;
   background-color: #1c1c1c;
   position: absolute;
   height: 100%;
   max-height: calc(100vh - 60px);
   width: 100%;
-  max-width: 30vw;
+  max-width: 37vw;
   right: 50px;
   border-right: none;
   position: fixed;

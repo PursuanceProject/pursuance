@@ -1,24 +1,24 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import * as postgrest from '../../../../api/postgrest';
 import generateId from '../../../../utils/generateId';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import TiPlus from 'react-icons/lib/ti/plus';
 import TiMinus from 'react-icons/lib/ti/minus';
-import FaHandODown from 'react-icons/lib/fa/hand-o-down';
+import TiFlowChildren from 'react-icons/lib/ti/flow-children';
 import FaCommentsO from 'react-icons/lib/fa/comments-o';
 import TaskForm from '../../TaskManager/TaskForm/TaskForm';
 import TaskStatus from '../../TaskStatus/TaskStatus';
 import TaskAssigner from './TaskAssigner/TaskAssigner';
+import TaskDueDate from '../../TaskDueDate/TaskDueDate';
 import { filterSuggestion } from '../../../../utils/suggestions';
 import './Task.css';
 import {
   addTaskFormToHierarchy,
   removeTaskFormFromHierarchy,
   startSuggestions,
-  showTaskDetails,
-  toggleRightPanel
+  showTaskDetailsOrCollapse,
+  patchTask
 } from '../../../../actions';
 
 class RawTask extends Component {
@@ -147,21 +147,19 @@ class RawTask extends Component {
     }
   }
 
-  selectTaskInHierarchy = () => {
-    const {
-      taskData,
-      rightPanel,
-      showTaskDetails,
-      toggleRightPanel
-    } = this.props;
-
-    if (rightPanel.show && rightPanel.tab === 'TaskDetails' && rightPanel.taskGid === taskData.gid) {
-      toggleRightPanel();
-      return;
+  getAssignedCss = (task) => {
+    const { user } = this.props;
+    if (task.assigned_to && task.assigned_to === user.username) {
+      return " assigned-to-me";
+    } else {
+      return "";
     }
-    showTaskDetails({taskGid: taskData.gid});
   }
 
+  selectTaskInHierarchy = () => {
+    const { taskData, showTaskDetailsOrCollapse } = this.props;
+    showTaskDetailsOrCollapse({taskGid: taskData.gid});
+  }
 
   render() {
     const { pursuances, taskData, currentPursuanceId } = this.props;
@@ -196,20 +194,22 @@ class RawTask extends Component {
               <OverlayTrigger
                 placement="bottom"
                 overlay={this.getTooltip('hands-down')}>
-                <div className="icon-ctn" onClick={this.toggleNewForm}>
-                  <FaHandODown />
+                <div id={'create-subtask-' + task.gid} className="icon-ctn create-subtask" onClick={this.toggleNewForm}>
+                  <TiFlowChildren size={20} />
                 </div>
               </OverlayTrigger>
               <OverlayTrigger
                 placement="bottom"
                 overlay={this.getTooltip('chat')}>
-                <div className="icon-ctn" onClick={this.redirectToDiscuss}>
-                  <FaCommentsO />
+                <div id={'discuss-task-' + task.gid} className="icon-ctn discuss-task" onClick={this.redirectToDiscuss}>
+                  <FaCommentsO size={20} />
                 </div>
               </OverlayTrigger>
             </div>
             <TaskStatus
+              gid={task.gid}
               status={task.status}
+              patchTask={this.props.patchTask}
             />
             <div className="task-assigned-to">
               <TaskAssigner
@@ -218,9 +218,12 @@ class RawTask extends Component {
                 assignedTo={assignedTo}
               />
             </div>
-            <div className="task-due-date">
-              {task.due_date && postgrest.formatDate(task.due_date)}
-            </div>
+            <TaskDueDate
+              id={task.gid}
+              taskData={task}
+              autoFocus={true}
+              patchTask={this.props.patchTask}
+             />
           </div>
         </div>
         {
@@ -238,13 +241,13 @@ class RawTask extends Component {
 }
 
 const Task = withRouter(connect(
-  ({ pursuances, users, currentPursuanceId, autoComplete, rightPanel }) =>
-   ({ pursuances, users, currentPursuanceId, autoComplete, rightPanel }), {
+  ({ pursuances, user, users, currentPursuanceId, autoComplete, rightPanel }) =>
+   ({ pursuances, user, users, currentPursuanceId, autoComplete, rightPanel }), {
   addTaskFormToHierarchy,
   removeTaskFormFromHierarchy,
   startSuggestions,
-  showTaskDetails,
-  toggleRightPanel
+  showTaskDetailsOrCollapse,
+  patchTask
 })(RawTask));
 
 // Why RawTask _and_ Task? Because Task.mapSubTasks() recursively

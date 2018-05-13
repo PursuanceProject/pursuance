@@ -37,27 +37,9 @@
   width: 240px;
 }
 
-.date-picker-ctn {
-  height: 34px;
-}
-
-.react-datepicker-wrapper {
-  height: 32px;
-  margin-top: 1px;
-}
-
-.react-datepicker__input-container {
-  height: 100%;
-}
-
-.react-datepicker__input-container input {
-  height: 100%;
-  padding: 6px 12px;
-}
-
 .save-task-btn {
   background-color: #23527c;
-  color: #d6d6d6;
+  color: #efefef;
   border-radius: 0 4px 4px 0;
   border-color: #a5a5a5;
   height: 32px;

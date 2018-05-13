@@ -2,15 +2,17 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import './PursuanceMenuItem.css';
 
-const PursuanceMenuItem = ({ pursuanceId, label, action, icon, defaultItem }) => {
+const PursuanceMenuItem = ({ pursuanceId, label, action, icon, location }) => {
   const rootPath = `/pursuance/${pursuanceId}`;
   return (
     <NavLink
       className="menu-item"
       to={`${rootPath}/${action}`}
       isActive={
-        (match, location) =>
-          (match || (defaultItem && location.pathname === rootPath))
+        () =>
+          ((action === 'tasks' && (location.pathname === rootPath || location.pathname === rootPath + '/'))
+          ||
+          location.pathname.indexOf(`/${action}`) !== -1)
       }
       activeClassName="Active">
       {icon}
