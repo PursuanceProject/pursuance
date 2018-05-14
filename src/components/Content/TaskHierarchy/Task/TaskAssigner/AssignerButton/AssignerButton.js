@@ -11,7 +11,9 @@ const AssignerButton = ({ showAssigneeInput, placeholder, user }) => {
 
   const getClassName = () => {
     const clsName = placeholder ? 'assignee-button' : 'edit-assignee-button';
-    const otherClsName = (placeholder || '').slice(1) === user.username ? ' assigned-to-me' : '';
+    const otherClsName = user.username && (placeholder || '').slice(1) === user.username
+      ? ' assigned-to-me'
+      : '';
     return clsName + otherClsName;
   }
 
