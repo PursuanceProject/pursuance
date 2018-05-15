@@ -1,0 +1,23 @@
+.task-icons {
+  display: flex;
+}
+
+.icon {
+  color: #fff;
+  margin-top: 8px;
+  margin-right: 10px;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, .5);
+  border-radius: 8px;
+  padding: 0 4px;
+  background-color: #000;
+}
+
+.hyp-logo {
+  margin-top: 8px;
+  width: 35px;
+  margin-bottom: -6px;
+  border-radius: 4px;
+  margin-right: 10px;
+  cursor: pointer;
+}
