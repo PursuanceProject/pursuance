@@ -10,12 +10,21 @@ import FolderOpen from 'react-icons/lib/fa/folder-open';
 import Group from 'react-icons/lib/fa/group';
 import Rocket from 'react-icons/lib/fa/rocket';
 import PlusCircle from 'react-icons/lib/fa/plus-circle';
+import Info from 'react-icons/lib/fa/info-circle';
 import './PursuanceMenu.css';
 
 const PursuanceMenu = ({ currentPursuanceId, location }) => {
   return (
     <ButtonGroup vertical id="pursuance-btn-group">
-      <Button id="pursuance-top-btn">
+    <Button id="pursuance-top-btn">
+        <PursuanceMenuItem
+          pursuanceId={currentPursuanceId}
+          label='About'
+          action='about'
+          icon={<Info size={28} />}
+        />
+      </Button>
+      <Button>
         <PursuanceMenuItem
           pursuanceId={currentPursuanceId}
           location={location}

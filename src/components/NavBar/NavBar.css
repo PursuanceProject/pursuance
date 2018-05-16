@@ -1,21 +1,40 @@
-.navbar {
-  position: fixed;
-  background-color: #141414;
-  border-radius: 0px;
-  border: none;
-  margin: 0;
+.nav-container {
+  top:0;
+  left:0;
   height: 60px;
   width: 100%;
-  top: 0;
-  z-index: 10;
-}
-
-.navbar .container {
+  display: flex;
+  justify-content: center;
   align-items: center;
-  width: 100%;
-  padding: 0 36px 0 132px;
+  background-color: black;
+  position: sticky;
+  margin-top:-60px; 
 }
 
+nav ul, li {
+  display: inline;
+  list-style-type: none;
+  list-style: none;
+}
+
+nav a:hover, a:active, a:link {
+  text-decoration: none !important;
+}
+
+nav li a:hover {
+  color: #1fc7d3 !important;
+}
+
+.nav-pull-right {
+  float: right;
+}
+
+.nav-center {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  width: 50%;
+}
 
 .modal-title {
   text-align: center;
@@ -26,36 +45,6 @@
   padding-right: 16px;
 }
 
-.modal-btn-ctn .btn {
-  margin-left: 10px;
-}
-
-.navbar-header {
-  height: 100%;
-}
-
-.navbar-brand {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 60px;
-  color: #fcfcfc !important;
-  padding-left: 0 !important;
-  margin-left: 0 !important;
-}
-
-.navbar-brand:hover {
-  color: #8662ea !important;
-}
-
-.navbar-nav {
-  height: 60px;
-}
-
-.navbar-nav li {
-  height: 60px;
-}
-
 .navbar-nav li a {
   display: flex;
   align-items: center;
@@ -64,10 +53,10 @@
   color: #efefef !important;
 }
 
-.navbar-nav li a:hover {
-  color: #1fc7d3 !important;
+.modal-btn-ctn .btn {
+  margin-left: 10px;
 }
 
-.navbar-nav li a button {
-  padding-bottom: 2px;
+#jump-to-pursuance {
+  font-size: 32px;
 }
