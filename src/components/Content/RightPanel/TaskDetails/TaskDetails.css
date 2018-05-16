@@ -9,6 +9,7 @@
 .task-assignment-ctn {
   display: flex;
   justify-content: center;
+  align-items: center;
   margin: 4px 16px;
   color: #efefef;
   max-height: 72px;

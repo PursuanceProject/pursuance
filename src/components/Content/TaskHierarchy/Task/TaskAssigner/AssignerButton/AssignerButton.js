@@ -1,11 +1,20 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import './AssignerButton.css';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 
-const AssignerButton = ({ showAssigneeInput, placeholder }) => {
+const AssignerButton = ({ showAssigneeInput, placeholder, user }) => {
 
   const getTooltip = () => {
-      return <Tooltip>{placeholder}</Tooltip>
+    return <Tooltip>{placeholder}</Tooltip>
+  }
+
+  const getClassName = () => {
+    const clsName = placeholder ? 'assignee-button' : 'edit-assignee-button';
+    const otherClsName = user.username && (placeholder || '').slice(1) === user.username
+      ? ' assigned-to-me'
+      : '';
+    return clsName + otherClsName;
   }
 
   if (placeholder && placeholder.length > 20) {
@@ -16,23 +25,22 @@ const AssignerButton = ({ showAssigneeInput, placeholder }) => {
         >
           <button
             onClick={showAssigneeInput}
-            className={placeholder ? 'assignee-button' : 'edit-assignee-button'}
+            className={getClassName()}
             >
               { placeholder }
-            </button>
-          </OverlayTrigger>
-        )
-  }else {
+          </button>
+      </OverlayTrigger>
+    )
+  } else {
     return (
       <button
         onClick={showAssigneeInput}
-        className={placeholder ? 'assignee-button' : 'edit-assignee-button'}
+        className={getClassName()}
         >
           { placeholder || 'Assign'}
       </button>
     )
   }
-
 }
 
-export default AssignerButton;
+export default connect(({user}) => ({user}))(AssignerButton);

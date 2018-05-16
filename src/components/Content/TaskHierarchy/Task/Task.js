@@ -147,15 +147,6 @@ class RawTask extends Component {
     }
   }
 
-  getAssignedCss = (task) => {
-    const { user } = this.props;
-    if (task.assigned_to && task.assigned_to === user.username) {
-      return " assigned-to-me";
-    } else {
-      return "";
-    }
-  }
-
   selectTaskInHierarchy = () => {
     const { taskData, showTaskDetailsOrCollapse } = this.props;
     showTaskDetailsOrCollapse({taskGid: taskData.gid});
