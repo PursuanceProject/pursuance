@@ -14,17 +14,16 @@ import './PursuanceMenu.css';
 
 const PursuanceMenu = ({ currentPursuanceId, location }) => {
   return (
-    <ButtonGroup vertical id="pursuance-btn-group">
-      <Button id="pursuance-top-btn">
+    <ButtonGroup vertical className="pursuance-btn-group">
+      <div>
         <PursuanceMenuItem
+          className="pursuance-top-btn"
           pursuanceId={currentPursuanceId}
           location={location}
           label='New'
           action='add'
           icon={<PlusCircle size={28} />}
         />
-      </Button>
-      <Button>
         <PursuanceMenuItem
           pursuanceId={currentPursuanceId}
           location={location}
@@ -32,8 +31,6 @@ const PursuanceMenu = ({ currentPursuanceId, location }) => {
           action='tasks'
           icon={<FaCheckSquareO size={28} />}
         />
-      </Button>
-      <Button>
         <PursuanceMenuItem
           pursuanceId={currentPursuanceId}
           location={location}
@@ -41,8 +38,6 @@ const PursuanceMenu = ({ currentPursuanceId, location }) => {
           action='calendar'
           icon={<FaCalendar size={28} />}
         />
-      </Button>
-      <Button>
         <PursuanceMenuItem
           pursuanceId={currentPursuanceId}
           location={location}
@@ -50,8 +45,6 @@ const PursuanceMenu = ({ currentPursuanceId, location }) => {
           action='discuss'
           icon={<CommentsO size={28} />}
         />
-      </Button>
-      <Button>
         <PursuanceMenuItem
           pursuanceId={currentPursuanceId}
           location={location}
@@ -59,8 +52,6 @@ const PursuanceMenu = ({ currentPursuanceId, location }) => {
           action='docs'
           icon={<FolderOpen size={28} />}
         />
-      </Button>
-      <Button>
         <PursuanceMenuItem
           pursuanceId={currentPursuanceId}
           location={location}
@@ -68,16 +59,15 @@ const PursuanceMenu = ({ currentPursuanceId, location }) => {
           action='participants'
           icon={<Group size={28} />}
         />
-      </Button>
-      <Button id="pursuance-bottom-btn">
         <PursuanceMenuItem
+          className="pursuance-bottom-btn"
           pursuanceId={currentPursuanceId}
           location={location}
           label='Progress'
           action='progress'
           icon={<Rocket size={28} />}
         />
-      </Button>
+      </div>
     </ButtonGroup>
   );
 };

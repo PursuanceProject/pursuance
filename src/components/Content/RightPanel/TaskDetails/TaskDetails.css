@@ -4,6 +4,7 @@
   flex: 1;
   color: #efefef;
   font-size: 1.2em;
+  word-break: break-all;
 }
 
 .task-assignment-ctn {
