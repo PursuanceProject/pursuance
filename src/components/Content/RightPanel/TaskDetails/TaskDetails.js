@@ -28,7 +28,8 @@ class TaskDetails extends Component {
 
       // If this task was assigned to this pursuance from another
       // pursuance, grab the current pursuance's tasks, too
-      if (thisTasksPursuanceId !== currentPursuanceId.toString()) {
+      if (currentPursuanceId &&
+          thisTasksPursuanceId !== currentPursuanceId.toString()) {
         getTasks(currentPursuanceId);
       }
     }

@@ -17,7 +17,7 @@ const AssignerButton = ({ showAssigneeInput, placeholder, user }) => {
     return clsName + otherClsName;
   }
 
-  if (placeholder && placeholder.length > 20) {
+  if (placeholder && placeholder.length > 25) {
     return (
       <OverlayTrigger
         placement="bottom"
