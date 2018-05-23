@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { ButtonGroup, Button } from 'react-bootstrap';
+import { ButtonGroup } from 'react-bootstrap';
 import PursuanceMenuItem from './PursuanceMenuItem';
 import FaCheckSquareO from 'react-icons/lib/fa/check-square-o';
 import FaCalendar from 'react-icons/lib/fa/calendar';
