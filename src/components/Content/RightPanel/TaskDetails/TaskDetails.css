@@ -4,7 +4,8 @@
   flex: 1;
   color: #efefef;
   font-size: 1.2em;
-  word-break: break-all;
+  word-break: break-word;
+  min-width: 0; /* Firefox workaround; see https://github.com/philipwalton/flexbugs/issues/39 */
 }
 
 .task-assignment-ctn {
@@ -54,7 +55,6 @@
 .pursuance-title-ctn {
   padding: 4px 0 0 0;
 }
-
 
 .discuss-task-title-ctn {
   display: flex;
