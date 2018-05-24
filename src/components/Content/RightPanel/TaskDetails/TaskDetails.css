@@ -23,7 +23,7 @@
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  margin: 0 12px;
+  margin: 0 -10px 0 10px;
 }
 
 .assigned-to-ctn span:hover {

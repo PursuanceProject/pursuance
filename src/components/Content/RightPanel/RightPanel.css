@@ -19,6 +19,7 @@
   height: 100%;
   max-height: calc(100vh - 60px);
   width: 100%;
+  min-width: 500px;
   max-width: 35vw;
   right: 50px;
   border-right: none;

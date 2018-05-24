@@ -19,7 +19,7 @@
   max-height: 32px;
 }
 
-/* Make wider when in RightPanel */
 .right-panel-ctn .task-assigned-to {
-  width: 236px;
+  width: unset;
+  max-width: 236px;
 }
