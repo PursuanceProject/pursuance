@@ -65,6 +65,7 @@
 .discuss-task-title {
   font-size: 1.5em;
   color: #fcfcfc;
+  min-width: 0; /* Firefox workaround; see https://github.com/philipwalton/flexbugs/issues/39 */
 }
 
 .task-deliverables-ctn {
