@@ -12,13 +12,6 @@
   color: #1fc7d3;
 }
 
-/* Hide Assigned To on non-big screens */
-@media (max-width: 1279px) {
-  #task-hierarchy .task-assigned-to {
-    display: none;
-  }
-}
-
 .assign-autocomplete-ctn {
   position: relative;
   display: flex;
@@ -27,6 +20,6 @@
 }
 
 .right-panel-ctn .task-assigned-to {
-  width: unset;
+  min-width: 190px;
   max-width: 236px;
 }

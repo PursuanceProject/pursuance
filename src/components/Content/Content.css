@@ -7,3 +7,9 @@
   border: 1px solid #6d6d6d;
   border-right: none;
 }
+
+@media (max-width: 1279px) {
+  .content #task-hierarchy .hide-small {
+    display: none;
+  }
+}

@@ -8,12 +8,6 @@
   max-width: 8vw;
 }
 
-@media (max-width: 1279px) {
-  #task-hierarchy .task-status-ctn {
-    display: none;
-  }
-}
-
 .task-status-ctn .dropdown {
   height: 100%;
   width: 100%;

@@ -50,7 +50,7 @@ class TaskStatus extends Component {
   render() {
     const { status } = this.props;
     return (
-      <div className={"task-status-ctn task-status-" + status}>
+      <div className={"task-status-ctn task-status-" + status + " hide-small"}>
         <DropdownButton
           id="task-status-dropdown"
           title={this.getCurrentStatus()}

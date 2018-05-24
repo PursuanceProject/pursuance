@@ -119,17 +119,17 @@ class TaskHierarchy extends Component {
 
               </span>
             </div>
-            <div className="label-status">
+            <div className="label-status hide-small">
               <span>
                 Status
               </span>
             </div>
-            <div className="label-assigned-to">
+            <div className="label-assigned-to hide-small">
               <span>
                 Assigned To
               </span>
             </div>
-            <div className="label-due-date">
+            <div className="label-due-date hide-small">
               <span>
                 Due Date
               </span>

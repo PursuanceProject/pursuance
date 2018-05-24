@@ -42,7 +42,7 @@ class TaskDueDate extends Component {
     const due_date = taskData.due_date;
 
     return (
-      <div className="task-due-date" onClick={this.onClick}>
+      <div className="task-due-date hide-small" onClick={this.onClick}>
         {showInput && (
           <DueDatePicker
             id={id}

@@ -34,7 +34,7 @@ class TaskAssigner extends Component {
     const { showAssigneeInput } = this.state;
     const { taskGid, placeholder, assignedTo } = this.props;
     return (
-      <div className="task-assigned-to">
+      <div className="task-assigned-to hide-small">
           {
             showAssigneeInput &&
              <div className="assign-autocomplete-ctn">

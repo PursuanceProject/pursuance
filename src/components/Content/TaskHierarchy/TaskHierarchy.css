@@ -58,13 +58,6 @@
   padding: 0 4px;
 }
 
-/* Hide Status, Assigned To, Due Date on small-ish screens */
-@media (max-width: 1279px) {
-  .label-status, .label-assigned-to, .label-due-date {
-    display: none;
-  }
-}
-
 ul {
   list-style-type: none;
 }

@@ -192,7 +192,7 @@ class RawTask extends Component {
               <OverlayTrigger
                 placement="bottom"
                 overlay={this.getTooltip('chat')}>
-                <div id={'discuss-task-' + task.gid} className="icon-ctn discuss-task" onClick={this.redirectToDiscuss}>
+                <div id={'discuss-task-' + task.gid} className="icon-ctn discuss-task hide-small" onClick={this.redirectToDiscuss}>
                   <FaCommentsO size={20} />
                 </div>
               </OverlayTrigger>
@@ -202,7 +202,7 @@ class RawTask extends Component {
               status={task.status}
               patchTask={this.props.patchTask}
             />
-            <div className="task-assigned-to">
+            <div className="task-assigned-to hide-small">
               <TaskAssigner
                 taskGid={task.gid}
                 placeholder={placeholder}

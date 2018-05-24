@@ -157,15 +157,13 @@
   border-color: #fff;
 }
 
-/* Hide Due Date, Assigned To on small-ish screens */
 @media (max-width: 1279px) {
-  #task-hierarchy .task-due-date,
-  #task-hierarchy .assignee-button,
-  #task-hierarchy .edit-assignee-button {
-    display: none;
-  }
   #task-hierarchy .task-title {
-    max-width: calc(100vw - 420px);
+    max-width: calc(100vw - 380px);
+  }
+  #task-hierarchy .task-icons-ctn {
+    min-width: 28px;
+    width: 28px;
   }
 }
 
