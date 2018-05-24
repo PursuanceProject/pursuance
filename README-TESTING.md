@@ -8,29 +8,32 @@ back to this document to proceed.
 
 ## Getting Started on Linux
 
-1. Download and extract the Firefox WebDriver client, which as at
-   version 0.20.1 at the time this was written:
+1. Download and extract the Firefox WebDriver client (which as at
+   version 0.20.1 at the time this was written), and download the
+   standalone Selenium Server, which was current at version 3.12.0 at
+   the time this was written::
+
    ```
-   $ curl -O \
+   curl -LO \
    https://github.com/mozilla/geckodriver/releases/download/v0.20.1/geckodriver-v0.20.1-linux64.tar.gz
-   $ tar zxvf geckodriver-v0.20.1-linux64.tar.gz
-   ```
-1. Download the standalone Selenium Server, which was current at version
-   3.12.0 at the time this was written:
-   ```
-   $ curl -O \
+   tar zxvf geckodriver-v0.20.1-linux64.tar.gz
+   curl -LO \
    https://selenium-release.storage.googleapis.com/3.12/selenium-server-standalone-3.12.0.jar
    ```
+
 1. Next, you will need 2 terminals. In the first terminal, start the 
    Selenium server:
+
    ```
-   $ java -jar -Dwebdriver.gecko.driver=./geckodriver ./selenium-server-standalone-3.12.0.jar
+   java -jar -Dwebdriver.gecko.driver=./geckodriver ./selenium-server-standalone-3.12.0.jar
    ```
+
 1. In the second terminal, use `npm` to install all the bits are run the test suite:
    ```
-   $ npm install
-   $ npm run wdio wdio.conf.js
+   npm install
+   npm run wdio wdio.conf.js
    ```
+
 1. The output should resemble the following:
    ```
    $ npm run wdio wdio.conf.js
@@ -150,8 +153,10 @@ back to this document to proceed.
    4 passing (21.10s)
    11 skipped
    ```
-   Only the login tests are implemented, so you can execute only those
-   tests thus:
-   ```
-   $ npm run wdio wdio.conf.js --suite login
-   ```
+
+Only the login tests are implemented, so you can execute only those
+tests thusly:
+
+```
+npm run wdio wdio.conf.js --suite login
+```
