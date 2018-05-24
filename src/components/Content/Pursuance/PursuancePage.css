@@ -12,6 +12,7 @@
   flex: 1;
   order: 2;
   margin-left: 100px;
+  min-width: 0; /* Firefox flexbox workaround */
 }
 
 #pursuance-page > nav {

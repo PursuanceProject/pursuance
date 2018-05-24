@@ -18,5 +18,11 @@
 }
 
 .leapchat-frame-narrow {
-  max-width: calc(65vw - 162px);
+  max-width: calc(100vw - 662px);
+}
+
+@media (min-width: 1429px) {
+  .leapchat-frame-narrow {
+    max-width: calc(65vw - 162px);
+  }
 }

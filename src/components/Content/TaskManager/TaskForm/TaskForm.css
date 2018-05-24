@@ -37,6 +37,19 @@
   width: 240px;
 }
 
+/* Shrink Assigner input on smaller screens */
+@media (max-width: 1279px) {
+  #task-hierarchy .assign-autocomplete-ctn {
+    width: 150px;
+  }
+}
+
+@media (max-width: 1023px) {
+  #task-hierarchy .assign-autocomplete-ctn {
+    width: 100px;
+  }
+}
+
 .save-task-btn {
   background-color: #23527c;
   color: #efefef;
