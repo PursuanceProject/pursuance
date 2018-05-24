@@ -8,6 +8,7 @@ import FaCircleO from 'react-icons/lib/fa/circle-o';
 import TaskStatus from '../../TaskStatus/TaskStatus';
 import TaskAssigner from '../../TaskHierarchy/Task/TaskAssigner/TaskAssigner';
 import TaskDueDate from '../../TaskDueDate/TaskDueDate';
+import TaskIcons from './TaskIcons/TaskIcons';
 
 import './TaskDetails.css';
 
@@ -27,7 +28,8 @@ class TaskDetails extends Component {
 
       // If this task was assigned to this pursuance from another
       // pursuance, grab the current pursuance's tasks, too
-      if (thisTasksPursuanceId !== currentPursuanceId.toString()) {
+      if (currentPursuanceId &&
+          thisTasksPursuanceId !== currentPursuanceId.toString()) {
         getTasks(currentPursuanceId);
       }
     }
@@ -119,6 +121,7 @@ class TaskDetails extends Component {
                 </span>
               </div>
             </div>
+            <TaskIcons gid={task.gid}/>
             <div className="task-deliverables-ctn">
               <h4><strong>Description / Deliverables</strong></h4>
               <span>
