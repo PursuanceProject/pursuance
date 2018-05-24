@@ -6,15 +6,15 @@ import MdArchive from 'react-icons/lib/md/archive';
 import FaCommentsO from 'react-icons/lib/fa/comments-o';
 import FaVideoCamera from 'react-icons/lib/fa/video-camera';
 import './TaskIcons.css';
-import { patchTask } from '../../../../../actions';
+import { archiveTask } from '../../../../../actions';
 import HypothesisLogo from '../../../../../static/hypothesis_logo/HypothesisLogo.png';
 
 const jitsiRoom = 'https://meet.jit.si/PonchoSpiderPageantFoxAlsoLaptopTractorWoundDebrisCaucasianGrapeDishclothFaucetBuddhistRefineryRibbonIridescentWishboneDesktopMugshotLeukemiaOfficeApricotEuthanizeUngloved';
 
-const TaskIcons = ({ gid, patchTask, history, currentPursuanceId }) => {
+const TaskIcons = ({ gid, archiveTask, history, currentPursuanceId }) => {
 
-  const archiveTask = () => {
-    return patchTask({gid, is_archived: true});
+  const archiveThisTask = () => {
+    archiveTask({gid});
   }
 
   const redirectToDiscuss = () => {
@@ -81,10 +81,10 @@ const TaskIcons = ({ gid, patchTask, history, currentPursuanceId }) => {
       </OverlayTrigger>
 
       <OverlayTrigger placement="bottom" overlay={getTooltip()}>
-        <MdArchive size={34} className="icon" onClick={archiveTask}/>
+        <MdArchive size={34} className="icon" onClick={archiveThisTask}/>
       </OverlayTrigger>
     </div>
   )
 }
 
-export default withRouter(connect(({currentPursuanceId}) => ({currentPursuanceId}), { patchTask })(TaskIcons));
+export default withRouter(connect(({currentPursuanceId}) => ({currentPursuanceId}), { archiveTask })(TaskIcons));

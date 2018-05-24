@@ -55,6 +55,8 @@ export default function(state = initialState, action) {
     case 'PATCH_TASK_PENDING':
       return state;
 
+    case 'TASK_SET_ASSIGNEE_FULFILLED':
+      // Fallthrough
     case 'PATCH_TASK_FULFILLED':
       const patchedTask = action.payload;
       patchedTask.subtask_gids =
@@ -64,6 +66,34 @@ export default function(state = initialState, action) {
           [patchedTask.gid]: patchedTask
         })
       });
+
+    case 'TASK_ARCHIVE_FULFILLED': {
+      const archivedTask = action.payload;
+
+      // Create new taskMap that excludes the task just archived
+      const newTaskMap = Object.assign({}, state.taskMap);
+      delete newTaskMap[archivedTask.gid];
+
+      const parentTaskGid = archivedTask.parent_task_gid;
+      if (!parentTaskGid) {
+        return Object.assign({}, state, {
+          taskMap: newTaskMap
+        })
+      }
+      const parentTask = state.taskMap[parentTaskGid];
+      // Update parentTask.subtask_gids in redux so that it excludes
+      // archivedTask.gid
+      const newParentSubtaskGids =
+        parentTask.subtask_gids.filter((gid) => gid !== archivedTask.gid)
+      return Object.assign({}, state, {
+        taskMap: Object.assign(newTaskMap, {
+          [parentTaskGid]: {
+            ...parentTask,
+            subtask_gids: newParentSubtaskGids
+          }
+        })
+      });
+    }
 
     case 'TASK_FORM_SET_PARENT_GID': {
       const { formId, newParentGid, oldParentGid } = action;

@@ -11,7 +11,7 @@ import {
   addSuggestion,
   upSuggestion,
   downSuggestion,
-  patchTask
+  setTaskAssignee
 } from '../../../../../actions';
 
 const AssignerInput = (props) => {
@@ -32,7 +32,7 @@ const AssignerInput = (props) => {
     taskForm,
     editMode,
     hideEditAssignee,
-    patchTask,
+    setTaskAssignee,
     placeholder,
     assignedTo
   } = props;
@@ -93,7 +93,7 @@ const AssignerInput = (props) => {
             // current pursuance
             patchedTask.assigned_to = suggestionName;
           }
-        patchTask(patchedTask);
+        setTaskAssignee(patchedTask);
         hideEditAssignee();
       } else {
         addSuggestion(suggestionName, formId);
@@ -128,7 +128,7 @@ const AssignerInput = (props) => {
     if (placeholder && placeholder[0] === '(') {
       patchedTask.assigned_to_pursuance_id = null;
     }
-    patchTask(patchedTask);
+    setTaskAssignee(patchedTask);
   }
 
   let assigned_to = taskForm[formId] ? taskForm[formId].assigned_to : '';
@@ -172,5 +172,5 @@ export default connect(({ pursuances, currentPursuanceId, users, autoComplete, t
    upSuggestion,
    downSuggestion,
    addSuggestion,
-   patchTask
+   setTaskAssignee
 })(AssignerInput);

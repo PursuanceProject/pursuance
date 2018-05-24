@@ -174,6 +174,16 @@ export const patchTask = task => ({
   payload: patchTaskReq(task)
 });
 
+export const archiveTask = task => ({
+  type: 'TASK_ARCHIVE',
+  payload: patchTaskReq({ ...task, is_archived: true })
+});
+
+export const setTaskAssignee = task => ({
+  type: 'TASK_SET_ASSIGNEE',
+  payload: patchTaskReq(task)
+});
+
 export const removeSuccessToast = () => ({
   type: 'REMOVE_SUCCESS_TOAST'
 });

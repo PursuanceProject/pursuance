@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addSuggestion, patchTask } from '../../../../../actions';
+import { addSuggestion, setTaskAssignee } from '../../../../../actions';
 import { scrollIntoViewOptions } from '../../../../../utils/suggestions';
 import { PURSUANCE_DISPLAY_PREFIX } from '../../../../../constants';
 import './AssignerSuggestions.css';
@@ -11,7 +11,7 @@ const AssignerSuggestions = (props) => {
     addSuggestion,
     focusDatePicker,
     suggestionForm,
-    patchTask,
+    setTaskAssignee,
     editMode,
     hideEditAssignee,
     currentPursuanceId
@@ -45,7 +45,7 @@ const AssignerSuggestions = (props) => {
                     // current pursuance
                     patchedTask.assigned_to = suggestionName;
                   }
-                patchTask(patchedTask);
+                setTaskAssignee(patchedTask);
                 hideEditAssignee();
               }
                else {
@@ -69,4 +69,4 @@ const AssignerSuggestions = (props) => {
   )
 }
 
-export default connect(({ autoComplete, currentPursuanceId }) => ({ autoComplete, currentPursuanceId }), { addSuggestion, patchTask })(AssignerSuggestions);
+export default connect(({ autoComplete, currentPursuanceId }) => ({ autoComplete, currentPursuanceId }), { addSuggestion, setTaskAssignee })(AssignerSuggestions);
