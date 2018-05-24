@@ -8,6 +8,17 @@
   padding-top: 10px;
 }
 
+@media (max-width: 1279px) {
+  .pursuance-btn-group a {
+    width: 80px;
+    height: 60px;
+  }
+  .pursuance-btn-group svg {
+    width: 24px;
+    height: 24px;
+  }
+}
+
 a.pursuance-top-btn {
   border-top-right-radius: 0px;
 }

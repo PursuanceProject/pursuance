@@ -65,3 +65,12 @@ ul {
 #root-ul-ctn {
   padding-left: 0px;
 }
+
+@media (max-width: 1279px) {
+  #task-hierarchy .hide-small {
+    display: none;
+  }
+  #task-hierarchy ul ul {
+    margin-left: -20px;
+  }
+}

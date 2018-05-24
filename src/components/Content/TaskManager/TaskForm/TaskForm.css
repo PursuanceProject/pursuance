@@ -37,10 +37,15 @@
   width: 240px;
 }
 
-/* Shrink Assigner input on smaller screens */
 @media (max-width: 1279px) {
   #task-hierarchy .assign-autocomplete-ctn {
     width: 150px;
+  }
+  #task-hierarchy .nested-form {
+    padding-left: 52px;
+  }
+  #task-hierarchy .leaf-form {
+    padding-left: 44px;
   }
 }
 

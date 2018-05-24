@@ -20,3 +20,12 @@
   flex: 0 0 5em;
   order: 1;
 }
+
+@media (max-width: 1279px) {
+  #pursuance-page {
+    padding-left: 0;
+  }
+  #pursuance-page > article {
+    margin-left: 80px;
+  }
+}

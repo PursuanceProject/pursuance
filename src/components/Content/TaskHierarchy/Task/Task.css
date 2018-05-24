@@ -159,7 +159,7 @@
 
 @media (max-width: 1279px) {
   #task-hierarchy .task-title {
-    max-width: calc(100vw - 380px);
+    max-width: calc(100vw - 360px);
   }
   #task-hierarchy .task-icons-ctn {
     min-width: 28px;
