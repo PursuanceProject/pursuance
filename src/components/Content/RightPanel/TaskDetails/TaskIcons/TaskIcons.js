@@ -7,7 +7,6 @@ import FaCommentsO from 'react-icons/lib/fa/comments-o';
 import FaVideoCamera from 'react-icons/lib/fa/video-camera';
 import './TaskIcons.css';
 import { archiveTask } from '../../../../../actions';
-import HypothesisLogo from '../../../../../static/hypothesis_logo/HypothesisLogo.png';
 
 const jitsiRoom = 'https://meet.jit.si/PonchoSpiderPageantFoxAlsoLaptopTractorWoundDebrisCaucasianGrapeDishclothFaucetBuddhistRefineryRibbonIridescentWishboneDesktopMugshotLeukemiaOfficeApricotEuthanizeUngloved';
 
@@ -77,7 +76,7 @@ const TaskIcons = ({ gid, archiveTask, history, currentPursuanceId }) => {
       </OverlayTrigger>
 
       <OverlayTrigger placement="bottom" overlay={getTooltip('hypothesis')}>
-        <img src={HypothesisLogo} alt="Hypothes.is" className="hyp-logo"/>
+        <img src="/assets/img/HypothesisLogo.png" alt="Hypothes.is" className="hyp-logo"/>
       </OverlayTrigger>
 
       <OverlayTrigger placement="bottom" overlay={getTooltip()}>
