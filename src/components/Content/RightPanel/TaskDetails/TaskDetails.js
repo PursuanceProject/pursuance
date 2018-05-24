@@ -121,7 +121,10 @@ class TaskDetails extends Component {
                 </span>
               </div>
             </div>
-            <TaskIcons gid={task.gid}/>
+            <TaskIcons
+              gid={task.gid}
+              subtaskGids={task.subtask_gids}
+            />
             <div className="task-deliverables-ctn">
               <h4><strong>Description / Deliverables</strong></h4>
               <span>

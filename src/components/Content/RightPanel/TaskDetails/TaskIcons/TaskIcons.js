@@ -10,10 +10,14 @@ import { archiveTask } from '../../../../../actions';
 
 const jitsiRoom = 'https://meet.jit.si/PonchoSpiderPageantFoxAlsoLaptopTractorWoundDebrisCaucasianGrapeDishclothFaucetBuddhistRefineryRibbonIridescentWishboneDesktopMugshotLeukemiaOfficeApricotEuthanizeUngloved';
 
-const TaskIcons = ({ gid, archiveTask, history, currentPursuanceId }) => {
+const TaskIcons = ({ gid, subtaskGids = [], archiveTask, history, currentPursuanceId }) => {
 
   const archiveThisTask = () => {
     archiveTask({gid});
+  }
+
+  const isTaskArchivable = () => {
+    return subtaskGids.length === 0;
   }
 
   const redirectToDiscuss = () => {
@@ -79,9 +83,11 @@ const TaskIcons = ({ gid, archiveTask, history, currentPursuanceId }) => {
         <img src="/assets/img/HypothesisLogo.png" alt="Hypothes.is" className="hyp-logo"/>
       </OverlayTrigger>
 
-      <OverlayTrigger placement="bottom" overlay={getTooltip()}>
-        <MdArchive size={34} className="icon" onClick={archiveThisTask}/>
-      </OverlayTrigger>
+      {isTaskArchivable() && (
+        <OverlayTrigger placement="bottom" overlay={getTooltip()}>
+          <MdArchive size={34} className="icon" onClick={archiveThisTask}/>
+        </OverlayTrigger>
+      )}
     </div>
   )
 }
