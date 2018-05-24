@@ -6,7 +6,7 @@ import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 const AssignerButton = ({ showAssigneeInput, placeholder, user }) => {
 
   const getTooltip = () => {
-    return <Tooltip>{placeholder}</Tooltip>
+    return <Tooltip id="assigner-button">{placeholder}</Tooltip>
   }
 
   const getClassName = () => {
