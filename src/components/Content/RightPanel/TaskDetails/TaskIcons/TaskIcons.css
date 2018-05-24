@@ -13,9 +13,15 @@
   background-color: #000;
 }
 
+.icon:hover {
+  cursor: pointer;
+  color: #eaeaea;
+  border-color: #fff;
+}
+
 .hyp-logo {
   margin-top: 8px;
-  width: 35px;
+  width: 34px;
   margin-bottom: -6px;
   border-radius: 4px;
   margin-right: 10px;
