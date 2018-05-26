@@ -211,7 +211,7 @@ func EmailDailyDigestToUser(tasks []*Task, username string) error {
 		"email_data": map[string]string{
 			"from":    "team@pursuanceproject.org",
 			"subject": fmt.Sprintf("Pursuance Daily Digest (%s)", Now().Format(TIME_FMT_POSTGREST)),
-			"body":    string(rendered.Bytes()),
+			"body":    rendered.String(),
 		},
 	})
 
