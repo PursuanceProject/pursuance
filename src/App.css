@@ -20,3 +20,9 @@
 .modal-backdrop {
   position: relative;
 }
+
+@media (max-width: 799px) {
+  .hide-xsmall {
+    display: none;
+  }
+}

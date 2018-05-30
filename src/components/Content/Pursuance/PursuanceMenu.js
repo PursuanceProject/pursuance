@@ -14,7 +14,7 @@ import './PursuanceMenu.css';
 
 const PursuanceMenu = ({ currentPursuanceId, location }) => {
   return (
-    <ButtonGroup vertical className="pursuance-btn-group">
+    <ButtonGroup vertical className="pursuance-btn-group hide-xsmall">
       <div>
         <PursuanceMenuItem
           className="pursuance-top-btn"

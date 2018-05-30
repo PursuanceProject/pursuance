@@ -177,6 +177,12 @@
   }
 }
 
+@media (max-width: 799px) {
+  #task-hierarchy .task-title {
+    max-width: calc(100vw - 190px);
+  }
+}
+
 .assigned-to-me {
   background-color: rgba(170, 0, 255, .9);
 }
