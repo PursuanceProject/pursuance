@@ -194,6 +194,16 @@ export const showTaskDetails = ({ taskGid, show = true }) => ({
   show
 });
 
+export const rpShowTaskList = ({ show = true }) => ({
+  type: 'RIGHT_PANEL_TOGGLE_SHOW_TASK_LIST',
+  show: show
+});
+
+export const rpUpdateTaskListFilter = (taskListFilter) => ({
+  type: 'RIGHT_PANEL_TASK_LIST_FILTER_UPDATE',
+  taskListFilter
+});
+
 export const toggleRightPanel = () => ({
   type: 'RIGHT_PANEL_TOGGLE'
 });

@@ -5,6 +5,8 @@
   color: #efefef;
   font-size: 1.2em;
   word-break: break-word;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
   min-width: 0; /* Firefox workaround; see https://github.com/philipwalton/flexbugs/issues/39 */
 }
 
@@ -12,7 +14,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 4px 16px;
+  margin: 8px 16px 4px 16px;
   color: #efefef;
   max-height: 72px;
   font-size: 0.85em;
@@ -56,7 +58,7 @@
   padding: 4px 0 0 0;
 }
 
-.discuss-task-title-ctn {
+.task-details-ctn .discuss-task-title-ctn {
   display: flex;
   border-top: 1px solid #6d6d6d;
   padding-top: 12px;

@@ -2,9 +2,10 @@
   display: flex;
   width: 100%;
   background-color: #1c1c1c;
+  word-break: break-word;
   word-wrap: break-word;
   overflow-wrap: break-word;
-  word-break: break-word;
+  min-width: 0; /* Firefox workaround; see https://github.com/philipwalton/flexbugs/issues/39 */
 }
 
 .leapchat-frame {

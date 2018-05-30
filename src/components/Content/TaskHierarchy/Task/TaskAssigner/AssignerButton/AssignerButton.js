@@ -37,7 +37,7 @@ const AssignerButton = ({ showAssigneeInput, placeholder, user }) => {
         onClick={showAssigneeInput}
         className={getClassName()}
         >
-          { placeholder || 'Assign'}
+          {placeholder || 'Assign'}
       </button>
     )
   }

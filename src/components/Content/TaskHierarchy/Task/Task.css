@@ -70,9 +70,10 @@
 .task-title {
   max-width: 42vw;
   padding: 0 10px;
+  word-break: break-word;
   word-wrap: break-word;
   overflow-wrap: break-word;
-  word-break: break-word;
+  min-width: 0; /* Firefox workaround; see https://github.com/philipwalton/flexbugs/issues/39 */
 }
 
 .task-title-buffer {

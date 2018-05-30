@@ -1,0 +1,49 @@
+.task-list-ctn {
+  word-break: break-word;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  min-width: 0; /* Firefox workaround; see https://github.com/philipwalton/flexbugs/issues/39 */
+}
+
+.task-list-ctn .pursuance-tasks-ctn {
+  margin: 16px;
+}
+
+.task-list-ctn .pursuance-tasks-ctn input {
+  color: black;
+}
+
+.task-list {
+  padding-left: 0;
+}
+
+.task-item {
+  margin-bottom: 8px;
+  padding: 5px 0 5px 8px;
+  border: 1px solid #6d6d6d;
+  border-radius: 5px;
+}
+
+.task-item .task-assignment-ctn {
+  margin: 4px 10px 4px 0;
+}
+
+.task-list-filter {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 10px;
+}
+
+.task-list-filter input {
+  margin-left: 10px;
+  width: calc(100% - 56px);
+  height: 34px;
+  border-radius: 4px;
+  padding-left: 5px;
+}
+
+.task-list-ctn .task-assignment-ctn {
+  font-size: 1em;
+}

@@ -11,7 +11,7 @@ class Dashboard extends Component {
 
   componentWillMount() {
     // TODO: Once we add auth, only grab pursuances that the logged-in
-    // user is a mumber of
+    // user is a member of
     this.props.getPursuances();
   }
 
@@ -39,7 +39,7 @@ class Dashboard extends Component {
                     <FaPlusCircle className={"add-icon"} size={26}/>
                   </OverlayTrigger>
                 </Link>
-            </div>
+              </div>
               <PursuanceList />
             </div>
           </div>

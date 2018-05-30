@@ -1,7 +1,8 @@
 const initialState = {
-  show: false,
-  tab: 'TaskDetails',
-  taskGid: ''
+  show: true,
+  tab: 'TaskList',
+  taskGid: '',
+  taskListFilter: '@me'
 };
 
 export default function(state = initialState, action) {
@@ -11,7 +12,22 @@ export default function(state = initialState, action) {
       return Object.assign({}, state, {
         show: show,
         tab: 'TaskDetails',
-        taskGid
+        taskGid: taskGid || state.taskGid
+      });
+    }
+
+    case 'RIGHT_PANEL_TOGGLE_SHOW_TASK_LIST': {
+      const { show } = action;
+      return Object.assign({}, state, {
+        show: show,
+        tab: 'TaskList'
+      });
+    }
+
+    case 'RIGHT_PANEL_TASK_LIST_FILTER_UPDATE': {
+      const { taskListFilter } = action;
+      return Object.assign({}, state, {
+        taskListFilter
       });
     }
 

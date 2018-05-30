@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { getPursuancesByIds, getTasks, patchTask } from '../../../../actions';
+import { getPursuancesByIds, getTasks } from '../../../../actions';
 import ReactMarkdown from 'react-markdown';
-import FaEllipsisV from 'react-icons/lib/fa/ellipsis-v';
 import FaCircleO from 'react-icons/lib/fa/circle-o';
-import TaskStatus from '../../TaskStatus/TaskStatus';
-import TaskAssigner from '../../TaskHierarchy/Task/TaskAssigner/TaskAssigner';
-import TaskDueDate from '../../TaskDueDate/TaskDueDate';
+import TaskDetailsTopbar from './TaskDetailsTopbar';
 import TaskIcons from './TaskIcons/TaskIcons';
 
 import './TaskDetails.css';
@@ -35,81 +32,23 @@ class TaskDetails extends Component {
     }
   }
 
-  showAssignee = () => {
-    const {
-      pursuances,
-      tasks,
-      getPursuancesByIds,
-      rightPanel: { taskGid }
-    } = this.props;
-
-    const task = tasks.taskMap[taskGid];
-    if (!task) {
-      return (
-        <span></span>
-      )
-    }
-
-    const assignedPursuanceId = task.assigned_to_pursuance_id;
-
-    // Get details of pursuances missing from Redux
-    const ids = [];
-    if (!pursuances[task.pursuance_id]) {
-      ids.push(task.pursuance_id);
-    }
-    if (assignedPursuanceId && !pursuances[assignedPursuanceId]) {
-      ids.push(assignedPursuanceId);
-    }
-    if (ids.length > 0) {
-      getPursuancesByIds(ids);
-      return null;
-    }
-
-    return (
-          (assignedPursuanceId && pursuances[assignedPursuanceId] && pursuances[assignedPursuanceId].suggestionName)
-          ||
-          (task.assigned_to && '@' + task.assigned_to)
-    )
-  }
-
   render() {
     const { pursuances, tasks, rightPanel: { taskGid } } = this.props;
     const task = tasks.taskMap[taskGid];
     if (!task) {
-      return <div className="no-task">Ain't nobody got task fo' that.</div>
+      if (taskGid) {
+        return <div className="no-task">Ain't nobody got task fo' that.</div>;
+      }
+      return null;
     }
     const subtaskGids = task.subtask_gids;
 
     return (
       <div className="discuss-ctn">
         <div className="task-details-ctn">
-          <div className="task-assignment-ctn">
-            <TaskStatus
-              gid={task.gid}
-              status={task.status}
-              patchTask={this.props.patchTask}
-            />
-            <div className="assigned-to-ctn">
-              <TaskAssigner
-                taskGid={taskGid}
-                placeholder={this.showAssignee()}
-                assignedTo={this.showAssignee()}
-              />
-            </div>
-            <div className="due-date-ctn">
-              <TaskDueDate
-                id={task.gid}
-                taskData={task}
-                autoFocus={true}
-                patchTask={this.props.patchTask}
-              />
-            </div>
-            <div className="task-discuss-icons-ctn">
-              <div className="discuss-icon-ctn">
-                <FaEllipsisV size={20} />
-              </div>
-            </div>
-          </div>
+          <TaskDetailsTopbar
+            taskGid={taskGid}
+          />
           <div className="pursuance-discuss-ctn">
             <div className="pursuance-task-title-ctn">
               <div className="discuss-task-title-ctn">
@@ -157,4 +96,4 @@ class TaskDetails extends Component {
 }
 
 export default withRouter(connect(({currentPursuanceId, pursuances, tasks, rightPanel}) => ({currentPursuanceId, pursuances, tasks, rightPanel}),
-  { getPursuancesByIds, getTasks, patchTask })(TaskDetails));
+  { getPursuancesByIds, getTasks })(TaskDetails));

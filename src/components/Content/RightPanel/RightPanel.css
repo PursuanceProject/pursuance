@@ -48,3 +48,20 @@
   cursor: pointer;
   color: #1fc7d3;
 }
+
+.rp-menu-ctn {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 5px;
+}
+
+.rp-menu-icon {
+  color: #50b3fe;
+  margin-top: 8px;
+}
+
+.rp-menu-icon.Active {
+  color: #9b77ff;
+}
