@@ -202,8 +202,8 @@ class TaskList extends Component {
 
       for (let i in filters.dueAfter) {
         dueAfter = filters.dueAfter[i];
-        // Treating null as neither before nor after any date
-        if (!task.due_date || task.due_date.localeCompare(dueAfter) < 0) {
+        // Treating null as after all dates
+        if (task.due_date && task.due_date.localeCompare(dueAfter) < 0) {
           continue gidInTasks;
         }
       }
