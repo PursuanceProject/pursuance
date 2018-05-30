@@ -17,7 +17,7 @@ import {
   addTaskFormToHierarchy,
   removeTaskFormFromHierarchy,
   startSuggestions,
-  showTaskDetailsOrCollapse,
+  rpShowTaskDetailsOrCollapse,
   patchTask
 } from '../../../../actions';
 
@@ -148,8 +148,8 @@ class RawTask extends Component {
   }
 
   selectTaskInHierarchy = () => {
-    const { taskData, showTaskDetailsOrCollapse } = this.props;
-    showTaskDetailsOrCollapse({taskGid: taskData.gid});
+    const { taskData, rpShowTaskDetailsOrCollapse } = this.props;
+    rpShowTaskDetailsOrCollapse({taskGid: taskData.gid});
   }
 
   render() {
@@ -237,7 +237,7 @@ const Task = withRouter(connect(
   addTaskFormToHierarchy,
   removeTaskFormFromHierarchy,
   startSuggestions,
-  showTaskDetailsOrCollapse,
+  rpShowTaskDetailsOrCollapse,
   patchTask
 })(RawTask));
 

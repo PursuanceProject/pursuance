@@ -4,7 +4,7 @@ import moment from 'moment';
 import {
   getTasks,
   getPursuances,
-  showTaskDetails,
+  rpShowTaskDetails,
 } from '../../../actions';
 import BigCalendar from 'react-big-calendar';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
@@ -61,7 +61,7 @@ class Calendar extends Component {
   }
 
   onSelectEvent = (event) => {
-    this.props.showTaskDetails({taskGid: event.id});
+    this.props.rpShowTaskDetails({taskGid: event.id});
   }
 
   render() {
@@ -99,5 +99,5 @@ export default connect(({ pursuances, currentPursuanceId, tasks, rightPanel, use
   ({ pursuances, currentPursuanceId, tasks, rightPanel, user }), {
     getTasks,
     getPursuances,
-    showTaskDetails,
+    rpShowTaskDetails,
 })(Calendar);

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { getPursuances } from '../../actions';
 import { connect } from 'react-redux';
+import { unsetCurrentPursuance } from '../../actions';
 import { Link } from 'react-router-dom';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import PursuanceList from '../Content/PursuanceList/PursuanceList';
@@ -13,6 +14,8 @@ class Dashboard extends Component {
     // TODO: Once we add auth, only grab pursuances that the logged-in
     // user is a member of
     this.props.getPursuances();
+
+    this.props.unsetCurrentPursuance();
   }
 
   getTooltip = () => (
@@ -66,4 +69,4 @@ class Dashboard extends Component {
   }
 }
 
-export default connect(null, { getPursuances })(Dashboard);
+export default connect(null, { getPursuances, unsetCurrentPursuance })(Dashboard);

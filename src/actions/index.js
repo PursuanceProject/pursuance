@@ -81,6 +81,10 @@ export const setCurrentPursuance = currentPursuanceId => ({
   currentPursuanceId
 });
 
+export const unsetCurrentPursuance = () => ({
+  type: 'UNSET_CURRENT_PURSUANCE'
+});
+
 export const addPostedRootTaskToHierarchy = task => ({
   type: 'ADD_POSTED_ROOT_TASK',
   task
@@ -188,7 +192,7 @@ export const removeSuccessToast = () => ({
   type: 'REMOVE_SUCCESS_TOAST'
 });
 
-export const showTaskDetails = ({ taskGid, show = true }) => ({
+export const rpShowTaskDetails = ({ taskGid, show = true }) => ({
   type: 'RIGHT_PANEL_SHOW_TASK_DETAILS',
   taskGid,
   show
@@ -208,7 +212,7 @@ export const toggleRightPanel = () => ({
   type: 'RIGHT_PANEL_TOGGLE'
 });
 
-export const showTaskDetailsOrCollapse = ({ taskGid }) => ({
+export const rpShowTaskDetailsOrCollapse = ({ taskGid }) => ({
   type: 'RIGHT_PANEL_SHOW_TASK_DETAILS_OR_COLLAPSE',
   taskGid
 });
