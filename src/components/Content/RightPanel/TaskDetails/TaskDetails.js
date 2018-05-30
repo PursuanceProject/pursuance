@@ -55,16 +55,23 @@ class TaskDetails extends Component {
               <div className="discuss-task-title-ctn">
                 <span className="discuss-task-title">{task.title}</span>
               </div>
-              <div className="pursuance-title-ctn">
-                <span className="pursuance-title">
-                  Created in {pursuances[task.pursuance_id] && <em>{pursuances[task.pursuance_id].name}</em>}
-                </span>
-              </div>
+              {task.parent_task_gid && (
+                <div className="parent-task-ctn" onClick={() => rpShowTaskDetails({taskGid: task.parent_task_gid})}>
+                  <h4><strong>Parent Task:</strong></h4>
+                  {' '}
+                  <span>{tasks.taskMap[task.parent_task_gid] && tasks.taskMap[task.parent_task_gid].title}</span>
+                </div>
+              )}
             </div>
             <TaskIcons
               gid={task.gid}
               subtaskGids={task.subtask_gids}
             />
+            <div className="pursuance-title-ctn">
+              <span className="pursuance-title">
+                Created in {pursuances[task.pursuance_id] && <em>{pursuances[task.pursuance_id].name}</em>}
+              </span>
+            </div>
             <div className="task-deliverables-ctn">
               <h4><strong>Description / Deliverables</strong></h4>
               <span>

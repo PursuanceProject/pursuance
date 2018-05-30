@@ -82,6 +82,15 @@
   cursor: pointer;
 }
 
+.parent-task-ctn h4 {
+  display: inline;
+}
+
+.parent-task-ctn span {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 .task-deliverables-ctn {
   border-top: 1px solid #6d6d6d;
   padding-top: 8px;
