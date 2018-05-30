@@ -6,7 +6,7 @@ import './TaskList.css';
 
 class TaskList extends Component {
 
-  getTasks = () => {
+  getMatchingTasks = () => {
     const { currentPursuanceId, tasks: { taskMap } } = this.props;
     const { rpShowTaskDetails } = this.props;
 
@@ -66,6 +66,7 @@ class TaskList extends Component {
       due_date: [],
       dueAfter: [],
       status: [],
+      statusNot: [],
     };
     const fields = taskListFilter.split(/ /g);
     let field;
@@ -85,13 +86,25 @@ class TaskList extends Component {
         parsed.dueBefore.push(field.slice(1));
       } else if (field.startsWith('due:') ||
                  field.startsWith('d:')) {
-        parsed.due_date.push(this.afterColon(field));
+        const due = this.afterColon(field);
+        if (due.startsWith('<')) {
+          parsed.dueBefore.push(due.slice(1));
+        } else if (due.startsWith('>')) {
+          parsed.dueAfter.push(due.slice(1));
+        } else {
+          parsed.due_date.push(due);
+        }
       } else if (field.startsWith('>')) {
         parsed.dueAfter.push(field.slice(1));
       } else if (field.startsWith('status:') ||
                  field.startsWith('st:') ||
                  field.startsWith('s:')) {
-        parsed.status.push(this.afterColon(field));
+        const status = this.afterColon(field);
+        if (status.startsWith('!')) {
+          parsed.statusNot.push(status.slice(1));
+        } else {
+          parsed.status.push(status);
+        }
       } else {
         if (parsed.title !== '') {
           parsed.title += ' ';
@@ -109,8 +122,12 @@ class TaskList extends Component {
     const matches = {};
     let task;
     let status;
+    let statusNot;
     let assigned_to;
+    let dueBefore;
     let due_date;
+    let dueAfter;
+  gidInTasks:
     for (let gid in tasks) {
       if (taskListFilterTrimmed === '') {
         matches[gid] = true;
@@ -123,9 +140,10 @@ class TaskList extends Component {
       let matchDueDate = false;
       let matchTitle = false;
 
+      const taskStatusLower = task.status.toLowerCase();
       for (let i in filters.status) {
         status = filters.status[i];
-        if (task.status.toLowerCase().startsWith(status.toLowerCase())) {
+        if (taskStatusLower.startsWith(status.toLowerCase())) {
           matchStatus = true;
           break;
         }
@@ -133,6 +151,15 @@ class TaskList extends Component {
       if (!matchStatus && filters.status.length > 0) {
         // Status didn't match && filtering on status => Not an overall match
         continue;
+      }
+
+      for (let i in filters.statusNot) {
+        statusNot = filters.statusNot[i];
+        if (taskStatusLower.startsWith(statusNot.toLowerCase())) {
+          // Not all anti-statuses matched && filtering on not-status
+          // => Not an overall match
+          continue gidInTasks;
+        }
       }
 
       for (let i in filters.assigned_to) {
@@ -165,6 +192,22 @@ class TaskList extends Component {
         continue;
       }
 
+      for (let i in filters.dueBefore) {
+        dueBefore = filters.dueBefore[i];
+        // Treating null as neither before nor after any date
+        if (!task.due_date || task.due_date.localeCompare(dueBefore) >= 0) {
+          continue gidInTasks;
+        }
+      }
+
+      for (let i in filters.dueAfter) {
+        dueAfter = filters.dueAfter[i];
+        // Treating null as neither before nor after any date
+        if (!task.due_date || task.due_date.localeCompare(dueAfter) < 0) {
+          continue gidInTasks;
+        }
+      }
+
       if (task.title.toLowerCase().indexOf(filters.title.toLowerCase()) !== -1) {
         matchTitle = true;
       }
@@ -172,8 +215,6 @@ class TaskList extends Component {
         // Title didn't match && filtering on title => Not an overall match
         continue;
       }
-
-      // TODO(elimisteve): Use filters.{dueBefore,dueAfter}
 
       matches[gid] = true;
     }
@@ -195,6 +236,7 @@ class TaskList extends Component {
 
   render() {
     const { rightPanel: { taskListFilter } } = this.props;
+    const matches = this.getMatchingTasks();
 
     return (
       <div className="task-list-ctn">
@@ -213,7 +255,7 @@ class TaskList extends Component {
             />
           </div>
           <ul className="task-list">
-            {this.getTasks()}
+            {matches}
           </ul>
         </div>
       </div>
