@@ -19,9 +19,9 @@
 
 .task-item {
   margin-bottom: 8px;
-  padding: 5px 0 5px 8px;
+  padding: 5px 2px 5px 10px;
   border: 1px solid #6d6d6d;
-  border-radius: 5px;
+  border-radius: 10px;
 }
 
 .task-item .task-assignment-ctn {
