@@ -177,7 +177,7 @@
   }
 }
 
-@media (max-width: 799px) {
+@media (max-width: 639px) {
   #task-hierarchy .task-title {
     max-width: calc(100vw - 190px);
   }
