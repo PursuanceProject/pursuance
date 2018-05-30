@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { getPursuancesByIds, getTasks } from '../../../../actions';
+import { getPursuancesByIds, getTasks, rpShowTaskDetails } from '../../../../actions';
 import ReactMarkdown from 'react-markdown';
 import FaCircleO from 'react-icons/lib/fa/circle-o';
 import TaskDetailsTopbar from './TaskDetailsTopbar';
@@ -34,6 +34,7 @@ class TaskDetails extends Component {
 
   render() {
     const { pursuances, tasks, rightPanel: { taskGid } } = this.props;
+    const { rpShowTaskDetails } = this.props;
     const task = tasks.taskMap[taskGid];
     if (!task) {
       if (taskGid) {
@@ -82,7 +83,7 @@ class TaskDetails extends Component {
               <h4><strong>Subtasks</strong></h4>
               <ul className="subtasks-list">
                 {subtaskGids.map((gid, i)=> {
-                  return <li key={i} className="subtask-item">
+                  return <li key={i} className="subtask-item" onClick={() => rpShowTaskDetails({taskGid: gid})}>
                     <FaCircleO size={8} className="fa-circle-o" />{tasks.taskMap[gid].title}
                   </li>
                 })}
@@ -96,4 +97,4 @@ class TaskDetails extends Component {
 }
 
 export default withRouter(connect(({currentPursuanceId, pursuances, tasks, rightPanel}) => ({currentPursuanceId, pursuances, tasks, rightPanel}),
-  { getPursuancesByIds, getTasks })(TaskDetails));
+  { getPursuancesByIds, getTasks, rpShowTaskDetails })(TaskDetails));

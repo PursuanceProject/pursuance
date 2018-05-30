@@ -55,7 +55,8 @@
 }
 
 .pursuance-title-ctn {
-  padding: 4px 0 0 0;
+  padding-top: 12px;
+  margin-bottom: 8px;
 }
 
 .task-details-ctn .discuss-task-title-ctn {
@@ -76,10 +77,14 @@
   min-width: 0; /* Firefox workaround; see https://github.com/philipwalton/flexbugs/issues/39 */
 }
 
+.task-list-ctn .discuss-task-title {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 .task-deliverables-ctn {
   border-top: 1px solid #6d6d6d;
   padding-top: 8px;
-  margin-top: 16px;
   margin-bottom: 32px;
   min-height: 64px;
 }
@@ -100,6 +105,8 @@
 
 .subtask-item {
   margin-left: 0;
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 .fa-circle-o {

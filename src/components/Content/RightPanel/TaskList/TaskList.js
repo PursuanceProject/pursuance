@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { rpUpdateTaskListFilter } from '../../../../actions';
+import { rpUpdateTaskListFilter, rpShowTaskDetails } from '../../../../actions';
 import TaskDetailsTopbar from '../TaskDetails/TaskDetailsTopbar';
 import './TaskList.css';
 
@@ -8,6 +8,7 @@ class TaskList extends Component {
 
   getTasks = () => {
     const { currentPursuanceId, tasks: { taskMap } } = this.props;
+    const { rpShowTaskDetails } = this.props;
 
     // TODO: Make more efficient (only bother passing in tasks from
     // this pursuance, not all of taskMap)
@@ -43,7 +44,7 @@ class TaskList extends Component {
           <TaskDetailsTopbar
             taskGid={task.gid}
           />
-          <div className="discuss-task-title-ctn">
+          <div className="discuss-task-title-ctn" onClick={() => rpShowTaskDetails({taskGid: task.gid})}>
             <span className="discuss-task-title">{task.title}</span>
           </div>
         </div>
@@ -220,4 +221,4 @@ class TaskList extends Component {
   };
 }
 
-export default connect(({currentPursuanceId, rightPanel, tasks, user}) => ({currentPursuanceId, rightPanel, tasks, user}), { rpUpdateTaskListFilter })(TaskList);
+export default connect(({currentPursuanceId, rightPanel, tasks, user}) => ({currentPursuanceId, rightPanel, tasks, user}), { rpUpdateTaskListFilter, rpShowTaskDetails })(TaskList);
