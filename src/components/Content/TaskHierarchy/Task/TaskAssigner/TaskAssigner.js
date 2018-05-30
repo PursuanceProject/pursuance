@@ -36,7 +36,7 @@ class TaskAssigner extends Component {
     return (
       <div className="task-assigned-to hide-small">
           {
-            showAssigneeInput &&
+            (showAssigneeInput &&
              <div className="assign-autocomplete-ctn">
                {
                 this.showSuggestions()
@@ -54,7 +54,7 @@ class TaskAssigner extends Component {
                 placeholder={placeholder}
                 assignedTo={assignedTo}
               />
-            </div>
+            </div>)
             ||
               <AssignerButton
                 showAssigneeInput={this.showAssigneeInput}
