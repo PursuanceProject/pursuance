@@ -89,3 +89,12 @@
   max-width: calc(100vw - 380px);
   overflow-wrap: break-word;
 }
+
+@media (max-width: 639px) {
+  .rbc-toolbar {
+    font-size: 14px;
+  }
+  .rbc-toolbar button {
+    padding: 0.5rem;
+  }
+}
