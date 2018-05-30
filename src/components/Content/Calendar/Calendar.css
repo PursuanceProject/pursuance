@@ -9,6 +9,18 @@
   max-width: calc(100vw - 210px);
 }
 
+@media (max-width: 1279px) {
+  #big-calendar {
+    max-width: calc(100vw - 150px);
+  }
+}
+
+@media (max-width: 639px) {
+  #big-calendar {
+    max-width: calc(100vw - 64px);
+  }
+}
+
 //
 // Overrides
 //
