@@ -57,13 +57,14 @@ func NewEmailer() {
 			// that are assigned to users who have provided their
 			// email address (that PursueMail is storing, and that we
 			// have a UUID that represents said email address), that
-			// aren't done, ordered by username of assignee then due
-			// date.
+			// aren't done, that aren't archived, ordered by username
+			// of assignee then due date.
 			tasks := []*Task{}
 			in14Days := Now().Add(14 * 24 * time.Hour).Format(TIME_FMT_POSTGREST)
 			err := pgGetInto("/tasks?assigned_to=in.("+strings.Join(usernames, ",")+
 				")&due_date=lte."+in14Days+
 				"&status=not.eq.Done"+
+				"&is_archived=is.false"+
 				"&order=assigned_to.asc,due_date.asc,pursuance_id.asc",
 				&tasks)
 			if err != nil {
