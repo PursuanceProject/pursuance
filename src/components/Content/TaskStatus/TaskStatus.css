@@ -5,7 +5,8 @@
   justify-content: center;
   font-size: 0.85em;
   word-spacing: -0.08em;
-  max-width: 8vw;
+  min-width: 145px;
+  max-width: 145px;
 }
 
 .task-status-ctn .dropdown {
@@ -66,25 +67,15 @@
   margin-left: 6px;
 }
 
-/* Desktop */
 @media (min-width: 1367px) {
   .task-status-ctn {
-    min-width: 130px;
     white-space: nowrap;
-  }
-}
-
-/* Mobile */
-@media (max-width: 1366px) {
-  .task-status-ctn {
-    min-width: 125px;
   }
 }
 
 @media (max-width: 499px) {
   .task-status-ctn {
     min-width: 74px;
-    width: 74px;
     max-width: 74px;
   }
   #task-status-dropdown {
@@ -92,6 +83,9 @@
     word-wrap: break-word;
     overflow-wrap: break-word;
     white-space: pre-wrap;
+  }
+  .task-status-ctn img {
+    display: none;
   }
 }
 
