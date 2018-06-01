@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { getPursuancesByIds, getTasks, rpShowTaskDetails } from '../../../../actions';
+import { getPursuances, getTasks, getUsers, rpShowTaskDetails } from '../../../../actions';
 import ReactMarkdown from 'react-markdown';
 import FaCircleO from 'react-icons/lib/fa/circle-o';
 import TaskDetailsTopbar from './TaskDetailsTopbar';
@@ -29,6 +29,14 @@ class TaskDetails extends Component {
           thisTasksPursuanceId !== currentPursuanceId.toString()) {
         getTasks(currentPursuanceId);
       }
+    }
+
+    const { getPursuances, getUsers, pursuances, users } = this.props;
+    if (Object.keys(users).length === 0) {
+      getUsers();
+    }
+    if (Object.keys(pursuances).length <= 1) {
+      getPursuances();
     }
   }
 
@@ -103,5 +111,5 @@ class TaskDetails extends Component {
   };
 }
 
-export default withRouter(connect(({currentPursuanceId, pursuances, tasks, rightPanel}) => ({currentPursuanceId, pursuances, tasks, rightPanel}),
-  { getPursuancesByIds, getTasks, rpShowTaskDetails })(TaskDetails));
+export default withRouter(connect(({currentPursuanceId, pursuances, tasks, rightPanel, users}) => ({currentPursuanceId, pursuances, tasks, rightPanel, users}),
+  { getPursuances, getTasks, getUsers, rpShowTaskDetails })(TaskDetails));
