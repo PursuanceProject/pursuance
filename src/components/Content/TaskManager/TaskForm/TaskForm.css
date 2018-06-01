@@ -7,10 +7,6 @@
   padding-left: 72px;
 }
 
-.leaf-form {
-  padding-left: 64px;
-}
-
 .form-control {
   height: 32px;
 }
@@ -38,20 +34,26 @@
 }
 
 @media (max-width: 1279px) {
-  #task-hierarchy .assign-autocomplete-ctn {
-    width: 150px;
-  }
   #task-hierarchy .nested-form {
     padding-left: 52px;
   }
-  #task-hierarchy .leaf-form {
-    padding-left: 44px;
+}
+
+@media (max-width: 479px) {
+  #task-hierarchy .nested-form {
+    padding-left: 46px;
+  }
+}
+
+@media (max-width: 359px) {
+  #task-hierarchy .nested-form {
+    padding-left: 43px;
   }
 }
 
 @media (max-width: 1023px) {
   #task-hierarchy .assign-autocomplete-ctn {
-    width: 100px;
+    display: none;
   }
 }
 
@@ -61,6 +63,13 @@
   border-radius: 0 4px 4px 0;
   border-color: #a5a5a5;
   height: 32px;
+}
+
+
+@media (max-width: 639px) {
+  .save-task-btn {
+    padding: 3px;
+  }
 }
 
 .save-task-btn:hover {

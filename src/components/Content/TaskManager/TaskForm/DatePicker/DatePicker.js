@@ -43,7 +43,7 @@ class DueDatePicker extends Component {
     const { selected, autoFocus } = this.props;
 
     return (
-      <div className="date-picker-ctn">
+      <div className="date-picker-ctn hide-xsmall-hier">
         <DatePicker
           placeholderText="YYYY-MM-DD"
           dateFormat="YYYY-MM-DD"

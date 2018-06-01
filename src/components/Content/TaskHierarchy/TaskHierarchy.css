@@ -70,7 +70,25 @@ ul {
   #task-hierarchy .hide-small {
     display: none;
   }
-  #task-hierarchy ul ul {
+  #task-hierarchy ul ul.ul-ctn {
     margin-left: -20px;
+  }
+}
+
+@media (max-width: 479px) {
+  #task-hierarchy ul ul.ul-ctn {
+    margin-left: -25px;
+  }
+}
+
+@media (max-width: 359px) {
+  #task-hierarchy ul ul.ul-ctn {
+    margin-left: -29px;
+  }
+}
+
+@media (max-width: 639px) {
+  #task-hierarchy .hide-xsmall-hier {
+    display: none;
   }
 }

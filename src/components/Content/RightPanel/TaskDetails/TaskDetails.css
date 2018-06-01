@@ -12,7 +12,7 @@
 
 .task-assignment-ctn {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   margin: 8px 16px 4px 16px;
   color: #efefef;
@@ -21,11 +21,11 @@
 }
 
 .assigned-to-ctn {
-  flex: 1;
+  flex: 0.5;
   display: flex;
-  align-items: flex-start;
+  flex-direction: row;
+  align-items: center;
   justify-content: space-between;
-  margin: 0 -10px 0 10px;
 }
 
 .assigned-to-ctn span:hover {

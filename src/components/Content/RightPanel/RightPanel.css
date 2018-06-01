@@ -27,6 +27,14 @@
   overflow-y: auto;
 }
 
+@media (max-width: 639px) {
+  .right-panel-content-ctn {
+    width: calc(100vw - 50px);
+    min-width: calc(100vw - 50px);
+    max-width: calc(100vw - 50px);
+  }
+}
+
 #right-panel {
   height: 100%;
   width: 50px;

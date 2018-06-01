@@ -97,4 +97,7 @@
   .rbc-toolbar button {
     padding: 0.5rem;
   }
+  .rbc-btn-group {
+    white-space: pre-wrap;
+  }
 }

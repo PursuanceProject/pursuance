@@ -20,6 +20,27 @@
 }
 
 .right-panel-ctn .task-assigned-to {
-  min-width: 216px;
+  min-width: 200px;
   max-width: 236px;
+}
+
+@media (max-width: 639px) {
+  .right-panel-ctn .task-assigned-to {
+    min-width: 30px;
+    width: 120px;
+    max-width: 200px;
+    justify-content: flex-end;
+  }
+  .right-panel-ctn .assign-autocomplete-ctn {
+    width: 220px;
+  }
+}
+
+@media (max-width: 349px) {
+  .right-panel-ctn .task-assigned-to {
+    width: 100px;
+  }
+  .right-panel-ctn .assign-autocomplete-ctn {
+    width: 175px;
+  }
 }

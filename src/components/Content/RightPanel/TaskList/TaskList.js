@@ -241,7 +241,7 @@ class TaskList extends Component {
     return (
       <div className="task-list-ctn">
         <div className="pursuance-tasks-ctn">
-          <h2>Task List</h2>
+          <h2 className="task-list-title">Task List</h2>
           <div className="task-list-filter">
             <div className="filter-label">
               Filter:

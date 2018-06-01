@@ -9,6 +9,16 @@
   margin: 16px;
 }
 
+@media (max-width: 639px) {
+  .task-list-title,
+  .task-list-filter {
+    margin-left: 8px;
+  }
+  .task-list-ctn .pursuance-tasks-ctn {
+    margin: 4px;
+  }
+}
+
 .task-list-ctn .pursuance-tasks-ctn input {
   color: black;
 }
@@ -24,6 +34,12 @@
   border-radius: 10px;
 }
 
+@media (max-width: 399px) {
+  .task-item {
+    padding: 0 0 0 4px;
+  }
+}
+
 .task-item .task-assignment-ctn {
   margin: 4px 10px 4px 0;
 }
@@ -34,6 +50,7 @@
   justify-content: space-between;
   align-items: center;
   padding-bottom: 10px;
+  padding-left: 3px;
 }
 
 .task-list-filter input {

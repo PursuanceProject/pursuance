@@ -61,6 +61,7 @@
   border-radius: 5px;
   padding: 2px 2px 1px 0px;
   margin-bottom: 3px;
+  min-width: 0; /* Firefox workaround; see https://github.com/philipwalton/flexbugs/issues/39 */
 }
 
 .task-row-ctn:hover {
@@ -68,12 +69,12 @@
 }
 
 .task-title {
-  max-width: 42vw;
+  width: 100%;
+  min-width: 0; /* Firefox workaround; see https://github.com/philipwalton/flexbugs/issues/39 */
   padding: 0 10px;
   word-break: break-word;
   word-wrap: break-word;
   overflow-wrap: break-word;
-  min-width: 0; /* Firefox workaround; see https://github.com/philipwalton/flexbugs/issues/39 */
 }
 
 .task-title-buffer {
@@ -162,24 +163,18 @@
   #task-hierarchy .task-row-ctn {
     padding: 0;
   }
-  #task-hierarchy .task-title {
-    max-width: calc(100vw - 360px);
-  }
   #task-hierarchy .task-icons-ctn {
     min-width: 28px;
     width: 28px;
   }
 }
 
-@media (min-width: 1280px) and (max-width: 1599px) {
-  #task-hierarchy .task-title {
-    max-width: calc(100vw - 850px);
-  }
-}
-
-@media (max-width: 639px) {
-  #task-hierarchy .task-title {
-    max-width: calc(100vw - 190px);
+@media (max-width: 449px) {
+  .task-due-date {
+    width: 60px;
+    min-width: 60px;
+    justify-content: flex-end;
+    word-break: break-all;
   }
 }
 
