@@ -30,7 +30,6 @@ class TaskTitle extends Component {
 
   onEnter = (value) => {
     const { id, patchTask } = this.props;
-    // const { newTitle } = this.state;
     patchTask({
       gid: id,
       title: value
@@ -38,8 +37,7 @@ class TaskTitle extends Component {
   }
 
   onChange = (e) => {
-    const { value } = e.target;
-    const { key } = e;
+    const { key, target: { value } } = e;
     if (key === 'Enter') {
       this.onEnter(value);
       this.toggleInput();
