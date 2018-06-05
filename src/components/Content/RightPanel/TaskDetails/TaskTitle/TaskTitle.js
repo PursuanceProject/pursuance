@@ -7,7 +7,6 @@ class TaskTitle extends Component {
     super(props);
 
     this.state = {
-      newTitle: '',
       showInput: false
     };
   }
@@ -38,9 +37,12 @@ class TaskTitle extends Component {
 
   onChange = (e) => {
     const { key, target: { value } } = e;
+    console.log(key);
     if (key === 'Enter') {
       this.onEnter(value);
       this.toggleInput();
+    } else if (key === 'Escape') {
+      this.toggleInput()
     }
   }
 
@@ -57,7 +59,8 @@ class TaskTitle extends Component {
             className="discuss-task-title-update"
             name={'title'}
             defaultValue={title}
-            onKeyPress={this.onChange}
+            onKeyDown={this.onChange}
+            onBlur={this.toggleInput}
           />
         )}
         {!showInput && (
