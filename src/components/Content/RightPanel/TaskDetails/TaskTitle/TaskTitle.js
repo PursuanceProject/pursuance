@@ -37,7 +37,6 @@ class TaskTitle extends Component {
 
   onChange = (e) => {
     const { key, target: { value } } = e;
-    console.log(key);
     if (key === 'Enter') {
       this.onEnter(value);
       this.toggleInput();
