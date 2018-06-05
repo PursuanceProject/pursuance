@@ -19,7 +19,7 @@ class TaskTitle extends Component {
   }
 
   validTitle = (value) => {
-    return value !== ''
+    return value !== '';
   }
 
   toggleInput = () => {
@@ -41,7 +41,7 @@ class TaskTitle extends Component {
       this.onEnter(value);
       this.toggleInput();
     } else if (key === 'Escape') {
-      this.toggleInput()
+      this.toggleInput();
     }
   }
 
