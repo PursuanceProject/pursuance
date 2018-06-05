@@ -59,6 +59,8 @@
   height: 34px;
   border-radius: 4px;
   padding-left: 5px;
+  border: none;
+  outline: none;
 }
 
 .task-list-ctn .task-assignment-ctn {
