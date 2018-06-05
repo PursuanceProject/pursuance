@@ -19,7 +19,7 @@ class TaskTitle extends Component {
   }
 
   validTitle = (value) => {
-    return value !== ''
+    return value !== '';
   }
 
   toggleInput = () => {
@@ -37,12 +37,11 @@ class TaskTitle extends Component {
 
   onChange = (e) => {
     const { key, target: { value } } = e;
-    console.log(key);
     if (key === 'Enter') {
       this.onEnter(value);
       this.toggleInput();
     } else if (key === 'Escape') {
-      this.toggleInput()
+      this.toggleInput();
     }
   }
 
