@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { getPursuances, getTasks, getUsers, rpShowTaskDetails } from '../../../../actions';
+import { getPursuances, getTasks, getUsers, rpShowTaskDetails, patchTask } from '../../../../actions';
 import ReactMarkdown from 'react-markdown';
 import FaCircleO from 'react-icons/lib/fa/circle-o';
 import TaskDetailsTopbar from './TaskDetailsTopbar';
+import TaskTitle from './TaskTitle/TaskTitle';
 import TaskIcons from './TaskIcons/TaskIcons';
 
 import './TaskDetails.css';
@@ -60,9 +61,11 @@ class TaskDetails extends Component {
           />
           <div className="pursuance-discuss-ctn">
             <div className="pursuance-task-title-ctn">
-              <div className="discuss-task-title-ctn">
-                <span className="discuss-task-title">{task.title}</span>
-              </div>
+              <TaskTitle
+                id={task.gid}
+                title={task.title}
+                patchTask={this.props.patchTask}
+              />
               {task.parent_task_gid && (
                 <div className="parent-task-ctn" onClick={() => rpShowTaskDetails({taskGid: task.parent_task_gid})}>
                   <h4><strong>Parent Task:</strong></h4>
@@ -112,4 +115,4 @@ class TaskDetails extends Component {
 }
 
 export default withRouter(connect(({currentPursuanceId, pursuances, tasks, rightPanel, users}) => ({currentPursuanceId, pursuances, tasks, rightPanel, users}),
-  { getPursuances, getTasks, getUsers, rpShowTaskDetails })(TaskDetails));
+  { getPursuances, getTasks, getUsers, rpShowTaskDetails, patchTask })(TaskDetails));
