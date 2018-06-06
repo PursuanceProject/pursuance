@@ -135,6 +135,21 @@ export default function(state = initialState, action) {
       });
     }
 
+    case 'HYPOTHESIS_GROUP_CREATE': {
+      console.log('HYPOTHESIS_GROUP_CREATE reducer called...');
+      const { taskGid, name, description } = action;
+      // TODO(elimisteve): Use name, description to actually create
+      // Hypothesis group; faking it by updating local state
+      const task = state.taskMap[taskGid];
+      return Object.assign({}, state, {
+        taskMap: Object.assign({}, state.taskMap, {
+          [taskGid]: Object.assign({}, task, {
+            deliverables: task.deliverables += '\n\n#### Hypothesis Group\n\n<https://hypothes.is/groups/qodKXB7q/p-juansanchez>'
+          })
+        })
+      });
+    }
+
     default:
       return state;
   }

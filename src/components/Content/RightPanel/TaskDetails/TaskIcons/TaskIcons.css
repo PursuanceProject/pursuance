@@ -27,3 +27,7 @@
   margin-right: 10px;
   cursor: pointer;
 }
+
+.hypgroup-form input {
+  min-width: 400px;
+}

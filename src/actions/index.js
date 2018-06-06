@@ -225,3 +225,15 @@ export const userLoginSuccess = ({ username }) => ({
 export const userLogoutSuccess = () => ({
   type: 'USER_LOGOUT_SUCCESS'
 });
+
+export const toggleHypothesisModal = ({ taskGid = '' }) => ({
+  type: 'TOGGLE_MODAL_HYPOTHESIS_CREATE',
+  taskGid
+})
+
+export const createHypothesisGroup = ({ taskGid, name, description }) => ({
+  type: 'HYPOTHESIS_GROUP_CREATE',
+  taskGid,
+  name,
+  description,
+})
