@@ -31,7 +31,6 @@ export default function(state = initialState, action) {
       return state;
 
     case 'DELETE_TASK_FULFILLED':
-      console.log(action.payload);
       const deletedTask = action.payload;
 
       // Create new taskMap that excludes the task just deleted
