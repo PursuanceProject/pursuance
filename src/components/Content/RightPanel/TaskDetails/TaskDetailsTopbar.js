@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getPursuancesByIds, patchTask, deleteTask } from '../../../../actions';
+import { getPursuancesByIds, patchTask } from '../../../../actions';
 import TaskStatus from '../../TaskStatus/TaskStatus';
 import TaskAssigner from '../../TaskHierarchy/Task/TaskAssigner/TaskAssigner';
 import TaskDueDate from '../../TaskDueDate/TaskDueDate';
@@ -79,7 +79,6 @@ class TaskDetailsTopbar extends Component {
           </div>
           <div className="task-discuss-icons-ctn">
             <TaskOptions
-              deleteTask={this.props.deleteTask}
               taskData={task}
             />
           </div>
@@ -90,4 +89,4 @@ class TaskDetailsTopbar extends Component {
 }
 
 export default connect(({currentPursuanceId, pursuances, tasks, rightPanel}) => ({currentPursuanceId, pursuances, tasks, rightPanel}),
-  { getPursuancesByIds, patchTask, deleteTask })(TaskDetailsTopbar);
+  { getPursuancesByIds, patchTask })(TaskDetailsTopbar);
