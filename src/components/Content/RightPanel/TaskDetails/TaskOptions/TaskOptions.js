@@ -52,6 +52,7 @@ const TaskOptions = ({ taskData, deleteTask }) => {
           </MenuItem>
         );
       }
+      return null;
     })
   }
 
