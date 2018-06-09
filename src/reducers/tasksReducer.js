@@ -30,6 +30,33 @@ export default function(state = initialState, action) {
     case 'POST_TASK_REJECTED':
       return state;
 
+    case 'DELETE_TASK_FULFILLED':
+      const deletedTask = action.payload;
+
+      // Create new taskMap that excludes the task just deleted
+      const newTaskMap = Object.assign({}, state.taskMap);
+      delete newTaskMap[deletedTask.gid];
+
+      const parentTaskId = deletedTask.parent_task_gid;
+      if (!parentTaskId) {
+        return Object.assign({}, state, {
+          taskMap: newTaskMap
+        })
+      }
+      const parent = state.taskMap[parentTaskId];
+      // Update parentTask.subtask_gids in redux so that it excludes
+      // deletedTask.gid
+      const newParentSubtaskGids =
+        parent.subtask_gids.filter((gid) => gid !== deletedTask.gid)
+      return Object.assign({}, state, {
+        taskMap: Object.assign(newTaskMap, {
+          [parentTaskId]: {
+            ...parent,
+            subtask_gids: newParentSubtaskGids
+          }
+        })
+      });
+
     case 'ADD_POSTED_ROOT_TASK':
       const { task } = action;
       return Object.assign({}, state, {
@@ -56,7 +83,7 @@ export default function(state = initialState, action) {
       return state;
 
     case 'TASK_SET_ASSIGNEE_FULFILLED':
-      // Fallthrough
+    // Fallthrough
     case 'PATCH_TASK_FULFILLED':
       const patchedTask = action.payload;
       patchedTask.subtask_gids =
@@ -78,13 +105,14 @@ export default function(state = initialState, action) {
       if (!parentTaskGid) {
         return Object.assign({}, state, {
           taskMap: newTaskMap
-        })
+        });
       }
       const parentTask = state.taskMap[parentTaskGid];
       // Update parentTask.subtask_gids in redux so that it excludes
       // archivedTask.gid
-      const newParentSubtaskGids =
-        parentTask.subtask_gids.filter((gid) => gid !== archivedTask.gid)
+      const newParentSubtaskGids = parentTask.subtask_gids.filter(
+        gid => gid !== archivedTask.gid
+      );
       return Object.assign({}, state, {
         taskMap: Object.assign(newTaskMap, {
           [parentTaskGid]: {

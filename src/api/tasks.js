@@ -16,6 +16,13 @@ export const patchTaskReq = task => {
     .catch(err => console.log('Error patching task:', err));
 };
 
+export const deleteTaskReq = task => {
+  return postgrest
+    .deleteJSON(`/tasks?gid=eq.${task.gid}`, { Prefer: 'return=representation' })
+    .then(taskJSON => taskJSON[0])
+    .catch(err => console.log('Error deleting task:', err));
+}
+
 export const getTasksReq = (pursuanceId, { includeArchived = false } = {}) => {
   return postgrest
     .getJSON(

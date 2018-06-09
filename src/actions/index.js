@@ -4,7 +4,7 @@ import {
   getPublicPursuancesReq,
   postPursuanceReq
 } from '../api/pursuances';
-import { postTaskReq, getTasksReq, patchTaskReq } from '../api/tasks';
+import { postTaskReq, getTasksReq, patchTaskReq, deleteTaskReq } from '../api/tasks';
 
 export const updateFormField = (formId, fieldId, value) => ({
   type: 'TASK_FIELD_UPDATE',
@@ -50,6 +50,11 @@ export const getTasks = pursuanceId => ({
 export const postTask = task => ({
   type: 'POST_TASK',
   payload: postTaskReq(task)
+});
+
+export const deleteTask = task => ({
+  type: 'DELETE_TASK',
+  payload: deleteTaskReq(task)
 });
 
 export const startSuggestions = (value, filterSuggestion, list, formId) => ({
@@ -203,7 +208,7 @@ export const rpShowTaskList = ({ show = true }) => ({
   show: show
 });
 
-export const rpUpdateTaskListFilter = (taskListFilter) => ({
+export const rpUpdateTaskListFilter = taskListFilter => ({
   type: 'RIGHT_PANEL_TASK_LIST_FILTER_UPDATE',
   taskListFilter
 });
