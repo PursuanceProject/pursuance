@@ -15,17 +15,44 @@ const TaskOptions = ({ taskData, deleteTask }) => {
     return subtask_gids.length === 0;
   }
 
-  const getDropDownItems = () => {
-    const actionName = VALID_OPTIONS[0];
-    return (
-      <MenuItem key={actionName} onClick={del} className="task-options-menu-item">
-        <div><FaBomb size={15} /> {actionName}</div>
-      </MenuItem>
-    );
+  const isDisplayable = (optionName) => {
+    switch (optionName) {
+      case 'Nuke Task':
+        return isTaskDeletable();
+      default:
+        return true;
+    }
   }
 
-  const del = () => {
-    deleteTask(taskData);
+  const sendAction = (action) => {
+    switch (action) {
+      case 'Nuke Task':
+        deleteTask(taskData);
+        break;
+      default:
+        break;
+    }
+  }
+
+  const renderAction = (optionName) => {
+    switch(optionName) {
+      case 'Nuke Task':
+        return <FaBomb size={15} className="action-icon" />;
+      default:
+        return null;
+    }
+  }
+
+  const renderDropDownItems = () => {
+    return VALID_OPTIONS.map(optionName => {
+      if (isDisplayable(optionName)) {
+        return (
+          <MenuItem key={optionName} onClick={() => sendAction(optionName)} className="task-options-menu-item">
+            <div>{renderAction(optionName)}{optionName}</div>
+          </MenuItem>
+        );
+      }
+    })
   }
 
   const renderEllipse = () => {
@@ -44,7 +71,7 @@ const TaskOptions = ({ taskData, deleteTask }) => {
         title={renderEllipse()}
         pullRight
         noCaret>
-        {isTaskDeletable() && getDropDownItems()}
+        {renderDropDownItems()}
       </DropdownButton>
     </div>
   )
