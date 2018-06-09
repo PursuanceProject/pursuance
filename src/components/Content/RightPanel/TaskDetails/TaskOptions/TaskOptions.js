@@ -13,8 +13,7 @@ const VALID_OPTIONS = [
 
 const TaskOptions = ({ taskData, deleteTask }) => {
   const isTaskDeletable = () => {
-    const { subtask_gids } = taskData;
-    return subtask_gids.length === 0;
+    return taskData.subtask_gids.length === 0;
   }
 
   const isDisplayable = (optionName) => {
@@ -49,7 +48,11 @@ const TaskOptions = ({ taskData, deleteTask }) => {
     return VALID_OPTIONS.map(optionName => {
       if (isDisplayable(optionName)) {
         return (
-          <MenuItem key={optionName} onClick={() => sendAction(optionName)} className="task-options-menu-item">
+          <MenuItem
+            key={optionName}
+            className="task-options-menu-item"
+            onClick={() => sendAction(optionName)}
+          >
             <div>{renderAction(optionName)}{optionName}</div>
           </MenuItem>
         );
@@ -73,7 +76,8 @@ const TaskOptions = ({ taskData, deleteTask }) => {
         bsSize="small"
         title={renderEllipse()}
         pullRight
-        noCaret>
+        noCaret
+      >
         {renderDropDownItems()}
       </DropdownButton>
     </div>
