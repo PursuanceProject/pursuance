@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { showAssignee } from '../../../../utils/tasks';
 import { getPursuancesByIds, patchTask } from '../../../../actions';
-import FaEllipsisV from 'react-icons/lib/fa/ellipsis-v';
 import TaskStatus from '../../TaskStatus/TaskStatus';
 import TaskAssigner from '../../TaskHierarchy/Task/TaskAssigner/TaskAssigner';
 import TaskDueDate from '../../TaskDueDate/TaskDueDate';
+import TaskOptions from './TaskOptions/TaskOptions';
 
 import './TaskDetailsTopbar.css';
 
@@ -79,9 +79,9 @@ class TaskDetailsTopbar extends Component {
             />
           </div>
           <div className="task-discuss-icons-ctn">
-            <div className="discuss-icon-ctn">
-              <FaEllipsisV size={20} />
-            </div>
+            <TaskOptions
+              taskData={task}
+            />
           </div>
         </div>
       </div>
