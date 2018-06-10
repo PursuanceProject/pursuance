@@ -39,7 +39,6 @@ class PursuancePage extends Component {
       </Router>
     );
   }
-
 }
 
 export default connect(({currentPursuanceId}) =>

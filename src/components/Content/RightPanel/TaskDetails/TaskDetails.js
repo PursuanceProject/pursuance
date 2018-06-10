@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import { showTaskInPursuance } from '../../../../utils/tasks';
 import { getPursuances, getTasks, getUsers, rpShowTaskDetails, patchTask } from '../../../../actions';
 import ReactMarkdown from 'react-markdown';
 import FaCircleO from 'react-icons/lib/fa/circle-o';
@@ -42,8 +43,8 @@ class TaskDetails extends Component {
   }
 
   render() {
-    const { pursuances, tasks, rightPanel: { taskGid } } = this.props;
-    const { rpShowTaskDetails } = this.props;
+    const { pursuances, currentPursuanceId, tasks, rpShowTaskDetails } = this.props;
+    const { taskGid } = this.props.rightPanel;
     const task = tasks.taskMap[taskGid];
     if (!task) {
       if (taskGid) {
@@ -52,6 +53,12 @@ class TaskDetails extends Component {
       return null;
     }
     const subtaskGids = task.subtask_gids;
+
+    const parent = tasks.taskMap[task.parent_task_gid];
+    const parentTitle =
+      parent &&
+      showTaskInPursuance(parent, currentPursuanceId) &&
+      parent.title;
 
     return (
       <div className="discuss-ctn">
@@ -66,11 +73,11 @@ class TaskDetails extends Component {
                 title={task.title}
                 patchTask={this.props.patchTask}
               />
-              {task.parent_task_gid && (
+              {parentTitle && (
                 <div className="parent-task-ctn" onClick={() => rpShowTaskDetails({taskGid: task.parent_task_gid})}>
                   <h4><strong>Parent Task:</strong></h4>
                   {' '}
-                  <span>{tasks.taskMap[task.parent_task_gid] && tasks.taskMap[task.parent_task_gid].title}</span>
+                  <span>{parentTitle}</span>
                 </div>
               )}
             </div>

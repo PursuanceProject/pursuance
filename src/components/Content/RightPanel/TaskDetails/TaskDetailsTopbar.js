@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { showAssignee } from '../../../../utils/tasks';
 import { getPursuancesByIds, patchTask } from '../../../../actions';
 import FaEllipsisV from 'react-icons/lib/fa/ellipsis-v';
 import TaskStatus from '../../TaskStatus/TaskStatus';
@@ -13,6 +14,7 @@ class TaskDetailsTopbar extends Component {
   showAssignee = () => {
     const {
       pursuances,
+      currentPursuanceId,
       tasks,
       getPursuancesByIds,
       taskGid
@@ -40,11 +42,10 @@ class TaskDetailsTopbar extends Component {
       return null;
     }
 
-    return (
-          (assignedPursuanceId && pursuances[assignedPursuanceId] && pursuances[assignedPursuanceId].suggestionName)
-          ||
-          (task.assigned_to && '@' + task.assigned_to)
-    )
+    const { placeholder } =
+      showAssignee(task, currentPursuanceId, pursuances);
+
+    return placeholder;
   }
 
   render() {

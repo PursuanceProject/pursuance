@@ -12,7 +12,7 @@ export default function(state = initialState, action) {
     case 'GET_TASKS_FULFILLED':
       const { taskMap, rootTaskGids } = action.payload;
       return Object.assign({}, state, {
-        taskMap,
+        taskMap: Object.assign({}, state.taskMap, taskMap),
         rootTaskGids
       });
 

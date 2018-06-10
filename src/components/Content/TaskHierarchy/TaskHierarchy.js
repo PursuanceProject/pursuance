@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Task from './Task/Task';
 import { toast, ToastContainer } from 'react-toastify';
 import { connect } from 'react-redux';
+import { showTaskInPursuance } from '../../../utils/tasks';
 import {
   getUsers,
   getTasks,
@@ -78,15 +79,20 @@ class TaskHierarchy extends Component {
   }
 
   renderHierarchy = () => {
+    const { currentPursuanceId } = this.props;
     const { rootTaskGids, taskMap } = this.props.tasks;
     return (
       <ul id="root-ul-ctn" className="ul-ctn">
         {
           rootTaskGids.map((gid) => {
+            const taskData = taskMap[gid];
+            if (!showTaskInPursuance(taskData, currentPursuanceId)) {
+              return null;
+            }
             return (
               <Task
                 key={gid}
-                taskData={taskMap[gid]}
+                taskData={taskData}
                 taskMap={taskMap} />
             );
           })

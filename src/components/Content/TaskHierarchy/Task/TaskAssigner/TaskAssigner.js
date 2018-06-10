@@ -30,7 +30,7 @@ class TaskAssigner extends Component {
     return autoComplete.suggestions && taskGid === autoComplete.suggestionForm;
   }
 
-  render(){
+  render() {
     const { showAssigneeInput } = this.state;
     const { taskGid, placeholder, assignedTo } = this.props;
     return (
