@@ -42,15 +42,19 @@ export const getTasksReq = (pursuanceId, { includeArchived = false } = {}) => {
 const buildTaskHierarchy = (tasks, pursuanceId) => {
   const taskMap = {};
   const rootTaskGids = [];
+  console.log(tasks);
   for (let i = 0; i < tasks.length; i++) {
-    const t = tasks[i];
-    taskMap[t.gid] = Object.assign(t, { subtask_gids: [] });
+    const t1 = tasks[i];
+    taskMap[t1.gid] = Object.assign(t1, { subtask_gids: [] });
+  }
+  for (let i = 0; i < tasks.length; i++) {
+    const t2 = tasks[i];
 
-    if (isRootTaskInPursuance(t, pursuanceId)) {
-      rootTaskGids.push(t.gid);
+    if (isRootTaskInPursuance(t2, pursuanceId)) {
+      rootTaskGids.push(t2.gid);
     } else {
       // Add t to its parent's subtasks
-      taskMap[t.parent_task_gid].subtask_gids.push(t.gid);
+      taskMap[t2.parent_task_gid].subtask_gids.push(t2.gid);
     }
   }
 
