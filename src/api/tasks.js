@@ -41,7 +41,6 @@ export const getTasksReq = (pursuanceId, { includeArchived = false } = {}) => {
 const buildTaskHierarchy = tasks => {
   const taskMap = {};
   const rootTaskGids = [];
-  console.log(tasks);
   for (let i = 0; i < tasks.length; i++) {
     const t1 = tasks[i];
     taskMap[t1.gid] = Object.assign(t1, { subtask_gids: [] });

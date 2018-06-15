@@ -86,7 +86,6 @@ export default function(state = initialState, action) {
     // Fallthrough
     case 'PATCH_TASK_FULFILLED':
       const patchedTask = action.payload;
-      console.log(action);
       patchedTask.subtask_gids =
         state.taskMap[patchedTask.gid].subtask_gids || [];
 
