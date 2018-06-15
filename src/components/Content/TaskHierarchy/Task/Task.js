@@ -26,7 +26,6 @@ import {
 
 const taskSource = {
   beginDrag(props, monitor, component) {
-    // Return the data describing the dragged item
     const { taskData } = props;
     return taskData;
   },
