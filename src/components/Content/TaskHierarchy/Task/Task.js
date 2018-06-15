@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import { DragSource, DropTarget } from 'react-dnd';
 import generateId from '../../../../utils/generateId';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import TiPlus from 'react-icons/lib/ti/plus';
@@ -18,8 +20,64 @@ import {
   removeTaskFormFromHierarchy,
   startSuggestions,
   rpShowTaskDetailsOrCollapse,
-  patchTask
+  patchTask,
+  moveTask
 } from '../../../../actions';
+
+const taskSource = {
+  beginDrag(props, monitor, component) {
+    // Return the data describing the dragged item
+    const { taskData } = props;
+    return taskData;
+  },
+  canDrag(props, monitor) {
+    const { taskData } = props;
+    return !!taskData.parent_task_gid;
+  }
+};
+
+const taskTarget = {
+  canDrop(props, monitor) {
+    const { taskMap, taskData } = props;
+    const source = monitor.getItem();
+    const isSelf = (target, source) => {
+      return target.gid === source.gid;
+    }
+    // recursively checks if the source is a descendant of the target
+    const isParent = (map, target, source) => {
+      if (!target.parent_task_gid) {
+        return false;
+      }
+      return (target.parent_task_gid === source.gid) || isParent(map, map[target.parent_task_gid], source);
+    }
+    return !isSelf(taskData, source) && !isParent(taskMap, taskData, source);
+  },
+  drop(props, monitor, component) {
+    const { taskData, patchTask, moveTask } = props;
+    const { gid, parent_task_gid } = monitor.getItem();
+    const oldParent = parent_task_gid;
+    patchTask({
+      gid: gid,
+      parent_task_gid: taskData.gid
+    }).then(res => {
+      moveTask(oldParent, taskData.gid, gid);
+    });
+  }
+}
+
+function collectTarget(connect, monitor) {
+  return {
+    connectDropTarget: connect.dropTarget(),
+    canDrop: monitor.canDrop(),
+    isOver: monitor.isOver()
+  }
+}
+
+function collect(connect, monitor) {
+  return {
+    connectDragSource: connect.dragSource()
+  };
+}
 
 class RawTask extends Component {
   constructor(props) {
@@ -153,7 +211,7 @@ class RawTask extends Component {
   }
 
   render() {
-    const { pursuances, taskData, currentPursuanceId } = this.props;
+    const { pursuances, taskData, currentPursuanceId, connectDragSource, connectDropTarget, canDrop, isOver } = this.props;
     const { showChildren } = this.state;
     const task = taskData;
     const assignedPursuanceId = task.assigned_to_pursuance_id;
@@ -175,7 +233,8 @@ class RawTask extends Component {
           <div className="toggle-ctn">
             {this.getTaskIcon(task, showChildren)}
           </div>
-          <div className="task-row-ctn">
+          {connectDropTarget(connectDragSource(
+          <div className="task-row-ctn" style={{ backgroundColor: canDrop && isOver ? '#50b3fe' : '' }}>
             <div className="task-title" onClick={this.selectTaskInHierarchy}>
               {this.showTitle(task)}
             </div>
@@ -216,6 +275,7 @@ class RawTask extends Component {
               patchTask={this.props.patchTask}
              />
           </div>
+        ))}
         </div>
         {
           task.subtask_gids && task.subtask_gids.length > 0 &&
@@ -231,15 +291,23 @@ class RawTask extends Component {
   }
 }
 
-const Task = withRouter(connect(
-  ({ pursuances, user, users, currentPursuanceId, autoComplete, rightPanel }) =>
-   ({ pursuances, user, users, currentPursuanceId, autoComplete, rightPanel }), {
-  addTaskFormToHierarchy,
-  removeTaskFormFromHierarchy,
-  startSuggestions,
-  rpShowTaskDetailsOrCollapse,
-  patchTask
-})(RawTask));
+const enhance = compose(
+  withRouter,
+  connect(
+    ({ pursuances, user, users, currentPursuanceId, autoComplete, rightPanel }) =>
+    ({ pursuances, user, users, currentPursuanceId, autoComplete, rightPanel }), {
+    addTaskFormToHierarchy,
+    removeTaskFormFromHierarchy,
+    startSuggestions,
+    rpShowTaskDetailsOrCollapse,
+    patchTask,
+    moveTask
+  }),
+  // placed after connect to make dispatch available.
+  DragSource('TASK', taskSource, collect),
+  DropTarget('TASK', taskTarget, collectTarget),
+)
+const Task = enhance(RawTask);
 
 // Why RawTask _and_ Task? Because Task.mapSubTasks() recursively
 // renders Task components which weren't wrapped in a Redux connect()

@@ -86,8 +86,10 @@ export default function(state = initialState, action) {
     // Fallthrough
     case 'PATCH_TASK_FULFILLED':
       const patchedTask = action.payload;
+      console.log(action);
       patchedTask.subtask_gids =
         state.taskMap[patchedTask.gid].subtask_gids || [];
+
       return Object.assign({}, state, {
         taskMap: Object.assign({}, state.taskMap, {
           [patchedTask.gid]: patchedTask
@@ -162,6 +164,32 @@ export default function(state = initialState, action) {
         })
       });
     }
+
+    case 'MOVE_TASK':
+      const { oldParentGid, newParentGid, taskGid } = action;
+      const newMap = Object.assign({}, state.taskMap);
+      const newParentTask = newMap[newParentGid];
+      const oldParentTask = newMap[oldParentGid];
+      const oldParentSubtaskGids = oldParentTask.subtask_gids.filter(
+        gid => gid !== taskGid
+      );
+      const newSubtaskGids = [...newParentTask.subtask_gids, taskGid];
+      const newSubtasks = newSubtaskGids.filter(
+        (gid, idx) => newSubtaskGids.indexOf(gid) === idx
+      );
+
+      return Object.assign({}, state, {
+        taskMap: Object.assign(newMap, {
+          [oldParentGid]: {
+            ...oldParentTask,
+            subtask_gids: oldParentSubtaskGids
+          },
+          [newParentGid]: {
+            ...newParentTask,
+            subtask_gids: newSubtasks
+          }
+        })
+      });
 
     default:
       return state;
