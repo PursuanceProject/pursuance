@@ -225,7 +225,7 @@ class RawTask extends Component {
             {this.getTaskIcon(task, showChildren)}
           </div>
           {connectDropTarget(connectDragSource(
-          <div className="task-row-ctn" style={{ backgroundColor: canDrop && isOver ? '#50b3fe' : '' }}>
+          <div className={'task-row-ctn ' + (canDrop && isOver ? 'highlight-task' : '')}>
             <div className="task-title" onClick={this.selectTaskInHierarchy}>
               {this.showTitle(task)}
             </div>
