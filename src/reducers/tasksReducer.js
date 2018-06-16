@@ -177,6 +177,16 @@ export default function(state = initialState, action) {
         (gid, idx) => newSubtaskGids.indexOf(gid) === idx
       );
 
+      newSubtasks.sort(function(t1, t2) {
+        const t1Date = new Date(newMap[t1].created);
+        const t2Date = new Date(newMap[t2].created);
+        if (t1Date === t2Date) {
+          return ( t1 < t2) ? -1 : ( t1 > t2 ) ? 1 : 0;
+        } else {
+          return (t1Date > t2Date) ? 1 : -1;
+        }
+      });
+
       return Object.assign({}, state, {
         taskMap: Object.assign(newMap, {
           [oldParentGid]: {
