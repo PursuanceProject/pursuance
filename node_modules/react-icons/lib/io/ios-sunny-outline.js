@@ -1,0 +1,32 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactIconBase = require('react-icon-base');
+
+var _reactIconBase2 = _interopRequireDefault(_reactIconBase);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var IoIosSunnyOutline = function IoIosSunnyOutline(props) {
+    return _react2.default.createElement(
+        _reactIconBase2.default,
+        _extends({ viewBox: '0 0 40 40' }, props),
+        _react2.default.createElement(
+            'g',
+            null,
+            _react2.default.createElement('path', { d: 'm19.3 11.9v-4.4h1.4v4.4h-1.4z m0 20.6v-4.7h1.4v4.7h-1.4z m8.8-11.8v-1.4h4.4v1.4h-4.4z m-20.6 0v-1.4h4.7v1.4h-4.7z m18.8 4.1l2.6 2.7-0.9 0.9-2.6-2.6z m-13.8-13.7l2.7 2.6-1 0.9-2.6-2.6z m12.9 2.7l2.6-2.7 0.9 0.9-2.6 2.6z m-13.8 13.7l2.6-2.7 0.9 1-2.6 2.6z m8.4-1.6c-3.3 0-5.9-2.6-5.9-5.9s2.6-5.9 5.9-5.9 5.9 2.6 5.9 5.9-2.6 5.9-5.9 5.9z m0-10.5c-2.5 0-4.6 2.1-4.6 4.6s2.1 4.6 4.6 4.6 4.6-2.1 4.6-4.6-2.1-4.6-4.6-4.6z' })
+        )
+    );
+};
+
+exports.default = IoIosSunnyOutline;
+module.exports = exports['default'];

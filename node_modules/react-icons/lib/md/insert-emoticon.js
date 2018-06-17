@@ -1,0 +1,32 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactIconBase = require('react-icon-base');
+
+var _reactIconBase2 = _interopRequireDefault(_reactIconBase);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var MdInsertEmoticon = function MdInsertEmoticon(props) {
+    return _react2.default.createElement(
+        _reactIconBase2.default,
+        _extends({ viewBox: '0 0 40 40' }, props),
+        _react2.default.createElement(
+            'g',
+            null,
+            _react2.default.createElement('path', { d: 'm20 29.1q-2.9 0-5.2-1.6t-3.3-4.1h17q-1 2.5-3.3 4.1t-5.2 1.6z m-5.9-10.7q-1 0-1.7-0.8t-0.8-1.7 0.8-1.8 1.7-0.7 1.8 0.7 0.7 1.8-0.7 1.7-1.8 0.8z m11.8 0q-1.1 0-1.8-0.8t-0.7-1.7 0.7-1.8 1.8-0.7 1.7 0.7 0.8 1.8-0.8 1.7-1.7 0.8z m-5.9 15q5.5 0 9.4-4t4-9.4-4-9.4-9.4-4-9.4 4-4 9.4 4 9.4 9.4 4z m0-30q6.9 0 11.8 4.8t4.8 11.8-4.8 11.8-11.8 4.8-11.8-4.8-4.8-11.8 4.8-11.8 11.8-4.8z' })
+        )
+    );
+};
+
+exports.default = MdInsertEmoticon;
+module.exports = exports['default'];

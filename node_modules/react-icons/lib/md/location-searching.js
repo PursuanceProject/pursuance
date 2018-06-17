@@ -1,0 +1,32 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactIconBase = require('react-icon-base');
+
+var _reactIconBase2 = _interopRequireDefault(_reactIconBase);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var MdLocationSearching = function MdLocationSearching(props) {
+    return _react2.default.createElement(
+        _reactIconBase2.default,
+        _extends({ viewBox: '0 0 40 40' }, props),
+        _react2.default.createElement(
+            'g',
+            null,
+            _react2.default.createElement('path', { d: 'm20 31.6c6.5 0 11.6-5.1 11.6-11.6s-5.1-11.6-11.6-11.6-11.6 5.1-11.6 11.6 5.1 11.6 11.6 11.6z m14.9-13.2h3.5v3.2h-3.5c-0.8 7-6.3 12.5-13.3 13.3v3.5h-3.2v-3.5c-7-0.8-12.5-6.3-13.3-13.3h-3.5v-3.2h3.5c0.8-7 6.3-12.5 13.3-13.3v-3.5h3.2v3.5c7 0.8 12.5 6.3 13.3 13.3z' })
+        )
+    );
+};
+
+exports.default = MdLocationSearching;
+module.exports = exports['default'];

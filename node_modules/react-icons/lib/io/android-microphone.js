@@ -1,0 +1,32 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactIconBase = require('react-icon-base');
+
+var _reactIconBase2 = _interopRequireDefault(_reactIconBase);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var IoAndroidMicrophone = function IoAndroidMicrophone(props) {
+    return _react2.default.createElement(
+        _reactIconBase2.default,
+        _extends({ viewBox: '0 0 40 40' }, props),
+        _react2.default.createElement(
+            'g',
+            null,
+            _react2.default.createElement('path', { d: 'm20 25c-3 0-5.4-2.4-5.4-5.4v-11.7c0-3 2.4-5.4 5.4-5.4s5.4 2.4 5.4 5.4v11.7c0 3-2.4 5.4-5.4 5.4z m9.5-5.9h3c0 6.1-4.8 11.1-10.7 12v6.4h-3.6v-6.4c-5.9-0.8-10.7-5.9-10.7-12h3c0 5.4 4.6 9.1 9.5 9.1s9.5-3.7 9.5-9.1z' })
+        )
+    );
+};
+
+exports.default = IoAndroidMicrophone;
+module.exports = exports['default'];

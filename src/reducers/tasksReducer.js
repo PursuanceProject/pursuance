@@ -41,13 +41,14 @@ export default function(state = initialState, action) {
       if (!parentTaskId) {
         return Object.assign({}, state, {
           taskMap: newTaskMap
-        })
+        });
       }
       const parent = state.taskMap[parentTaskId];
       // Update parentTask.subtask_gids in redux so that it excludes
       // deletedTask.gid
-      const newParentSubtaskGids =
-        parent.subtask_gids.filter((gid) => gid !== deletedTask.gid)
+      const newParentSubtaskGids = parent.subtask_gids.filter(
+        gid => gid !== deletedTask.gid
+      );
       return Object.assign({}, state, {
         taskMap: Object.assign(newTaskMap, {
           [parentTaskId]: {
