@@ -1,0 +1,32 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactIconBase = require('react-icon-base');
+
+var _reactIconBase2 = _interopRequireDefault(_reactIconBase);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var MdAllInclusive = function MdAllInclusive(props) {
+    return _react2.default.createElement(
+        _reactIconBase2.default,
+        _extends({ viewBox: '0 0 40 40' }, props),
+        _react2.default.createElement(
+            'g',
+            null,
+            _react2.default.createElement('path', { d: 'm31 11c5 0 9 4.1 9 9s-4 9-9 9c-2.4 0-4.7-1-6.4-2.7l-2.1-1.8 2.5-2.2 1.9 1.6c1.2 1.2 2.6 1.7 4.1 1.7 3.1 0 5.6-2.5 5.6-5.6s-2.5-5.6-5.6-5.6c-1.5 0-2.9 0.5-4 1.6-2.3 2.1-4.7 4.1-7 6.3l-4.7 4.1c-1.6 1.6-3.9 2.6-6.3 2.6-5 0-9-4.1-9-9s4-9 9-9c2.4 0 4.7 0.9 6.4 2.7l2.1 1.8-2.6 2.2-1.9-1.6c-1.1-1.2-2.5-1.7-4-1.7-3.1 0-5.6 2.5-5.6 5.6s2.5 5.6 5.6 5.6c1.5 0 2.9-0.5 4-1.6 2.3-2.1 4.7-4.1 7-6.3l4.7-4.1c1.6-1.6 3.9-2.6 6.3-2.6z' })
+        )
+    );
+};
+
+exports.default = MdAllInclusive;
+module.exports = exports['default'];

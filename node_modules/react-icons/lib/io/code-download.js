@@ -1,0 +1,32 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactIconBase = require('react-icon-base');
+
+var _reactIconBase2 = _interopRequireDefault(_reactIconBase);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var IoCodeDownload = function IoCodeDownload(props) {
+    return _react2.default.createElement(
+        _reactIconBase2.default,
+        _extends({ viewBox: '0 0 40 40' }, props),
+        _react2.default.createElement(
+            'g',
+            null,
+            _react2.default.createElement('path', { d: 'm23.4 22.2l-5 5-0.2 0.1-0.1 0-0.1 0.1h-0.2c-0.1 0-0.2 0.1-0.3 0.1s-0.2-0.1-0.3-0.1h-0.2l-0.1-0.1-0.1 0c-0.1-0.1-0.2-0.1-0.2-0.2l-5-4.9c-0.4-0.5-0.4-1.3 0-1.8s1.4-0.5 1.9 0l2.8 2.6v-9.2c0-0.7 0.5-1.3 1.2-1.3s1.3 0.6 1.3 1.3v9.2l2.7-2.6c0.5-0.5 1.4-0.5 1.9 0s0.4 1.3 0 1.8z m-12.8 8.4c-0.4 0-0.9-0.1-1.3-0.5l-8.8-8.8c-0.7-0.7-0.7-1.9 0-2.6l8.8-8.8c0.7-0.7 2-0.7 2.7 0s0.7 2 0 2.7l-7.5 7.4 7.5 7.4c0.7 0.7 0.7 2 0 2.7-0.4 0.4-0.9 0.5-1.4 0.5z m13.8 0c-0.5 0-1-0.1-1.4-0.5-0.7-0.7-0.7-2 0-2.7l7.5-7.4-7.5-7.4c-0.7-0.7-0.7-2 0-2.7s2-0.7 2.7 0l8.8 8.8c0.7 0.7 0.7 1.9 0 2.6l-8.8 8.8c-0.4 0.4-0.9 0.5-1.3 0.5z' })
+        )
+    );
+};
+
+exports.default = IoCodeDownload;
+module.exports = exports['default'];

@@ -1,0 +1,32 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactIconBase = require('react-icon-base');
+
+var _reactIconBase2 = _interopRequireDefault(_reactIconBase);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var TiCss3 = function TiCss3(props) {
+    return _react2.default.createElement(
+        _reactIconBase2.default,
+        _extends({ viewBox: '0 0 40 40' }, props),
+        _react2.default.createElement(
+            'g',
+            null,
+            _react2.default.createElement('path', { d: 'm9.5 5.7l-1 5.3h20.5l-0.7 3.5h-20.5l-1 5.3h20.5l-1.1 6-8.4 2.9-7.1-2.9 0.5-2.6h-5l-1.2 6.3 11.8 4.8 13.7-4.8 1.8-9.7 0.4-2 2.3-12.1h-25.5z' })
+        )
+    );
+};
+
+exports.default = TiCss3;
+module.exports = exports['default'];

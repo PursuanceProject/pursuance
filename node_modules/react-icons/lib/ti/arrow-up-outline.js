@@ -1,0 +1,32 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactIconBase = require('react-icon-base');
+
+var _reactIconBase2 = _interopRequireDefault(_reactIconBase);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var TiArrowUpOutline = function TiArrowUpOutline(props) {
+    return _react2.default.createElement(
+        _reactIconBase2.default,
+        _extends({ viewBox: '0 0 40 40' }, props),
+        _react2.default.createElement(
+            'g',
+            null,
+            _react2.default.createElement('path', { d: 'm20 35c-2.8 0-5-2.2-5-5v-7.9c-1.9 1.7-5 1.6-6.9-0.2-1.9-2-1.9-5.2 0-7.1l11.9-11.9 11.9 11.9c1.9 1.9 1.9 5.1 0 7.1-1.9 1.8-5 1.9-6.9 0.2v7.9c0 2.8-2.2 5-5 5z m-1.7-21v16c0 0.9 0.8 1.7 1.7 1.7s1.7-0.8 1.7-1.7v-16l5.5 5.5c0.6 0.6 1.7 0.6 2.3 0 0.7-0.6 0.7-1.7 0-2.3l-9.5-9.6-9.5 9.6c-0.7 0.6-0.7 1.7 0 2.3 0.6 0.6 1.7 0.6 2.3 0l5.5-5.5z' })
+        )
+    );
+};
+
+exports.default = TiArrowUpOutline;
+module.exports = exports['default'];

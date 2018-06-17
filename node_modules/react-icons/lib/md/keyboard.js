@@ -1,0 +1,32 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactIconBase = require('react-icon-base');
+
+var _reactIconBase2 = _interopRequireDefault(_reactIconBase);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var MdKeyboard = function MdKeyboard(props) {
+    return _react2.default.createElement(
+        _reactIconBase2.default,
+        _extends({ viewBox: '0 0 40 40' }, props),
+        _react2.default.createElement(
+            'g',
+            null,
+            _react2.default.createElement('path', { d: 'm31.6 16.6v-3.2h-3.2v3.2h3.2z m0 5v-3.2h-3.2v3.2h3.2z m-5-5v-3.2h-3.2v3.2h3.2z m0 5v-3.2h-3.2v3.2h3.2z m0 6.8v-3.4h-13.2v3.4h13.2z m-15-11.8v-3.2h-3.2v3.2h3.2z m0 5v-3.2h-3.2v3.2h3.2z m1.8-3.2v3.2h3.2v-3.2h-3.2z m0-5v3.2h3.2v-3.2h-3.2z m5 5v3.2h3.2v-3.2h-3.2z m0-5v3.2h3.2v-3.2h-3.2z m15-5c1.8 0 3.2 1.4 3.2 3.2v16.8c0 1.8-1.4 3.2-3.2 3.2h-26.8c-1.8 0-3.2-1.4-3.2-3.2v-16.8c0-1.8 1.4-3.2 3.2-3.2h26.8z' })
+        )
+    );
+};
+
+exports.default = MdKeyboard;
+module.exports = exports['default'];

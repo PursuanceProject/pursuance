@@ -1,0 +1,32 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactIconBase = require('react-icon-base');
+
+var _reactIconBase2 = _interopRequireDefault(_reactIconBase);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var MdFormatIndentDecrease = function MdFormatIndentDecrease(props) {
+    return _react2.default.createElement(
+        _reactIconBase2.default,
+        _extends({ viewBox: '0 0 40 40' }, props),
+        _react2.default.createElement(
+            'g',
+            null,
+            _react2.default.createElement('path', { d: 'm18.4 21.6v-3.2h16.6v3.2h-16.6z m0-6.6v-3.4h16.6v3.4h-16.6z m-13.4-10h30v3.4h-30v-3.4z m0 30v-3.4h30v3.4h-30z m0-15l6.6-6.6v13.2z m13.4 8.4v-3.4h16.6v3.4h-16.6z' })
+        )
+    );
+};
+
+exports.default = MdFormatIndentDecrease;
+module.exports = exports['default'];

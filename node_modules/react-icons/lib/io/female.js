@@ -1,0 +1,32 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactIconBase = require('react-icon-base');
+
+var _reactIconBase2 = _interopRequireDefault(_reactIconBase);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var IoFemale = function IoFemale(props) {
+    return _react2.default.createElement(
+        _reactIconBase2.default,
+        _extends({ viewBox: '0 0 40 40' }, props),
+        _react2.default.createElement(
+            'g',
+            null,
+            _react2.default.createElement('path', { d: 'm22.5 22.2v5.3h5v5h-5v5h-5v-5h-5v-5h5v-5.3c-4.3-1.1-7.5-5-7.5-9.7 0-5.5 4.5-10 10-10s10 4.5 10 10c0 4.7-3.2 8.6-7.5 9.7z m-2.5-3.4c3.4 0 6.3-2.9 6.3-6.3s-2.9-6.2-6.3-6.2-6.2 2.8-6.2 6.2 2.8 6.3 6.2 6.3z' })
+        )
+    );
+};
+
+exports.default = IoFemale;
+module.exports = exports['default'];
