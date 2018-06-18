@@ -1,0 +1,61 @@
+.task-assigned-to {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  width: 190px;
+  padding: 0 4px;
+}
+
+.task-assigned-to span:hover {
+  cursor: pointer;
+  color: #1fc7d3;
+}
+
+.assign-autocomplete-ctn {
+  position: relative;
+  display: flex;
+  width: 240px;
+  max-height: 32px;
+}
+
+.right-panel-ctn .task-assigned-to {
+  min-width: 170px;
+  width: 170px;
+  max-width: 236px;
+}
+
+@media (max-width: 639px) {
+  .right-panel-ctn .task-assigned-to {
+    min-width: 140px;
+    width: 140px;
+    justify-content: flex-end;
+  }
+  .right-panel-ctn .assign-autocomplete-ctn {
+    width: 220px;
+  }
+}
+
+@media (min-width: 540px) and (max-width: 639px) {
+  .right-panel-ctn .task-assigned-to {
+    min-width: 175px;
+    width: 175px;
+  }
+}
+
+@media (min-width: 350px) and (max-width: 539px) {
+  .right-panel-ctn .task-assigned-to {
+    min-width: 120px;
+    width: 120px;
+  }
+}
+
+@media (max-width: 349px) {
+  .right-panel-ctn .task-assigned-to {
+    min-width: 100px;
+    width: 100px;
+  }
+  .right-panel-ctn .assign-autocomplete-ctn {
+    width: 175px;
+  }
+}

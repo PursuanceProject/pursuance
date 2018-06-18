@@ -1,0 +1,95 @@
+#task-hierarchy {
+  height: 100%;
+  margin-right: 50px;
+}
+
+#task-hierarchy-title {
+  text-align: center;
+  padding-bottom: 18px;
+  margin: 8px 0;
+}
+
+#task-hierarchy-title h2 {
+  display: inline-block;
+  color: #fcfcfc;
+  margin: 0;
+}
+
+#task-labels {
+  display: flex;
+  padding: 0 3px 3px 40px;
+  color: #eaeaea;
+  font-size: 1.36em;
+  text-decoration: underline;
+}
+
+.label-task-icons {
+  margin-left: auto;
+}
+
+.label-status {
+  display: flex;
+  flex: 1;
+  justify-content: flex-start;
+  min-width: 145px;
+  max-width: 145px;
+}
+
+/* Desktop */
+@media (min-width: 1367px) {
+  .label-status {
+    min-width: 145px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 1366px) {
+  .label-status {
+    min-width: 110px;
+  }
+}
+
+.label-assigned-to {
+  width: 190px;
+  padding: 0 9px;
+}
+
+.label-due-date {
+  width: 108px;
+  padding: 0 4px;
+}
+
+ul {
+  list-style-type: none;
+}
+
+#root-ul-ctn {
+  padding-left: 0px;
+}
+
+@media (max-width: 1279px) {
+  #task-hierarchy .hide-small {
+    display: none;
+  }
+  #task-hierarchy ul ul.ul-ctn {
+    margin-left: -20px;
+  }
+}
+
+@media (max-width: 479px) {
+  #task-hierarchy ul ul.ul-ctn {
+    margin-left: -25px;
+  }
+}
+
+@media (max-width: 359px) {
+  #task-hierarchy ul ul.ul-ctn {
+    margin-left: -29px;
+  }
+}
+
+@media (max-width: 639px) {
+  #task-hierarchy .hide-xsmall-hier {
+    display: none;
+  }
+}

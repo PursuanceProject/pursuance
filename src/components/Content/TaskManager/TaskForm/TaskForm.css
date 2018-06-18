@@ -1,0 +1,78 @@
+.task-form-ctn {
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.nested-form {
+  padding-left: 72px;
+}
+
+.form-control {
+  height: 32px;
+}
+
+.task-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+#input-task-title-ctn {
+  width: 100%;
+}
+
+#input-task-title {
+  border-color: #a5a5a5;
+  border-radius: 4px 0 0 4px;
+}
+
+.assign-autocomplete-ctn {
+  position: relative;
+  display: flex;
+  width: 240px;
+}
+
+@media (max-width: 1279px) {
+  #task-hierarchy .nested-form {
+    padding-left: 52px;
+  }
+}
+
+@media (max-width: 479px) {
+  #task-hierarchy .nested-form {
+    padding-left: 46px;
+  }
+}
+
+@media (max-width: 359px) {
+  #task-hierarchy .nested-form {
+    padding-left: 43px;
+  }
+}
+
+@media (max-width: 1023px) {
+  #task-hierarchy .assign-autocomplete-ctn {
+    display: none;
+  }
+}
+
+.save-task-btn {
+  background-color: #23527c;
+  color: #efefef;
+  border-radius: 0 4px 4px 0;
+  border-color: #a5a5a5;
+  height: 32px;
+}
+
+
+@media (max-width: 639px) {
+  .save-task-btn {
+    padding: 3px;
+  }
+}
+
+.save-task-btn:hover {
+  background-color: #288bd6;
+  color: #282828;
+}

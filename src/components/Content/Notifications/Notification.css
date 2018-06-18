@@ -1,0 +1,17 @@
+.Notification {
+  display: flex;
+}
+
+.NotificationIconContainer {
+  padding-top: 5px;
+}
+
+.NotificationContentContainer {
+  padding: 5px;
+  max-width: 360px;
+  overflow: auto;
+}
+
+.NotificationContentContainer a {
+  overflow-wrap: break-word;
+}

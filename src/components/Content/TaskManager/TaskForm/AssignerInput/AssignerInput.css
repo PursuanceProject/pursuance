@@ -1,0 +1,38 @@
+.assign-autocomplete-ctn {
+  position: relative;
+  display: flex;
+  width: 240px;
+  max-height: 32px;
+}
+
+.at-symbol {
+  background-color: #333333;
+  border: 1px solid #a5a5a5;
+  padding: 6px 2px;
+  text-align: center;
+  font-weight: normal;
+  font-size: 14px;
+  color: #efefef;
+}
+
+.assign-to {
+  position: relative;
+  min-width: 150px;
+  border-radius: 0;
+  border-color: #a5a5a5;
+}
+
+.unassign-user-icon {
+  position: absolute;
+  max-height: 34px;
+  height: 100%;
+  right: -34px;
+  padding: 2px 8px;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, .5);
+  background-color: #288bd6;
+}
+
+.unassign-user-icon:hover {
+  cursor: pointer;
+}

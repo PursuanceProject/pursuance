@@ -1,0 +1,42 @@
+#task-options-dropdown {
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  text-align: left;
+  background: none;
+  color: #e0e0e0;
+  border: none;
+}
+
+.task-options-menu-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.task-options-menu-item div {
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+}
+
+.action-icon {
+  margin-right: 5px;
+}
+
+.task-options-ctn:hover {
+  display: block;
+}
+
+.task-options-ctn .dropdown ul {
+  z-index: 9001;
+  border-radius: 5px;
+  margin: 4px 0 0 -7px;
+  padding: 0;
+  min-width: 0;
+}
+
+.dropdown ul li a {
+  padding: 2px 6px;
+}

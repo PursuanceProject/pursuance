@@ -1,0 +1,15 @@
+.content {
+  background-color: #212121;
+  height: 100%;
+  width: 100%;
+  padding: 20px;
+  border-bottom-left-radius: 5px;
+  border: 1px solid #6d6d6d;
+  border-right: none;
+}
+
+@media (max-width: 1279px) {
+  .content {
+    padding: 5px;
+  }
+}

@@ -1,0 +1,183 @@
+.li-task-ctn {
+  display: flex;
+  flex-direction: column;
+  font-size: 16px;
+}
+
+.task-ctn {
+  color: #efefef;
+  display: flex;
+  justify-content: center;
+  min-height: 40px;
+}
+
+.toggle-ctn {
+  padding-right: 6px;
+}
+
+.toggle-icon-ctn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border: 2px solid black;
+  border-radius: 5px;
+}
+
+.toggle-icon-ctn-disable {
+  background-color: #333333;
+  width: 26px;
+  height: 26px;
+  border: 2px solid black;
+  border-radius: 5px;
+}
+
+.toggle-icon-ctn:hover {
+  cursor: pointer;
+}
+
+.minus-icon {
+  color: #9b77ff;
+}
+
+.toggle-icon-ctn:hover .minus-icon {
+  color: #bb97ff;
+}
+
+.plus-icon {
+  color: #50b3fe;
+}
+
+.toggle-icon-ctn:hover .plus-icon {
+  color: #71d4ff;
+}
+
+.task-row-ctn {
+  flex: 1;
+  display: flex;
+  background-color: #2c2c2c;
+  border: 1px solid #444;
+  border-radius: 5px;
+  padding: 2px 2px 1px 0px;
+  margin-bottom: 3px;
+  min-width: 0; /* Firefox workaround; see https://github.com/philipwalton/flexbugs/issues/39 */
+}
+
+.task-row-ctn:hover {
+  border: 1px solid #e0e0e0;
+}
+
+.task-title {
+  width: 100%;
+  min-width: 0; /* Firefox workaround; see https://github.com/philipwalton/flexbugs/issues/39 */
+  padding: 0 10px;
+  word-break: break-word;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.task-title-buffer {
+  display: flex;
+  flex: 1;
+  height: 100%;
+  width: 100%;
+}
+
+.task-title-status-Done {
+  color: #999;
+  text-decoration: line-through;
+}
+
+.task-title-status-Done:hover {
+  color: #e0e0e0;
+  text-decoration: none;
+}
+
+.task-icons-ctn {
+  display: flex;
+  margin-left: auto;
+  margin-right: 10px;
+  width: 80px;
+  min-width: 80px;
+  align-items: center;
+}
+
+.icon-ctn {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  max-height: 34px;
+  max-width: 36px;
+  background-color: #000;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, .5);
+  margin-right: 8px;
+}
+
+.icon-ctn svg {
+  color: #fff;
+}
+
+.icon-ctn:hover {
+  cursor: pointer;
+  color: #eaeaea;
+  border-color: #fff;
+}
+
+.task-due-date {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  width: 108px;
+  min-width: 108px;
+  padding: 0 4px;
+}
+
+.edit-assignee-button {
+  border-radius: 5px;
+  background-color: rgba(80, 179, 254, .9);
+  color: #fff;
+}
+
+.edit-assignee-button:hover {
+  border-color: #fff;
+}
+
+.assignee-button {
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 95%;
+  border-radius: 5px;
+  background-color: #000;
+}
+
+.assignee-button:hover {
+  border-color: #fff;
+}
+
+@media (max-width: 1279px) {
+  #task-hierarchy .task-row-ctn {
+    padding: 0;
+  }
+  #task-hierarchy .task-icons-ctn {
+    min-width: 28px;
+    width: 28px;
+  }
+}
+
+@media (max-width: 449px) {
+  .task-due-date {
+    width: 60px;
+    min-width: 60px;
+    justify-content: flex-end;
+    word-break: break-all;
+  }
+}
+
+.assigned-to-me {
+  background-color: rgba(170, 0, 255, .9);
+}

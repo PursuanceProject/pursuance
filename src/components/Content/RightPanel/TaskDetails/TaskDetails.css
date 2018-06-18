@@ -1,0 +1,133 @@
+.task-details-ctn {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  color: #efefef;
+  font-size: 1.2em;
+  word-break: break-word;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  min-width: 0; /* Firefox workaround; see https://github.com/philipwalton/flexbugs/issues/39 */
+}
+
+.task-assignment-ctn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 8px 16px 4px 16px;
+  color: #efefef;
+  max-height: 72px;
+  font-size: 0.85em;
+}
+
+.assigned-to-ctn {
+  flex: 0.5;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.assigned-to-ctn span:hover {
+  cursor: pointer;
+  color: #1fc7d3;
+}
+
+.task-discuss-icons-ctn {
+  display: flex;
+  flex: 0.1;
+  align-items: center;
+  justify-content: flex-end;
+  margin: 0 -8px;
+}
+
+.icon-ctn {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 6px;
+  height: 100%;
+}
+
+.pursuance-discuss-ctn {
+  padding: 0 16px;
+}
+
+.pursuance-title-ctn {
+  padding-top: 12px;
+  margin-bottom: 8px;
+}
+
+.task-details-ctn .discuss-task-title-ctn {
+  display: flex;
+  border-top: 1px solid #6d6d6d;
+  padding-top: 12px;
+}
+
+/* Shrink font size, tweak structure when viewing in Task List */
+.task-list-ctn .discuss-task-title-ctn {
+  padding: 5px 0;
+  font-size: 70%;
+}
+
+.discuss-task-title {
+  font-size: 1.5em;
+  color: #fcfcfc;
+  min-width: 0; /* Firefox workaround; see https://github.com/philipwalton/flexbugs/issues/39 */
+}
+
+.task-list-ctn .discuss-task-title {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.parent-task-ctn h4 {
+  display: inline;
+}
+
+.parent-task-ctn span {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.task-deliverables-ctn {
+  border-top: 1px solid #6d6d6d;
+  padding-top: 8px;
+  margin-bottom: 32px;
+  min-height: 64px;
+}
+
+.task-deliverables-ctn a {
+  color: #50b3fe;
+}
+
+.subtasks-ctn {
+  border-top: 1px solid #6d6d6d;
+  padding-top: 8px;
+}
+
+.subtasks-list {
+  list-style: none;
+  padding-left: 0
+}
+
+.subtask-item {
+  margin-left: 0;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.fa-circle-o {
+  margin-bottom: 2px;
+  margin-right: 3px;
+}
+
+.no-task {
+  height: calc(100vh - 110px);
+  margin-top: 60px;
+  text-align: center;
+  color: #fff;
+  width: 100%;
+  font-size: 36px;
+}

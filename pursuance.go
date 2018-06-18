@@ -11,13 +11,14 @@ import (
 )
 
 var (
-	randomServerKey *taber.Keys
+	randomServerKey      *taber.Keys
+	THIS_DOMAIN_BASE_URL string
 )
 
 func init() {
 	k, err := taber.RandomKey()
 	if err != nil {
-		log.Fatalf("Error generating random server key: %v\n", err)
+		log.Fatalf("Error generating random server key: %v", err)
 	}
 
 	// Setting global var
@@ -43,18 +44,26 @@ func main() {
 
 	srv := NewServer(m, *httpAddr)
 
+	go NewEmailer()
+
 	if *prod {
 		if *domain == "" {
 			log.Fatal("You must specify a -domain when using the -prod flag.")
 		}
+
+		THIS_DOMAIN_BASE_URL = "https://" + *domain
+
+		manager := getAutocertManager(*domain)
+
 		// Setup http->https redirection
 		httpsPort := strings.SplitN(*httpsAddr, ":", 2)[1]
-		go redirectToHTTPS(*httpAddr, httpsPort)
+		go redirectToHTTPS(*httpAddr, httpsPort, manager)
 		// Production modifications to server
-		ProductionServer(srv, *httpsAddr, *domain)
+		ProductionServer(srv, *httpsAddr, *domain, manager)
 		log.Infof("Listening on %v", *httpsAddr)
 		log.Fatal(srv.ListenAndServeTLS("", ""))
 	} else {
+		THIS_DOMAIN_BASE_URL = "http://" + *httpAddr
 		log.Infof("Listening on %v", *httpAddr)
 		log.Fatal(srv.ListenAndServe())
 	}

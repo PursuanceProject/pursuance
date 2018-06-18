@@ -1,0 +1,40 @@
+#pursuance-page {
+  display: flex;
+  flex-direction: row;
+  min-height: calc(100vh - 60px);
+  width: 100%;
+  margin-top: 60px;
+  padding-left: 12px;
+}
+
+#pursuance-page > article {
+  display: flex;
+  flex: 1;
+  order: 2;
+  margin-left: 100px;
+  min-width: 0; /* Firefox flexbox workaround */
+}
+
+#pursuance-page > nav {
+  position: fixed;
+  flex: 0 0 5em;
+  order: 1;
+}
+
+@media (max-width: 1279px) {
+  #pursuance-page {
+    padding-left: 0;
+  }
+  #pursuance-page > article {
+    margin-left: 80px;
+  }
+}
+
+@media (max-width: 639px) {
+  #pursuance-page {
+    padding-left: 0;
+  }
+  #pursuance-page > article {
+    margin-left: 0;
+  }
+}

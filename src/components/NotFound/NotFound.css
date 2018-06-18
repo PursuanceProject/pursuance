@@ -1,4 +1,8 @@
 #not-found {
-  height: calc(100vh - 140px);
-  padding-top: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 10%;
+  text-align: center;
+  color: #efefef;
 }
