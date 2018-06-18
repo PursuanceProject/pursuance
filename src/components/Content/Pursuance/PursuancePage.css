@@ -25,7 +25,6 @@
   position: absolute; top: 120px; left: 60px; right: 60px; bottom: 60px; border: 1px solid rgb(204, 204, 204); background: rgb(255, 255, 255); overflow: auto; border-radius: 10px; outline: none; padding: 20px;
 }
 
-
 .ReactModal__Content {
   opacity: 0;
 }
