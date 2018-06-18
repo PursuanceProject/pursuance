@@ -9,19 +9,71 @@ import DiscussView from './views/DiscussView';
 import ParticipantsView from './views/ParticipantsView';
 import RightPanel from '../RightPanel/RightPanel';
 import './PursuancePage.css';
+import ReactModal from 'react-modal';
 
 class PursuancePage extends Component {
-
+ constructor(){
+  super();
+  this.state={
+    modalIsOpen : false
+   }
+  this.openModal = this.openModal.bind(this);
+  this.closeModal = this.closeModal.bind(this);
+  this.handleKeydown = this.handleKeyDown.bind(this);
+ }
   componentWillMount() {
     let { setCurrentPursuance, match, currentPursuanceId } = this.props;
     currentPursuanceId = Number(match.params.pursuanceId) || currentPursuanceId;
     setCurrentPursuance(currentPursuanceId);
+    ReactModal.setAppElement('body');
   }
-
+  componentWillUnmount (){
+   document.removeEventListener('keydown',this.handleKeyDown);
+  }
+  componentDidMount(){
+   this.setState({modalIsOpen : true});
+   document.addEventListener('keydown',this.handleKeyDown);
+  }
+  openModal(){
+   this.setState({modalIsOpen : true});
+  }
+  closeModal(){
+   this.setState({modalIsOpen: false});
+  }
+  handleKeyDown = (event) => {
+   if(event.key === "?"){
+    this.setState({modalIsOpen : true});
+   }
+  }
   render() {
     return (
       <Router>
         <div id="pursuance-page" className="content-ctn">
+        <ReactModal className="Modal" shouldCloseOnEsc={true} shouldFocusAfterRender={true} isOpen={this.state.modalIsOpen} onRequestClose={this.closeModal} closeTimeoutMS={350} style={{overlay:{background:"none"}}}>
+        <span className='close' onClick={this.closeModal} >&times;</span>
+        <h3>Keyboard Shortcuts</h3>
+        <hr style={{border:"1.5px solid grey"}} />
+        <div className="columns">
+        <div className="column one-half">
+        <table className="keyboard-mappings">
+        <tbody>
+        <tr>
+        <td className="keys">
+        <kbd>?</kbd>
+        </td>
+        <td>&nbsp; Open shortcut window</td>
+        </tr>
+        <tr>
+        <td className="keys">
+        <kbd>Everything Else</kbd>
+        </td>
+        <td> &nbsp; Do Nothing</td>
+        </tr>
+        </tbody>
+        </table>
+        </div>
+        </div>
+        </ReactModal>
           <nav id="pursuance-nav">
             <PursuanceMenu />
           </nav>
