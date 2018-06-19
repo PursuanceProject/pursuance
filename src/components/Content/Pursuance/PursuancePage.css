@@ -50,6 +50,13 @@
   text-decoration: none;
   cursor: pointer;
 }
+
+kbd{
+ background: #fafafa;
+ color: #444d56;
+ box-shadow: 1px 1px 1px 1px #c6bcd1;
+}
+
 @media (max-width: 1279px) {
   #pursuance-page {
     padding-left: 0;
@@ -57,6 +64,9 @@
   #pursuance-page > article {
     margin-left: 80px;
   }
+.Modal{
+  position: absolute; top: 100px; left: 40px; right: 40px; bottom: 40px;
+}
 }
 
 @media (max-width: 639px) {
@@ -66,4 +76,7 @@
   #pursuance-page > article {
     margin-left: 0;
   }
+.Modal{
+  position: absolute; top: 80px; left: 20px; right: 20px; bottom: 20px; 
+}
 }
