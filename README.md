@@ -1,6 +1,6 @@
 # Pursuance
 
-![Pursuance task hierarchy](https://keybase.pub/pursuance/images/screenshot-pursuance-tasks.png)
+![Pursuance task hierarchy](https://user-images.githubusercontent.com/139603/41575468-7e1aee70-7337-11e8-9304-db36662f464d.png)
 
 ---
 
