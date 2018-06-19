@@ -70,15 +70,15 @@ class PursuancePage extends Component {
           <nav id="pursuance-nav">
             <PursuanceMenu />
           </nav>
-          <article >
+          <article>
             <Switch>
-              <Route exact path="/pursuance/:pursuanceId" component={TaskListView}  />
-              <Route exact path="/pursuance/:pursuanceId/tasks" component={TaskListView}  />
-              <Route exact path="/pursuance/:pursuanceId/calendar" component={CalendarView}  />
-              <Route exact path="/pursuance/:pursuanceId/discuss/task/:taskGid" component={DiscussView}  />
-              <Route exact path="/pursuance/:pursuanceId/participants" component={ParticipantsView}  />
+              <Route exact path="/pursuance/:pursuanceId" component={TaskListView} />
+              <Route exact path="/pursuance/:pursuanceId/tasks" component={TaskListView} />
+              <Route exact path="/pursuance/:pursuanceId/calendar" component={CalendarView} />
+              <Route exact path="/pursuance/:pursuanceId/discuss/task/:taskGid" component={DiscussView} />
+              <Route exact path="/pursuance/:pursuanceId/participants" component={ParticipantsView} />
             </Switch>
-            <RightPanel  />
+            <RightPanel />
           </article>
         </div>
       </Router>
