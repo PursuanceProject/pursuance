@@ -154,8 +154,8 @@ class TaskHierarchy extends Component {
   }
 }
 
-export default connect(({ pursuances, taskForm, currentPursuanceId, tasks, showSuccessToast }) =>
-  ({ pursuances, taskForm, currentPursuanceId, tasks, showSuccessToast }), {
+export default connect(({ pursuances, currentPursuanceId, tasks, showSuccessToast }) =>
+  ({ pursuances, currentPursuanceId, tasks, showSuccessToast }), {
     getUsers,
     getTasks,
     getPursuances,
