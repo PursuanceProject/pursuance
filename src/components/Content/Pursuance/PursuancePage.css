@@ -21,6 +21,42 @@
   order: 1;
 }
 
+.Modal{
+  position: absolute; top: 120px; left: 60px; right: 60px; bottom: 60px; border: 1px solid rgb(204, 204, 204); background: rgb(255, 255, 255); overflow: auto; border-radius: 10px; outline: none; padding: 20px;
+}
+
+.ReactModal__Content {
+  opacity: 0;
+}
+
+.ReactModal__Content--after-open {
+  opacity: 1;
+  transition: opacity 350ms;
+}
+
+.ReactModal__Content--before-close {
+  opacity: 0;
+}
+.close{
+  color: #aaa;
+  float: right;
+  font-size: 20px;.????
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus{
+  color:black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+kbd{
+ background: #fafafa;
+ color: #444d56;
+ box-shadow: 1px 1px 1px 1px #c6bcd1;
+}
+
 @media (max-width: 1279px) {
   #pursuance-page {
     padding-left: 0;
@@ -28,6 +64,9 @@
   #pursuance-page > article {
     margin-left: 80px;
   }
+.Modal{
+  position: absolute; top: 100px; left: 40px; right: 40px; bottom: 40px;
+}
 }
 
 @media (max-width: 639px) {
@@ -37,4 +76,7 @@
   #pursuance-page > article {
     margin-left: 0;
   }
+.Modal{
+  position: absolute; top: 80px; left: 20px; right: 20px; bottom: 20px; 
+}
 }
