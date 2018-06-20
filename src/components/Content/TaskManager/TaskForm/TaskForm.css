@@ -82,10 +82,10 @@
   margin-bottom: 40px;
 }
 
-.right-panel-ctn .assign-autocomplete-ctn {
+.right-panel-ctn .create-subtask-ctn .assign-autocomplete-ctn {
   display: none;
 }
 
-.right-panel-ctn .date-picker-ctn {
+.right-panel-ctn .create-subtask-ctn .date-picker-ctn {
   display: none;
 }
