@@ -76,3 +76,16 @@
   background-color: #288bd6;
   color: #282828;
 }
+
+.right-panel-ctn .nested-form {
+  padding-left: 0;
+  margin-bottom: 40px;
+}
+
+.right-panel-ctn .assign-autocomplete-ctn {
+  display: none;
+}
+
+.right-panel-ctn .date-picker-ctn {
+  display: none;
+}
