@@ -413,7 +413,7 @@ effectively.
 ## BrowserStack
 
 <a href="https://www.browserstack.com/">
-  <img src="https://user-images.githubusercontent.com/139603/41737979-bd4af8f0-7545-11e8-8b2e-ab2a8e6e30b8.png alt="BrowserStack logo" />
+  <img src="https://user-images.githubusercontent.com/139603/41737979-bd4af8f0-7545-11e8-8b2e-ab2a8e6e30b8.png" alt="BrowserStack logo" />
 </a>
 
 We use BrowserStack to ensure the cross-browser compatibility of
