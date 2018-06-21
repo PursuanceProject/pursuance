@@ -45,7 +45,7 @@ class PursuancePage extends Component {
         <ReactModal className="Modal" shouldCloseOnEsc={true} shouldFocusAfterRender={true} isOpen={this.state.modalIsOpen} onRequestClose={this.closeModal} closeTimeoutMS={350} style={{overlay:{background:"none"}}}>
         <span className='close' onClick={this.closeModal}>&times;</span>
         <h3>Keyboard Shortcuts</h3>
-        <hr style={{border:"1.5px solid grey"}} />
+        <hr style={{border:"1.5px solid grey"}}/>
         <div className="columns">
         <div className="column one-half">
         <table className="keyboard-mappings">
