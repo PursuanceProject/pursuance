@@ -45,7 +45,7 @@ class PursuancePage extends Component {
         <ReactModal className="Modal" shouldCloseOnEsc={true} shouldFocusAfterRender={true} isOpen={this.state.modalIsOpen} onRequestClose={this.closeModal} closeTimeoutMS={350} style={{overlay:{background:"none"}}}>
         <span className='close' onClick={this.closeModal}>&times;</span>
         <h3>Keyboard Shortcuts</h3>
-        <hr style={{border:"1.5px solid grey"}}/>
+        <hr style={{border:"1.5px solid grey"}} />
         <div className="columns">
         <div className="column one-half">
         <table className="keyboard-mappings">
@@ -68,17 +68,17 @@ class PursuancePage extends Component {
         </div>
         </ReactModal>
           <nav id="pursuance-nav">
-            <PursuanceMenu/>
+            <PursuanceMenu />
           </nav>
           <article>
             <Switch>
-              <Route exact path="/pursuance/:pursuanceId" component={TaskListView}/>
-              <Route exact path="/pursuance/:pursuanceId/tasks" component={TaskListView}/>
-              <Route exact path="/pursuance/:pursuanceId/calendar" component={CalendarView}/>
-              <Route exact path="/pursuance/:pursuanceId/discuss/task/:taskGid" component={DiscussView}/>
-              <Route exact path="/pursuance/:pursuanceId/participants" component={ParticipantsView}/>
+              <Route exact path="/pursuance/:pursuanceId" component={TaskListView} />
+              <Route exact path="/pursuance/:pursuanceId/tasks" component={TaskListView} />
+              <Route exact path="/pursuance/:pursuanceId/calendar" component={CalendarView} />
+              <Route exact path="/pursuance/:pursuanceId/discuss/task/:taskGid" component={DiscussView} />
+              <Route exact path="/pursuance/:pursuanceId/participants" component={ParticipantsView} />
             </Switch>
-            <RightPanel/>
+            <RightPanel />
           </article>
         </div>
       </Router>
