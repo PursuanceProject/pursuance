@@ -40,46 +40,45 @@ class PursuancePage extends Component {
   }
   render() {
     return (
-      <Router>
+    <Router>
         <div id="pursuance-page" className="content-ctn" onKeyDown={this.handleKeyDown} tabIndex="-1">
         <ReactModal className="Modal" shouldCloseOnEsc={true} shouldFocusAfterRender={true} isOpen={this.state.modalIsOpen} onRequestClose={this.closeModal} closeTimeoutMS={350} style={{overlay:{background:"none"}}}>
-        <span className='close' onClick={this.closeModal}>&times;</span>
-        <h3>Keyboard Shortcuts</h3>
-        <hr style={{border:"1.5px solid grey"}}/>
-        <div className="columns">
-        <div className="column one-half">
-        <table className="keyboard-mappings">
-        <tbody>
-        <tr>
-        <td className="keys">
-        <kbd>?</kbd>
-        </td>
-        <td>&nbsp; Open shortcut window</td>
-        </tr>
-        <tr>
-        <td className="keys">
-        <kbd>Everything Else</kbd>
-        </td>
-        <td> &nbsp; Do Nothing</td>
-        </tr>
-        </tbody>
-        </table>
-        </div>
-        </div>
+          <span className='close' onClick={this.closeModal}>&times;</span>
+          <h3>Keyboard Shortcuts</h3>
+          <hr style={{border:"1.5px solid grey"}}/>
+            <div className="columns">
+              <div className="column one-half">
+                <table className="keyboard-mappings">
+                  <tbody>
+          j         <tr>
+                      <td className="keys">
+                        <kbd>?</kbd>
+                      </td>
+                      <td>&nbsp; Open shortcut window</td>
+                    </tr>
+                    <tr>
+                      <td className="keys">
+                        <kbd>Everything Else</kbd>
+                      </td>
+                      <td> &nbsp; Do Nothing</td>
+                    </tr>
+                  </tbody> </table>
+              </div>
+            </div>
         </ReactModal>
-          <nav id="pursuance-nav">
-            <PursuanceMenu />
-          </nav>
-          <article>
-            <Switch>
-              <Route exact path="/pursuance/:pursuanceId" component={TaskListView} />
-              <Route exact path="/pursuance/:pursuanceId/tasks" component={TaskListView} />
-              <Route exact path="/pursuance/:pursuanceId/calendar" component={CalendarView} />
-              <Route exact path="/pursuance/:pursuanceId/discuss/task/:taskGid" component={DiscussView} />
-              <Route exact path="/pursuance/:pursuanceId/participants" component={ParticipantsView} />
-            </Switch>
-            <RightPanel />
-          </article>
+        <nav id="pursuance-nav">
+          <PursuanceMenu />
+        </nav>
+        <article>
+          <Switch>
+            <Route exact path="/pursuance/:pursuanceId" component={TaskListView} />
+            <Route exact path="/pursuance/:pursuanceId/tasks" component={TaskListView} />
+            <Route exact path="/pursuance/:pursuanceId/calendar" component={CalendarView} />
+            <Route exact path="/pursuance/:pursuanceId/discuss/task/:taskGid" component={DiscussView} />
+            <Route exact path="/pursuance/:pursuanceId/participants" component={ParticipantsView} />
+          </Switch>
+          <RightPanel />
+        </article>
         </div>
       </Router>
     );

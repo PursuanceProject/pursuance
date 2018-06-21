@@ -22,7 +22,17 @@
 }
 
 .Modal{
-  position: absolute; top: 120px; left: 60px; right: 60px; bottom: 60px; border: 1px solid rgb(204, 204, 204); background: rgb(255, 255, 255); overflow: auto; border-radius: 10px; outline: none; padding: 20px;
+  position: absolute; 
+  top: 120px; 
+  left: 60px; 
+  right: 60px; 
+  bottom: 60px; 
+  border: 1px solid rgb(204, 204, 204); 
+  background: rgb(255, 255, 255); 
+  overflow: auto; 
+  border-radius: 10px; 
+  outline: none; 
+  padding: 20px;
 }
 
 .ReactModal__Content {
@@ -65,8 +75,18 @@ kbd{
     margin-left: 80px;
   }
 .Modal{
-  position: absolute; top: 100px; left: 40px; right: 40px; bottom: 40px;
-}
+  position: absolute; 
+  top: 100px; 
+  left: 40px; 
+  right: 40px; 
+  bottom: 40px; 
+  border: 1px solid rgb(204, 204, 204); 
+  background: rgb(255, 255, 255); 
+  overflow: auto; 
+  border-radius: 10px; 
+  outline: none; 
+  padding: 20px;
+ }
 }
 
 @media (max-width: 639px) {
@@ -77,6 +97,10 @@ kbd{
     margin-left: 0;
   }
 .Modal{
-  position: absolute; top: 80px; left: 20px; right: 20px; bottom: 20px; 
-}
+  position: absolute; 
+  top: 80px; 
+  left: 20px; 
+  right: 20px; 
+  bottom: 20px; 
+ }
 }
