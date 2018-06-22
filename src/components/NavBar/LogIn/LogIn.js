@@ -36,6 +36,8 @@ class LogIn extends Component {
     e.preventDefault();
     const { userLoginSuccess } = this.props;
 
+    // remove modal class from body.
+    document.body.className = document.body.className.replace('modal-open','');
     // If user is submitting their username as populated from
     // localStorage, this.username will be empty
     this.username = this.username || this.usernameRemembered;
