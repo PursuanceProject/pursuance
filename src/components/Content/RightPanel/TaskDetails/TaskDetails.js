@@ -8,6 +8,7 @@ import FaCircleO from 'react-icons/lib/fa/circle-o';
 import TaskDetailsTopbar from './TaskDetailsTopbar';
 import TaskTitle from './TaskTitle/TaskTitle';
 import TaskIcons from './TaskIcons/TaskIcons';
+import TaskForm from '../../TaskManager/TaskForm/TaskForm';
 
 import './TaskDetails.css';
 
@@ -113,6 +114,12 @@ class TaskDetails extends Component {
                   </li>
                 })}
               </ul>
+            </div>
+            <div className="create-subtask-ctn">
+              <TaskForm
+                parentGid={task.gid}
+                key={task.gid}
+              />
             </div>
           </div>
         </div>
