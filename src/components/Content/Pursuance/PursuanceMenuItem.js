@@ -9,10 +9,13 @@ const PursuanceMenuItem = ({ pursuanceId, label, action, icon, location }) => {
       className="menu-item"
       to={`${rootPath}/${action}`}
       isActive={
-        () =>
-          ((action === 'tasks' && (location.pathname === rootPath || location.pathname === rootPath + '/')
-          ||
-          location.pathname.indexOf(`/${action}`) !== -1))
+        () => (
+          (action === 'tasks' && (
+            location.pathname === rootPath || 
+            location.pathname === rootPath + '/' || 
+            location.pathname.indexOf(`/${action}`) !== -1
+          ))
+        )
       }
       activeClassName="Active">
       {icon}

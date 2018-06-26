@@ -237,20 +237,21 @@ class RawTask extends Component {
               patchTask={this.props.patchTask}
             />
             <div className="task-assigned-to">
-                {
+              {
+                (
                   showAssigneeInput &&
-                   <div className="assign-autocomplete-ctn">
-                     {
-                       autoComplete.suggestions
-                       &&
-                       task.gid === autoComplete.suggestionForm
-                       &&
-                       <AssignerSuggestions
-                         suggestionForm={task.gid}
-                         editMode={true}
-                         hideEditAssignee={this.hideEditAssignee}
-                       />
-                     }
+                  <div className="assign-autocomplete-ctn">
+                    {
+                      autoComplete.suggestions
+                      &&
+                      task.gid === autoComplete.suggestionForm
+                      &&
+                      <AssignerSuggestions
+                        suggestionForm={task.gid}
+                        editMode={true}
+                        hideEditAssignee={this.hideEditAssignee}
+                      />
+                    }
                     <AssignerInput
                       formId={task.gid}
                       editMode={true}
@@ -259,17 +260,22 @@ class RawTask extends Component {
                       assignedTo={assignedTo}
                     />
                   </div>
-                  ||
+                )
+                ||
+                (
                   (assignedPursuanceId && pursuances[assignedPursuanceId] && pursuances[assignedPursuanceId].suggestionName)
-                    &&
-                    <button onClick={this.showAssigneeInput} className={"assignee-button" + this.getAssignedCss(task)}>{pursuances[assignedPursuanceId].suggestionName}</button>
-                  ||
+                  &&
+                  <button onClick={this.showAssigneeInput} className={"assignee-button" + this.getAssignedCss(task)}>{pursuances[assignedPursuanceId].suggestionName}</button>
+                )
+                ||
+                (
                   (task.assigned_to && '@' + task.assigned_to)
-                    &&
-                    <button onClick={this.showAssigneeInput} className={"assignee-button" + this.getAssignedCss(task)}>{'@' + task.assigned_to}</button>
-                  ||
-                  <button className="edit-assignee-button" onClick={this.showAssigneeInput}>Assign</button>
-                }
+                  &&
+                  <button onClick={this.showAssigneeInput} className={"assignee-button" + this.getAssignedCss(task)}>{'@' + task.assigned_to}</button>
+                )
+                ||
+                <button className="edit-assignee-button" onClick={this.showAssigneeInput}>Assign</button>
+              }
             </div>
             <div className="task-due-date">
               {task.due_date && postgrest.formatDate(task.due_date)}
