@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import * as postgrest from '../../../../api/postgrest';
-import { getPursuancesByIds, getTasks } from '../../../../actions';
+import { showTaskInPursuance } from '../../../../utils/tasks';
+import { getPursuances, getTasks, getUsers, rpShowTaskDetails, patchTask } from '../../../../actions';
 import ReactMarkdown from 'react-markdown';
-import FaEllipsisV from 'react-icons/lib/fa/ellipsis-v';
 import FaCircleO from 'react-icons/lib/fa/circle-o';
-import TaskStatus from '../../TaskStatus/TaskStatus';
+import TaskDetailsTopbar from './TaskDetailsTopbar';
+import TaskTitle from './TaskTitle/TaskTitle';
+import TaskIcons from './TaskIcons/TaskIcons';
+import TaskForm from '../../TaskManager/TaskForm/TaskForm';
+
 import './TaskDetails.css';
 
 class TaskDetails extends Component {
@@ -25,92 +28,68 @@ class TaskDetails extends Component {
 
       // If this task was assigned to this pursuance from another
       // pursuance, grab the current pursuance's tasks, too
-      if (thisTasksPursuanceId !== currentPursuanceId.toString()) {
+      if (currentPursuanceId &&
+          thisTasksPursuanceId !== currentPursuanceId.toString()) {
         getTasks(currentPursuanceId);
       }
     }
-  }
 
-  showAssignee = () => {
-    const {
-      pursuances,
-      tasks,
-      getPursuancesByIds,
-      rightPanel: { taskGid }
-    } = this.props;
-
-    const task = tasks.taskMap[taskGid];
-    if (!task) {
-      return (
-        <span></span>
-      )
+    const { getPursuances, getUsers, pursuances, users } = this.props;
+    if (Object.keys(users).length === 0) {
+      getUsers();
     }
-
-    const assignedPursuanceId = task.assigned_to_pursuance_id;
-
-    // Get details of pursuances missing from Redux
-    const ids = [];
-    if (!pursuances[task.pursuance_id]) {
-      ids.push(task.pursuance_id);
+    if (Object.keys(pursuances).length <= 1) {
+      getPursuances();
     }
-    if (assignedPursuanceId && !pursuances[assignedPursuanceId]) {
-      ids.push(assignedPursuanceId);
-    }
-    if (ids.length > 0) {
-      getPursuancesByIds(ids);
-      return (
-        <span></span>
-      )
-    }
-
-    return (
-      <span>
-        {
-          (assignedPursuanceId && pursuances[assignedPursuanceId] && pursuances[assignedPursuanceId].suggestionName)
-          ||
-          (task.assigned_to && '@' + task.assigned_to)
-        }
-      </span>
-    )
   }
 
   render() {
-    const { pursuances, tasks, rightPanel: { taskGid } } = this.props;
+    const { pursuances, currentPursuanceId, tasks, rpShowTaskDetails } = this.props;
+    const { taskGid } = this.props.rightPanel;
     const task = tasks.taskMap[taskGid];
     if (!task) {
-      return <div className="no-task">Ain't nobody got task fo' that.</div>
+      if (taskGid) {
+        return <div className="no-task">Ain't nobody got task fo' that.</div>;
+      }
+      return null;
     }
     const subtaskGids = task.subtask_gids;
+
+    const parent = tasks.taskMap[task.parent_task_gid];
+    const parentTitle =
+      parent &&
+      showTaskInPursuance(parent, currentPursuanceId) &&
+      parent.title;
 
     return (
       <div className="discuss-ctn">
         <div className="task-details-ctn">
-          <div className="task-assignment-ctn">
-            <TaskStatus
-              status={task.status}
-            />
-            <div className="assigned-to-ctn">
-              {this.showAssignee()}
-            </div>
-            <div className="due-date-ctn">
-              {task.due_date && postgrest.formatDate(task.due_date)}
-            </div>
-            <div className="task-discuss-icons-ctn">
-              <div className="discuss-icon-ctn">
-                <FaEllipsisV size={20} />
-              </div>
-            </div>
-          </div>
+          <TaskDetailsTopbar
+            taskGid={taskGid}
+          />
           <div className="pursuance-discuss-ctn">
             <div className="pursuance-task-title-ctn">
-              <div className="discuss-task-title-ctn">
-                <span className="discuss-task-title">{task.title}</span>
-              </div>
-              <div className="pursuance-title-ctn">
-                <span className="pursuance-title">
-                  Created in {pursuances[task.pursuance_id] && <em>{pursuances[task.pursuance_id].name}</em>}
-                </span>
-              </div>
+              <TaskTitle
+                id={task.gid}
+                title={task.title}
+                patchTask={this.props.patchTask}
+              />
+              {parentTitle && (
+                <div className="parent-task-ctn" onClick={() => rpShowTaskDetails({taskGid: task.parent_task_gid})}>
+                  <h4><strong>Parent Task:</strong></h4>
+                  {' '}
+                  <span>{parentTitle}</span>
+                </div>
+              )}
+            </div>
+            <TaskIcons
+              gid={task.gid}
+              subtaskGids={task.subtask_gids}
+            />
+            <div className="pursuance-title-ctn">
+              <span className="pursuance-title">
+                Created in {pursuances[task.pursuance_id] && <em>{pursuances[task.pursuance_id].name}</em>}
+              </span>
             </div>
             <div className="task-deliverables-ctn">
               <h4><strong>Description / Deliverables</strong></h4>
@@ -130,11 +109,17 @@ class TaskDetails extends Component {
               <h4><strong>Subtasks</strong></h4>
               <ul className="subtasks-list">
                 {subtaskGids.map((gid, i)=> {
-                  return <li key={i} className="subtask-item">
+                  return <li key={i} className="subtask-item" onClick={() => rpShowTaskDetails({taskGid: gid})}>
                     <FaCircleO size={8} className="fa-circle-o" />{tasks.taskMap[gid].title}
                   </li>
                 })}
               </ul>
+            </div>
+            <div className="create-subtask-ctn">
+              <TaskForm
+                parentGid={task.gid}
+                key={task.gid}
+              />
             </div>
           </div>
         </div>
@@ -143,4 +128,5 @@ class TaskDetails extends Component {
   };
 }
 
-export default withRouter(connect(({currentPursuanceId, pursuances, tasks, rightPanel}) => ({currentPursuanceId, pursuances, tasks, rightPanel}), { getPursuancesByIds, getTasks })(TaskDetails));
+export default withRouter(connect(({currentPursuanceId, pursuances, tasks, rightPanel, users}) => ({currentPursuanceId, pursuances, tasks, rightPanel, users}),
+  { getPursuances, getTasks, getUsers, rpShowTaskDetails, patchTask })(TaskDetails));

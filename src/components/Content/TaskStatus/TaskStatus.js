@@ -14,6 +14,10 @@ const VALID_STATUSES = [
   'Done'
 ];
 
+const STATUS_IMAGES = {
+  'WorkingOn': true,
+}
+
 class TaskStatus extends Component {
 
   displayStatus = (status) => {
@@ -25,6 +29,7 @@ class TaskStatus extends Component {
   }
 
   getDropDownItems = () => {
+    // eslint-disable-next-line
     return VALID_STATUSES.map((statusName, i) => {
       if (statusName !== this.props.status) {
         return (
@@ -47,13 +52,14 @@ class TaskStatus extends Component {
   render() {
     const { status } = this.props;
     return (
-      <div className={"task-status-ctn task-status-" + status}>
+      <div className={"task-status-ctn task-status-" + status + " hide-small"}>
         <DropdownButton
           id="task-status-dropdown"
           title={this.getCurrentStatus()}
           noCaret>
           {this.getDropDownItems()}
         </DropdownButton>
+        {STATUS_IMAGES[status] && <img src={`/assets/img/${status}.gif`} alt={`Status: ${status}`} />}
         <div className="edit-icon-ctn">
           <TiPencil id="task-edit-icon" size={18} />
         </div>

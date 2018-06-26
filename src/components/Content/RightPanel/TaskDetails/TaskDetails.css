@@ -4,36 +4,33 @@
   flex: 1;
   color: #efefef;
   font-size: 1.2em;
+  word-break: break-word;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  min-width: 0; /* Firefox workaround; see https://github.com/philipwalton/flexbugs/issues/39 */
 }
 
 .task-assignment-ctn {
   display: flex;
-  justify-content: center;
-  margin: 4px 16px;
+  justify-content: space-between;
+  align-items: center;
+  margin: 8px 16px 4px 16px;
   color: #efefef;
   max-height: 72px;
-  overflow: hidden;
+  font-size: 0.85em;
 }
 
 .assigned-to-ctn {
-  flex: 1;
+  flex: 0.5;
   display: flex;
-  align-items: flex-start;
+  flex-direction: row;
+  align-items: center;
   justify-content: space-between;
-  margin: 0 12px;
 }
 
 .assigned-to-ctn span:hover {
   cursor: pointer;
   color: #1fc7d3;
-}
-
-.due-date-ctn {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin: 0 12px;
 }
 
 .task-discuss-icons-ctn {
@@ -49,7 +46,7 @@
   flex: 1;
   align-items: center;
   justify-content: space-between;
-  padding: 0 8px;
+  padding: 0 6px;
   height: 100%;
 }
 
@@ -58,27 +55,51 @@
 }
 
 .pursuance-title-ctn {
-  padding: 4px 0 0 0;
+  padding-top: 12px;
+  margin-bottom: 8px;
 }
 
-
-.discuss-task-title-ctn {
+.task-details-ctn .discuss-task-title-ctn {
   display: flex;
   border-top: 1px solid #6d6d6d;
   padding-top: 12px;
 }
 
+/* Shrink font size, tweak structure when viewing in Task List */
+.task-list-ctn .discuss-task-title-ctn {
+  padding: 5px 0;
+  font-size: 70%;
+}
+
 .discuss-task-title {
   font-size: 1.5em;
   color: #fcfcfc;
+  min-width: 0; /* Firefox workaround; see https://github.com/philipwalton/flexbugs/issues/39 */
+}
+
+.task-list-ctn .discuss-task-title {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.parent-task-ctn h4 {
+  display: inline;
+}
+
+.parent-task-ctn span {
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 .task-deliverables-ctn {
   border-top: 1px solid #6d6d6d;
   padding-top: 8px;
-  margin-top: 16px;
   margin-bottom: 32px;
   min-height: 64px;
+}
+
+.task-deliverables-ctn a {
+  color: #50b3fe;
 }
 
 .subtasks-ctn {
@@ -93,6 +114,8 @@
 
 .subtask-item {
   margin-left: 0;
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 .fa-circle-o {

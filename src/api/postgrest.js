@@ -49,3 +49,17 @@ export const patchJSON = (pathSuffix, payload, additionalHeaders = {}) => {
     return resp.json();
   });
 };
+
+export const deleteJSON = (pathSuffix, additionalHeaders = {}) => {
+  const headers = {
+    'Content-Type': 'application/json; charset=utf-8'
+  };
+  Object.assign(headers, additionalHeaders);
+
+  return fetch(URL_PREFIX + pathSuffix, {
+    method: 'DELETE',
+    headers: headers
+  }).then(resp => {
+    return resp.json();
+  });
+};

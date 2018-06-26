@@ -1,9 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { ButtonGroup, Button } from 'react-bootstrap';
+import { ButtonGroup } from 'react-bootstrap';
 import PursuanceMenuItem from './PursuanceMenuItem';
 import FaCheckSquareO from 'react-icons/lib/fa/check-square-o';
+import FaCalendar from 'react-icons/lib/fa/calendar';
 import CommentsO from 'react-icons/lib/fa/comments-o';
 import FolderOpen from 'react-icons/lib/fa/folder-open';
 import Group from 'react-icons/lib/fa/group';
@@ -14,17 +15,16 @@ import './PursuanceMenu.css';
 
 const PursuanceMenu = ({ currentPursuanceId, location }) => {
   return (
-    <ButtonGroup vertical id="pursuance-btn-group">
-      <Button id="pursuance-top-btn">
+    <ButtonGroup vertical className="pursuance-btn-group hide-xsmall">
+      <div>
         <PursuanceMenuItem
+          className="pursuance-top-btn"
           pursuanceId={currentPursuanceId}
           location={location}
           label='About'
           action='about'
           icon={<Info size={28} />}
         />
-      </Button>
-      <Button>
         <PursuanceMenuItem
           pursuanceId={currentPursuanceId}
           location={location}
@@ -32,8 +32,6 @@ const PursuanceMenu = ({ currentPursuanceId, location }) => {
           action='add'
           icon={<PlusCircle size={28} />}
         />
-      </Button>
-      <Button>
         <PursuanceMenuItem
           pursuanceId={currentPursuanceId}
           location={location}
@@ -41,8 +39,13 @@ const PursuanceMenu = ({ currentPursuanceId, location }) => {
           action='tasks'
           icon={<FaCheckSquareO size={28} />}
         />
-      </Button>
-      <Button>
+        <PursuanceMenuItem
+          pursuanceId={currentPursuanceId}
+          location={location}
+          label='Calendar'
+          action='calendar'
+          icon={<FaCalendar size={28} />}
+        />
         <PursuanceMenuItem
           pursuanceId={currentPursuanceId}
           location={location}
@@ -50,8 +53,6 @@ const PursuanceMenu = ({ currentPursuanceId, location }) => {
           action='discuss'
           icon={<CommentsO size={28} />}
         />
-      </Button>
-      <Button>
         <PursuanceMenuItem
           pursuanceId={currentPursuanceId}
           location={location}
@@ -59,8 +60,6 @@ const PursuanceMenu = ({ currentPursuanceId, location }) => {
           action='docs'
           icon={<FolderOpen size={28} />}
         />
-      </Button>
-      <Button>
         <PursuanceMenuItem
           pursuanceId={currentPursuanceId}
           location={location}
@@ -68,16 +67,15 @@ const PursuanceMenu = ({ currentPursuanceId, location }) => {
           action='participants'
           icon={<Group size={28} />}
         />
-      </Button>
-      <Button id="pursuance-bottom-btn">
         <PursuanceMenuItem
+          className="pursuance-bottom-btn"
           pursuanceId={currentPursuanceId}
           location={location}
           label='Progress'
           action='progress'
           icon={<Rocket size={28} />}
         />
-      </Button>
+      </div>
     </ButtonGroup>
   );
 };

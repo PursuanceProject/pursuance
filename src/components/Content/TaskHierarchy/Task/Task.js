@@ -1,25 +1,24 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import * as postgrest from '../../../../api/postgrest';
 import generateId from '../../../../utils/generateId';
+import { showAssignee, isRootTaskInPursuance } from '../../../../utils/tasks';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import TiPlus from 'react-icons/lib/ti/plus';
 import TiMinus from 'react-icons/lib/ti/minus';
 import TiFlowChildren from 'react-icons/lib/ti/flow-children';
 import FaCommentsO from 'react-icons/lib/fa/comments-o';
 import TaskForm from '../../TaskManager/TaskForm/TaskForm';
-import AssignerSuggestions from '../../TaskManager/TaskForm/Suggestions/AssignerSuggestions';
-import AssignerInput from '../../TaskManager/TaskForm/AssignerInput/AssignerInput';
 import TaskStatus from '../../TaskStatus/TaskStatus';
+import TaskAssigner from './TaskAssigner/TaskAssigner';
+import TaskDueDate from '../../TaskDueDate/TaskDueDate';
 import { filterSuggestion } from '../../../../utils/suggestions';
 import './Task.css';
 import {
   addTaskFormToHierarchy,
   removeTaskFormFromHierarchy,
   startSuggestions,
-  showTaskDetails,
-  toggleRightPanel,
+  rpShowTaskDetailsOrCollapse,
   patchTask
 } from '../../../../actions';
 
@@ -105,18 +104,6 @@ class RawTask extends Component {
     }
   }
 
-  showAssigneeInput = () => {
-    this.setState({
-      showAssigneeInput: true
-    });
-  }
-
-  hideEditAssignee = () => {
-    this.setState({
-      showAssigneeInput: false
-    });
-  }
-
   onFocus = (e) => {
     const { users, pursuances, startSuggestions, currentPursuanceId, taskData } = this.props;
     const suggestions = Object.assign({}, pursuances, users);
@@ -130,9 +117,10 @@ class RawTask extends Component {
   }
 
   showTitle = (task) => {
+    const { currentPursuanceId } = this.props;
     const statusClassName = this.getStatusClassName(task);
 
-    if (task.parent_task_gid) {
+    if (!isRootTaskInPursuance(task, currentPursuanceId)) {
       return (
         <div className={statusClassName}>{task.title}</div>
       );
@@ -161,47 +149,17 @@ class RawTask extends Component {
     }
   }
 
-  getAssignedCss = (task) => {
-    const { user } = this.props;
-    if (task.assigned_to && task.assigned_to === user.username) {
-      return " assigned-to-me";
-    } else {
-      return "";
-    }
-  }
-
   selectTaskInHierarchy = () => {
-    const {
-      taskData,
-      rightPanel,
-      showTaskDetails,
-      toggleRightPanel
-    } = this.props;
-
-    if (rightPanel.show && rightPanel.tab === 'TaskDetails' && rightPanel.taskGid === taskData.gid) {
-      toggleRightPanel();
-      return;
-    }
-    showTaskDetails({taskGid: taskData.gid});
+    const { taskData, rpShowTaskDetailsOrCollapse } = this.props;
+    rpShowTaskDetailsOrCollapse({taskGid: taskData.gid});
   }
-
 
   render() {
-    const { pursuances, taskData, autoComplete, currentPursuanceId } = this.props;
-    const { showChildren, showAssigneeInput } = this.state;
+    const { pursuances, taskData, currentPursuanceId } = this.props;
+    const { showChildren } = this.state;
     const task = taskData;
-    const assignedPursuanceId = task.assigned_to_pursuance_id;
-    const assignedByThisPursuance = assignedPursuanceId === currentPursuanceId;
-    let placeholder = "";
-    let assignedTo;
-    if (assignedPursuanceId && !assignedByThisPursuance && pursuances[assignedPursuanceId]) {
-        placeholder = pursuances[assignedPursuanceId].suggestionName;
-        assignedTo = pursuances[assignedPursuanceId].id;
-    }
-    else if (task.assigned_to) {
-        placeholder = '@' + task.assigned_to;
-        assignedTo = task.assigned_to;
-    }
+    const { placeholder, assignedTo } =
+      showAssignee(task, currentPursuanceId, pursuances);
 
     return (
       <li className="li-task-ctn">
@@ -226,7 +184,7 @@ class RawTask extends Component {
               <OverlayTrigger
                 placement="bottom"
                 overlay={this.getTooltip('chat')}>
-                <div id={'discuss-task-' + task.gid} className="icon-ctn discuss-task" onClick={this.redirectToDiscuss}>
+                <div id={'discuss-task-' + task.gid} className="icon-ctn discuss-task hide-small" onClick={this.redirectToDiscuss}>
                   <FaCommentsO size={20} />
                 </div>
               </OverlayTrigger>
@@ -236,50 +194,19 @@ class RawTask extends Component {
               status={task.status}
               patchTask={this.props.patchTask}
             />
-            <div className="task-assigned-to">
-              {
-                (
-                  showAssigneeInput &&
-                  <div className="assign-autocomplete-ctn">
-                    {
-                      autoComplete.suggestions
-                      &&
-                      task.gid === autoComplete.suggestionForm
-                      &&
-                      <AssignerSuggestions
-                        suggestionForm={task.gid}
-                        editMode={true}
-                        hideEditAssignee={this.hideEditAssignee}
-                      />
-                    }
-                    <AssignerInput
-                      formId={task.gid}
-                      editMode={true}
-                      hideEditAssignee={this.hideEditAssignee}
-                      placeholder={placeholder}
-                      assignedTo={assignedTo}
-                    />
-                  </div>
-                )
-                ||
-                (
-                  (assignedPursuanceId && pursuances[assignedPursuanceId] && pursuances[assignedPursuanceId].suggestionName)
-                  &&
-                  <button onClick={this.showAssigneeInput} className={"assignee-button" + this.getAssignedCss(task)}>{pursuances[assignedPursuanceId].suggestionName}</button>
-                )
-                ||
-                (
-                  (task.assigned_to && '@' + task.assigned_to)
-                  &&
-                  <button onClick={this.showAssigneeInput} className={"assignee-button" + this.getAssignedCss(task)}>{'@' + task.assigned_to}</button>
-                )
-                ||
-                <button className="edit-assignee-button" onClick={this.showAssigneeInput}>Assign</button>
-              }
+            <div className="task-assigned-to hide-small">
+              <TaskAssigner
+                taskGid={task.gid}
+                placeholder={placeholder}
+                assignedTo={assignedTo}
+              />
             </div>
-            <div className="task-due-date">
-              {task.due_date && postgrest.formatDate(task.due_date)}
-            </div>
+            <TaskDueDate
+              id={task.gid}
+              taskData={task}
+              autoFocus={true}
+              patchTask={this.props.patchTask}
+             />
           </div>
         </div>
         {
@@ -302,8 +229,7 @@ const Task = withRouter(connect(
   addTaskFormToHierarchy,
   removeTaskFormFromHierarchy,
   startSuggestions,
-  showTaskDetails,
-  toggleRightPanel,
+  rpShowTaskDetailsOrCollapse,
   patchTask
 })(RawTask));
 

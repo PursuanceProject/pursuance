@@ -2,9 +2,10 @@
   display: flex;
   width: 100%;
   background-color: #1c1c1c;
+  word-break: break-word;
   word-wrap: break-word;
   overflow-wrap: break-word;
-  word-break: break-word;
+  min-width: 0; /* Firefox workaround; see https://github.com/philipwalton/flexbugs/issues/39 */
 }
 
 .leapchat-frame {
@@ -15,8 +16,28 @@
   border-right: none;
   border-bottom-left-radius: 4px;
   margin-right: 50px;
+  min-width: 270px;
 }
 
 .leapchat-frame-narrow {
-  max-width: calc(70vw - 162px);
+  max-width: calc(100vw - 662px);
+}
+
+@media (min-width: 1429px) {
+  .leapchat-frame-narrow {
+    max-width: calc(65vw - 162px);
+  }
+}
+
+@media (max-width: 1279px) {
+  .leapchat-frame-narrow {
+    max-width: calc(100vw - 628px);
+  }
+}
+
+@media (max-width: 399px) {
+  /* FIXME(elimisteve): Not affecting UI when screen width < 350px for some reason */
+  .leapchat-frame-narrow {
+    max-width: calc(100vw - 50px);
+  }
 }

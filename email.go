@@ -57,13 +57,14 @@ func NewEmailer() {
 			// that are assigned to users who have provided their
 			// email address (that PursueMail is storing, and that we
 			// have a UUID that represents said email address), that
-			// aren't done, ordered by username of assignee then due
-			// date.
+			// aren't done, that aren't archived, ordered by username
+			// of assignee then due date.
 			tasks := []*Task{}
 			in14Days := Now().Add(14 * 24 * time.Hour).Format(TIME_FMT_POSTGREST)
 			err := pgGetInto("/tasks?assigned_to=in.("+strings.Join(usernames, ",")+
 				")&due_date=lte."+in14Days+
 				"&status=not.eq.Done"+
+				"&is_archived=is.false"+
 				"&order=assigned_to.asc,due_date.asc,pursuance_id.asc",
 				&tasks)
 			if err != nil {
@@ -86,16 +87,27 @@ func NewEmailer() {
 }
 
 func pgGetInto(urlPath string, obj interface{}) error {
-	log.Debugf("pgGetInto(%s)\n", urlPath)
+	log.Debugf("pgGetInto(%s)", urlPath)
 	resp, err := http.Get(POSTGREST_BASE_URL + urlPath)
 	if err != nil {
 		return err
 	}
 	defer resp.Body.Close()
 
-	body, _ := ioutil.ReadAll(resp.Body)
+	if resp.StatusCode == http.StatusNoContent {
+		return nil
+	}
+
+	body, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		return fmt.Errorf("pgGetInto(%s): Error reading resp.Body: %v",
+			urlPath, err)
+	}
 	err = json.Unmarshal(body, obj)
-	return err
+	if err != nil {
+		return fmt.Errorf("pgGetInto(%s): Error unmarshaling: %v", urlPath, err)
+	}
+	return nil
 }
 
 func Now() time.Time {
@@ -200,7 +212,7 @@ func EmailDailyDigestToUser(tasks []*Task, username string) error {
 		"email_data": map[string]string{
 			"from":    "team@pursuanceproject.org",
 			"subject": fmt.Sprintf("Pursuance Daily Digest (%s)", Now().Format(TIME_FMT_POSTGREST)),
-			"body":    string(rendered.Bytes()),
+			"body":    rendered.String(),
 		},
 	})
 
@@ -212,7 +224,14 @@ func EmailDailyDigestToUser(tasks []*Task, username string) error {
 	}
 	defer resp.Body.Close()
 
-	body, _ := ioutil.ReadAll(resp.Body)
+	if resp.StatusCode == http.StatusNoContent {
+		return nil
+	}
+
+	body, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		return fmt.Errorf("After POST to `%s` -- error reading resp.Body: %v", url, err)
+	}
 	log.Debugf("Response from PursueMail after emailing user '%s' (with email_id '%s'): `%s`",
 		username, emailID, body)
 	return nil

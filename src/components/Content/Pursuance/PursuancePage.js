@@ -5,6 +5,7 @@ import { setCurrentPursuance } from '../../../actions';
 import PursuanceMenu from './PursuanceMenu';
 import AboutView from './views/AboutView';
 import TaskListView from './views/TaskListView';
+import CalendarView from './views/CalendarView';
 import DiscussView from './views/DiscussView';
 import ParticipantsView from './views/ParticipantsView';
 import RightPanel from '../RightPanel/RightPanel';
@@ -30,6 +31,7 @@ class PursuancePage extends Component {
               <Route exact path="/pursuance/:pursuanceId/about" component={AboutView} />
               <Route exact path="/pursuance/:pursuanceId" component={TaskListView} />
               <Route exact path="/pursuance/:pursuanceId/tasks" component={TaskListView} />
+              <Route exact path="/pursuance/:pursuanceId/calendar" component={CalendarView} />
               <Route exact path="/pursuance/:pursuanceId/discuss/task/:taskGid" component={DiscussView} />
               <Route exact path="/pursuance/:pursuanceId/participants" component={ParticipantsView} />
             </Switch>
@@ -39,7 +41,6 @@ class PursuancePage extends Component {
       </Router>
     );
   }
-
 }
 
 export default connect(({currentPursuanceId}) =>

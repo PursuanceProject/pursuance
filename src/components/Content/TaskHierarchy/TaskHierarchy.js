@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Task from './Task/Task';
 import { toast, ToastContainer } from 'react-toastify';
 import { connect } from 'react-redux';
+import { showTaskInPursuance } from '../../../utils/tasks';
 import {
   getUsers,
   getTasks,
@@ -91,15 +92,20 @@ class TaskHierarchy extends Component {
   }
 
   renderHierarchy = () => {
+    const { currentPursuanceId } = this.props;
     const { rootTaskGids, taskMap } = this.props.tasks;
     return (
       <ul id="root-ul-ctn" className="ul-ctn">
         {
           rootTaskGids.map((gid) => {
+            const taskData = taskMap[gid];
+            if (!showTaskInPursuance(taskData, currentPursuanceId)) {
+              return null;
+            }
             return (
               <Task
                 key={gid}
-                taskData={taskMap[gid]}
+                taskData={taskData}
                 taskMap={taskMap} />
             );
           })
@@ -123,17 +129,17 @@ class TaskHierarchy extends Component {
 
               </span>
             </div>
-            <div className="label-status">
+            <div className="label-status hide-small">
               <span>
                 Status
               </span>
             </div>
-            <div className="label-assigned-to">
+            <div className="label-assigned-to hide-small">
               <span>
                 Assigned To
               </span>
             </div>
-            <div className="label-due-date">
+            <div className="label-due-date hide-small">
               <span>
                 Due Date
               </span>
@@ -152,8 +158,8 @@ class TaskHierarchy extends Component {
   }
 }
 
-export default connect(({ pursuances, taskForm, currentPursuanceId, tasks, showSuccessToast }) =>
-  ({ pursuances, taskForm, currentPursuanceId, tasks, showSuccessToast }), {
+export default connect(({ pursuances, currentPursuanceId, tasks, showSuccessToast }) =>
+  ({ pursuances, currentPursuanceId, tasks, showSuccessToast }), {
     getUsers,
     getTasks,
     getPursuances,

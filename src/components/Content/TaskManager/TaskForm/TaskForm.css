@@ -7,8 +7,8 @@
   padding-left: 72px;
 }
 
-.leaf-form {
-  padding-left: 64px;
+.form-control {
+  height: 32px;
 }
 
 .task-form {
@@ -33,23 +33,28 @@
   width: 240px;
 }
 
-.date-picker-ctn {
-  height: 34px;
+@media (max-width: 1279px) {
+  #task-hierarchy .nested-form {
+    padding-left: 52px;
+  }
 }
 
-.react-datepicker-wrapper {
-  height: 34px;
-  margin-top: 1px;
-  margin-bottom: -1px;
+@media (max-width: 479px) {
+  #task-hierarchy .nested-form {
+    padding-left: 46px;
+  }
 }
 
-.react-datepicker__input-container {
-  height: 100%;
+@media (max-width: 359px) {
+  #task-hierarchy .nested-form {
+    padding-left: 43px;
+  }
 }
 
-.react-datepicker__input-container input {
-  height: 100%;
-  padding: 6px 12px;
+@media (max-width: 1023px) {
+  #task-hierarchy .assign-autocomplete-ctn {
+    display: none;
+  }
 }
 
 .save-task-btn {
@@ -57,11 +62,30 @@
   color: #efefef;
   border-radius: 0 4px 4px 0;
   border-color: #a5a5a5;
-  margin-top: 1px;
-  margin-bottom: -1px;
+  height: 32px;
+}
+
+
+@media (max-width: 639px) {
+  .save-task-btn {
+    padding: 3px;
+  }
 }
 
 .save-task-btn:hover {
   background-color: #288bd6;
   color: #282828;
+}
+
+.right-panel-ctn .nested-form {
+  padding-left: 0;
+  margin-bottom: 40px;
+}
+
+.right-panel-ctn .create-subtask-ctn .assign-autocomplete-ctn {
+  display: none;
+}
+
+.right-panel-ctn .create-subtask-ctn .date-picker-ctn {
+  display: none;
 }

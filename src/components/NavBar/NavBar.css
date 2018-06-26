@@ -1,20 +1,61 @@
-.nav-container {
-  top:0;
-  left:0;
+.navbar {
+  top: 0;
+  left: 0;
   height: 60px;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: black;
-  position: sticky;
-  margin-top:-60px; 
+  width: 100%;
+  background-color: #141414;
+  position: fixed;
+  border-radius: 0px;
+  border: none;
+  margin: 0;
+  z-index: 10;
 }
 
-nav ul, li {
-  display: inline;
-  list-style-type: none;
-  list-style: none;
+position: fixed;
+background-color: #141414;
+border-radius: 0px;
+border: none;
+margin: 0;
+height: 60px;
+width: 100%;
+top: 0;
+z-index: 10;
+
+.navbar-collapse {
+  height: 200px; 
+}
+
+.navbar .container {
+  -ms-flex-align: center;
+  align-items: center;
+  width: 100%;
+  padding: 0 36px 0 132px;
+}
+
+.navbar-collapse.collapse {
+  background-color: black;
+}
+
+.navbar > .container .navbar-header .navbar-brand {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  height: 60px;
+  color: #fcfcfc;
+  padding-left: 0;
+  margin-left: 0;
+}
+
+
+.modal-title {
+  text-align: center;
 }
 
 nav a:hover, a:active, a:link {
@@ -36,8 +77,16 @@ nav li a:hover {
   width: 50%;
 }
 
-.modal-title {
-  text-align: center;
+@media (max-width: 768px) {
+  .navbar-nav {
+    background-color: black;
+    border: 1px solid white;
+    border-radius: 5px;
+  }
+}
+
+.navbar-nav li {
+  height: 60px;
 }
 
 .navbar-nav li a {

@@ -60,7 +60,8 @@
   border: 1px solid #444;
   border-radius: 5px;
   padding: 2px 2px 1px 0px;
-  margin: 0px 0px 3px 0px;
+  margin-bottom: 3px;
+  min-width: 0; /* Firefox workaround; see https://github.com/philipwalton/flexbugs/issues/39 */
 }
 
 .task-row-ctn:hover {
@@ -68,11 +69,12 @@
 }
 
 .task-title {
-  max-width: 46vw;
+  width: 100%;
+  min-width: 0; /* Firefox workaround; see https://github.com/philipwalton/flexbugs/issues/39 */
   padding: 0 10px;
+  word-break: break-word;
   word-wrap: break-word;
   overflow-wrap: break-word;
-  word-break: break-word;
 }
 
 .task-title-buffer {
@@ -119,22 +121,8 @@
 
 .icon-ctn:hover {
   cursor: pointer;
+  color: #eaeaea;
   border-color: #fff;
-}
-
-.task-assigned-to {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  width: 190px;
-  min-width: 190px;
-  padding: 0 4px;
-}
-
-.task-assigned-to span:hover {
-  cursor: pointer;
-  color: #1fc7d3;
 }
 
 .task-due-date {
@@ -142,8 +130,8 @@
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  width: 106px;
-  min-width: 106px;
+  width: 108px;
+  min-width: 108px;
   padding: 0 4px;
 }
 
@@ -169,6 +157,25 @@
 
 .assignee-button:hover {
   border-color: #fff;
+}
+
+@media (max-width: 1279px) {
+  #task-hierarchy .task-row-ctn {
+    padding: 0;
+  }
+  #task-hierarchy .task-icons-ctn {
+    min-width: 28px;
+    width: 28px;
+  }
+}
+
+@media (max-width: 449px) {
+  .task-due-date {
+    width: 60px;
+    min-width: 60px;
+    justify-content: flex-end;
+    word-break: break-all;
+  }
 }
 
 .assigned-to-me {

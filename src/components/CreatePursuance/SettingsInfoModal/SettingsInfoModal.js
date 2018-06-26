@@ -22,7 +22,7 @@ const SettingsInfoModal = ({ showSettingsInfoModal, toggleSettingsInfoModal }) =
           (In the future we will add the option of making a Public pursuance's chat
           messages unencrypted and therefore searchable.)
         </div>
-
+        <br />
         <div>
           <b> Private </b> pursuances encrypt almost everything -- namely
           all tasks, messages, files, and links -- making Private pursuances more

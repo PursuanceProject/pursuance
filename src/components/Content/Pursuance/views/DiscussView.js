@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { showTaskDetails } from '../../../../actions';
+import { rpShowTaskDetails } from '../../../../actions';
 import './DiscussView.css';
 
 const leapChatUrl = "http://localhost:8080/#GiddinessPuttRegisterKioskLucidityJockstrapTastebudFactoryPegboardOpticalEstrogenGoatskinHatchlingDittoPseudoNegotiatorLunchboxLightbulbUploadSyllableTulipQuiltJurorRuptureAorta";
@@ -10,10 +10,10 @@ class DiscussView extends Component {
   componentWillMount() {
     const {
       match: { params: { taskGid } },
-      showTaskDetails
+      rpShowTaskDetails
     } = this.props;
 
-    showTaskDetails({taskGid});
+    rpShowTaskDetails({taskGid});
   }
 
   getIframeStyle = () => {
@@ -35,4 +35,4 @@ class DiscussView extends Component {
   };
 }
 
-export default connect(({tasks, rightPanel}) => ({tasks, rightPanel}), { showTaskDetails })(DiscussView);
+export default connect(({tasks, rightPanel}) => ({tasks, rightPanel}), { rpShowTaskDetails })(DiscussView);

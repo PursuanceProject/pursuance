@@ -4,7 +4,7 @@ import {
   getPublicPursuancesReq,
   postPursuanceReq
 } from '../api/pursuances';
-import { postTaskReq, getTasksReq, patchTaskReq } from '../api/tasks';
+import { postTaskReq, getTasksReq, patchTaskReq, deleteTaskReq } from '../api/tasks';
 
 export const updateFormField = (formId, fieldId, value) => ({
   type: 'TASK_FIELD_UPDATE',
@@ -57,6 +57,11 @@ export const postTask = task => ({
   payload: postTaskReq(task)
 });
 
+export const deleteTask = task => ({
+  type: 'DELETE_TASK',
+  payload: deleteTaskReq(task)
+});
+
 export const startSuggestions = (value, filterSuggestion, list, formId) => ({
   type: 'START_SUGGESTIONS',
   suggestions: filterSuggestion(value, list),
@@ -84,6 +89,10 @@ export const downSuggestion = () => ({ type: 'DOWN_SUGGESTION' });
 export const setCurrentPursuance = currentPursuanceId => ({
   type: 'SET_CURRENT_PURSUANCE',
   currentPursuanceId
+});
+
+export const unsetCurrentPursuance = () => ({
+  type: 'UNSET_CURRENT_PURSUANCE'
 });
 
 export const addPostedRootTaskToHierarchy = task => ({
@@ -179,21 +188,46 @@ export const patchTask = task => ({
   payload: patchTaskReq(task)
 });
 
+export const archiveTask = task => ({
+  type: 'TASK_ARCHIVE',
+  payload: patchTaskReq({ ...task, is_archived: true })
+});
+
+export const setTaskAssignee = task => ({
+  type: 'TASK_SET_ASSIGNEE',
+  payload: patchTaskReq(task)
+});
+
 export const removeSuccessToast = () => ({
   type: 'REMOVE_SUCCESS_TOAST'
 });
 
-export const showTaskDetails = ({taskGid, show = true}) => ({
+export const rpShowTaskDetails = ({ taskGid, show = true }) => ({
   type: 'RIGHT_PANEL_SHOW_TASK_DETAILS',
   taskGid,
   show
+});
+
+export const rpShowTaskList = ({ show = true }) => ({
+  type: 'RIGHT_PANEL_TOGGLE_SHOW_TASK_LIST',
+  show: show
+});
+
+export const rpUpdateTaskListFilter = taskListFilter => ({
+  type: 'RIGHT_PANEL_TASK_LIST_FILTER_UPDATE',
+  taskListFilter
 });
 
 export const toggleRightPanel = () => ({
   type: 'RIGHT_PANEL_TOGGLE'
 });
 
-export const userLoginSuccess = ({username}) => ({
+export const rpShowTaskDetailsOrCollapse = ({ taskGid }) => ({
+  type: 'RIGHT_PANEL_SHOW_TASK_DETAILS_OR_COLLAPSE',
+  taskGid
+});
+
+export const userLoginSuccess = ({ username }) => ({
   type: 'USER_LOGIN_SUCCESS',
   username
 });

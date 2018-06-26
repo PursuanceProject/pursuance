@@ -90,7 +90,7 @@ func ProductionServer(srv *http.Server, httpsAddr string, domain string, manager
 func GetIndex(w http.ResponseWriter, req *http.Request) {
 	contents, err := ioutil.ReadFile("build/index.html")
 	if err != nil {
-		log.Errorf("Error serving index.html: %v\n", err)
+		log.Errorf("Error serving index.html: %v", err)
 		w.WriteHeader(http.StatusInternalServerError)
 		w.Write([]byte("Error: couldn't serve you index.html!"))
 		return
@@ -107,7 +107,7 @@ func Login(m *miniware.Mapper) func(w http.ResponseWriter, req *http.Request) {
 			return
 		}
 
-		log.Infof("Login: `%s` is trying to log in\n", mID)
+		log.Infof("Login: `%s` is trying to log in", mID)
 
 		newUUID, err := uuid.NewV4()
 		if err != nil {
@@ -163,7 +163,7 @@ func redirectToHTTPS(httpAddr, httpsPort string, manager *autocert.Manager) {
 			http.Redirect(w, req, url, http.StatusFound)
 		}),
 	}
-	log.Infof("Listening on %v\n", httpAddr)
+	log.Infof("Listening on %v", httpAddr)
 	log.Fatal(srv.ListenAndServe())
 }
 
