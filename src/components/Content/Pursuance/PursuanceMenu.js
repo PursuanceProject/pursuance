@@ -9,6 +9,7 @@ import CommentsO from 'react-icons/lib/fa/comments-o';
 import FolderOpen from 'react-icons/lib/fa/folder-open';
 import Group from 'react-icons/lib/fa/group';
 import Rocket from 'react-icons/lib/fa/rocket';
+import Map from 'react-icons/lib/fa/map';
 import PlusCircle from 'react-icons/lib/fa/plus-circle';
 import './PursuanceMenu.css';
 
@@ -60,12 +61,19 @@ const PursuanceMenu = ({ currentPursuanceId, location }) => {
           icon={<Group size={28} />}
         />
         <PursuanceMenuItem
-          className="pursuance-bottom-btn"
           pursuanceId={currentPursuanceId}
           location={location}
           label='Progress'
           action='progress'
           icon={<Rocket size={28} />}
+        />
+        <PursuanceMenuItem
+          className="pursuance-bottom-btn"
+          pursuanceId={currentPursuanceId}
+          location={location}
+          label='Map'
+          action='map'
+          icon={<Map size={28} />}
         />
       </div>
     </ButtonGroup>
