@@ -250,7 +250,7 @@ class TaskList extends Component {
               type="text"
               value={taskListFilter}
               placeholder="@me status:new due:2019-05"
-              autoFocus
+              autoFocus={!window.hasVirtualKeyboard}
               onChange={this.onChangeFilter}
             />
           </div>
