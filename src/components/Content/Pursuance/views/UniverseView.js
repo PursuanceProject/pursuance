@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import {ForceGraph, ForceGraphNode, ForceGraphLink} from 'react-vis-force';
 
-export default class MapView extends Component {
+class UniverseView extends Component {
   render() {
     return (
       <ForceGraph simulationOptions={{ height: 300, width: 300 }}>
@@ -14,3 +15,5 @@ export default class MapView extends Component {
     )
   }
 }
+
+export default connect(({ pursuances }) => ({ pursuances }))(UniverseView);
