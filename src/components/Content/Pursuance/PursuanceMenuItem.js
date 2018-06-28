@@ -4,13 +4,15 @@ import { withRouter } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 import './PursuanceMenuItem.css';
 
-const PursuanceMenuItem = ({ currentPursuanceId, label, action, icon, location, className = '' }) => {
+const PursuanceMenuItem = ({ currentPursuanceId, label, action, icon, location, className = '', tasks }) => {
   const rootPath = `/pursuance/${currentPursuanceId}`;
   const to = `${rootPath}/${action}`;
+  const toDiscussRootTask = tasks.rootTaskGids.length > 0 &&
+    `/pursuance/${currentPursuanceId}/discuss/task/${tasks.rootTaskGids[0]}`;
   return (
     <NavLink
       className={"menu-item " + className}
-      to={to}
+      to={action === 'discuss' ? toDiscussRootTask : to}
       isActive={
         () =>
           ((action === 'tasks' && (location.pathname === rootPath || location.pathname === rootPath + '/'))
@@ -24,4 +26,4 @@ const PursuanceMenuItem = ({ currentPursuanceId, label, action, icon, location, 
   )
 };
 
-export default withRouter(connect(({ currentPursuanceId }) => ({ currentPursuanceId }))(PursuanceMenuItem));
+export default withRouter(connect(({ currentPursuanceId, tasks }) => ({ currentPursuanceId, tasks }))(PursuanceMenuItem));
