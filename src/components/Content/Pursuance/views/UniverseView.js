@@ -5,7 +5,11 @@ import { getPursuances } from '../../../../actions';
 
 import './UniverseView.css'
 
+const MAX_PURSUANCE_NAME_DISPLAY_LENGTH = 25;
+const COLORS = ["red", "green", "blue"];
+
 class UniverseView extends Component {
+
   componentWillMount() {
     // TODO: This will probably need to be tweaked after auth is added
     if (Object.values(this.props.pursuances).length === 0) {
@@ -13,36 +17,57 @@ class UniverseView extends Component {
     }
   }
 
-  renderNodes() {
+  getName = (pursuance) => {
+    if (pursuance.name.length <= MAX_PURSUANCE_NAME_DISPLAY_LENGTH) {
+      return pursuance.name;
+    }
+    return pursuance.name.slice(0, MAX_PURSUANCE_NAME_DISPLAY_LENGTH+1) + '...';
+  }
+
+  renderNodes = () => {
     const { pursuances } = this.props;
     const pursuanceArr = Object.values(pursuances);
     return pursuanceArr.map((pursuance) => (
-      <ForceGraphNode key={pursuance.id} node={{ id: pursuance.name, radius: 10 }} fill={(pursuance.id % 2 === 0 ? "blue" : "red")} />
+      <ForceGraphNode
+        key={pursuance.id}
+        node={{ id: this.getName(pursuance), radius: 16 }}
+        fill={COLORS[pursuance.id % 3]}
+        labelStyle={{ fontSize: 16, fill: '#eee' }}
+        showLabel
+      />
     ));
   }
 
-  renderLinks() {
+  renderLinks = () => {
     const { pursuances } = this.props;
     const pursuanceArr = Object.values(pursuances);
     return pursuanceArr.map((pursuance) => (
       <ForceGraphLink
-        key={pursuance.name}
-        link={{ source: pursuance.name, target: pursuanceArr[(pursuance.id % 2 === 0 ? 0 : 1)].name }}
-        stroke="black"
+        key={pursuance.id}
+        link={{ source: this.getName(pursuance), target: this.getName(pursuanceArr[pursuance.id % 3]) }}
+        stroke="white"
       />
     ));
   }
 
   render() {
     return (
-      <InteractiveForceGraph
-        className="interactive-graph"
-        simulationOptions={{ height: 750, width: 1000, radiusMargin: 30, alpha: 1 }}
-        zoom
-	      zoomOptions={{ minScale: 0.75, maxScale: 2 }}>
-        {this.renderNodes()}
-        {this.renderLinks()}
-      </InteractiveForceGraph>
+      <div className="content">
+        <InteractiveForceGraph
+          className="interactive-graph"
+          simulationOptions={{ height: 600, width: 800, radiusMargin: 40, alpha: 1 }}
+          zoom
+          zoomOptions={{ minScale: 0.25, maxScale: 2 }}
+          showLabel
+          labelOffset={{
+            x: () => 22,
+            y: () => 6,
+          }}
+        >
+          {this.renderNodes()}
+          {this.renderLinks()}
+        </InteractiveForceGraph>
+      </div>
     )
   }
 }
