@@ -15,16 +15,6 @@
   z-index: 10;
 }
 
-position: fixed;
-background-color: #141414;
-border-radius: 0px;
-border: none;
-margin: 0;
-height: 60px;
-width: 100%;
-top: 0;
-z-index: 10;
-
 .navbar-collapse {
   height: 200px; 
 }
@@ -70,11 +60,9 @@ nav li a:hover {
   float: right;
 }
 
-.nav-center {
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  width: 50%;
+.nav-pursuances {
+  float: right;
+  position: relative;
 }
 
 @media (max-width: 768px) {
