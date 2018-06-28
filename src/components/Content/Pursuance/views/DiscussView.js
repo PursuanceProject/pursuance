@@ -29,7 +29,7 @@ class DiscussView extends Component {
     const { match: { params: { taskGid } } } = this.props;
     return (
       <div className="discuss-ctn">
-        <iframe className={this.getIframeStyle()} title="LeapChat" src={leapChatUrl + taskGid} />
+        <iframe key={taskGid} className={this.getIframeStyle()} title="LeapChat" src={leapChatUrl + taskGid} />
       </div>
     );
   };
