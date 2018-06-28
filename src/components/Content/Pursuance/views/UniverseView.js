@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {ForceGraphNode, ForceGraphLink, InteractiveForceGraph} from 'react-vis-force';
+import { ForceGraphNode, ForceGraphLink, InteractiveForceGraph } from 'react-vis-force';
 import { getPursuances } from '../../../../actions';
 
 import './UniverseView.css'
@@ -16,7 +16,7 @@ class UniverseView extends Component {
   renderNodes() {
     const { pursuances } = this.props;
     const pursuanceArr = Object.values(pursuances);
-    return Object.values(pursuances).map((pursuance) => (
+    return pursuanceArr.map((pursuance) => (
       <ForceGraphNode key={pursuance.id} node={{ id: pursuance.name, radius: 10 }} fill={(pursuance.id % 2 === 0 ? "blue" : "red")} />
     ));
   }
@@ -37,8 +37,6 @@ class UniverseView extends Component {
     return (
       <InteractiveForceGraph
         className="interactive-graph"
-        onSelectNode={() => { console.log('selected') }}
-        onDeselectNode={() => { console.log('deselected') }}
         simulationOptions={{ height: 750, width: 1000, radiusMargin: 30, alpha: 1 }}
         zoom
 	      zoomOptions={{ minScale: 0.75, maxScale: 2 }}>
