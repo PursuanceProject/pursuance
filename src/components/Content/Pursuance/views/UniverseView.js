@@ -1,19 +1,52 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {ForceGraph, ForceGraphNode, ForceGraphLink} from 'react-vis-force';
+import {ForceGraphNode, ForceGraphLink, InteractiveForceGraph} from 'react-vis-force';
+import { getPursuances } from '../../../../actions';
+
+import './UniverseView.css'
 
 class UniverseView extends Component {
+  componentWillMount() {
+    // TODO: This will probably need to be tweaked after auth is added
+    if (Object.values(this.props.pursuances).length === 0) {
+      this.props.getPursuances();
+    }
+  }
+
+  renderNodes() {
+    const { pursuances } = this.props;
+    const pursuanceArr = Object.values(pursuances);
+    return Object.values(pursuances).map((pursuance) => (
+      <ForceGraphNode key={pursuance.id} node={{ id: pursuance.name, radius: 10 }} fill={(pursuance.id % 2 === 0 ? "blue" : "red")} />
+    ));
+  }
+
+  renderLinks() {
+    const { pursuances } = this.props;
+    const pursuanceArr = Object.values(pursuances);
+    return pursuanceArr.map((pursuance) => (
+      <ForceGraphLink
+        key={pursuance.name}
+        link={{ source: pursuance.name, target: pursuanceArr[(pursuance.id % 2 === 0 ? 0 : 1)].name }}
+        stroke="black"
+      />
+    ));
+  }
+
   render() {
     return (
-      <ForceGraph simulationOptions={{ height: 300, width: 300 }}>
-        <ForceGraphNode node={{ id: 'first-node' }} fill="red" />
-        <ForceGraphNode node={{ id: 'second-node' }} fill="blue" />
-        <ForceGraphNode node={{ id: 'third-node' }} fill="green" />
-        <ForceGraphLink link={{ source: 'first-node', target: 'second-node' }} />
-        <ForceGraphLink link={{ source: 'third-node', target: 'second-node' }} />
-      </ForceGraph>
+      <InteractiveForceGraph
+        className="interactive-graph"
+        onSelectNode={() => { console.log('selected') }}
+        onDeselectNode={() => { console.log('deselected') }}
+        simulationOptions={{ height: 750, width: 1000, radiusMargin: 30, alpha: 1 }}
+        zoom
+	      zoomOptions={{ minScale: 0.75, maxScale: 2 }}>
+        {this.renderNodes()}
+        {this.renderLinks()}
+      </InteractiveForceGraph>
     )
   }
 }
 
-export default connect(({ pursuances }) => ({ pursuances }))(UniverseView);
+export default connect(({ pursuances }) => ({ pursuances }), { getPursuances })(UniverseView);
