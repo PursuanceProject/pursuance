@@ -7,7 +7,7 @@ import './PursuanceMenuItem.css';
 const PursuanceMenuItem = ({ currentPursuanceId, label, action, icon, location, className = '', tasks }) => {
   const rootPath = `/pursuance/${currentPursuanceId}`;
   const to = `${rootPath}/${action}`;
-  const toDiscussRootTask = tasks.rootTaskGids.length > 0 &&
+  const toDiscussRootTask = (tasks.rootTaskGids.length > 0 || '' ) &&
     `/pursuance/${currentPursuanceId}/discuss/task/${tasks.rootTaskGids[0]}`;
   return (
     <NavLink
