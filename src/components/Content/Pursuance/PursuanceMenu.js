@@ -26,20 +26,20 @@ const PursuanceMenu = ({}) => {
         */}
         <PursuanceMenuItem
           className="pursuance-top-btn"
+          label='Discuss'
+          action='discuss'
+          icon={<CommentsO size={28} />}
+        />
+        <PursuanceMenuItem
           label='Tasks'
           action='tasks'
           icon={<FaCheckSquareO size={28} />}
         />
         <PursuanceMenuItem
+          className="pursuance-bottom-btn"
           label='Calendar'
           action='calendar'
           icon={<FaCalendar size={28} />}
-        />
-        <PursuanceMenuItem
-          className="pursuance-bottom-btn"
-          label='Discuss'
-          action='discuss'
-          icon={<CommentsO size={28} />}
         />
         {/*
         <PursuanceMenuItem
