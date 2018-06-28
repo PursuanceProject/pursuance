@@ -49,8 +49,13 @@ const buildTaskHierarchy = (tasks, pursuanceId) => {
     if (isRootTaskInPursuance(t, pursuanceId)) {
       rootTaskGids.push(t.gid);
     } else {
-      // Add t to its parent's subtasks
-      taskMap[t.parent_task_gid].subtask_gids.push(t.gid);
+      // Add t to its parent's subtasks (if its parent is in taskMap)
+      if (taskMap[t.parent_task_gid]) {
+        taskMap[t.parent_task_gid].subtask_gids.push(t.gid);
+      } else {
+        console.log(`Task ${t.gid} ("${t.title}")'s parent ${t.parent_task_gid}` +
+                    ` not found in taskMap`);
+      }
     }
   }
 
