@@ -12,7 +12,7 @@ import CommentsO from 'react-icons/lib/fa/comments-o';
 // import PlusCircle from 'react-icons/lib/fa/plus-circle';
 import './PursuanceMenu.css';
 
-const PursuanceMenu = ({}) => {
+const PursuanceMenu = () => {
   return (
     <ButtonGroup vertical className="pursuance-btn-group hide-xsmall">
       <div>
