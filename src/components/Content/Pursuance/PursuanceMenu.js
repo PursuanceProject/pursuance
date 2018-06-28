@@ -6,23 +6,26 @@ import PursuanceMenuItem from './PursuanceMenuItem';
 import FaCheckSquareO from 'react-icons/lib/fa/check-square-o';
 import FaCalendar from 'react-icons/lib/fa/calendar';
 import CommentsO from 'react-icons/lib/fa/comments-o';
-import FolderOpen from 'react-icons/lib/fa/folder-open';
-import Group from 'react-icons/lib/fa/group';
-import Rocket from 'react-icons/lib/fa/rocket';
-import PlusCircle from 'react-icons/lib/fa/plus-circle';
+// import FolderOpen from 'react-icons/lib/fa/folder-open';
+// import Group from 'react-icons/lib/fa/group';
+// import Rocket from 'react-icons/lib/fa/rocket';
+// import PlusCircle from 'react-icons/lib/fa/plus-circle';
 import './PursuanceMenu.css';
 
 const PursuanceMenu = ({}) => {
   return (
     <ButtonGroup vertical className="pursuance-btn-group hide-xsmall">
       <div>
+        {/*
         <PursuanceMenuItem
           className="pursuance-top-btn"
           label='New'
           action='add'
           icon={<PlusCircle size={28} />}
         />
+        */}
         <PursuanceMenuItem
+          className="pursuance-top-btn"
           label='Tasks'
           action='tasks'
           icon={<FaCheckSquareO size={28} />}
@@ -33,10 +36,12 @@ const PursuanceMenu = ({}) => {
           icon={<FaCalendar size={28} />}
         />
         <PursuanceMenuItem
+          className="pursuance-bottom-btn"
           label='Discuss'
           action='discuss'
           icon={<CommentsO size={28} />}
         />
+        {/*
         <PursuanceMenuItem
           label='Files & Docs'
           action='docs'
@@ -53,6 +58,7 @@ const PursuanceMenu = ({}) => {
           action='progress'
           icon={<Rocket size={28} />}
         />
+        */}
       </div>
     </ButtonGroup>
   );
