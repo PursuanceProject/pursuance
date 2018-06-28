@@ -56,6 +56,8 @@ class LogIn extends Component {
     this.usernameRemembered = '';
     this.username = '';
     this.password = '';
+    // remove modal class from body.
+    document.body.className = document.body.className.replace('modal-open','');
   }
 
   render() {
