@@ -1,7 +1,28 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { DropdownButton, MenuItem } from 'react-bootstrap';
+import { setCurrentPursuance } from '../../../actions';
 
 class JumpToPursuance extends Component {
+  handleJumpToPursuance = (e) => {
+    const history = this.props.history;
+    history.push({
+      pathname: `/pursuance/${e}`
+    });
+    // Needed to trigger re-render of dropdown // @todo though this doesn't seem to work
+    setCurrentPursuance(e);
+  }
+
+  showCurrentPursuance = (pursuances) => {
+    const { currentPursuanceId } = this.props;
+    const rawPursuance = pursuances[currentPursuanceId];
+    if (rawPursuance !== undefined) {
+      return rawPursuance.name;
+    } else {
+      return "Jump to a pursuance";
+    }
+  }
+
   produceOptions = (pursuances) => {
     const pursuanceArr = Object.values(pursuances);
     pursuanceArr.sort((p1, p2) => {
@@ -10,61 +31,30 @@ class JumpToPursuance extends Component {
 
     return pursuanceArr.map((pursuance) => (
       <MenuItem
-        eventKey={pursuance.id}
         key={pursuance.id}
+        eventKey={pursuance.id}
         value={pursuance.id}
-      >
+        href={ `/pursuance/${pursuance.id}` }
+        >
         {pursuance.name}
       </MenuItem>
     ));
   }
 
   render() {
-      return (
-        // <NavDropdown id="jump-to-pursuance" title={this.showCurrentPursuance(pursuances)} onSelect={this.handleJumpToPursuance}>
-        // {jumpToPursuanceOptions(pursuances)}
-        // </NavDropdown>
-        <ul className="nav-pursuances">
-          <div class="dropdown open btn-group">
-            <DropdownButton
-              id="task-status-dropdown"
-              title={this.props.title}
-              noCaret>
-              {this.produceOptions(this.props.pursuances)}
-            </DropdownButton>
-            <div className="edit-icon-ctn">
-              tip
-            </div>
-          </div>
-        </ul>
-      )
+    const { pursuances } = this.props;
+    return (
+      <div className="nav-pursuances ">
+        <DropdownButton
+          id="header-pursuance-dropdown"
+          title={ this.showCurrentPursuance(pursuances) }
+          onSelect={ (e) => this.handleJumpToPursuance(e) }
+          >
+          { this.produceOptions(pursuances) }
+        </DropdownButton>
+      </div>
+    )
   }
 }
 
-export default JumpToPursuance;
-
-
-// <div className={"task-status-ctn task-status-" + status + " hide-small"}>
-//         <DropdownButton
-//           id="task-status-dropdown"
-//           title={this.getCurrentStatus()}
-//           noCaret>
-//           {this.getDropDownItems()}
-//         </DropdownButton>
-//         {STATUS_IMAGES[status] && <img src={`/assets/img/${status}.gif`} alt={`Status: ${status}`} />}
-//         <div className="edit-icon-ctn">
-//           <TiPencil id="task-edit-icon" size={18} />
-//         </div>
-//       </div>
-
-
-// <ul role="menu" class="dropdown-menu" aria-labelledby="task-status-dropdown">
-//   <li role="presentation" class=""><a role="menuitem" tabindex="-1" href="#">Started</a></li>
-//   <li role="presentation" class=""><a role="menuitem" tabindex="-1" href="#">Working On</a></li>
-//   <li role="presentation" class=""><a role="menuitem" tabindex="-1" href="#">Help Wanted</a></li>
-//   <li role="presentation" class=""><a role="menuitem" tabindex="-1" href="#">Ready For Review</a></li>
-//   <li role="presentation" class=""><a role="menuitem" tabindex="-1" href="#">Reviewing</a></li>
-//   <li role="presentation" class=""><a role="menuitem" tabindex="-1" href="#">Done</a></li>
-// </ul>
-
-// <TiPencil id="task-edit-icon" size={18} />
+export default connect(({ pursuances, currentPursuanceId }) => ({ pursuances, currentPursuanceId }))(JumpToPursuance);

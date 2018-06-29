@@ -1,6 +1,6 @@
 .about {
   width: 100%;
-  padding: 0 30px;
+  padding: 0 80px 0 30px;
   overflow: auto;
 }
 
@@ -10,4 +10,10 @@
 
 .about h1 {
   text-align: center;
+}
+
+@media (max-width: 768px) {
+  .about {
+    padding: 0 65px 0 15px;
+  }
 }
