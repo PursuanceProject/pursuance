@@ -5,5 +5,5 @@ if (Object && !Object.values) {
       arr.push(obj[key]);
     }
     return arr;
-  }
+  };
 }
