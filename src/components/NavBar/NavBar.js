@@ -8,16 +8,9 @@ import LogIn from './LogIn/LogIn';
 import NotificationsModal from './NotificationsModal/NotificationsModal';
 import UserSettingsPopover from './UserSettingsPopover';
 import JumpToPursuance from './JumpToPursuance/JumpToPursuance';
-import { getPursuances, setCurrentPursuance } from '../../actions';
 import './NavBar.css';
 
 class NavBar extends Component {
-
-  componentWillMount() {
-    // TODO: Once we add auth, only grab pursuances that the logged-in
-    // user is a mumber of
-    this.props.getPursuances();
-  }
 
   getTooltip = () => (
     <Tooltip id="tooltip-bell">
@@ -26,7 +19,7 @@ class NavBar extends Component {
   );
 
   render() {
-    const { user, pursuances } = this.props;
+    const { user } = this.props;
     const { authenticated, username, contributionPoints } = user;
     return (
       <Navbar collapseOnSelect>
@@ -89,7 +82,7 @@ class NavBar extends Component {
             }
           </Nav>
           {authenticated &&
-            <JumpToPursuance currentPursuanceId={this.props.currentPursuanceId} pursuances={pursuances} history={this.props.history}/>
+            <JumpToPursuance history={this.props.history}/>
           }
         </Navbar.Collapse>
       </Navbar> 
@@ -98,6 +91,4 @@ class NavBar extends Component {
 }
 
 export default withRouter(connect(
-  ({ user, pursuances, currentPursuanceId }) => ({ user, pursuances, currentPursuanceId }), {
-    getPursuances, setCurrentPursuance
-  })(NavBar));
+  ({ user }) => ({ user }))(NavBar));

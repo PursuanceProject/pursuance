@@ -29,15 +29,22 @@ const produceOptions = (pursuances) => {
   ));
 }
 
+const onMenuItemSelectAction = (pursuanceId, onMenuItemSelect, history) => {
+  history.push({
+    pathname: `/pursuance/${pursuanceId}`
+  });  
+  onMenuItemSelect(pursuanceId);
+}
+
 const renderDropdown = (props) => {
   return (
     <div className="nav-pursuances ">
       <DropdownButton
         id="header-pursuance-dropdown"
-        title={ props.title }
-        onSelect={ (e) => props.onMenuItemSelect(e) } 
+        title={ getCurrentPursuanceName(props.pursuances, props.currentPursuanceId) }
+        onSelect={ (pursuanceId) => onMenuItemSelectAction(pursuanceId, props.onMenuItemSelect, props.history) } 
         >
-        { produceOptions(props.pursuances, props.onMenuItemSelect) }
+        { produceOptions(props.pursuances) }
       </DropdownButton>
     </div>
   )
@@ -46,15 +53,14 @@ const renderDropdown = (props) => {
 const mapStateToProps = state => {
   return {
     currentPursuanceId: state.currentPursuanceId,
-    pursuances: state.pursuances,
-    title: getCurrentPursuanceName(state.pursuances, state.currentPursuanceId)
+    pursuances: state.pursuances
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    onMenuItemSelect: id => {
-      dispatch(setCurrentPursuance(id));
+    onMenuItemSelect: (pursuanceId) => {
+      dispatch(setCurrentPursuance(pursuanceId));
     }
   }
 }
