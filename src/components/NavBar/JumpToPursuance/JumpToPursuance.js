@@ -1,60 +1,67 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { DropdownButton, MenuItem } from 'react-bootstrap';
 import { setCurrentPursuance } from '../../../actions';
 
-class JumpToPursuance extends Component {
-  handleJumpToPursuance = (e) => {
-    const history = this.props.history;
-    history.push({
-      pathname: `/pursuance/${e}`
-    });
-    // Needed to trigger re-render of dropdown // @todo though this doesn't seem to work
-    setCurrentPursuance(e);
-  }
-
-  showCurrentPursuance = (pursuances) => {
-    const { currentPursuanceId } = this.props;
-    const rawPursuance = pursuances[currentPursuanceId];
-    if (rawPursuance !== undefined) {
-      return rawPursuance.name;
-    } else {
-      return "Jump to a pursuance";
-    }
-  }
-
-  produceOptions = (pursuances) => {
-    const pursuanceArr = Object.values(pursuances);
-    pursuanceArr.sort((p1, p2) => {
-      return p1.name.toLowerCase().localeCompare(p2.name.toLowerCase());
-    });
-
-    return pursuanceArr.map((pursuance) => (
-      <MenuItem
-        key={pursuance.id}
-        eventKey={pursuance.id}
-        value={pursuance.id}
-        href={ `/pursuance/${pursuance.id}` }
-        >
-        {pursuance.name}
-      </MenuItem>
-    ));
-  }
-
-  render() {
-    const { pursuances } = this.props;
-    return (
-      <div className="nav-pursuances ">
-        <DropdownButton
-          id="header-pursuance-dropdown"
-          title={ this.showCurrentPursuance(pursuances) }
-          onSelect={ (e) => this.handleJumpToPursuance(e) }
-          >
-          { this.produceOptions(pursuances) }
-        </DropdownButton>
-      </div>
-    )
+const getCurrentPursuanceName = (pursuances, currentPursuanceId) => {
+  const rawPursuance = pursuances[currentPursuanceId];
+  if (rawPursuance !== undefined) {
+    return rawPursuance.name;
+  } else {
+    return "Jump to a pursuance";
   }
 }
 
-export default connect(({ pursuances, currentPursuanceId }) => ({ pursuances, currentPursuanceId }))(JumpToPursuance);
+const produceOptions = (pursuances) => {
+  const pursuanceArr = Object.values(pursuances);
+  pursuanceArr.sort((p1, p2) => {
+    return p1.name.toLowerCase().localeCompare(p2.name.toLowerCase());
+  });
+
+  return pursuanceArr.map((pursuance) => (
+    <MenuItem
+      key={pursuance.id}
+      eventKey={pursuance.id}
+      value={pursuance.id}
+      >
+      {pursuance.name}
+    </MenuItem>
+  ));
+}
+
+const renderDropdown = (props) => {
+  return (
+    <div className="nav-pursuances ">
+      <DropdownButton
+        id="header-pursuance-dropdown"
+        title={ props.title }
+        onSelect={ (e) => props.onMenuItemSelect(e) } 
+        >
+        { produceOptions(props.pursuances, props.onMenuItemSelect) }
+      </DropdownButton>
+    </div>
+  )
+}
+
+const mapStateToProps = state => {
+  return {
+    currentPursuanceId: state.currentPursuanceId,
+    pursuances: state.pursuances,
+    title: getCurrentPursuanceName(state.pursuances, state.currentPursuanceId)
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onMenuItemSelect: id => {
+      dispatch(setCurrentPursuance(id));
+    }
+  }
+}
+
+const JumpToPursuance = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(renderDropdown)
+
+export default JumpToPursuance
