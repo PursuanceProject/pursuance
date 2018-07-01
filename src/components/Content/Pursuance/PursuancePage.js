@@ -9,10 +9,10 @@ import DiscussView from './views/DiscussView';
 import ParticipantsView from './views/ParticipantsView';
 import RightPanel from '../RightPanel/RightPanel';
 import './PursuancePage.css';
-import Modal from '../Modal/Modal'; 
+import ShortcutsModal from '../ShortcutsModal/ShortcutsModal'; 
 
 class PursuancePage extends Component {
-
+   
   componentWillMount() {
     let { setCurrentPursuance, match, currentPursuanceId } = this.props;
     currentPursuanceId = Number(match.params.pursuanceId) || currentPursuanceId;
@@ -22,8 +22,8 @@ class PursuancePage extends Component {
   render() {
     return (
     <Router>
-        <div id="pursuance-page" className="content-ctn">
-        <Modal />
+        <div id="pursuance-page" className="content-ctn" onKeyDown={(event) => {this.child.handleKeyDown(event);}} tabIndex="0">
+        <ShortcutsModal ref={instance => { this.child = instance; }} />
         <nav id="pursuance-nav">
         <PursuanceMenu />
         </nav>
