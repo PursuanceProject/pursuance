@@ -4,7 +4,6 @@
   height: 100%;
   max-height: calc(100vh - 60px);
   position: fixed;
-  overflow-y: auto;
 }
 
 .right-panel-content-ctn {

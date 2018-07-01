@@ -114,7 +114,7 @@ class TaskForm extends Component {
   }
 
   render() {
-    const { taskForm, autoComplete } = this.props;
+    const { taskForm, autoComplete, autoFocus } = this.props;
     const { title, assigned_to, due_date_raw } = taskForm[this.id] || {};
     return (
       <div className={this.getClassName()}>
@@ -127,7 +127,7 @@ class TaskForm extends Component {
               placeholder="Task Title"
               name={'title'}
               value={title || ''}
-              autoFocus
+              autoFocus={autoFocus !== false}
               ref={(input) => this.titleRef = input}
               onChange={this.onChange}
               onKeyDown={this.onTitleKeyDown}

@@ -13,7 +13,15 @@
 .navbar .container {
   align-items: center;
   width: 100%;
-  padding: 0 36px 0 132px;
+  padding: 0 32px 0 32px;
+}
+
+.navbar-collapse {
+  height: 200px;
+}
+
+.navbar-collapse.collapse {
+  background-color: black;
 }
 
 .modal-title {
@@ -49,6 +57,14 @@
 
 .navbar-nav {
   height: 60px;
+}
+
+@media (max-width: 768px) {
+  .navbar-nav {
+    background-color: black;
+    border: 1px solid white;
+    border-radius: 5px;
+  }
 }
 
 .navbar-nav li {

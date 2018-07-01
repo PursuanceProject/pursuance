@@ -40,27 +40,28 @@ const taskTarget = {
   canDrop(props, monitor) {
     const { taskMap, taskData } = props;
     const source = monitor.getItem();
-    const isSelf = (target, source) => {
-      return target.gid === source.gid;
-    }
     // recursively checks if the source is a descendant of the target
     const isParent = (map, target, source) => {
       if (!target.parent_task_gid) {
         return false;
       }
-      return (target.parent_task_gid === source.gid) || isParent(map, map[target.parent_task_gid], source);
+      return (target.gid === source.gid) || isParent(map, map[target.parent_task_gid], source);
     }
-    return !isSelf(taskData, source) && !isParent(taskMap, taskData, source);
+    return !isParent(taskMap, taskData, source);
   },
   drop(props, monitor, component) {
     const { taskData, patchTask, moveTask } = props;
     const { gid, parent_task_gid } = monitor.getItem();
     const oldParent = parent_task_gid;
+    moveTask(oldParent, taskData.gid, gid)
     patchTask({
       gid: gid,
       parent_task_gid: taskData.gid
     }).then(res => {
-      moveTask(oldParent, taskData.gid, gid);
+      const { action: { type } } = res;
+      if ( type !== 'PATCH_TASK_FULFILLED') {
+        moveTask(taskData.gid, oldParent, gid);
+      }
     });
   }
 }

@@ -3,6 +3,12 @@ import React, { Component } from 'react';
 import './TaskTitle.css';
 
 class TaskTitle extends Component {
+  static autoResize() {
+    var el = document.getElementById('discuss-task-title-update');
+    el.style.height = "";
+    el.style.height = (el.scrollHeight + 2) + "px";
+  }
+
   constructor(props) {
     super(props);
 
@@ -43,6 +49,7 @@ class TaskTitle extends Component {
     } else if (key === 'Escape') {
       this.toggleInput();
     }
+    TaskTitle.autoResize();
   }
 
   render() {
@@ -52,14 +59,15 @@ class TaskTitle extends Component {
     return (
       <div className="discuss-task-title-ctn">
         {showInput && (
-          <input
+          <textarea
             autoFocus
             type="text"
-            className="discuss-task-title-update"
+            id="discuss-task-title-update"
             name={'title'}
             defaultValue={title}
             onKeyDown={this.onChange}
             onBlur={this.toggleInput}
+            onFocus={TaskTitle.autoResize}
           />
         )}
         {!showInput && (
