@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Button } from 'react-bootstrap';
 import { rpUpdateTaskListFilter, rpShowTaskDetails } from '../../../../actions';
 import TaskDetailsTopbar from '../TaskDetails/TaskDetailsTopbar';
+import FaTimes from 'react-icons/lib/fa/times-circle';
 import './TaskList.css';
 
 class TaskList extends Component {
@@ -234,10 +236,15 @@ class TaskList extends Component {
     rpUpdateTaskListFilter(e.target.value);
   }
 
+  clearFilter = () => {
+    const { rpUpdateTaskListFilter } = this.props;
+    rpUpdateTaskListFilter('');
+  }
+ 
   render() {
     const { rightPanel: { taskListFilter } } = this.props;
     const matches = this.getMatchingTasks();
-
+ 
     return (
       <div className="task-list-ctn">
         <div className="pursuance-tasks-ctn">
@@ -253,6 +260,11 @@ class TaskList extends Component {
               autoFocus
               onChange={this.onChangeFilter}
             />
+            <Button className="clear-input"
+                    onClick={ this.clearFilter }
+                    style={{opacity: taskListFilter.length > 0 ? '' : '0', cursor: taskListFilter.length > 0 ? 'pointer' : 'default'}}>
+              <FaTimes size={28} />
+            </Button>
           </div>
           <ul className="task-list">
             {matches}

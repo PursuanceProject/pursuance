@@ -51,6 +51,7 @@
   align-items: center;
   padding-bottom: 10px;
   padding-left: 3px;
+  position: relative;
 }
 
 .task-list-filter input {
@@ -65,4 +66,30 @@
 
 .task-list-ctn .task-assignment-ctn {
   font-size: 1em;
+}
+
+.task-list-filter .clear-input {
+  transition: opacity 200ms ease-in-out;
+  z-index: 1;
+  width: 28px;
+  height: 28px;
+  position: absolute;
+  right: 10px;
+  top: 3px;
+  pointer-events: auto;
+  padding: 0;
+  border: 0;
+  opacity: 0.7;
+  background-color: transparent;
+}
+ 
+.task-list-filter .clear-input:focus,
+.task-list-filter .clear-input:active {
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  background-color: transparent;
+}
+ 
+.task-list-filter .clear-input:hover {
+  opacity: 1;
 }
