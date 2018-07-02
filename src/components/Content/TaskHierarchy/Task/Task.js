@@ -57,7 +57,7 @@ const taskTarget = {
     patchTask({
       gid: gid,
       parent_task_gid: taskData.gid
-    }).then(res => {
+    }).catch(res => {
       const { action: { type } } = res;
       if ( type !== 'PATCH_TASK_FULFILLED') {
         moveTask(taskData.gid, oldParent, gid);
