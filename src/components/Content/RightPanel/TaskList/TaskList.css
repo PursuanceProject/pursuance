@@ -77,10 +77,16 @@
   right: 10px;
   top: 3px;
   pointer-events: auto;
+  cursor: pointer;
   padding: 0;
   border: 0;
   opacity: 0.7;
   background-color: transparent;
+}
+
+.task-list-filter .clear-input.clear-input--hide {
+  cursor: default;
+  opacity: 0;
 }
  
 .task-list-filter .clear-input:focus,
@@ -90,6 +96,6 @@
   background-color: transparent;
 }
  
-.task-list-filter .clear-input:hover {
+.task-list-filter .clear-input:not(.clear-input--hide):hover {
   opacity: 1;
 }
