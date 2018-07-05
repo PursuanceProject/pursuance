@@ -75,6 +75,12 @@
   min-height: 64px;
 }
 
+.task-deliverables-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 .task-deliverables-ctn a {
   color: #50b3fe;
 }
@@ -86,7 +92,7 @@
 
 .subtasks-list {
   list-style: none;
-  padding-left: 0
+  padding-left: 0;
 }
 
 .subtask-item {
@@ -105,4 +111,24 @@
   color: #fff;
   width: 100%;
   font-size: 36px;
+}
+
+.input {
+  color: black;
+}
+
+.editSubmit {
+  border-radius: 1px;
+  font-size: 17px;
+  font-weight: 400;
+  margin: 15px auto;
+  border-radius: 10px;
+  color: #fff;
+  background-color: #288bd6;
+  padding-top: 0;
+  margin: 0;
+}
+
+button {
+  margin: 0;
 }
