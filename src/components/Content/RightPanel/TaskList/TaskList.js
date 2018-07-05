@@ -239,6 +239,9 @@ class TaskList extends Component {
   clearFilter = () => {
     const { rpUpdateTaskListFilter } = this.props;
     rpUpdateTaskListFilter('');
+
+    this.rightFilterInput.focus();
+    // console.log(React.findDOMNode(this)); //.focus() 
   }
  
   render() {
@@ -258,7 +261,8 @@ class TaskList extends Component {
               value={taskListFilter}
               placeholder="@me status:new due:2019-05"
               autoFocus
-              onChange={this.onChangeFilter}
+              ref={(input) => { this.rightFilterInput = input }} 
+              onChange={ this.onChangeFilter }
             />
             <Button 
               className={taskListFilter.length > 0 ? 'clear-input' : 'clear-input clear-input--hide'}
