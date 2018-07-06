@@ -38,7 +38,7 @@ const onMenuItemSelectAction = (pursuanceId, onMenuItemSelect, history) => {
 
 const renderDropdown = (props) => {
   return (
-    <div className="nav-pursuances ">
+    <div className="nav-pursuances noselect">
       <DropdownButton
         id="header-pursuance-dropdown"
         title={ getCurrentPursuanceName(props.pursuances, props.currentPursuanceId) }

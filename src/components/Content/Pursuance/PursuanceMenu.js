@@ -19,58 +19,42 @@ const PursuanceMenu = ({ currentPursuanceId, location }) => {
       <div>
         <PursuanceMenuItem
           className="pursuance-top-btn"
-          pursuanceId={currentPursuanceId}
-          location={location}
           label='About'
           action='about'
           icon={<Info size={28} />}
         />
         <PursuanceMenuItem
-          pursuanceId={currentPursuanceId}
-          location={location}
           label='New'
           action='add'
           icon={<PlusCircle size={28} />}
         />
         <PursuanceMenuItem
-          pursuanceId={currentPursuanceId}
-          location={location}
           label='Tasks'
           action='tasks'
           icon={<FaCheckSquareO size={28} />}
         />
         <PursuanceMenuItem
-          pursuanceId={currentPursuanceId}
-          location={location}
           label='Calendar'
           action='calendar'
           icon={<FaCalendar size={28} />}
         />
         <PursuanceMenuItem
-          pursuanceId={currentPursuanceId}
-          location={location}
           label='Discuss'
           action='discuss'
           icon={<CommentsO size={28} />}
         />
         <PursuanceMenuItem
-          pursuanceId={currentPursuanceId}
-          location={location}
           label='Files & Docs'
           action='docs'
           icon={<FolderOpen size={28} />}
         />
         <PursuanceMenuItem
-          pursuanceId={currentPursuanceId}
-          location={location}
           label='Participants'
           action='participants'
           icon={<Group size={28} />}
         />
         <PursuanceMenuItem
           className="pursuance-bottom-btn"
-          pursuanceId={currentPursuanceId}
-          location={location}
           label='Progress'
           action='progress'
           icon={<Rocket size={28} />}
