@@ -61,4 +61,4 @@ class PublicPursuanceList extends Component {
   
 }
 
-export default connect( ({ publicPursuances, publicOrder }) => ({ publicPursuances, publicOrder }))(PublicPursuanceList);
+export default connect(({ publicPursuances, publicOrder }) => ({ publicPursuances, publicOrder }))(PublicPursuanceList);
