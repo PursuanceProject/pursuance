@@ -239,9 +239,7 @@ class TaskList extends Component {
   clearFilter = () => {
     const { rpUpdateTaskListFilter } = this.props;
     rpUpdateTaskListFilter('');
-
     this.rightFilterInput.focus();
-    // console.log(React.findDOMNode(this)); //.focus() 
   }
  
   render() {
