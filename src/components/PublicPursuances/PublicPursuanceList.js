@@ -6,41 +6,41 @@ import * as postgrest from '../../api/postgrest';
 
 class PublicPursuanceList extends Component {
 
-  orderByDateDesc = (p1, p2) => {
+  sortByDateDesc = (p1, p2) => {
     p1["created_parsed"] = Date.parse(p1.created);
     p2["created_parsed"] = Date.parse(p2.created);
     return p2.created_parsed - p1.created_parsed;
   }
-  orderByDateAsc = (p1, p2) => {
+  sortByDateAsc = (p1, p2) => {
     return p1.created_parsed - p2.created_parsed;
   }
-  orderByNameAsc = (p1, p2) => {
+  sortByNameAsc = (p1, p2) => {
     return p1.name.toLowerCase().localeCompare(p2.name.toLowerCase());
   }
-  orderByNameDesc = (p1, p2) => {
+  sortByNameDesc = (p1, p2) => {
     return p2.name.toLowerCase().localeCompare(p1.name.toLowerCase());
   }
-  orderBy = () => {
+  sortBy = () => {
     switch(this.props.publicOrder) {
       case "Most Recent":
-        return this.orderByDateDesc;
+        return this.sortByDateDesc;
       case "Oldest":
-        return this.orderByDateAsc;
+        return this.sortByDateAsc;
       case "A to Z":
-        return this.orderByNameAsc;
+        return this.sortByNameAsc;
       case "Z to A":
-        return this.orderByNameDesc;
+        return this.sortByNameDesc;
       case "Most Popular":
         // function
         break;
       default:
-        return this.orderByDateDesc;
+        return this.sortByDateDesc;
     }
   }
   
   getPublicPursuanceList = () => {
     const pursuanceArr = Object.values(this.props.publicPursuances);
-    pursuanceArr.sort(this.orderBy());
+    pursuanceArr.sort(this.sortBy());
     return pursuanceArr.map((pursuance) => (
       <div key={pursuance.id} className="pursuance-list-ctn">
         <Link to={`/pursuance/${pursuance.id}`}>

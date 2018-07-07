@@ -1,72 +1,67 @@
-label.order-by {
+/* Sort dropdown */
+
+#dashboard .sort {
+  position: relative;
+  display: block;
+  margin: 10px 0;
+}
+
+#dashboard .sort label {
   margin-right: 10px;
   color: white;
   font-weight: normal;
+  font-weight: bold;
 }
 
-.custom-dropdown {
+#sort-dropdown {
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  text-align: left;
+  background: none;
+  color: #e0e0e0;
+  border: none;  
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
   position: relative;
-  display: inline-block;
-  vertical-align: middle;
-  margin: 10px;
+  padding-right: 13px;
+  font-size: 14px;
 }
 
-.custom-dropdown select {
-  background-color: #1abc9c;
-  color: #fff;
-  font-size: inherit;
-  padding: .5em;
-  padding-right: 2.5em; 
-  border: 0;
-  margin: 0;
-  border-radius: 3px;
-  text-indent: 0.01px;
-  text-overflow: '';
-  -webkit-appearance: button; /* hide default arrow in chrome OSX */
-  -moz-appearance: none;
-}
-
-.custom-dropdown::before,
-.custom-dropdown::after {
-  content: "";
+#dashboard .sort .caret {
   position: absolute;
-  pointer-events: none;
-}
-
-.custom-dropdown::after { /*  Custom dropdown arrow */
-  content: "\25BC";
-  height: 1em;
-  font-size: .625em;
-  line-height: 1;
-  right: 1.2em;
   top: 50%;
-  margin-top: -.5em;
+  right: -3px;
+  transform: translate(-50%, -50%);
 }
 
-.custom-dropdown::before { /*  Custom dropdown arrow cover */
-  width: 2em;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  border-radius: 0 3px 3px 0;
+#dashboard .sort .dropdown > .dropdown-menu {
+  opacity: 0;
+  display: block;
+  transition: opacity 200ms ease-in-out;
+  max-width: calc(100vw - 200px);
 }
 
-.custom-dropdown select[disabled] {
-  color: rgba(0,0,0,.3);
+#dashboard .sort .dropdown {
+  overflow: hidden;
 }
 
-.custom-dropdown select[disabled]::after {
-  color: rgba(0,0,0,.1);
+#dashboard .sort .dropdown.open {
+  overflow: visible;
 }
 
-.custom-dropdown::before {
-  background-color: rgba(0,0,0,.15);
+#dashboard .sort .dropdown.open > .dropdown-menu {
+  opacity: 1;  
 }
 
-.custom-dropdown::after {
-  color: rgba(0,0,0,.4);
+#dashboard .sort .dropdown a {
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.big {
-  font-size: 1.2em;
+@media (max-width: 639px) {
+  #dashboard .sort .dropdown > .dropdown-menu {
+    max-width: calc(100vw - 140px);
+  }
 }
