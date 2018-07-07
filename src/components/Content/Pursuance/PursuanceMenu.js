@@ -6,14 +6,15 @@ import PursuanceMenuItem from './PursuanceMenuItem';
 import FaCheckSquareO from 'react-icons/lib/fa/check-square-o';
 import FaCalendar from 'react-icons/lib/fa/calendar';
 import CommentsO from 'react-icons/lib/fa/comments-o';
-import FolderOpen from 'react-icons/lib/fa/folder-open';
-import Group from 'react-icons/lib/fa/group';
-import Rocket from 'react-icons/lib/fa/rocket';
-import PlusCircle from 'react-icons/lib/fa/plus-circle';
 import Info from 'react-icons/lib/fa/info-circle';
+// import FolderOpen from 'react-icons/lib/fa/folder-open';
+// import Group from 'react-icons/lib/fa/group';
+// import Rocket from 'react-icons/lib/fa/rocket';
+// import PlusCircle from 'react-icons/lib/fa/plus-circle';
+
 import './PursuanceMenu.css';
 
-const PursuanceMenu = ({ currentPursuanceId, location }) => {
+const PursuanceMenu = () => {
   return (
     <ButtonGroup vertical className="pursuance-btn-group hide-xsmall">
       <div>
@@ -23,10 +24,18 @@ const PursuanceMenu = ({ currentPursuanceId, location }) => {
           action='about'
           icon={<Info size={28} />}
         />
+        {/*
         <PursuanceMenuItem
           label='New'
           action='add'
           icon={<PlusCircle size={28} />}
+        />
+        */}
+        <PursuanceMenuItem
+          className="pursuance-top-btn"
+          label='Discuss'
+          action='discuss'
+          icon={<CommentsO size={28} />}
         />
         <PursuanceMenuItem
           label='Tasks'
@@ -34,10 +43,12 @@ const PursuanceMenu = ({ currentPursuanceId, location }) => {
           icon={<FaCheckSquareO size={28} />}
         />
         <PursuanceMenuItem
+          className="pursuance-bottom-btn"
           label='Calendar'
           action='calendar'
           icon={<FaCalendar size={28} />}
         />
+        {/*
         <PursuanceMenuItem
           label='Discuss'
           action='discuss'
@@ -59,9 +70,10 @@ const PursuanceMenu = ({ currentPursuanceId, location }) => {
           action='progress'
           icon={<Rocket size={28} />}
         />
+        */}
       </div>
     </ButtonGroup>
   );
 };
 
-export default withRouter(connect(({ currentPursuanceId }) => ({ currentPursuanceId }))(PursuanceMenu));
+export default withRouter(connect(null)(PursuanceMenu));
