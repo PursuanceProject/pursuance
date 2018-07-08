@@ -31,13 +31,14 @@
   display: flex;
   flex: 1;
   justify-content: flex-start;
-  max-width: 8vw;
+  min-width: 145px;
+  max-width: 145px;
 }
 
 /* Desktop */
 @media (min-width: 1367px) {
   .label-status {
-    min-width: 130px;
+    min-width: 145px;
   }
 }
 

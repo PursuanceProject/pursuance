@@ -17,7 +17,8 @@
     "react-toastify": "^2.2.0",
     "redux": "^3.7.2",
     "redux-promise-middleware": "^4.4.1",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.2.0",
+    "string.prototype.startswith": "^0.2.0"
   },
   "devDependencies": {
     "eslint-config-prettier": "^2.7.0",

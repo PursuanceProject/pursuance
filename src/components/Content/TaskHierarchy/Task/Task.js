@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import generateId from '../../../../utils/generateId';
+import { showAssignee, isRootTaskInPursuance } from '../../../../utils/tasks';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import TiPlus from 'react-icons/lib/ti/plus';
 import TiMinus from 'react-icons/lib/ti/minus';
@@ -116,9 +117,10 @@ class RawTask extends Component {
   }
 
   showTitle = (task) => {
+    const { currentPursuanceId } = this.props;
     const statusClassName = this.getStatusClassName(task);
 
-    if (task.parent_task_gid) {
+    if (!isRootTaskInPursuance(task, currentPursuanceId)) {
       return (
         <div className={statusClassName}>{task.title}</div>
       );
@@ -156,18 +158,8 @@ class RawTask extends Component {
     const { pursuances, taskData, currentPursuanceId } = this.props;
     const { showChildren } = this.state;
     const task = taskData;
-    const assignedPursuanceId = task.assigned_to_pursuance_id;
-    const assignedByThisPursuance = assignedPursuanceId === currentPursuanceId;
-    let placeholder = "";
-    let assignedTo;
-    if (assignedPursuanceId && !assignedByThisPursuance && pursuances[assignedPursuanceId]) {
-        placeholder = pursuances[assignedPursuanceId].suggestionName;
-        assignedTo = pursuances[assignedPursuanceId].id;
-    }
-    else if (task.assigned_to) {
-        placeholder = '@' + task.assigned_to;
-        assignedTo = task.assigned_to;
-    }
+    const { placeholder, assignedTo } =
+      showAssignee(task, currentPursuanceId, pursuances);
 
     return (
       <li className="li-task-ctn">

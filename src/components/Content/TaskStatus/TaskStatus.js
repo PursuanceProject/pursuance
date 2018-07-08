@@ -57,9 +57,7 @@ class TaskStatus extends Component {
           noCaret>
           {this.getDropDownItems()}
         </DropdownButton>
-        <div className="hide-xsmall">
-          {STATUS_IMAGES[status] && <img src={`/assets/img/${status}.gif`} alt={`Status: ${status}`} />}
-        </div>
+        {STATUS_IMAGES[status] && <img src={`/assets/img/${status}.gif`} alt={`Status: ${status}`} />}
         <div className="edit-icon-ctn">
           <TiPencil id="task-edit-icon" size={18} />
         </div>

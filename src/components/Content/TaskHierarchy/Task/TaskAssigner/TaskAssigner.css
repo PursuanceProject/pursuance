@@ -20,15 +20,15 @@
 }
 
 .right-panel-ctn .task-assigned-to {
-  min-width: 200px;
+  min-width: 170px;
+  width: 170px;
   max-width: 236px;
 }
 
 @media (max-width: 639px) {
   .right-panel-ctn .task-assigned-to {
-    min-width: 30px;
-    width: 120px;
-    max-width: 200px;
+    min-width: 140px;
+    width: 140px;
     justify-content: flex-end;
   }
   .right-panel-ctn .assign-autocomplete-ctn {
@@ -36,8 +36,23 @@
   }
 }
 
+@media (min-width: 540px) and (max-width: 639px) {
+  .right-panel-ctn .task-assigned-to {
+    min-width: 175px;
+    width: 175px;
+  }
+}
+
+@media (min-width: 350px) and (max-width: 539px) {
+  .right-panel-ctn .task-assigned-to {
+    min-width: 120px;
+    width: 120px;
+  }
+}
+
 @media (max-width: 349px) {
   .right-panel-ctn .task-assigned-to {
+    min-width: 100px;
     width: 100px;
   }
   .right-panel-ctn .assign-autocomplete-ctn {

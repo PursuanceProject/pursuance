@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { getPursuances, getTasks, getUsers, rpShowTaskDetails } from '../../../../actions';
+import { showTaskInPursuance } from '../../../../utils/tasks';
+import { getPursuances, getTasks, getUsers, rpShowTaskDetails, patchTask } from '../../../../actions';
 import ReactMarkdown from 'react-markdown';
 import FaCircleO from 'react-icons/lib/fa/circle-o';
 import TaskDetailsTopbar from './TaskDetailsTopbar';
+import TaskTitle from './TaskTitle/TaskTitle';
 import TaskIcons from './TaskIcons/TaskIcons';
+import TaskForm from '../../TaskManager/TaskForm/TaskForm';
 
 import './TaskDetails.css';
 
@@ -41,8 +44,8 @@ class TaskDetails extends Component {
   }
 
   render() {
-    const { pursuances, tasks, rightPanel: { taskGid } } = this.props;
-    const { rpShowTaskDetails } = this.props;
+    const { pursuances, currentPursuanceId, tasks, rpShowTaskDetails } = this.props;
+    const { taskGid } = this.props.rightPanel;
     const task = tasks.taskMap[taskGid];
     if (!task) {
       if (taskGid) {
@@ -52,6 +55,12 @@ class TaskDetails extends Component {
     }
     const subtaskGids = task.subtask_gids;
 
+    const parent = tasks.taskMap[task.parent_task_gid];
+    const parentTitle =
+      parent &&
+      showTaskInPursuance(parent, currentPursuanceId) &&
+      parent.title;
+
     return (
       <div className="discuss-ctn">
         <div className="task-details-ctn">
@@ -60,14 +69,16 @@ class TaskDetails extends Component {
           />
           <div className="pursuance-discuss-ctn">
             <div className="pursuance-task-title-ctn">
-              <div className="discuss-task-title-ctn">
-                <span className="discuss-task-title">{task.title}</span>
-              </div>
-              {task.parent_task_gid && (
+              <TaskTitle
+                id={task.gid}
+                title={task.title}
+                patchTask={this.props.patchTask}
+              />
+              {parentTitle && (
                 <div className="parent-task-ctn" onClick={() => rpShowTaskDetails({taskGid: task.parent_task_gid})}>
                   <h4><strong>Parent Task:</strong></h4>
                   {' '}
-                  <span>{tasks.taskMap[task.parent_task_gid] && tasks.taskMap[task.parent_task_gid].title}</span>
+                  <span>{parentTitle}</span>
                 </div>
               )}
             </div>
@@ -104,6 +115,13 @@ class TaskDetails extends Component {
                 })}
               </ul>
             </div>
+            <div className="create-subtask-ctn">
+              <TaskForm
+                parentGid={task.gid}
+                key={task.gid}
+                autoFocus={false}
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -112,4 +130,4 @@ class TaskDetails extends Component {
 }
 
 export default withRouter(connect(({currentPursuanceId, pursuances, tasks, rightPanel, users}) => ({currentPursuanceId, pursuances, tasks, rightPanel, users}),
-  { getPursuances, getTasks, getUsers, rpShowTaskDetails })(TaskDetails));
+  { getPursuances, getTasks, getUsers, rpShowTaskDetails, patchTask })(TaskDetails));
