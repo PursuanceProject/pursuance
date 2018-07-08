@@ -13,7 +13,7 @@ const sortBySuggest = (suggest1, suggest2) => {
   return suggest1.suggestionName.localeCompare(suggest2.suggestionName);
 };
 
-export const scrollIntoViewOptions = { behavior: 'instant', block: 'nearest' };
+export const scrollIntoViewOptions = { behavior: 'smooth', block: 'nearest' };
 if (window.browser === 'Firefox') {
-  delete scrollIntoViewOptions.block;
+  scrollIntoViewOptions.block = 'end';
 }
