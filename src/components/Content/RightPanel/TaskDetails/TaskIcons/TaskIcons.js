@@ -8,7 +8,7 @@ import FaVideoCamera from 'react-icons/lib/fa/video-camera';
 import {
   archiveTask,
   toggleHypothesisModal,
-  createHypothesisGroup,
+  createHypothesisGroup
 } from '../../../../../actions';
 import './TaskIcons.css';
 
@@ -91,14 +91,15 @@ const TaskIcons = ({ gid, subtaskGids = [], archiveTask, toggleHypothesisModal, 
     if (!this.hypName) {
       return;
     }
-    setTimeout(() => {
-      createHypothesisGroup({
-        taskGid: gid,
-        name: this.hypName,
-        description: this.hypDescription,
-      });
-      toggleHypothesisModal({taskGid: ''});
-    }, 1000);
+
+    const someJSON = createHypothesisGroup({
+      taskGid: gid,
+      name: this.hypName,
+      description: this.hypDescription,
+    });
+
+    console.log(someJSON);
+    // toggleHypothesisModal({taskGid: ''});
   }
 
   return (
@@ -164,9 +165,11 @@ const TaskIcons = ({ gid, subtaskGids = [], archiveTask, toggleHypothesisModal, 
                 </div>
               </div>
               <div className="form-group">
-                <button className="btn btn-primary" onClick={handleSubmit}>
-                  Create Group
-                </button>
+                <div className="col-sm-12">
+                  <button className="btn btn-primary" onClick={handleSubmit}>
+                    Create Group
+                  </button>
+                </div>
               </div>
             </div>
           </form>
@@ -182,4 +185,4 @@ const TaskIcons = ({ gid, subtaskGids = [], archiveTask, toggleHypothesisModal, 
   )
 }
 
-export default withRouter(connect(({currentPursuanceId, hypothesis}) => ({currentPursuanceId, hypothesis}), { archiveTask, toggleHypothesisModal, createHypothesisGroup })(TaskIcons));
+export default withRouter(connect(({currentPursuanceId, hypothesis, userLoginSuccess}) => ({currentPursuanceId, hypothesis, userLoginSuccess}), { archiveTask, toggleHypothesisModal, createHypothesisGroup })(TaskIcons));

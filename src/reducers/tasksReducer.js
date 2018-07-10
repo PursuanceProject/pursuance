@@ -1,8 +1,10 @@
-const initialState = {
+ import axios from 'axios';
+ const initialState = {
   taskMap: {},
   rootTaskGids: [],
   recentlyAddedTask: null
 };
+
 
 export default function(state = initialState, action) {
   switch (action.type) {
@@ -136,21 +138,85 @@ export default function(state = initialState, action) {
     }
 
     case 'HYPOTHESIS_GROUP_CREATE': {
-      console.log('HYPOTHESIS_GROUP_CREATE reducer called...');
       const { taskGid, name, description } = action;
+      
+
+      console.log('HYPOTHESIS_GROUP_CREATE reducer called...', action);
       // TODO(elimisteve): Use name, description to actually create
       // Hypothesis group; faking it by updating local state
-      const task = state.taskMap[taskGid];
-      return Object.assign({}, state, {
-        taskMap: Object.assign({}, state.taskMap, {
-          [taskGid]: Object.assign({}, task, {
-            deliverables: task.deliverables += '\n\n#### Hypothesis Group\n\n<https://hypothes.is/groups/qodKXB7q/p-juansanchez>'
+      if (false) {
+        const task = state.taskMap[taskGid];
+        return Object.assign({}, state, {
+          taskMap: Object.assign({}, state.taskMap, {
+            [taskGid]: Object.assign({}, task, {
+              deliverables: task.deliverables += '\n\n#### Hypothesis Group\n\n<https://hypothes.is/groups/qodKXB7q/p-juansanchez>'
+            })
           })
-        })
+        });
+      }
+
+
+/*POST /users HTTP/1.1
+Host: 
+Accept: 
+Content-Type: application/json
+Authorization: Basic OTY2NTNmOGUtODBiZS0xMWU2LWIzMmItYzdiY2RlODY2MTNhOkUtaFJlVk11UnlaYnlyMUdpa2llRXc0SnNsYU02c0RwYjE4XzlWNTlQRnc=
+
+{
+  "authority": "example.com",
+  "username": "jbloggs1",
+  "email": "jbloggs1@example.com"
+}*/
+
+
+      const HypothesisAPIToken = '6879-DF1aRxrzWAarRZBMfak86Zs57i-LFtZCF1esFLYIlAU'; // TODO update to one owned by elimisteve
+      const fetching = fetch('https://hypothes.is/api/groups', {
+        method: 'POST',
+        headers: {
+          'accept': 'application/json', 
+          'content-type': 'application/json', 
+          'authorization': 'Bearer 6879-DF1aRxrzWAarRZBMfak86Zs57i-LFtZCF1esFLYIlAU'
+        },
+        // withCredentials: true,
+        body: JSON.stringify({"name":"Slim","description":"Shady"})
       });
+
+      // const instance = axios.create({
+      //   baseURL: 'https://hypothes.is/'
+      // });
+
+      // instance.defaults.headers.common['Accept'] = 'application/json';
+      // instance.defaults.headers.common['Authorization'] = 'Bearer ' + HypothesisAPIToken;
+      // instance.defaults.baseURL = 'https://hypothes.is';
+      // instance.defaults.headers.common['Access-Control-Allow-Origin'] = 'http://localhost:8080';
+      // instance.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
+      // instance.defaults.headers.common['Access-Control-Allow-Headers'] = '*';
+
+      // instance.post('api/groups', {
+      //   name: name,
+      //   description: description,
+      //   authority: 'hypothes.is'
+      // });
+
+      console.log('fetching!', fetching);
     }
 
     default:
       return state;
   }
 }
+
+
+// export const getJSON = (pathSuffix, additionalHeaders = {}) => {
+//   const headers = {
+//     'Content-Type': 'application/json; charset=utf-8'
+//   };
+//   Object.assign(headers, additionalHeaders);
+
+  // return fetch(URL_PREFIX + pathSuffix, {
+  //   method: 'GET',
+  //   headers: headers
+  // }).then(resp => {
+  //   return resp.json();
+  // });
+// };
