@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Tabs from 'react-bootstrap/lib/Tabs';
+import Tab from 'react-bootstrap/lib/Tab';
 import {
   getPursuances,
   getInvites,
@@ -35,12 +37,12 @@ class Invite extends Component {
 
   displayPermissionsSelect = () => {
     return (
-      <select>
+      <select defaultValue="NormalUser">
         <option value="Admin">Admin</option>
         <option value="AssistantAdmin">Assistant Admin</option>
         <option value="Recruiter">Recruiter</option>
         <option value="Assigner">Assigner</option>
-        <option selected value="NormalUser">Normal User</option>
+        <option value="NormalUser">Normal User</option>
         <option value="Viewer">Viewer</option>
         <option value="Untrusted">Untrusted</option>
       </select>
@@ -49,10 +51,10 @@ class Invite extends Component {
 
   displayExpireSelect = () => {
     return (
-      <select>
+      <select defaultValue="14d">
         <option value="never">Never</option>
         <option value="30d">30 days</option>
-        <option selected value="14d">14 days</option>
+        <option value="14d">14 days</option>
         <option value="7d">7 days</option>
         <option value="1d">1 day</option>
         <option value="10m">10 minutes</option>
@@ -61,6 +63,9 @@ class Invite extends Component {
   }
 
   addInviteUrlToClipboard = (invite) => {
+  }
+
+  createInvite = () => {
   }
 
   displayInvites = (invites) => {
@@ -79,7 +84,7 @@ class Invite extends Component {
           <div className="invite-copy-link">
             <button
               className="btn btn-primary"
-              onclick={this.addInviteUrlToClipboard(invite)}
+              onClick={this.addInviteUrlToClipboard(invite)}
             >
               Copy Link
               {' '}
@@ -89,7 +94,6 @@ class Invite extends Component {
           <div className="invite-delete-btn">
             <button
               className="btn btn-danger"
-              onclick={this.addInviteUrlToClipboard(invite)}
             >
               Delete
               {' '}
@@ -116,35 +120,44 @@ class Invite extends Component {
               }
             </h2>
           </div>
-          <div className="invite-links">
-            <h3>Create New Invite Link</h3>
-          </div>
-          <div id="invites-form">
-            <input
-              type="text"
-              placeholder="Sending to co-workers"
-            />
-            <div className="invites-invite-as">
-              Invite as:&nbsp;
-              {this.displayPermissionsSelect()}
-            </div>
-            <div className="invites-expire">
-              Expire after:&nbsp;
-              {this.displayExpireSelect()}
-            </div>
-            <button
-              className="btn btn-success"
-              onclick={this.createInvite}
-            >
-              Create
-            </button>
-          </div>
-          <div id="invite">
-            <h3>Invites Created</h3>
-            <div className="invite-links">
-              {this.displayInvites(invites)}
-            </div>
-          </div>
+          <Tabs defaultActiveKey={1} id="invite-tabs">
+            <Tab eventKey={1} title="Recruit by Skill Set">
+              <div className="recruit-title">
+                <h3>Recruit New Volunteers by Interest and Skill Set</h3>
+              </div>
+            </Tab>
+            <Tab eventKey={2} title="Create Invite Links">
+              <div className="invite-links">
+                <h3>Create New Invite Link</h3>
+              </div>
+              <div id="invites-form">
+                <input
+                  type="text"
+                  placeholder="Sending to co-workers"
+                />
+                <div className="invites-invite-as">
+                  Invite as:&nbsp;
+                  {this.displayPermissionsSelect()}
+                </div>
+                <div className="invites-expire">
+                  Expire after:&nbsp;
+                  {this.displayExpireSelect()}
+                </div>
+                <button
+                  className="btn btn-success"
+                  onClick={this.createInvite}
+                >
+                  Create
+                </button>
+              </div>
+              <div id="invite">
+                <h3>Invite Links Created</h3>
+                <div className="invite-links">
+                  {this.displayInvites(invites)}
+                </div>
+              </div>
+            </Tab>
+          </Tabs>
         </div>
       </div>
     );
