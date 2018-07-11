@@ -12,6 +12,7 @@ import createPursuance from './createPursuanceReducer';
 import autoComplete from './autoCompleteReducer';
 import showSuccessToast from './showSuccessToastReducer';
 import rightPanel from './rightPanelReducer';
+import invites from './invitesReducer';
 
 const rootReducer = combineReducers({
   notifications: notificationsReducer,
@@ -26,7 +27,8 @@ const rootReducer = combineReducers({
   createPursuance,
   autoComplete,
   showSuccessToast,
-  rightPanel
+  rightPanel,
+  invites,
 });
 
 export default rootReducer;
