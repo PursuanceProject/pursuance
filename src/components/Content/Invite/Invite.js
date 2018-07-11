@@ -70,7 +70,6 @@ class Invite extends Component {
 
   displayInvites = (invites) => {
     return invites.map((invite) => {
-      console.log('invite', invite);
       return (
         <div key={invite.id} className='invite-link'>
           <div className="invite-purpose">
