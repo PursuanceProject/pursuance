@@ -45,11 +45,11 @@
 }
 
 #invites .nav-tabs > li:not(.active) > a {
-  background-color: #333;
+  background-color: #444;
 }
 
 #invites .nav-tabs > li:not(.active) > a:hover {
-  background-color: #444;
+  background-color: #333;
 }
 
 /* general invite */
@@ -69,22 +69,6 @@
 #invites h3 {
   margin-top: 35px;
   margin-bottom: 15px;
-}
-
-#invites ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-  color: black
-}
-
-#invites ::-moz-placeholder { /* Firefox 19+ */
-  color: black;
-}
-
-#invites :-ms-input-placeholder { /* IE 10+ */
-  color: black;
-}
-
-#invites :-moz-placeholder { /* Firefox 18- */
-  color: black;
 }
 
 /* create invite form */
