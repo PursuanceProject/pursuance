@@ -80,15 +80,13 @@ class Invite extends Component {
   displayInvites = (invites) => {
     return invites.map((invite) => {
       return (
-        <div key={invite.id}>
+        <div key={invite.id} className='invite-link'>
           <div className="invite-purpose">
             {invite.purpose}
           </div>
           <div className="invite-permissions-level">
-            {this.displayPermissionsSelect()}
-            <div>
-              {<FaQuestionCircle size={16} />}
-            </div>
+            <span className='title'>Role:</span>
+            <span className='value'>{invite.permissions_level}</span>
           </div>
           <div className="invite-copy-link">
             <button
@@ -164,20 +162,21 @@ class Invite extends Component {
             </Tab>
 
             <Tab eventKey={2} title="Create Invite Links">
-              <div className="invite-links">
-                <h3>Create New Invite Link</h3>
-              </div>
+              <h3>Create New Invite Link</h3>
               <div id="invites-form">
                 <input
                   type="text"
                   placeholder="For co-workers"
                 />
                 <div className="invites-invite-as">
-                  Invite as:&nbsp;
+                  <label>Invite as:</label>
                   {this.displayPermissionsSelect()}
+                  <div className='hint'>
+                    {<FaQuestionCircle size={20} />}
+                  </div>
                 </div>
                 <div className="invites-expire">
-                  Expire after:&nbsp;
+                  <label>Expire after:</label>
                   {this.displayExpireSelect()}
                 </div>
                 <button
