@@ -35,6 +35,12 @@ class Invite extends Component {
       .map((id) => invites[id])
   }
 
+  displayRecruitSearchResults = () => {
+    return (
+      <div></div>
+    )
+  }
+
   displayPermissionsSelect = () => {
     return (
       <select defaultValue="NormalUser">
@@ -113,7 +119,7 @@ class Invite extends Component {
       <div className="content">
         <div id="invites">
           <div id="task-hierarchy-title">
-            <h2 id="invite-title">Invite Others to:&nbsp;</h2>
+            <h2 id="invite-title">Invite others to:&nbsp;</h2>
             <h2 id="pursuance-title">
               {
                 pursuances[currentPursuanceId] && pursuances[currentPursuanceId].name
@@ -123,9 +129,32 @@ class Invite extends Component {
           <Tabs defaultActiveKey={1} id="invite-tabs">
             <Tab eventKey={1} title="Recruit by Skill Set">
               <div className="recruit-title">
-                <h3>Recruit New Volunteers by Interest and Skill Set</h3>
+                <h3>Recruit Volunteers by their Skill Set and Interests</h3>
+              </div>
+              <div id="recruit-form-skills">
+                Skills:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input
+                  type="text"
+                  placeholder="Research Programming:React"
+                  autoFocus
+                />
+              </div>
+              <div id="recruit-form-interests">
+                Interests:&nbsp;
+                <input
+                  type="text"
+                  placeholder="PrisonReform Abortion:ProChoice"
+                />
+              </div>
+              <br />
+              <div className="recruit-title">
+                <h4>Search Results</h4>
+              </div>
+              <div className="recruit-search-results">
+                {this.displayRecruitSearchResults()}
               </div>
             </Tab>
+
             <Tab eventKey={2} title="Create Invite Links">
               <div className="invite-links">
                 <h3>Create New Invite Link</h3>
