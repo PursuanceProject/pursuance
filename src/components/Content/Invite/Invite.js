@@ -10,6 +10,8 @@ import {
 import FaQuestionCircle from 'react-icons/lib/fa/question-circle';
 import FaChain from 'react-icons/lib/fa/chain';
 import FaTimesCircleO from 'react-icons/lib/fa/times-circle-o';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './Invite.css';
 import '../Content.css';
 
@@ -33,6 +35,12 @@ class Invite extends Component {
       // .filter((id) => invites[id].pursuance_id === currentPursuanceId && id)
       .filter((id) => id)
       .map((id) => invites[id])
+  }
+
+  displayRecruitSearchResults = () => {
+    return (
+      <div></div>
+    )
   }
 
   displayPermissionsSelect = () => {
@@ -62,7 +70,8 @@ class Invite extends Component {
     )
   }
 
-  addInviteUrlToClipboard = (invite) => {
+  addInviteUrlToClipboard = () => {
+    toast.success('Added invite URL to clipboard!');
   }
 
   createInvite = () => {
@@ -82,19 +91,24 @@ class Invite extends Component {
           <div className="invite-copy-link">
             <button
               className="btn btn-primary"
-              onClick={this.addInviteUrlToClipboard(invite)}
+              onClick={this.addInviteUrlToClipboard}
             >
-              Copy Link
-              {' '}
+              Copy Link&nbsp;
               {<FaChain size={16} />}
             </button>
+            <ToastContainer
+              position="top-center"
+              type="success"
+              autoClose={2000}
+              hideProgressBar={false}
+              newestOnTop={false}
+            />
           </div>
           <div className="invite-delete-btn">
             <button
               className="btn btn-danger"
             >
-              Delete
-              {' '}
+              Delete&nbsp;
               {<FaTimesCircleO size={16} />}
             </button>
           </div>
@@ -111,7 +125,7 @@ class Invite extends Component {
       <div className="content">
         <div id="invites">
           <div id="task-hierarchy-title">
-            <h2 id="invite-title">Invite Others to:&nbsp;</h2>
+            <h2 id="invite-title">Invite others to:&nbsp;</h2>
             <h2 id="pursuance-title">
               {
                 pursuances[currentPursuanceId] && pursuances[currentPursuanceId].name
@@ -121,15 +135,38 @@ class Invite extends Component {
           <Tabs defaultActiveKey={1} id="invite-tabs">
             <Tab eventKey={1} title="Recruit by Skill Set">
               <div className="recruit-title">
-                <h3>Recruit New Volunteers by Interest and Skill Set</h3>
+                <h3>Recruit Volunteers by their Skill Set and Interests</h3>
+              </div>
+              <div id="recruit-form-skills">
+                Skills:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input
+                  type="text"
+                  placeholder="Research Programming:React"
+                  autoFocus
+                />
+              </div>
+              <div id="recruit-form-interests">
+                Interests:&nbsp;
+                <input
+                  type="text"
+                  placeholder="PrisonReform Abortion:ProChoice"
+                />
+              </div>
+              <br />
+              <div className="recruit-title">
+                <h4>Search Results</h4>
+              </div>
+              <div className="recruit-search-results">
+                {this.displayRecruitSearchResults()}
               </div>
             </Tab>
+
             <Tab eventKey={2} title="Create Invite Links">
               <h3>Create New Invite Link</h3>
               <div id="invites-form">
                 <input
                   type="text"
-                  placeholder="Sending to co-workers"
+                  placeholder="For co-workers"
                 />
                 <div className="invites-invite-as">
                   <label>Invite as:</label>
