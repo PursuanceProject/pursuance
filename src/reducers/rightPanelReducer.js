@@ -2,7 +2,7 @@ const _now = new Date();
 const _2monthsAgo = new Date(_now.getFullYear(), _now.getMonth() - 2, 1);
 
 const initialState = {
-  show: true,
+  show: false,
   tab: 'TaskList',
   taskGid: '',
   taskListFilter:
