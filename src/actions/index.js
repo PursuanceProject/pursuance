@@ -230,3 +230,8 @@ export const userLoginSuccess = ({ username }) => ({
 export const userLogoutSuccess = () => ({
   type: 'USER_LOGOUT_SUCCESS'
 });
+
+export const getInvites = ({ pursuanceId }) => ({
+  type: 'GET_INVITES',
+  pursuanceId
+});

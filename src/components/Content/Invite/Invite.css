@@ -1,0 +1,51 @@
+#invites {
+  color: white;
+}
+
+#invites select {
+  color: black;
+}
+
+#invites input {
+  color: black;
+  border-radius: 5px;
+  outline: none;
+  padding-left: 5px;
+  width: 50%;
+}
+
+#invites .invite-permissions-level svg:hover {
+  opacity: 0.7;
+}
+
+#invites .active {
+  background-color: unset !important;
+}
+
+#invites .nav-tabs > li {
+  margin-bottom: 0;
+  margin-right: 10px;
+}
+
+#invites .nav-tabs > li > a {
+  transition: all 200ms ease-in-out;
+  color: white;
+}
+
+#invites .nav-tabs > li > a,
+#invites .nav-tabs > li > a:hover {
+  border: 0;
+  outline: none;
+}
+
+#invites .nav-tabs > li.active > a {
+  color: black;
+}
+
+#invites .nav-tabs > li:not(.active) > a {
+  background-color: #333;
+}
+
+#invites .nav-tabs > li:not(.active) > a:hover {
+  background-color: #444;
+}
