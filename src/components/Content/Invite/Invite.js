@@ -10,6 +10,8 @@ import {
 import FaQuestionCircle from 'react-icons/lib/fa/question-circle';
 import FaChain from 'react-icons/lib/fa/chain';
 import FaTimesCircleO from 'react-icons/lib/fa/times-circle-o';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './Invite.css';
 import '../Content.css';
 
@@ -68,7 +70,8 @@ class Invite extends Component {
     )
   }
 
-  addInviteUrlToClipboard = (invite) => {
+  addInviteUrlToClipboard = () => {
+    toast.success('Added invite URL to clipboard!');
   }
 
   createInvite = () => {
@@ -90,19 +93,24 @@ class Invite extends Component {
           <div className="invite-copy-link">
             <button
               className="btn btn-primary"
-              onClick={this.addInviteUrlToClipboard(invite)}
+              onClick={this.addInviteUrlToClipboard}
             >
-              Copy Link
-              {' '}
+              Copy Link&nbsp;
               {<FaChain size={16} />}
             </button>
+            <ToastContainer
+              position="top-center"
+              type="success"
+              autoClose={2000}
+              hideProgressBar={false}
+              newestOnTop={false}
+            />
           </div>
           <div className="invite-delete-btn">
             <button
               className="btn btn-danger"
             >
-              Delete
-              {' '}
+              Delete&nbsp;
               {<FaTimesCircleO size={16} />}
             </button>
           </div>
@@ -162,7 +170,7 @@ class Invite extends Component {
               <div id="invites-form">
                 <input
                   type="text"
-                  placeholder="Sending to co-workers"
+                  placeholder="For co-workers"
                 />
                 <div className="invites-invite-as">
                   Invite as:&nbsp;
