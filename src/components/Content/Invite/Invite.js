@@ -138,7 +138,7 @@ class Invite extends Component {
                 <h3>Recruit Volunteers by their Skill Set and Interests</h3>
               </div>
               <div id="recruit-form-skills">
-                Skills:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <label>Skills:</label>
                 <input
                   type="text"
                   placeholder="Research Programming:React"
@@ -146,7 +146,7 @@ class Invite extends Component {
                 />
               </div>
               <div id="recruit-form-interests">
-                Interests:&nbsp;
+                <label>Interests:</label>
                 <input
                   type="text"
                   placeholder="PrisonReform Abortion:ProChoice"
