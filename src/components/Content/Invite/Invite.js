@@ -33,6 +33,36 @@ class Invite extends Component {
       .map((id) => invites[id])
   }
 
+  displayPermissionsSelect = () => {
+    return (
+      <select>
+        <option value="Admin">Admin</option>
+        <option value="AssistantAdmin">Assistant Admin</option>
+        <option value="Recruiter">Recruiter</option>
+        <option value="Assigner">Assigner</option>
+        <option selected value="NormalUser">Normal User</option>
+        <option value="Viewer">Viewer</option>
+        <option value="Untrusted">Untrusted</option>
+      </select>
+    )
+  }
+
+  displayExpireSelect = () => {
+    return (
+      <select>
+        <option value="never">Never</option>
+        <option value="30d">30 days</option>
+        <option selected value="14d">14 days</option>
+        <option value="7d">7 days</option>
+        <option value="1d">1 day</option>
+        <option value="10m">10 minutes</option>
+      </select>
+    )
+  }
+
+  addInviteUrlToClipboard = (invite) => {
+  }
+
   displayInvites = (invites) => {
     return invites.map((invite) => {
       return (
@@ -41,30 +71,30 @@ class Invite extends Component {
             {invite.purpose}
           </div>
           <div className="invite-permissions-level">
-            <select>
-              <option name="Admin">Admin</option>
-              <option name="AssistantAdmin">Assistant Admin</option>
-              <option name="Recruiter">Recruiter</option>
-              <option name="Assigner">Assigner</option>
-              <option name="NormalUser">Normal User</option>
-              <option name="Viewer">Viewer</option>
-              <option name="Untrusted">Untrusted</option>
-            </select>
+            {this.displayPermissionsSelect()}
             <div>
-              {<FaQuestionCircle size={24} />}
+              {<FaQuestionCircle size={16} />}
             </div>
           </div>
           <div className="invite-copy-link">
-            <div>Copy Link</div>
-            <div>{<FaChain size={24} />}</div>
+            <button
+              className="btn btn-primary"
+              onclick={this.addInviteUrlToClipboard(invite)}
+            >
+              Copy Link
+              {' '}
+              {<FaChain size={16} />}
+            </button>
           </div>
           <div className="invite-delete-btn">
-            <div>
-              {<FaTimesCircleO size={24} />}
-            </div>
-          </div>
-          <div className="invite-advanced">
-            <a href="">Advanced</a>
+            <button
+              className="btn btn-danger"
+              onclick={this.addInviteUrlToClipboard(invite)}
+            >
+              Delete
+              {' '}
+              {<FaTimesCircleO size={16} />}
+            </button>
           </div>
         </div>
       )
@@ -77,17 +107,43 @@ class Invite extends Component {
 
     return (
       <div className="content">
-        <div id="invite">
+        <div id="invites">
           <div id="task-hierarchy-title">
-            <h2 id="invite-title">Invite:&nbsp;</h2>
+            <h2 id="invite-title">Invite Others to:&nbsp;</h2>
             <h2 id="pursuance-title">
               {
                 pursuances[currentPursuanceId] && pursuances[currentPursuanceId].name
               }
             </h2>
           </div>
+          <div className="invite-links">
+            <h3>Create New Invite Link</h3>
+          </div>
+          <div id="invites-form">
+            <input
+              type="text"
+              placeholder="Sending to co-workers"
+            />
+            <div className="invites-invite-as">
+              Invite as:&nbsp;
+              {this.displayPermissionsSelect()}
+            </div>
+            <div className="invites-expire">
+              Expire after:&nbsp;
+              {this.displayExpireSelect()}
+            </div>
+            <button
+              className="btn btn-success"
+              onclick={this.createInvite}
+            >
+              Create
+            </button>
+          </div>
           <div id="invite">
-            {this.displayInvites(invites)}
+            <h3>Invites Created</h3>
+            <div className="invite-links">
+              {this.displayInvites(invites)}
+            </div>
           </div>
         </div>
       </div>
