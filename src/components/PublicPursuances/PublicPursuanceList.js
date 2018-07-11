@@ -5,20 +5,27 @@ import * as postgrest from '../../api/postgrest';
 
 
 class PublicPursuanceList extends Component {
-  
+
   getPublicPursuanceList = () => {
     const pursuanceArr = Object.values(this.props.publicPursuances);
     return pursuanceArr.map((pursuance) => (
       <div key={pursuance.id} className="pursuance-list-ctn">
-        <Link to={`/pursuance/${pursuance.id}`}>
+        <div className="pursuance-description">
+          <Link to={`/pursuance/${pursuance.id}`}>
           <h3><strong>{pursuance.name}</strong></h3>
         </Link>
         <p><strong>Mission:</strong> {pursuance.mission}</p>
         <p>Created {postgrest.formatDate(pursuance.created)}</p>
+        </div>
+        <div className="pursuance-join">
+          <button className="join-btn">
+            Join
+          </button>
+        </div>
       </div>
     ));
   }
-  
+
   render() {
     return (
       <div className="pursuance-list">
@@ -26,7 +33,7 @@ class PublicPursuanceList extends Component {
       </div>
     )
   }
-  
+
 }
 
 export default connect(({ publicPursuances }) => ({ publicPursuances }))(PublicPursuanceList);

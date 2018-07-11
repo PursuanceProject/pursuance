@@ -31,6 +31,11 @@ class NavBar extends Component {
             <li role="presentation">
               <Link to="/dashboard">Dashboard</Link>
             </li>
+            <li>
+              <Link to="/pursuance/all">
+                Explore Pursuance Universe
+              </Link>
+            </li>
           </ul>
           <Nav pullRight>
             {
