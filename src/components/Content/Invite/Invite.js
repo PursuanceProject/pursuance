@@ -52,7 +52,7 @@ class Invite extends Component {
         <option value="Assigner">Assigner</option>
         <option value="NormalUser">Normal User</option>
         <option value="Viewer">Viewer</option>
-        <option value="Untrusted">Untrusted</option>
+        <option value="Untrusted">(Untrusted)</option>
       </select>
     )
   }
@@ -80,15 +80,13 @@ class Invite extends Component {
   displayInvites = (invites) => {
     return invites.map((invite) => {
       return (
-        <div key={invite.id}>
+        <div key={invite.id} className='invite-link'>
           <div className="invite-purpose">
             {invite.purpose}
           </div>
           <div className="invite-permissions-level">
-            {this.displayPermissionsSelect()}
-            <div>
-              {<FaQuestionCircle size={16} />}
-            </div>
+            <span className='title'>Role:</span>
+            <span className='value'>{invite.permissions_level.replace(/([a-z])([A-Z])/g, "$1 $2")}</span>
           </div>
           <div className="invite-copy-link">
             <button
@@ -134,13 +132,13 @@ class Invite extends Component {
               }
             </h2>
           </div>
-          <Tabs defaultActiveKey={1} id="invite-tabs">
+          <Tabs defaultActiveKey={2} id="invite-tabs">
             <Tab eventKey={1} title="Recruit by Skill Set">
               <div className="recruit-title">
                 <h3>Recruit Volunteers by their Skill Set and Interests</h3>
               </div>
               <div id="recruit-form-skills">
-                Skills:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <label>Skills:</label>
                 <input
                   type="text"
                   placeholder="Research Programming:React"
@@ -148,7 +146,7 @@ class Invite extends Component {
                 />
               </div>
               <div id="recruit-form-interests">
-                Interests:&nbsp;
+                <label>Interests:</label>
                 <input
                   type="text"
                   placeholder="PrisonReform Abortion:ProChoice"
@@ -164,20 +162,22 @@ class Invite extends Component {
             </Tab>
 
             <Tab eventKey={2} title="Create Invite Links">
-              <div className="invite-links">
-                <h3>Create New Invite Link</h3>
-              </div>
+              <h3>Create New Invite Link</h3>
               <div id="invites-form">
                 <input
                   type="text"
                   placeholder="For co-workers"
+                  autoFocus
                 />
                 <div className="invites-invite-as">
-                  Invite as:&nbsp;
+                  <label>Invite as:</label>
                   {this.displayPermissionsSelect()}
+                  <div className='hint'>
+                    {<FaQuestionCircle size={20} />}
+                  </div>
                 </div>
                 <div className="invites-expire">
-                  Expire after:&nbsp;
+                  <label>Expire after:</label>
                   {this.displayExpireSelect()}
                 </div>
                 <button

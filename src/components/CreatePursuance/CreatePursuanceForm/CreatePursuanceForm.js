@@ -20,9 +20,9 @@ class CreatePursuanceForm extends Component {
     const { redirect, mission } = createPursuance;
     let newRedirectState = nextProps.createPursuance.redirect;
     const currentPursuanceId = nextProps.currentPursuanceId;
-    if(newRedirectState !== redirect && newRedirectState && currentPursuanceId){
+    if (newRedirectState !== redirect && newRedirectState && currentPursuanceId) {
       const firstTask = {
-        title : mission,
+        title: mission,
         pursuance_id: currentPursuanceId
       };
 

@@ -11,6 +11,9 @@ class PursuanceList extends Component {
     const membershipsArr = Object.values(memberships);
     return membershipsArr.map((membership) => {
       const pursuance = pursuances[membership.pursuance_id];
+      if (!pursuance) {
+        return null;
+      }
         return (
             <div key={pursuance.id} className="pursuance-list-ctn">
               <div className="pursuance-description">

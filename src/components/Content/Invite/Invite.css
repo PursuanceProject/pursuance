@@ -1,21 +1,7 @@
-#invites {
-  color: white;
-}
+/* tabs */
 
-#invites select {
-  color: black;
-}
-
-#invites input {
-  color: black;
-  border-radius: 5px;
-  outline: none;
-  padding-left: 5px;
-  width: 50%;
-}
-
-#invites .invite-permissions-level svg:hover {
-  opacity: 0.7;
+#invites .tab-content {
+  padding: 0 60px 0 1%;
 }
 
 #invites .active {
@@ -43,9 +29,279 @@
 }
 
 #invites .nav-tabs > li:not(.active) > a {
-  background-color: #333;
+  background-color: #444;
 }
 
 #invites .nav-tabs > li:not(.active) > a:hover {
-  background-color: #444;
+  background-color: #333;
+}
+
+/* General & forms */
+#invites {
+  color: white;
+}
+
+#invites #task-hierarchy-title {
+  padding-right: 50px;
+}
+
+#invites select {
+  color: black;
+  height: 34px;
+}
+
+input[type="text"]::placeholder {
+  opacity: 0.3;
+}
+
+input[type="text"]::-webkit-input-placeholder {
+  opacity: 0.3;
+}
+
+input[type="text"]::-moz-placeholder {
+  opacity: 0.3;
+}
+
+#invites label,
+#invites select {
+  box-sizing: border-box;
+  line-height: 34px;
+  vertical-align: middle;
+}
+
+#invites input[type='text'] {
+  color: black;
+  border-radius: 5px;
+  outline: none;
+  padding-left: 5px;
+  height: 34px;
+}
+
+#invites h3 {
+  margin-top: 35px;
+  margin-bottom: 20px;
+}
+
+/* create invite form */
+
+#invites-form {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+}
+
+#invites-form > * {
+  flex-grow: 0;
+}
+
+#invites-form > *:not(:last-child) {
+  margin-right: 20px;
+}
+
+#invites-form input {
+  flex-grow: 2;
+  max-width: 50%;
+}
+
+/* general invite */
+
+#invites label,
+#invites select {
+  box-sizing: border-box;
+  height: 34px;
+  line-height: 34px;
+  vertical-align: middle;
+}
+
+#invites input[type='text'] {
+  color: black;
+}
+
+#invites h3 {
+  margin-top: 35px;
+  margin-bottom: 15px;
+}
+
+#invites ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: black
+}
+
+#invites ::-moz-placeholder { /* Firefox 19+ */
+  color: black;
+}
+
+#invites :-ms-input-placeholder { /* IE 10+ */
+  color: black;
+}
+
+#invites :-moz-placeholder { /* Firefox 18- */
+  color: black;
+}
+
+/* create invite form */
+
+#invites-form {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+}
+
+#invites-form > *:not(:last-child) {
+  margin-right: 20px;
+}
+
+#invites-form label {
+  margin: 0 5px 0 0;
+}
+
+#invites-form .hint {
+  display: inline-block;
+  position: relative;
+  top: 0;
+  margin-left: 1px;
+}
+
+/* invite links */
+
+.invite-purpose {
+  width: 27%;
+  min-width: 150px;
+  max-width: 400px;
+}
+
+.invite-permissions-level:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+.invite-permissions-level {
+  line-height: 34px;
+}
+
+.invite-permissions-level .title {
+  margin-right: 5px;
+  font-weight: bold;
+}
+
+.invite-permissions-level {
+  min-width: 130px;
+}
+
+.invite-link {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  padding: 10px 0;
+  clear: both;
+}
+
+.invite-link > *:not(:last-child) {
+  margin-right: 20px;
+}
+
+.invite-purpose {
+  line-height: 34px;
+}
+
+@media (min-width: 479px) and (max-width: 767px) {
+  .invite-link .invite-permissions-level,
+  .invite-link .invite-copy-link,
+  .invite-link .invite-delete-btn {
+    float: left;
+  }
+
+  .invite-link .invite-permissions-level,
+  .invite-link .invite-copy-link {
+    margin-right: 10px;
+  }
+
+  .invite-link .invite-permissions-level {
+    min-width: 168px;
+  }
+}
+
+@media (max-width: 639px) {
+  /* tabs */
+
+  #invites .nav-tabs > li {
+    width: calc(100% - 60px);
+    text-align: center;
+  }
+}
+
+@media (max-width: 767px) {
+  /* invite form */
+
+  #invites-form {
+    display: block;
+  }
+
+  #invites-form > *:not(:last-child) {
+    margin: 0 0 20px;
+    height: 34px;
+    min-width: 250px;
+    max-width: 400px;
+    width: 50%;
+  }
+
+  #invites-form label {
+    margin-right: 5px;
+  }
+
+  /* invite links */
+
+  .invite-link {
+    display: block;
+    margin-bottom: 40px;
+  }
+
+  .invite-link > *:not(:last-child) {
+    margin-bottom: 10px;
+  }
+
+  .invite-purpose {
+    width: 100%;
+    min-width: auto;
+    max-width: none;
+    font-size: 18px;
+  }
+
+  .invite-permissions-level .title {
+    font-size: 16px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  /* invite form */
+
+  #invites-form {
+    display: block;
+  }
+
+  #invites-form > *:not(:last-child) {
+    margin: 0 0 20px;
+    height: 34px;
+    min-width: 250px;
+    max-width: 400px;
+    width: 50%;
+  }
+
+  #invites-form label {
+    margin-right: 15px;
+  }
+}
+
+/* Recruit by Skill Set Tab */
+
+#recruit-form-skills {
+  margin-bottom: 20px;
+}
+
+#recruit-form-interests label,
+#recruit-form-skills label {
+  line-height: 34px;
+  margin-right: 10px;
+  min-width: 80px;
+  max-width: 200px;
 }
