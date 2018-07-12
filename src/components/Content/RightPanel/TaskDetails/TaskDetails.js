@@ -119,6 +119,7 @@ class TaskDetails extends Component {
               <TaskForm
                 parentGid={task.gid}
                 key={task.gid}
+                autoFocus={false}
               />
             </div>
           </div>

@@ -258,9 +258,9 @@ class TaskList extends Component {
               type="text"
               value={taskListFilter}
               placeholder="@me status:new due:2019-05"
-              autoFocus
-              ref={(input) => { this.rightFilterInput = input }} 
-              onChange={ this.onChangeFilter }
+              ref={(input) => { this.rightFilterInput = input }}
+              autoFocus={!window.hasVirtualKeyboard}
+              onChange={this.onChangeFilter}
             />
             <Button 
               className={taskListFilter.length > 0 ? 'clear-input' : 'clear-input clear-input--hide'}
