@@ -19,10 +19,12 @@ export const patchTaskReq = task => {
 
 export const deleteTaskReq = task => {
   return postgrest
-    .deleteJSON(`/tasks?gid=eq.${task.gid}`, { Prefer: 'return=representation' })
+    .deleteJSON(`/tasks?gid=eq.${task.gid}`, {
+      Prefer: 'return=representation'
+    })
     .then(taskJSON => taskJSON[0])
     .catch(err => console.log('Error deleting task:', err));
-}
+};
 
 export const getTasksReq = (pursuanceId, { includeArchived = false } = {}) => {
   return postgrest
@@ -70,11 +72,11 @@ const buildTaskHierarchy = (tasks, pursuanceId) => {
   };
 };
 
-const sortGidsBy = (pursuanceIdStr) => {
+const sortGidsBy = pursuanceIdStr => {
   return (g1, g2) => {
     if (g1.startsWith(pursuanceIdStr)) {
       return -1000;
     }
     return g2.localeCompare(g1);
-  }
-}
+  };
+};

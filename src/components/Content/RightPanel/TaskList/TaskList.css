@@ -66,3 +66,35 @@
 .task-list-ctn .task-assignment-ctn {
   font-size: 1em;
 }
+
+.task-list-filter .clear-input {
+  transition: opacity 200ms ease-in-out;
+  display: inline-block;
+  color: #fff;
+  z-index: 1;
+  width: 28px;
+  height: 28px;
+  pointer-events: auto;
+  cursor: pointer;
+  padding: 0;
+  border: 0;
+  opacity: 0.8;
+  background-color: transparent;
+  margin-left: 10px;
+}
+
+.task-list-filter .clear-input.clear-input--hide {
+  cursor: default;
+  opacity: 0.2;
+}
+ 
+.task-list-filter .clear-input:focus,
+.task-list-filter .clear-input:active {
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  background-color: transparent;
+}
+ 
+.task-list-filter .clear-input:not(.clear-input--hide):hover {
+  opacity: 1;
+}
