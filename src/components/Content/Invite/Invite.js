@@ -86,7 +86,7 @@ class Invite extends Component {
           </div>
           <div className="invite-permissions-level">
             <span className='title'>Role:</span>
-            <span className='value'>{invite.permissions_level}</span>
+            <span className='value'>{invite.permissions_level.replace(/([a-z])([A-Z])/g, "$1 $2")}</span>
           </div>
           <div className="invite-copy-link">
             <button

@@ -184,6 +184,10 @@ input[type="text"]::-moz-placeholder {
   font-weight: bold;
 }
 
+.invite-permissions-level {
+  min-width: 130px;
+}
+
 .invite-link {
   display: flex;
   flex-wrap: nowrap;
