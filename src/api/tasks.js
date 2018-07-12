@@ -19,15 +19,19 @@ export const patchTaskReq = task => {
 
 export const deleteTaskReq = task => {
   return postgrest
-    .deleteJSON(`/tasks?gid=eq.${task.gid}`, { Prefer: 'return=representation' })
+    .deleteJSON(`/tasks?gid=eq.${task.gid}`, {
+      Prefer: 'return=representation'
+    })
     .then(taskJSON => taskJSON[0])
     .catch(err => console.log('Error deleting task:', err));
-}
+};
 
 export const getTasksReq = (pursuanceId, { includeArchived = false } = {}) => {
   return postgrest
     .getJSON(
-      `/tasks?or=(pursuance_id.eq.${pursuanceId},assigned_to_pursuance_id.eq.${pursuanceId})&order=created.asc,id.asc` +
+      `/tasks?or=(pursuance_id.eq.${pursuanceId},assigned_to_pursuance_id.eq.${
+        pursuanceId
+      })&order=created.asc,id.asc` +
         (includeArchived ? '' : '&is_archived=is.false')
     )
     .then(tasks => {
@@ -53,8 +57,10 @@ const buildTaskHierarchy = (tasks, pursuanceId) => {
       if (taskMap[t.parent_task_gid]) {
         taskMap[t.parent_task_gid].subtask_gids.push(t.gid);
       } else {
-        console.log(`Task ${t.gid} ("${t.title}")'s parent ${t.parent_task_gid}` +
-                    ` not found in taskMap`);
+        console.log(
+          `Task ${t.gid} ("${t.title}")'s parent ${t.parent_task_gid}` +
+            ` not found in taskMap`
+        );
       }
     }
   }
@@ -70,11 +76,11 @@ const buildTaskHierarchy = (tasks, pursuanceId) => {
   };
 };
 
-const sortGidsBy = (pursuanceIdStr) => {
+const sortGidsBy = pursuanceIdStr => {
   return (g1, g2) => {
     if (g1.startsWith(pursuanceIdStr)) {
       return -1000;
     }
     return g2.localeCompare(g1);
-  }
-}
+  };
+};

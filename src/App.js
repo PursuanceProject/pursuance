@@ -12,28 +12,21 @@ import './App.css';
 
 class App extends Component {
   render() {
-    const {
-      authenticated,
-      contributionPoints,
-      removeNotification,
-      increaseContributionAmount,
-      username
-    } = this.props;
     return (
       <Router>
         <div className="App">
           <NavBar
-            authenticated={authenticated}
-            contributionPoints={contributionPoints}
-            username={username}
-            onRemoveNotification={removeNotification}
-            onIncreaseContributionAmount={increaseContributionAmount}
+            authenticated={this.props.authenticated}
+            contributionPoints={this.props.contributionPoints}
+            username={this.props.username}
+            onRemoveNotification={this.props.removeNotification}
+            onIncreaseContributionAmount={this.props.increaseContributionAmount}
             />
           <Switch>
             {/* Temporary redirect from /; will use HomePage component */ }
             <Route exact path="/" render={() => <Redirect to="/dashboard" />} />
             <Route exact path="/dashboard" render={() => {
-              return authenticated
+              return this.props.authenticated
                 ? <Dashboard />
                 : <Redirect to="/pursuance/all" />
             }} />

@@ -15,9 +15,9 @@ class PursuanceList extends Component {
         return null;
       }
         return (
-            <div key={pursuance.id} className="pursuance-list-ctn">
-              <div className="pursuance-description">
-                <Link to={`/pursuance/${pursuance.id}`}>
+          <div key={pursuance.id} className="pursuance-list-ctn">
+            <div className="pursuance-description">
+              <Link to={`/pursuance/${pursuance.id}`}>
                 <h3><strong>{pursuance.name}</strong></h3>
               </Link>
               <p><strong>Mission:</strong> {pursuance.mission}</p>

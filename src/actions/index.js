@@ -13,7 +13,7 @@ import {
 import {
   postMembershipReq,
   getMembershipsReq,
-  delMembershipReq
+  deleteMembershipReq
 } from '../api/memberships';
 
 export const updateFormField = (formId, fieldId, value) => ({
@@ -246,17 +246,17 @@ export const getInvites = ({ pursuanceId }) => ({
   pursuanceId
 });
 
-export const postMembership = (membership) => ({
+export const postMembership = membership => ({
   type: 'POST_MEMBERSHIP',
   payload: postMembershipReq(membership)
 });
 
-export const getMemberships = (filterOption) => ({
+export const getMemberships = filterOption => ({
   type: 'GET_MEMBERSHIPS',
   payload: getMembershipsReq(filterOption)
 });
 
-export const delMembership = (membership) => ({
+export const deleteMembership = membership => ({
   type: 'DELETE_MEMBERSHIP',
-  payload: delMembershipReq(membership)
-})
+  payload: deleteMembershipReq(membership)
+});

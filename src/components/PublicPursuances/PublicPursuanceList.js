@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import * as postgrest from '../../api/postgrest';
-import { postMembership, getMemberships, delMembership } from '../../actions';
+import { postMembership, getMemberships, deleteMembership } from '../../actions';
 
 
 class PublicPursuanceList extends Component {
@@ -13,7 +13,7 @@ class PublicPursuanceList extends Component {
   }
 
   getPublicPursuanceList = () => {
-    const { user, publicPursuances, postMembership, memberships, delMembership } = this.props;
+    const { user, publicPursuances, postMembership, memberships, deleteMembership } = this.props;
     const pursuanceArr = Object.values(publicPursuances);
     return pursuanceArr.map((pursuance) => (
       <div key={pursuance.id} className="pursuance-list-ctn">
@@ -46,7 +46,7 @@ class PublicPursuanceList extends Component {
             &&
             <button
               className="leave-btn pursuance-btn"
-              onClick={() => delMembership({
+              onClick={() => deleteMembership({
                 "pursuance_id": pursuance.id,
                 "user_username": user.username
               })}
@@ -74,5 +74,5 @@ export default connect(({ publicPursuances, user, memberships }) =>
  ({ publicPursuances, user, memberships }),{
    postMembership,
    getMemberships,
-   delMembership
+   deleteMembership
 })(PublicPursuanceList);

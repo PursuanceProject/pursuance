@@ -1,6 +1,5 @@
 export default function(state = {}, action) {
   switch (action.type) {
-
     case 'POST_MEMBERSHIP_PENDING':
       return state;
 
@@ -25,7 +24,10 @@ export default function(state = {}, action) {
       return state;
 
     case 'DELETE_MEMBERSHIP_FULFILLED':
-      const { [String(action.payload.pursuance_id)]: _, ...updatedState } = state;
+      const {
+        [String(action.payload.pursuance_id)]: _,
+        ...updatedState
+      } = state;
       return updatedState;
 
     case 'DELETE_MEMBERSHIP_REJECTED':

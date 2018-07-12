@@ -15,5 +15,5 @@ const sortBySuggest = (suggest1, suggest2) => {
 
 export const scrollIntoViewOptions = { behavior: 'smooth', block: 'nearest' };
 if (window.browser === 'Firefox') {
-  scrollIntoViewOptions.block = 'end';
+  delete scrollIntoViewOptions.block;
 }
