@@ -52,7 +52,7 @@ class Invite extends Component {
         <option value="Assigner">Assigner</option>
         <option value="NormalUser">Normal User</option>
         <option value="Viewer">Viewer</option>
-        <option value="Untrusted">Untrusted</option>
+        <option value="Untrusted">(Untrusted)</option>
       </select>
     )
   }
@@ -132,7 +132,7 @@ class Invite extends Component {
               }
             </h2>
           </div>
-          <Tabs defaultActiveKey={1} id="invite-tabs">
+          <Tabs defaultActiveKey={2} id="invite-tabs">
             <Tab eventKey={1} title="Recruit by Skill Set">
               <div className="recruit-title">
                 <h3>Recruit Volunteers by their Skill Set and Interests</h3>
@@ -167,6 +167,7 @@ class Invite extends Component {
                 <input
                   type="text"
                   placeholder="For co-workers"
+                  autoFocus
                 />
                 <div className="invites-invite-as">
                   <label>Invite as:</label>

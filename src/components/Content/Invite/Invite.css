@@ -50,6 +50,18 @@
   height: 34px;
 }
 
+input[type="text"]::placeholder {
+  opacity: 0.3;
+}
+
+input[type="text"]::-webkit-input-placeholder {
+  opacity: 0.3;
+}
+
+input[type="text"]::-moz-placeholder {
+  opacity: 0.3;
+}
+
 #invites label,
 #invites select {
   box-sizing: border-box;
