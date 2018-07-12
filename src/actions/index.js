@@ -4,7 +4,17 @@ import {
   getPublicPursuancesReq,
   postPursuanceReq
 } from '../api/pursuances';
-import { postTaskReq, getTasksReq, patchTaskReq, deleteTaskReq } from '../api/tasks';
+import {
+  postTaskReq,
+  getTasksReq,
+  patchTaskReq,
+  deleteTaskReq
+} from '../api/tasks';
+import {
+  postMembershipReq,
+  getMembershipsReq,
+  delMembershipReq
+} from '../api/memberships';
 
 export const updateFormField = (formId, fieldId, value) => ({
   type: 'TASK_FIELD_UPDATE',
@@ -235,3 +245,18 @@ export const getInvites = ({ pursuanceId }) => ({
   type: 'GET_INVITES',
   pursuanceId
 });
+
+export const postMembership = (membership) => ({
+  type: 'POST_MEMBERSHIP',
+  payload: postMembershipReq(membership)
+});
+
+export const getMemberships = (filterOption) => ({
+  type: 'GET_MEMBERSHIPS',
+  payload: getMembershipsReq(filterOption)
+});
+
+export const delMembership = (membership) => ({
+  type: 'DELETE_MEMBERSHIP',
+  payload: delMembershipReq(membership)
+})

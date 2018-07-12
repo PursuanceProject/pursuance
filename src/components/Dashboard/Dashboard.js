@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { getPursuances } from '../../actions';
+import { getMemberships, getPursuances } from '../../actions';
 import { connect } from 'react-redux';
 import { unsetCurrentPursuance } from '../../actions';
 import { Link } from 'react-router-dom';
@@ -11,12 +11,14 @@ import './Dashboard.css';
 class Dashboard extends Component {
 
   componentWillMount() {
-    // TODO: Once we add auth, only grab pursuances that the logged-in
-    // user is a member of
-    this.props.getPursuances();
-
-    this.props.unsetCurrentPursuance();
+    const { getMemberships, user, unsetCurrentPursuance, getPursuances } = this.props;
+    unsetCurrentPursuance();
+    if(user.authenticated) {
+      getPursuances().then(() => {
+        return getMemberships({ "user_username" : user.username });
+    })
   }
+}
 
   getTooltip = () => (
     <Tooltip id="tooltip-add">
@@ -25,6 +27,7 @@ class Dashboard extends Component {
   );
 
   render () {
+    const { user } = this.props;
     return (
       <div id="dashboard" className="content-ctn">
         <div id="dashboard-title">
@@ -34,16 +37,23 @@ class Dashboard extends Component {
           <div className="dash-ctn">
             <div className="dash-box">
               <div className="dash-box-header">
-                <h2 className="dash-box-title">My Pursuances</h2>
-                <Link to="/pursuance/create">
-                  <OverlayTrigger
-                    placement="bottom"
-                    overlay={this.getTooltip()}>
-                    <FaPlusCircle className={"add-icon"} size={26}/>
-                  </OverlayTrigger>
-                </Link>
+                <h2 className="dash-box-title">
+                  {
+                    user.authenticated &&
+                    <div>
+                      My Pursuances
+                      <Link to="/pursuance/create">
+                        <OverlayTrigger
+                          placement="bottom"
+                          overlay={this.getTooltip()}>
+                          <FaPlusCircle className={"add-icon"} size={26}/>
+                        </OverlayTrigger>
+                      </Link>
+                    </div>
+                  }
+                </h2>
               </div>
-              <PursuanceList />
+              { user.authenticated && <PursuanceList />}
             </div>
           </div>
           {/* <div className="dash-ctn">
@@ -69,4 +79,5 @@ class Dashboard extends Component {
   }
 }
 
-export default connect(null, { getPursuances, unsetCurrentPursuance })(Dashboard);
+export default connect(({ user }) => ({ user }),
+ { getMemberships, unsetCurrentPursuance, getPursuances })(Dashboard);

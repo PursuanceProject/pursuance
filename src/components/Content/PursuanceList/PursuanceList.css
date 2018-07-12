@@ -25,9 +25,17 @@
   align-items: center;
 }
 
-.join-btn {
+.pursuance-btn {
   width: 80%;
-  border-radius: 10%;
+  border-radius: 10px;
+}
+
+.join-btn {
   background-color: rgba(80, 179, 254, .9);
   color: #fff;
+}
+
+.leave-btn {
+  background-color: #000;
+  color: #efefef;
 }

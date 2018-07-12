@@ -13,6 +13,7 @@ import autoComplete from './autoCompleteReducer';
 import showSuccessToast from './showSuccessToastReducer';
 import rightPanel from './rightPanelReducer';
 import invites from './invitesReducer';
+import memberships from './membershipsReducer';
 
 const rootReducer = combineReducers({
   notifications: notificationsReducer,
@@ -29,6 +30,7 @@ const rootReducer = combineReducers({
   showSuccessToast,
   rightPanel,
   invites,
+  memberships
 });
 
 export default rootReducer;

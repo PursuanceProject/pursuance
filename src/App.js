@@ -12,20 +12,31 @@ import './App.css';
 
 class App extends Component {
   render() {
+    const {
+      authenticated,
+      contributionPoints,
+      removeNotification,
+      increaseContributionAmount,
+      username
+    } = this.props;
     return (
       <Router>
         <div className="App">
           <NavBar
-            authenticated={this.props.authenticated}
-            contributionPoints={this.props.contributionPoints}
-            username={this.props.username}
-            onRemoveNotification={this.props.removeNotification}
-            onIncreaseContributionAmount={this.props.increaseContributionAmount}
+            authenticated={authenticated}
+            contributionPoints={contributionPoints}
+            username={username}
+            onRemoveNotification={removeNotification}
+            onIncreaseContributionAmount={increaseContributionAmount}
             />
           <Switch>
             {/* Temporary redirect from /; will use HomePage component */ }
             <Route exact path="/" render={() => <Redirect to="/dashboard" />} />
-            <Route exact path="/dashboard" component={Dashboard} />
+            <Route exact path="/dashboard" render={() => {
+              return authenticated
+                ? <Dashboard />
+                : <Redirect to="/pursuance/all" />
+            }} />
             <Route exact path="/pursuance/all" component={PublicPursuances} />
             <Route exact path="/pursuance/create" component={CreatePursuance} />
             <Route path="/pursuance/:pursuanceId" component={PursuancePage} />
