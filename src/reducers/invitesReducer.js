@@ -8,14 +8,14 @@ export default function(state = initialState, action) {
           id: '3e99889a-850e-11e8-80a7-00163e5e6c13',
           pursuance_id: 33,
           permissions_level: 'Admin',
-          purpose: 'Co-workers',
+          purpose: 'Emailing to co-workers',
           invite_url: 'https://app.pursuanceproject.org/invite/3e99889a-850e-11e8-80a7-00163e5e6c13#MammalKimonoJazzEquipmentJellyKryptonGamekeeperFossilGiddinessRearrangeArrowhead'
         },
         '4e99889a-850e-11e8-80a7-00163e5e6c13': {
           id: '4e99889a-850e-11e8-80a7-00163e5e6c13',
           pursuance_id: 33,
           permissions_level: 'NormalUser',
-          purpose: 'Emailing to in-house volunteers',
+          purpose: 'Sending to in-house volunteers via Slack',
           invite_url: 'https://app.pursuanceproject.org/invite/4e99889a-850e-11e8-80a7-00163e5e6c13#MammalKimonoJazzEquipmentJellyKryptonGamekeeperFossilGiddinessRearrangeArrowhead'
         },
         '5e99889a-850e-11e8-80a7-00163e5e6c13': {
