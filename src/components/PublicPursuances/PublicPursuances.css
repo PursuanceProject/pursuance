@@ -9,8 +9,12 @@
 }
 
 .public-pursuance-search-form input {
+  height: 28px;
   padding-left: 5px;
   min-width: 50vw;
+  border-radius: 5px;
+  border: none;
+  outline: none;
 }
 
 .pursuance-list h3 {

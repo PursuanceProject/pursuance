@@ -50,16 +50,16 @@
   height: 34px;
 }
 
-input[type="text"]::placeholder {
-  opacity: 0.3;
+#invites input[type="text"]::placeholder {
+  opacity: 0.4;
 }
 
-input[type="text"]::-webkit-input-placeholder {
-  opacity: 0.3;
+#invites input[type="text"]::-webkit-input-placeholder {
+  opacity: 0.4;
 }
 
-input[type="text"]::-moz-placeholder {
-  opacity: 0.3;
+#invites input[type="text"]::-moz-placeholder {
+  opacity: 0.4;
 }
 
 #invites label,
@@ -101,6 +101,8 @@ input[type="text"]::-moz-placeholder {
 #invites-form input {
   flex-grow: 2;
   max-width: 50%;
+  outline: none;
+  border: none;
 }
 
 /* general invite */
