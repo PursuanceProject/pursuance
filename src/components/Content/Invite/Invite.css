@@ -161,6 +161,10 @@ input[type="text"]::-moz-placeholder {
   margin-left: 1px;
 }
 
+#invites-form .hint:hover {
+  opacity: 0.7;
+}
+
 /* invite links */
 
 .invite-purpose {
