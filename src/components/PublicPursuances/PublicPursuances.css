@@ -1,0 +1,18 @@
+.public-pursuance-search-form {
+  margin-top: 5px;
+}
+
+.public-pursuance-search-form label {
+  color: white;
+  margin-top: 10px;
+  margin-right: 10px;
+}
+
+.public-pursuance-search-form input {
+  padding-left: 5px;
+  min-width: 50vw;
+}
+
+.pursuance-list h3 {
+  color: white;
+}

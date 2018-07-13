@@ -19,7 +19,6 @@ class PublicPursuances extends Component {
         <div id="dash-first-row">
           <div className="dash-ctn">
             <div className="dash-box">
-              <h2 className="dash-box-title">Recently Created</h2>
               <PublicPursuanceList />
             </div>
           </div>

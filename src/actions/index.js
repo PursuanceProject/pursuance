@@ -173,6 +173,10 @@ export const toggleSettingsInfoModal = () => ({
   type: 'TOGGLE_SETTINGS_INFO_MODAL'
 });
 
+export const toggleRoleInfoModal = () => ({
+  type: 'TOGGLE_ROLE_INFO_MODAL'
+});
+
 export const updatePursuanceFormField = (fieldId, value) => ({
   type: 'UPDATE_CREATE_PURSUANCE_FORM',
   fieldId,

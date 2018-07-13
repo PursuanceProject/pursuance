@@ -6,11 +6,13 @@ import {
   getPursuances,
   getInvites,
   rpShowTaskDetails,
+  toggleRoleInfoModal,
 } from '../../../actions';
 import FaQuestionCircle from 'react-icons/lib/fa/question-circle';
 import FaChain from 'react-icons/lib/fa/chain';
 import FaTimesCircleO from 'react-icons/lib/fa/times-circle-o';
 import { ToastContainer, toast } from 'react-toastify';
+import RoleInfoModal from './RoleInfoModal/RoleInfoModal';
 import 'react-toastify/dist/ReactToastify.css';
 import './Invite.css';
 import '../Content.css';
@@ -118,7 +120,7 @@ class Invite extends Component {
   }
 
   render() {
-    const { pursuances, currentPursuanceId } = this.props;
+    const { pursuances, currentPursuanceId, toggleRoleInfoModal } = this.props;
     const invites = this.getInvitesFromRedux();
 
     return (
@@ -172,7 +174,7 @@ class Invite extends Component {
                 <div className="invites-invite-as">
                   <label>Invite as:</label>
                   {this.displayPermissionsSelect()}
-                  <div className='hint'>
+                  <div className='hint' onClick={toggleRoleInfoModal}>
                     {<FaQuestionCircle size={20} />}
                   </div>
                 </div>
@@ -195,6 +197,7 @@ class Invite extends Component {
               </div>
             </Tab>
           </Tabs>
+          <RoleInfoModal />
         </div>
       </div>
     );
@@ -206,4 +209,5 @@ export default connect(({ pursuances, currentPursuanceId, invites }) =>
     getPursuances,
     getInvites,
     rpShowTaskDetails,
+    toggleRoleInfoModal,
 })(Invite);
