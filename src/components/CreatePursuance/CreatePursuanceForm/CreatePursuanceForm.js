@@ -107,16 +107,38 @@ class CreatePursuanceForm extends Component {
             name="is_encrypted"
             value="true"
             className="radio-field"
-            disabled
           />
           <span className="radio-field-span">
             Private Pursuance
           </span>
           <FaQuestionCircle
-            size={24}
+            size={20}
             className="create-pursuance-info-icon"
             onClick={toggleSettingsInfoModal}
             />
+        </div>
+        <div className="create-pursuance-setting">
+          <span className="radio-field-span">
+            Require 2FA?
+          </span>
+          <input
+            type="radio"
+            name="require_2fa"
+            value="false"
+            className="radio-field"
+            defaultChecked
+          />
+          <span className="radio-field-span">
+            No
+          </span>
+          <input type="radio"
+            name="require_2fa"
+            value="true"
+            className="radio-field"
+          />
+          <span className="radio-field-span">
+            Yes
+          </span>
         </div>
         <button className="create-pursuance-button" onClick={this.handleSubmit}>Create Pursuance</button>
       </form>
