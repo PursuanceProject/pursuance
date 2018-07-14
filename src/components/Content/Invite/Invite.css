@@ -314,6 +314,8 @@
 
 .recruit input {
   width: 50%;
+  outline: none;
+  border: none;
 }
 
 .profile {
