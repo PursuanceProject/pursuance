@@ -15,6 +15,7 @@ import rightPanel from './rightPanelReducer';
 import invites from './invitesReducer';
 import memberships from './membershipsReducer';
 import showPopup from './showPopupReducer';
+import publicProfiles from './publicProfilesReducer';
 
 const rootReducer = combineReducers({
   notifications: notificationsReducer,
@@ -33,6 +34,7 @@ const rootReducer = combineReducers({
   invites,
   memberships,
   showPopup,
+  publicProfiles,
 });
 
 export default rootReducer;

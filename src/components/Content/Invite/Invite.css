@@ -311,3 +311,24 @@
   min-width: 80px;
   max-width: 200px;
 }
+
+.profile {
+  border: 1px solid white;
+  border-radius: 5px;
+  min-height: 50px;
+  margin-bottom: 10px;
+  font-size: 15px;
+  padding: 5px;
+  width: 600px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.profile select, option {
+  border-radius: 3px;
+}
+
+.profile button {
+  height: 36px;
+  margin-left: 5px;
+}

@@ -18,6 +18,14 @@ import './Invite.css';
 import '../Content.css';
 
 class Invite extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      skills: [],
+      interests: [],
+      invitesSent: {},
+    }
+  }
 
   componentDidMount() {
     const { getPursuances, getInvites, currentPursuanceId, pursuances } = this.props;
@@ -26,6 +34,16 @@ class Invite extends Component {
     }
 
     getInvites({pursuanceId: currentPursuanceId});
+  }
+
+  skillInput = (e) => {
+    const { target: { value } } = e;
+    this.setState({ skills: value.split(/[ ,]+/)});
+  }
+
+  interestInput = (e) => {
+    const { target: { value } } = e;
+    this.setState({ interests: value.split(/[ ,]+/)});
   }
 
   getInvitesFromRedux = () => {
@@ -39,10 +57,61 @@ class Invite extends Component {
       .map((id) => invites[id])
   }
 
+  displayProfile = (profile) => {
+    const { skills, interests } = this.state;
+    const notMatchingSkills = skills.every(skill => (
+      profile.skills.some(term => { return term.toLowerCase().includes(skill.toLowerCase()) })
+    ));
+    const notMatchingInterests = interests.every(interest => (
+      profile.interests.some(term => { return term.toLowerCase().includes(interest.toLowerCase()) })
+    ));
+    return notMatchingSkills && notMatchingInterests;
+  }
+
+  inviteSent = (profileId) => {
+    this.setState({
+      invitesSent: {
+        [profileId]: true,
+        ...this.state.invitesSent
+      }
+    })
+  }
+
   displayRecruitSearchResults = () => {
-    return (
-      <div></div>
-    )
+    const { publicProfiles } = this.props;
+    const { invitesSent } = this.state;
+    return publicProfiles.map(profile => {
+      if (this.displayProfile(profile)) {
+        return (
+          <div className="profile" key={profile.id}>
+            <div>
+              <ul><strong>@{profile.name}</strong></ul>
+              <ul><strong>Skills:</strong>{profile.skills.map(skill => (<li key={skill}>{skill}</li>))}</ul>
+              <ul><strong>Interests:</strong>{profile.interests.map(interest => (<li key={interest}>{interest}</li>))}</ul>
+            </div>
+            <div>
+              {this.displayPermissionsSelect()}
+              {invitesSent[profile.id] && (
+                <button
+                  className="btn btn-danger"
+                >
+                  Cancel Invitation
+                </button>
+              )}
+              {!invitesSent[profile.id] && (
+                <button
+                  className="btn btn-primary"
+                  onClick={() => this.inviteSent(profile.id)}
+                >
+                  Send Invitation
+                </button>
+              )}
+            </div>
+          </div>
+        );
+      }
+      return null;
+    });
   }
 
   displayPermissionsSelect = () => {
@@ -145,6 +214,7 @@ class Invite extends Component {
                   type="text"
                   placeholder="Research Programming:React"
                   autoFocus
+                  onChange={this.skillInput}
                 />
               </div>
               <div id="recruit-form-interests">
@@ -152,6 +222,7 @@ class Invite extends Component {
                 <input
                   type="text"
                   placeholder="PrisonReform Abortion:ProChoice"
+                  onChange={this.interestInput}
                 />
               </div>
               <br />
@@ -204,8 +275,8 @@ class Invite extends Component {
   }
 }
 
-export default connect(({ pursuances, currentPursuanceId, invites }) =>
-  ({ pursuances, currentPursuanceId, invites }), {
+export default connect(({ pursuances, currentPursuanceId, invites, publicProfiles}) =>
+  ({ pursuances, currentPursuanceId, invites, publicProfiles }), {
     getPursuances,
     getInvites,
     rpShowTaskDetails,
