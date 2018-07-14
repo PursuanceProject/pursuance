@@ -68,15 +68,24 @@ class Invite extends Component {
   }
 
   displayRecruitSearchResults = () => {
-    console.log(this.state.skills);
     const { publicProfiles } = this.props;
     return publicProfiles.map(profile => {
       if (this.displayProfile(profile)) {
         return (
           <div className="profile" key={profile.id}>
-            <div>{profile.name}</div>
-            <ul>Skills:{profile.skills.map(skill => (<li>{skill}</li>))}</ul>
-            <ul>Interests: {profile.interests.map(interest => (<li>{interest}</li>))}</ul>
+            <div>
+              <div>{profile.name}</div>
+              <ul>Skills:{profile.skills.map(skill => (<li>{skill}</li>))}</ul>
+              <ul>Interests: {profile.interests.map(interest => (<li>{interest}</li>))}</ul>
+            </div>
+            <div>
+              {this.displayPermissionsSelect()}
+              <button
+                className="btn btn-primary"
+              >
+                Send Invitation
+              </button>
+            </div>
           </div>
         );
       }

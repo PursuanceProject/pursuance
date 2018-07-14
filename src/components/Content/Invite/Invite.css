@@ -319,5 +319,7 @@
   margin-bottom: 10px;
   font-size: 15px;
   padding: 5px;
-  width: 200px;
+  width: 600px;
+  display: flex;
+  justify-content: space-between;
 }
