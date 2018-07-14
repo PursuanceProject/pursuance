@@ -140,11 +140,10 @@ export default function(state = initialState, action) {
       const { taskGid } = action;
       const task = state.taskMap[taskGid];
 
-      console.log('task', taskGid, 'is creating hypothesis');
       return Object.assign({}, state, {
         taskMap: Object.assign({}, state.taskMap, {
           [taskGid]: Object.assign({}, task, {
-            creatingHypothesis: 'in progress'
+            creatingHypothesisGroup: 'in progress'
           })
         })
       });
@@ -158,8 +157,7 @@ export default function(state = initialState, action) {
       return Object.assign({}, state, {
         taskMap: Object.assign({}, state.taskMap, {
           [taskGid]: Object.assign({}, task, {
-            creatingHypothesis: 'done',
-            hypothesisLink: hypothesisData.links.html,
+            creatingHypothesisGroup: 'done',
             deliverables: task.deliverables += '* Hypothesis Group: ' +
               '[' + hypothesisData.name + '](' + hypothesisData.links.html + ' "' + hypothesisData.name + '")'
           })

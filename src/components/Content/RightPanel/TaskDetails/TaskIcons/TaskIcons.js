@@ -14,7 +14,7 @@ import './TaskIcons.css';
 
 const jitsiRoom = 'https://meet.jit.si/PonchoSpiderPageantFoxAlsoLaptopTractorWoundDebrisCaucasianGrapeDishclothFaucetBuddhistRefineryRibbonIridescentWishboneDesktopMugshotLeukemiaOfficeApricotEuthanizeUngloved';
 
-const TaskIcons = ({ gid, creatingHypothesis, subtaskGids = [], archiveTask, toggleHypothesisModal, fetchHypothesisGroup, hypothesis, history, currentPursuanceId }) => {
+const TaskIcons = ({ gid, creatingHypothesisGroup, subtaskGids = [], archiveTask, toggleHypothesisModal, fetchHypothesisGroup, hypothesis, history, currentPursuanceId }) => {
 
   const archiveThisTask = () => {
     archiveTask({gid});
@@ -113,7 +113,7 @@ const TaskIcons = ({ gid, creatingHypothesis, subtaskGids = [], archiveTask, tog
         </a>
       </OverlayTrigger>
 
-      {creatingHypothesis !== 'done' &&
+      {creatingHypothesisGroup !== 'done' &&
         <div>
           <OverlayTrigger placement="bottom" overlay={getTooltip('hypothesis')}>
             <img
@@ -124,7 +124,7 @@ const TaskIcons = ({ gid, creatingHypothesis, subtaskGids = [], archiveTask, tog
             />
           </OverlayTrigger>
 
-          <Modal show={!!hypothesis.taskGid} onHide={hideHypothesisModal} className={creatingHypothesis === 'in progress' ? 'modal-busy' : ''}>
+          <Modal show={!!hypothesis.taskGid} onHide={hideHypothesisModal} className={creatingHypothesisGroup === 'in progress' ? 'busy' : ''}>
             <Modal.Header closeButton>
               Create Hypothesis Group
             </Modal.Header>
