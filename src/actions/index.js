@@ -231,9 +231,49 @@ export const toggleHypothesisModal = ({ taskGid = '' }) => ({
   taskGid
 })
 
-export const createHypothesisGroup = ({ taskGid, name, description }) => ({
-  type: 'HYPOTHESIS_GROUP_CREATE',
-  taskGid,
-  name,
-  description,
+// export const createHypothesisGroup = ({ taskGid, name, description }) => ({
+//   type: 'HYPOTHESIS_GROUP_CREATE',
+//   taskGid,
+//   name,
+//   description,
+// })
+
+export const hypothesisGroupCreating = ({ taskGid = '' }) => ({
+  type: 'HYPOTHESIS_GROUP_CREATING',
+  taskGid
 })
+
+export const hypothesisGroupCreated = ({ taskGid = '', hypothesisData = '' }) => ({
+  type: 'HYPOTHESIS_GROUP_CREATED',
+  taskGid,
+  hypothesisData
+})
+
+export const fetchHypothesisGroup = ({ taskGid, name, description }) => {
+  return function (dispatch) { 
+    dispatch(hypothesisGroupCreating({ taskGid }));
+
+    return fetch('https://hypothes.is/api/groups', {
+        method: 'POST',
+        headers: {
+          'accept': 'application/json', 
+          'content-type': 'application/json', 
+          'authorization': 'Bearer 6879-DF1aRxrzWAarRZBMfak86Zs57i-LFtZCF1esFLYIlAU' // TODO update to one owned by elimisteve
+        },
+        body: JSON.stringify({
+          "name": name, 
+          "description": description
+        })
+      }).then(
+        response => response.json(),
+        error => console.log('An error occurred.', error)
+      ).then(function(hypothesisData) {
+        if (hypothesisData) {
+          dispatch(hypothesisGroupCreated({taskGid, hypothesisData}));
+          dispatch(toggleHypothesisModal({taskGid: ''}));
+        } else {
+          console.error('error getting responseJSON for hypothesisData');
+        }
+      });
+  }
+}

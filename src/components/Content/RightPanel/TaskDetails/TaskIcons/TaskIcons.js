@@ -8,13 +8,13 @@ import FaVideoCamera from 'react-icons/lib/fa/video-camera';
 import {
   archiveTask,
   toggleHypothesisModal,
-  createHypothesisGroup
+  fetchHypothesisGroup
 } from '../../../../../actions';
 import './TaskIcons.css';
 
 const jitsiRoom = 'https://meet.jit.si/PonchoSpiderPageantFoxAlsoLaptopTractorWoundDebrisCaucasianGrapeDishclothFaucetBuddhistRefineryRibbonIridescentWishboneDesktopMugshotLeukemiaOfficeApricotEuthanizeUngloved';
 
-const TaskIcons = ({ gid, subtaskGids = [], archiveTask, toggleHypothesisModal, createHypothesisGroup, hypothesis, history, currentPursuanceId }) => {
+const TaskIcons = ({ gid, creatingHypothesis, subtaskGids = [], archiveTask, toggleHypothesisModal, fetchHypothesisGroup, hypothesis, history, currentPursuanceId }) => {
 
   const archiveThisTask = () => {
     archiveTask({gid});
@@ -92,14 +92,11 @@ const TaskIcons = ({ gid, subtaskGids = [], archiveTask, toggleHypothesisModal, 
       return;
     }
 
-    const someJSON = createHypothesisGroup({
+    fetchHypothesisGroup({
       taskGid: gid,
       name: this.hypName,
       description: this.hypDescription,
     });
-
-    console.log(someJSON);
-    // toggleHypothesisModal({taskGid: ''});
   }
 
   return (
@@ -116,65 +113,69 @@ const TaskIcons = ({ gid, subtaskGids = [], archiveTask, toggleHypothesisModal, 
         </a>
       </OverlayTrigger>
 
-      <OverlayTrigger placement="bottom" overlay={getTooltip('hypothesis')}>
-        <img
-          src="/assets/img/HypothesisLogo.png"
-          alt="Hypothes.is"
-          className="hyp-logo"
-          onClick={showHypothesisModal}
-        />
-      </OverlayTrigger>
+      {creatingHypothesis !== 'done' &&
+        <div>
+          <OverlayTrigger placement="bottom" overlay={getTooltip('hypothesis')}>
+            <img
+              src="/assets/img/HypothesisLogo.png"
+              alt="Hypothes.is"
+              className="hyp-logo"
+              onClick={showHypothesisModal}
+            />
+          </OverlayTrigger>
 
-      <Modal show={!!hypothesis.taskGid} onHide={hideHypothesisModal}>
-        <Modal.Header closeButton>
-          Create Hypothesis Group
-        </Modal.Header>
+          <Modal show={!!hypothesis.taskGid} onHide={hideHypothesisModal} className={creatingHypothesis === 'in progress' ? 'modal-busy' : ''}>
+            <Modal.Header closeButton>
+              Create Hypothesis Group
+            </Modal.Header>
 
-        <Modal.Body>
-          <form className="hypgroup-form form-horizontal" name={'modal-' + gid}>
-            <div id="input-hypgroup-name-ctn" className="">
-              <div className="form-group">
-                <label className="col-sm-2 control-label" htmlFor="input-hypgroup-name">Name*</label>
-                <div className="col-sm-10">
-                  <input
-                    id="input-hypgroup-name"
-                    type="text"
-                    className="form-control"
-                    placeholder="P-5-InvestigateCops"
-                    name={'name'}
-                    defaultValue={''}
-                    autoFocus
-                    maxLength={25}
-                    onChange={setName}
-                  />
+            <Modal.Body>
+              <form className="hypgroup-form form-horizontal" name={'modal-' + gid}>
+                <div id="input-hypgroup-name-ctn" className="">
+                  <div className="form-group">
+                    <label className="col-sm-2 control-label" htmlFor="input-hypgroup-name">Name*</label>
+                    <div className="col-sm-10">
+                      <input
+                        id="input-hypgroup-name"
+                        type="text"
+                        className="form-control"
+                        placeholder="P-5-InvestigateCops"
+                        name={'name'}
+                        defaultValue={''}
+                        autoFocus
+                        maxLength={25}
+                        onChange={setName}
+                      />
+                    </div>
+                  </div>
+                  <div id="input-hypgroup-description-ctn" className="form-group">
+                    <label className="col-sm-2 control-label" htmlFor="input-hypgroup-description">Description</label>
+                    <div className="col-sm-10">
+                      <input
+                        id="input-hypgroup-description"
+                        type="text"
+                        className="form-control"
+                        placeholder=""
+                        name={'name'}
+                        defaultValue={''}
+                        maxLength={250}
+                        onChange={setDescription}
+                      />
+                    </div>
+                  </div>
+                  <div className="form-group">
+                    <div className="col-sm-12">
+                      <button className="btn btn-primary" onClick={handleSubmit}>
+                        Create Group
+                      </button>
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <div id="input-hypgroup-description-ctn" className="form-group">
-                <label className="col-sm-2 control-label" htmlFor="input-hypgroup-description">Description</label>
-                <div className="col-sm-10">
-                  <input
-                    id="input-hypgroup-description"
-                    type="text"
-                    className="form-control"
-                    placeholder=""
-                    name={'name'}
-                    defaultValue={''}
-                    maxLength={250}
-                    onChange={setDescription}
-                  />
-                </div>
-              </div>
-              <div className="form-group">
-                <div className="col-sm-12">
-                  <button className="btn btn-primary" onClick={handleSubmit}>
-                    Create Group
-                  </button>
-                </div>
-              </div>
-            </div>
-          </form>
-        </Modal.Body>
-      </Modal>
+              </form>
+            </Modal.Body>
+          </Modal>
+        </div>
+      }
 
       {isTaskArchivable() && (
         <OverlayTrigger placement="bottom" overlay={getTooltip()}>
@@ -185,4 +186,4 @@ const TaskIcons = ({ gid, subtaskGids = [], archiveTask, toggleHypothesisModal, 
   )
 }
 
-export default withRouter(connect(({currentPursuanceId, hypothesis, userLoginSuccess}) => ({currentPursuanceId, hypothesis, userLoginSuccess}), { archiveTask, toggleHypothesisModal, createHypothesisGroup })(TaskIcons));
+export default withRouter(connect(({currentPursuanceId, hypothesis, userLoginSuccess}) => ({currentPursuanceId, hypothesis, userLoginSuccess}), { archiveTask, toggleHypothesisModal, fetchHypothesisGroup })(TaskIcons));

@@ -77,6 +77,8 @@ class TaskDetails extends Component {
             <TaskIcons
               gid={task.gid}
               subtaskGids={task.subtask_gids}
+              creatingHypothesis={task.creatingHypothesis ? task.creatingHypothesis : false}
+              hypothesisLink={task.hypothesisLink ? task.hypothesisLink : false}
             />
             <div className="pursuance-title-ctn">
               <span className="pursuance-title">
@@ -88,7 +90,7 @@ class TaskDetails extends Component {
               <span>
                 <ReactMarkdown
                   source={task.deliverables}
-                  render={{Link: props => {
+                  renderers={{Link: props => {
                     if (props.href.startsWith('/')) {
                       return <a href={props.href}>{props.children}</a>;
                     }
