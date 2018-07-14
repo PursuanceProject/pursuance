@@ -311,3 +311,13 @@
   min-width: 80px;
   max-width: 200px;
 }
+
+.profile {
+  border: 1px solid white;
+  border-radius: 5px;
+  min-height: 50px;
+  margin-bottom: 10px;
+  font-size: 15px;
+  padding: 5px;
+  width: 200px;
+}

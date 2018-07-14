@@ -18,6 +18,13 @@ import './Invite.css';
 import '../Content.css';
 
 class Invite extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      skills: [],
+      interests: []
+    }
+  }
 
   componentDidMount() {
     const { getPursuances, getInvites, currentPursuanceId, pursuances } = this.props;
@@ -26,6 +33,16 @@ class Invite extends Component {
     }
 
     getInvites({pursuanceId: currentPursuanceId});
+  }
+
+  skillInput = (e) => {
+    const { target: { value } } = e;
+    this.setState({ skills: value.split(/[ ,]+/)});
+  }
+
+  interestInput = (e) => {
+    const { target: { value } } = e;
+    this.setState({ interests: value.split(/[ ,]+/)});
   }
 
   getInvitesFromRedux = () => {
@@ -40,9 +57,15 @@ class Invite extends Component {
   }
 
   displayRecruitSearchResults = () => {
-    return (
-      <div></div>
-    )
+    console.log(this.state.skills);
+    const { publicProfiles } = this.props;
+    return publicProfiles.map(profile => (
+      <div className="profile" key={profile.id}>
+        <div>{profile.name}</div>
+        <ul>Skills:{profile.skills.map(skill => (<li>{skill}</li>))}</ul>
+        <ul>Interests: {profile.interests.map(interest => (<li>{interest}</li>))}</ul>
+      </div>
+    ))
   }
 
   displayPermissionsSelect = () => {
@@ -145,6 +168,7 @@ class Invite extends Component {
                   type="text"
                   placeholder="Research Programming:React"
                   autoFocus
+                  onChange={this.skillInput}
                 />
               </div>
               <div id="recruit-form-interests">
@@ -152,6 +176,7 @@ class Invite extends Component {
                 <input
                   type="text"
                   placeholder="PrisonReform Abortion:ProChoice"
+                  onChange={this.interestInput}
                 />
               </div>
               <br />
@@ -204,8 +229,8 @@ class Invite extends Component {
   }
 }
 
-export default connect(({ pursuances, currentPursuanceId, invites }) =>
-  ({ pursuances, currentPursuanceId, invites }), {
+export default connect(({ pursuances, currentPursuanceId, invites, publicProfiles}) =>
+  ({ pursuances, currentPursuanceId, invites, publicProfiles }), {
     getPursuances,
     getInvites,
     rpShowTaskDetails,
