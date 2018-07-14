@@ -11,6 +11,8 @@ import {
 import FaQuestionCircle from 'react-icons/lib/fa/question-circle';
 import FaChain from 'react-icons/lib/fa/chain';
 import FaTimesCircleO from 'react-icons/lib/fa/times-circle-o';
+import FaCommentsO from 'react-icons/lib/fa/comments-o';
+import FaVideoCamera from 'react-icons/lib/fa/video-camera';
 import { ToastContainer, toast } from 'react-toastify';
 import RoleInfoModal from './RoleInfoModal/RoleInfoModal';
 import 'react-toastify/dist/ReactToastify.css';
@@ -85,7 +87,11 @@ class Invite extends Component {
         return (
           <div className="profile" key={profile.id}>
             <div>
-              <ul><strong>@{profile.name}</strong></ul>
+              <div className="profile-name-ctn">
+                <strong className="profile-name">@{profile.name}</strong>
+                <FaCommentsO size={34} className="icon" style={{marginTop: '0px'}} />
+                <FaVideoCamera size={34} className="icon" style={{marginTop: '0px'}} />
+              </div>
               <ul><strong>Skills:</strong>{profile.skills.map(skill => (<li key={skill}>{skill}</li>))}</ul>
               <ul><strong>Interests:</strong>{profile.interests.map(interest => (<li key={interest}>{interest}</li>))}</ul>
             </div>
