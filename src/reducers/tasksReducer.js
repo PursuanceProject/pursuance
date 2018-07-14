@@ -160,7 +160,7 @@ export default function(state = initialState, action) {
           [taskGid]: Object.assign({}, task, {
             creatingHypothesis: 'done',
             hypothesisLink: hypothesisData.links.html,
-            deliverables: task.deliverables += '\n\n#### Hypothesis Group\n\n' +
+            deliverables: task.deliverables += '* Hypothesis Group: ' +
               '[' + hypothesisData.name + '](' + hypothesisData.links.html + ' "' + hypothesisData.name + '")'
           })
         })
