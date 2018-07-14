@@ -56,16 +56,32 @@ class Invite extends Component {
       .map((id) => invites[id])
   }
 
+  displayProfile = (profile) => {
+    const { skills, interests } = this.state;
+    const notMatchingSkills = skills.map(skill => (
+      profile.skills.some(term => { return term.toLowerCase().includes(skill.toLowerCase()) })
+    )).includes(false);
+    const notMatchingInterests = interests.map(interest => (
+      profile.interests.some(term => { return term.toLowerCase().includes(interest.toLowerCase()) })
+    )).includes(false);
+    return !notMatchingSkills && !notMatchingInterests;
+  }
+
   displayRecruitSearchResults = () => {
     console.log(this.state.skills);
     const { publicProfiles } = this.props;
-    return publicProfiles.map(profile => (
-      <div className="profile" key={profile.id}>
-        <div>{profile.name}</div>
-        <ul>Skills:{profile.skills.map(skill => (<li>{skill}</li>))}</ul>
-        <ul>Interests: {profile.interests.map(interest => (<li>{interest}</li>))}</ul>
-      </div>
-    ))
+    return publicProfiles.map(profile => {
+      if (this.displayProfile(profile)) {
+        return (
+          <div className="profile" key={profile.id}>
+            <div>{profile.name}</div>
+            <ul>Skills:{profile.skills.map(skill => (<li>{skill}</li>))}</ul>
+            <ul>Interests: {profile.interests.map(interest => (<li>{interest}</li>))}</ul>
+          </div>
+        );
+      }
+      return null;
+    });
   }
 
   displayPermissionsSelect = () => {
