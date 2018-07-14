@@ -312,6 +312,10 @@
   max-width: 200px;
 }
 
+.recruit input {
+  width: 50%;
+}
+
 .profile {
   border: 1px solid white;
   border-radius: 5px;

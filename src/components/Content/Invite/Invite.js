@@ -204,7 +204,7 @@ class Invite extends Component {
             </h2>
           </div>
           <Tabs defaultActiveKey={2} id="invite-tabs">
-            <Tab eventKey={1} title="Recruit by Skill Set">
+            <Tab eventKey={1} title="Recruit by Skill Set" className="recruit">
               <div className="recruit-title">
                 <h3>Recruit Volunteers by their Skill Set and Interests</h3>
               </div>
@@ -234,7 +234,7 @@ class Invite extends Component {
               </div>
             </Tab>
 
-            <Tab eventKey={2} title="Create Invite Links">
+            <Tab eventKey={2} title="Create Invite Links" className="invite-links">
               <h3>Create New Invite Link</h3>
               <div id="invites-form">
                 <input
