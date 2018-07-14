@@ -56,7 +56,7 @@ export default function(state = initialState, action) {
       return state;
 
     case 'TASK_SET_ASSIGNEE_FULFILLED':
-      // Fallthrough
+    // Fallthrough
     case 'PATCH_TASK_FULFILLED':
       const patchedTask = action.payload;
       patchedTask.subtask_gids =
@@ -78,13 +78,14 @@ export default function(state = initialState, action) {
       if (!parentTaskGid) {
         return Object.assign({}, state, {
           taskMap: newTaskMap
-        })
+        });
       }
       const parentTask = state.taskMap[parentTaskGid];
       // Update parentTask.subtask_gids in redux so that it excludes
       // archivedTask.gid
-      const newParentSubtaskGids =
-        parentTask.subtask_gids.filter((gid) => gid !== archivedTask.gid)
+      const newParentSubtaskGids = parentTask.subtask_gids.filter(
+        gid => gid !== archivedTask.gid
+      );
       return Object.assign({}, state, {
         taskMap: Object.assign(newTaskMap, {
           [parentTaskGid]: {
@@ -158,8 +159,15 @@ export default function(state = initialState, action) {
         taskMap: Object.assign({}, state.taskMap, {
           [taskGid]: Object.assign({}, task, {
             creatingHypothesisGroup: 'done',
-            deliverables: task.deliverables += '* Hypothesis Group: ' +
-              '[' + hypothesisData.name + '](' + hypothesisData.links.html + ' "' + hypothesisData.name + '")'
+            deliverables: (task.deliverables +=
+              '* Hypothesis Group: ' +
+              '[' +
+              hypothesisData.name +
+              '](' +
+              hypothesisData.links.html +
+              ' "' +
+              hypothesisData.name +
+              '")')
           })
         })
       });

@@ -203,7 +203,7 @@ export const rpShowTaskList = ({ show = true }) => ({
   show: show
 });
 
-export const rpUpdateTaskListFilter = (taskListFilter) => ({
+export const rpUpdateTaskListFilter = taskListFilter => ({
   type: 'RIGHT_PANEL_TASK_LIST_FILTER_UPDATE',
   taskListFilter
 });
@@ -229,7 +229,7 @@ export const userLogoutSuccess = () => ({
 export const toggleHypothesisModal = ({ taskGid = '' }) => ({
   type: 'TOGGLE_MODAL_HYPOTHESIS_CREATE',
   taskGid
-})
+});
 
 // export const createHypothesisGroup = ({ taskGid, name, description }) => ({
 //   type: 'HYPOTHESIS_GROUP_CREATE',
@@ -241,39 +241,44 @@ export const toggleHypothesisModal = ({ taskGid = '' }) => ({
 export const hypothesisGroupCreating = ({ taskGid = '' }) => ({
   type: 'HYPOTHESIS_GROUP_CREATING',
   taskGid
-})
+});
 
-export const hypothesisGroupCreated = ({ taskGid = '', hypothesisData = '' }) => ({
+export const hypothesisGroupCreated = ({
+  taskGid = '',
+  hypothesisData = ''
+}) => ({
   type: 'HYPOTHESIS_GROUP_CREATED',
   taskGid,
   hypothesisData
-})
+});
 
 export const fetchHypothesisGroup = ({ taskGid, name, description }) => {
-  return function (dispatch) { 
+  return function(dispatch) {
     dispatch(hypothesisGroupCreating({ taskGid }));
 
     return fetch('https://hypothes.is/api/groups', {
-        method: 'POST',
-        headers: {
-          'accept': 'application/json', 
-          'content-type': 'application/json', 
-          'authorization': 'Bearer 6879-DF1aRxrzWAarRZBMfak86Zs57i-LFtZCF1esFLYIlAU' // TODO update to one owned by elimisteve
-        },
-        body: JSON.stringify({
-          "name": name, 
-          "description": description
-        })
-      }).then(
+      method: 'POST',
+      headers: {
+        accept: 'application/json',
+        'content-type': 'application/json',
+        authorization: 'Bearer 6879-DF1aRxrzWAarRZBMfak86Zs57i-LFtZCF1esFLYIlAU' // TODO update to one owned by elimisteve
+      },
+      body: JSON.stringify({
+        name: name,
+        description: description
+      })
+    })
+      .then(
         response => response.json(),
         error => console.log('An error occurred.', error)
-      ).then(function(hypothesisData) {
+      )
+      .then(function(hypothesisData) {
         if (hypothesisData) {
-          dispatch(hypothesisGroupCreated({taskGid, hypothesisData}));
-          dispatch(toggleHypothesisModal({taskGid: ''}));
+          dispatch(hypothesisGroupCreated({ taskGid, hypothesisData }));
+          dispatch(toggleHypothesisModal({ taskGid: '' }));
         } else {
           console.error('error getting responseJSON for hypothesisData');
         }
       });
-  }
-}
+  };
+};

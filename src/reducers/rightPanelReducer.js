@@ -1,11 +1,12 @@
 const _now = new Date();
-const _2monthsAgo = new Date(_now.getFullYear(), _now.getMonth()-2, 1);
+const _2monthsAgo = new Date(_now.getFullYear(), _now.getMonth() - 2, 1);
 
 const initialState = {
   show: true,
   tab: 'TaskList',
   taskGid: '',
-  taskListFilter: '@me status:!done due:>' + _2monthsAgo.toISOString().slice(0, 10)
+  taskListFilter:
+    '@me status:!done due:>' + _2monthsAgo.toISOString().slice(0, 10)
 };
 
 export default function(state = initialState, action) {
