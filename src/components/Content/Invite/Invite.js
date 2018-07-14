@@ -58,13 +58,13 @@ class Invite extends Component {
 
   displayProfile = (profile) => {
     const { skills, interests } = this.state;
-    const notMatchingSkills = skills.map(skill => (
+    const notMatchingSkills = skills.every(skill => (
       profile.skills.some(term => { return term.toLowerCase().includes(skill.toLowerCase()) })
-    )).includes(false);
-    const notMatchingInterests = interests.map(interest => (
+    ));
+    const notMatchingInterests = interests.every(interest => (
       profile.interests.some(term => { return term.toLowerCase().includes(interest.toLowerCase()) })
-    )).includes(false);
-    return !notMatchingSkills && !notMatchingInterests;
+    ));
+    return notMatchingSkills && notMatchingInterests;
   }
 
   displayRecruitSearchResults = () => {
@@ -75,8 +75,8 @@ class Invite extends Component {
           <div className="profile" key={profile.id}>
             <div>
               <div>{profile.name}</div>
-              <ul>Skills:{profile.skills.map(skill => (<li>{skill}</li>))}</ul>
-              <ul>Interests: {profile.interests.map(interest => (<li>{interest}</li>))}</ul>
+              <ul>Skills:{profile.skills.map(skill => (<li key={skill}>{skill}</li>))}</ul>
+              <ul>Interests: {profile.interests.map(interest => (<li key={interest}>{interest}</li>))}</ul>
             </div>
             <div>
               {this.displayPermissionsSelect()}
