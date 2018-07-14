@@ -22,7 +22,8 @@ class Invite extends Component {
     super(props);
     this.state = {
       skills: [],
-      interests: []
+      interests: [],
+      invitesSent: {},
     }
   }
 
@@ -67,24 +68,44 @@ class Invite extends Component {
     return notMatchingSkills && notMatchingInterests;
   }
 
+  inviteSent = (profileId) => {
+    this.setState({
+      invitesSent: {
+        [profileId]: true,
+        ...this.state.invitesSent
+      }
+    })
+  }
+
   displayRecruitSearchResults = () => {
     const { publicProfiles } = this.props;
+    const { invitesSent } = this.state;
     return publicProfiles.map(profile => {
       if (this.displayProfile(profile)) {
         return (
           <div className="profile" key={profile.id}>
             <div>
-              <div>{profile.name}</div>
-              <ul>Skills:{profile.skills.map(skill => (<li key={skill}>{skill}</li>))}</ul>
-              <ul>Interests: {profile.interests.map(interest => (<li key={interest}>{interest}</li>))}</ul>
+              <ul><strong>@{profile.name}</strong></ul>
+              <ul><strong>Skills:</strong>{profile.skills.map(skill => (<li key={skill}>{skill}</li>))}</ul>
+              <ul><strong>Interests:</strong>{profile.interests.map(interest => (<li key={interest}>{interest}</li>))}</ul>
             </div>
             <div>
               {this.displayPermissionsSelect()}
-              <button
-                className="btn btn-primary"
-              >
-                Send Invitation
-              </button>
+              {invitesSent[profile.id] && (
+                <button
+                  className="btn btn-danger"
+                >
+                  Cancel Invitation
+                </button>
+              )}
+              {!invitesSent[profile.id] && (
+                <button
+                  className="btn btn-primary"
+                  onClick={() => this.inviteSent(profile.id)}
+                >
+                  Send Invitation
+                </button>
+              )}
             </div>
           </div>
         );

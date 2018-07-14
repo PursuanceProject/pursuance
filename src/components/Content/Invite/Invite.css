@@ -323,3 +323,12 @@
   display: flex;
   justify-content: space-between;
 }
+
+.profile select, option {
+  border-radius: 3px;
+}
+
+.profile button {
+  height: 36px;
+  margin-left: 5px;
+}
