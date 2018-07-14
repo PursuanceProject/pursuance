@@ -17,6 +17,10 @@
   outline: none;
 }
 
+.public-pursuance-search-form input[type="text"]::placeholder {
+  opacity: 0.5;
+}
+
 .pursuance-list h3 {
   color: white;
 }

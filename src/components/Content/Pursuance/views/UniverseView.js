@@ -5,8 +5,7 @@ import { getPursuances } from '../../../../actions';
 
 import './UniverseView.css'
 
-const MAX_PURSUANCE_NAME_DISPLAY_LENGTH = 25;
-const COLORS = ["red", "green", "blue"];
+const MAX_PURSUANCE_NAME_DISPLAY_LENGTH = 40;
 
 class UniverseView extends Component {
 
@@ -25,13 +24,13 @@ class UniverseView extends Component {
   }
 
   renderNodes = () => {
-    const { pursuances } = this.props;
+    const { pursuances, currentPursuanceId } = this.props;
     const pursuanceArr = Object.values(pursuances);
     return pursuanceArr.map((pursuance) => (
       <ForceGraphNode
         key={pursuance.id}
         node={{ id: this.getName(pursuance), radius: 16 }}
-        fill={COLORS[pursuance.id % 3]}
+        fill={pursuance.id === currentPursuanceId ? 'red' : 'green'}
         labelStyle={{ fontSize: 16, fill: '#eee' }}
         showLabel
       />
@@ -72,4 +71,5 @@ class UniverseView extends Component {
   }
 }
 
-export default connect(({ pursuances }) => ({ pursuances }), { getPursuances })(UniverseView);
+export default connect(({ pursuances, currentPursuanceId }) => ({ pursuances, currentPursuanceId }),
+  { getPursuances })(UniverseView);
