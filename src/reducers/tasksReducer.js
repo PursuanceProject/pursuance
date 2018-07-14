@@ -159,15 +159,7 @@ export default function(state = initialState, action) {
         taskMap: Object.assign({}, state.taskMap, {
           [taskGid]: Object.assign({}, task, {
             creatingHypothesisGroup: 'done',
-            deliverables: (task.deliverables +=
-              '* Hypothesis Group: ' +
-              '[' +
-              hypothesisData.name +
-              '](' +
-              hypothesisData.links.html +
-              ' "' +
-              hypothesisData.name +
-              '")')
+            deliverables: (task.deliverables += `* Hypothesis Group: [${hypothesisData.name}](${hypothesisData.links.html} "${hypothesisData.name}")`)
           })
         })
       });
