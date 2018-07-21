@@ -4,12 +4,6 @@
 
 ---
 
-**NEWS:** The Pursuance Kickstarter is now LIVE and runs till July
-15th! Check it out here:
-https://www.kickstarter.com/projects/85883596/barrett-browns-pursuance-project
-
----
-
 ## What is Pursuance?
 
 Pursuance is open source software for effectively organizing groups

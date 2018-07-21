@@ -4,7 +4,12 @@ import {
   getPublicPursuancesReq,
   postPursuanceReq
 } from '../api/pursuances';
-import { postTaskReq, getTasksReq, patchTaskReq, deleteTaskReq } from '../api/tasks';
+import {
+  postTaskReq,
+  getTasksReq,
+  patchTaskReq,
+  deleteTaskReq
+} from '../api/tasks';
 
 export const updateFormField = (formId, fieldId, value) => ({
   type: 'TASK_FIELD_UPDATE',

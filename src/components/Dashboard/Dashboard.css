@@ -7,6 +7,12 @@
   overflow: auto;
 }
 
+@media (max-width: 799px) {
+  #dashboard {
+    padding: 30px 0;
+  }
+}
+
 #dashboard-title {
   text-align: center;
   color: #fcfcfc;
