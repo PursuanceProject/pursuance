@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "babel-env": "^2.4.1",
     "glamor": "^2.20.40",
     "react": "^15.6.1",
     "react-animated-number": "^0.4.3",
@@ -21,9 +22,18 @@
     "string.prototype.startswith": "^0.2.0"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-register": "^6.26.0",
+    "chai": "^4.1.2",
     "eslint-config-prettier": "^2.7.0",
+    "eslint-plugin-webdriverio": "^1.0.1",
     "prettier": "^1.8.2",
-    "react-scripts": "1.0.13"
+    "react-scripts": "1.0.13",
+    "wdio-dot-reporter": "0.0.9",
+    "wdio-mocha-framework": "^0.5.13",
+    "wdio-spec-reporter": "^0.1.4",
+    "webdriverio": "^4.12.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -36,7 +46,8 @@
     "format": "prettier --write ./src/**/*.js",
     "format:check": "prettier -l ./src/**/*.js",
     "verify-eslint-rules": "eslint --print-config .eslintrc | eslint-config-prettier-check",
-    "ci": "npm run verify-eslint-rules && npm run format:check && npm run lint:check"
+    "ci": "npm run verify-eslint-rules && npm run format:check && npm run lint:check",
+    "wdio": "node -r babel-register ./node_modules/.bin/wdio"
   },
   "proxy": "http://localhost:8082/"
 }
