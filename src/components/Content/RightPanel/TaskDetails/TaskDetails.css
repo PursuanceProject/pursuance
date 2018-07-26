@@ -102,6 +102,14 @@
   color: #50b3fe;
 }
 
+.task-deliverables-ctn ul {
+  padding-left: 10px;
+}
+
+.task-deliverables-ctn li {
+  font-size: 16px;
+}
+
 .subtasks-ctn {
   border-top: 1px solid #6d6d6d;
   padding-top: 8px;

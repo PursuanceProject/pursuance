@@ -3,8 +3,8 @@ export default function(state = {}, action) {
     case 'TOGGLE_MODAL_HYPOTHESIS_CREATE':
       return {
         ...state,
-        taskGid: state.taskGid ? '' : action.taskGid,
-      }
+        taskGid: state.taskGid ? '' : action.taskGid
+      };
 
     default:
       return state;

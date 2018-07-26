@@ -56,7 +56,7 @@ export default function(state = initialState, action) {
       return state;
 
     case 'TASK_SET_ASSIGNEE_FULFILLED':
-      // Fallthrough
+    // Fallthrough
     case 'PATCH_TASK_FULFILLED':
       const patchedTask = action.payload;
       patchedTask.subtask_gids =
@@ -78,13 +78,14 @@ export default function(state = initialState, action) {
       if (!parentTaskGid) {
         return Object.assign({}, state, {
           taskMap: newTaskMap
-        })
+        });
       }
       const parentTask = state.taskMap[parentTaskGid];
       // Update parentTask.subtask_gids in redux so that it excludes
       // archivedTask.gid
-      const newParentSubtaskGids =
-        parentTask.subtask_gids.filter((gid) => gid !== archivedTask.gid)
+      const newParentSubtaskGids = parentTask.subtask_gids.filter(
+        gid => gid !== archivedTask.gid
+      );
       return Object.assign({}, state, {
         taskMap: Object.assign(newTaskMap, {
           [parentTaskGid]: {
@@ -135,16 +136,30 @@ export default function(state = initialState, action) {
       });
     }
 
-    case 'HYPOTHESIS_GROUP_CREATE': {
-      console.log('HYPOTHESIS_GROUP_CREATE reducer called...');
-      const { taskGid, name, description } = action;
-      // TODO(elimisteve): Use name, description to actually create
-      // Hypothesis group; faking it by updating local state
+    case 'HYPOTHESIS_GROUP_CREATING': {
+      // simply set the task as in progress of creating a hypothesis group
+      const { taskGid } = action;
       const task = state.taskMap[taskGid];
+
       return Object.assign({}, state, {
         taskMap: Object.assign({}, state.taskMap, {
           [taskGid]: Object.assign({}, task, {
-            deliverables: task.deliverables += '\n\n#### Hypothesis Group\n\n<https://hypothes.is/groups/qodKXB7q/p-juansanchez>'
+            creatingHypothesisGroup: 'in progress'
+          })
+        })
+      });
+    }
+
+    case 'HYPOTHESIS_GROUP_CREATED': {
+      // assign the data returned from hypothesis call to the task
+      const { taskGid, hypothesisData } = action;
+      const task = state.taskMap[taskGid];
+
+      return Object.assign({}, state, {
+        taskMap: Object.assign({}, state.taskMap, {
+          [taskGid]: Object.assign({}, task, {
+            creatingHypothesisGroup: 'done',
+            deliverables: (task.deliverables += `* Hypothesis Group: [${hypothesisData.name}](${hypothesisData.links.html} "${hypothesisData.name}")`)
           })
         })
       });

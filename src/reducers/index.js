@@ -28,7 +28,7 @@ const rootReducer = combineReducers({
   autoComplete,
   showSuccessToast,
   rightPanel,
-  hypothesis,
+  hypothesis
 });
 
 export default rootReducer;
