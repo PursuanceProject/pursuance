@@ -231,13 +231,6 @@ export const toggleHypothesisModal = ({ taskGid = '' }) => ({
   taskGid
 });
 
-// export const createHypothesisGroup = ({ taskGid, name, description }) => ({
-//   type: 'HYPOTHESIS_GROUP_CREATE',
-//   taskGid,
-//   name,
-//   description,
-// })
-
 export const hypothesisGroupCreating = ({ taskGid = '' }) => ({
   type: 'HYPOTHESIS_GROUP_CREATING',
   taskGid
@@ -259,9 +252,9 @@ export const fetchHypothesisGroup = ({ taskGid, name, description }) => {
     return fetch('https://hypothes.is/api/groups', {
       method: 'POST',
       headers: {
-        accept: 'application/json',
+        'accept': 'application/json',
         'content-type': 'application/json',
-        authorization: 'Bearer 6879-DF1aRxrzWAarRZBMfak86Zs57i-LFtZCF1esFLYIlAU' // TODO update to one owned by elimisteve
+        'authorization': 'Bearer 6879-DF1aRxrzWAarRZBMfak86Zs57i-LFtZCF1esFLYIlAU' // TODO update to one owned by elimisteve
       },
       body: JSON.stringify({
         name: name,
@@ -270,7 +263,7 @@ export const fetchHypothesisGroup = ({ taskGid, name, description }) => {
     })
       .then(
         response => response.json(),
-        error => console.log('An error occurred.', error)
+        error => console.error('An error occurred.', error)
       )
       .then(function(hypothesisData) {
         if (hypothesisData) {
