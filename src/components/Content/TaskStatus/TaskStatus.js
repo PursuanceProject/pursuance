@@ -18,7 +18,7 @@ const STATUS_IMAGES = {
   'WorkingOn': true,
 }
 
-const config = {
+const confettiConfig = {
   angle: 80,
   spread: 148,
   startVelocity: 77,
@@ -40,12 +40,6 @@ class TaskStatus extends Component {
     });
   }
 
-  componentDidMount = () => {
-    this.setState({
-      'triggerToast': false
-    });
-  }
-  
   displayStatus = (status) => {
     return status.replace(/([a-z])([A-Z])/g, "$1 $2");
   }
@@ -77,7 +71,7 @@ class TaskStatus extends Component {
     const { status } = this.props;
     return (
       <div className={"task-status-ctn task-status-" + status + " hide-small"}>
-        <Confetti active={ this.state.triggerToast } config={ config }/>
+        <Confetti active={this.state.triggerToast} config={confettiConfig}/>
         <DropdownButton
           id="task-status-dropdown"
           title={this.getCurrentStatus()}
