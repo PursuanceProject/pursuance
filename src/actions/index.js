@@ -235,3 +235,8 @@ export const userLoginSuccess = ({ username }) => ({
 export const userLogoutSuccess = () => ({
   type: 'USER_LOGOUT_SUCCESS'
 });
+
+export const showTaskDoneCelebration = ({ taskGid }) => ({
+  type: 'SHOW_TASK_DONE_CELEBRATION',
+  taskGid
+});

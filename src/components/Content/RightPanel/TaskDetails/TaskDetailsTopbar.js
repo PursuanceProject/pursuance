@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { showAssignee } from '../../../../utils/tasks';
-import { getPursuancesByIds, patchTask } from '../../../../actions';
+import { getPursuancesByIds, patchTask, showTaskDoneCelebration } from '../../../../actions';
 import TaskStatus from '../../TaskStatus/TaskStatus';
 import TaskAssigner from '../../TaskHierarchy/Task/TaskAssigner/TaskAssigner';
 import TaskDueDate from '../../TaskDueDate/TaskDueDate';
@@ -62,6 +62,7 @@ class TaskDetailsTopbar extends Component {
             gid={task.gid}
             status={task.status}
             patchTask={this.props.patchTask}
+            showCelebration={task.celebration === 'show'}
           />
           <div className="assigned-to-ctn">
             <TaskAssigner
@@ -90,4 +91,4 @@ class TaskDetailsTopbar extends Component {
 }
 
 export default connect(({currentPursuanceId, pursuances, tasks, rightPanel}) => ({currentPursuanceId, pursuances, tasks, rightPanel}),
-  { getPursuancesByIds, patchTask })(TaskDetailsTopbar);
+  { getPursuancesByIds, patchTask, showTaskDoneCelebration })(TaskDetailsTopbar);

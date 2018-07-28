@@ -19,7 +19,8 @@ import {
   removeTaskFormFromHierarchy,
   startSuggestions,
   rpShowTaskDetailsOrCollapse,
-  patchTask
+  patchTask,
+  showTaskDoneCelebration
 } from '../../../../actions';
 
 class RawTask extends Component {
@@ -193,6 +194,7 @@ class RawTask extends Component {
               gid={task.gid}
               status={task.status}
               patchTask={this.props.patchTask}
+              showCelebration={task.celebration === 'show'}
             />
             <div className="task-assigned-to hide-small">
               <TaskAssigner
@@ -230,7 +232,8 @@ const Task = withRouter(connect(
   removeTaskFormFromHierarchy,
   startSuggestions,
   rpShowTaskDetailsOrCollapse,
-  patchTask
+  patchTask,
+  showTaskDoneCelebration
 })(RawTask));
 
 // Why RawTask _and_ Task? Because Task.mapSubTasks() recursively

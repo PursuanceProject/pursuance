@@ -27,19 +27,6 @@ const confettiConfig = {
 };
 
 class TaskStatus extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      'triggerToast': false
-    }
-  }
-
-  componentWillReceiveProps = (nextProps) => {
-    this.setState({
-      'triggerToast': this.props.status !== 'Done' && nextProps.status === 'Done'
-    });
-  }
-
   displayStatus = (status) => {
     return status.replace(/([a-z])([A-Z])/g, "$1 $2");
   }
@@ -63,15 +50,15 @@ class TaskStatus extends Component {
   }
 
   selectStatus = (status) => {
-    const { gid, patchTask } = this.props;
+    const { gid, patchTask, showTaskDoneCelebration } = this.props;
     patchTask({ gid, status });
   }
 
   render() {
-    const { status } = this.props;
+    const { status, showCelebration } = this.props;
     return (
       <div className={"task-status-ctn task-status-" + status + " hide-small"}>
-        <Confetti active={this.state.triggerToast} config={confettiConfig}/>
+        <Confetti active={this.props.showCelebration} config={confettiConfig}/>
         <DropdownButton
           id="task-status-dropdown"
           title={this.getCurrentStatus()}
