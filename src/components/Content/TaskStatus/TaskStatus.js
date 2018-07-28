@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { DropdownButton, MenuItem } from 'react-bootstrap';
 import TiPencil from 'react-icons/lib/ti/pencil';
 import './TaskStatus.css';
-
+import Confetti from 'react-dom-confetti';
 
 const VALID_STATUSES = [
   'New',
@@ -18,8 +18,34 @@ const STATUS_IMAGES = {
   'WorkingOn': true,
 }
 
-class TaskStatus extends Component {
+const config = {
+  angle: 80,
+  spread: 148,
+  startVelocity: 77,
+  elementCount: 167,
+  decay: 0.84
+};
 
+class TaskStatus extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      'triggerToast': false
+    }
+  }
+
+  componentWillReceiveProps = (nextProps) => {
+    this.setState({
+      'triggerToast': this.props.status !== 'Done' && nextProps.status === 'Done'
+    });
+  }
+
+  componentDidMount = () => {
+    this.setState({
+      'triggerToast': false
+    });
+  }
+  
   displayStatus = (status) => {
     return status.replace(/([a-z])([A-Z])/g, "$1 $2");
   }
@@ -51,6 +77,7 @@ class TaskStatus extends Component {
     const { status } = this.props;
     return (
       <div className={"task-status-ctn task-status-" + status + " hide-small"}>
+        <Confetti active={ this.state.triggerToast } config={ config }/>
         <DropdownButton
           id="task-status-dropdown"
           title={this.getCurrentStatus()}
