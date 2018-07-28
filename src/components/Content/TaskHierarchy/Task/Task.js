@@ -19,8 +19,7 @@ import {
   removeTaskFormFromHierarchy,
   startSuggestions,
   rpShowTaskDetailsOrCollapse,
-  patchTask,
-  showTaskDoneCelebration
+  patchTask
 } from '../../../../actions';
 
 class RawTask extends Component {
@@ -232,8 +231,7 @@ const Task = withRouter(connect(
   removeTaskFormFromHierarchy,
   startSuggestions,
   rpShowTaskDetailsOrCollapse,
-  patchTask,
-  showTaskDoneCelebration
+  patchTask
 })(RawTask));
 
 // Why RawTask _and_ Task? Because Task.mapSubTasks() recursively

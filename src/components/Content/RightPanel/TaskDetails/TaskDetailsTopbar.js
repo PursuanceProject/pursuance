@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { showAssignee } from '../../../../utils/tasks';
-import { getPursuancesByIds, patchTask, showTaskDoneCelebration } from '../../../../actions';
+import { getPursuancesByIds, patchTask } from '../../../../actions';
 import TaskStatus from '../../TaskStatus/TaskStatus';
 import TaskAssigner from '../../TaskHierarchy/Task/TaskAssigner/TaskAssigner';
 import TaskDueDate from '../../TaskDueDate/TaskDueDate';
@@ -91,4 +91,4 @@ class TaskDetailsTopbar extends Component {
 }
 
 export default connect(({currentPursuanceId, pursuances, tasks, rightPanel}) => ({currentPursuanceId, pursuances, tasks, rightPanel}),
-  { getPursuancesByIds, patchTask, showTaskDoneCelebration })(TaskDetailsTopbar);
+  { getPursuancesByIds, patchTask })(TaskDetailsTopbar);

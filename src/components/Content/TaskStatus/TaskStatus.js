@@ -50,7 +50,7 @@ class TaskStatus extends Component {
   }
 
   selectStatus = (status) => {
-    const { gid, patchTask, showTaskDoneCelebration } = this.props;
+    const { gid, patchTask } = this.props;
     patchTask({ gid, status });
   }
 
