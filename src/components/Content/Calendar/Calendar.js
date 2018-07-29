@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
-import {
-  getTasks,
-  getPursuances,
-  rpShowTaskDetails,
-} from '../../../actions';
+import {getTasks, getPursuances, rpShowTaskDetails} from '../../../actions';
 import BigCalendar from 'react-big-calendar';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import './Calendar.css';
@@ -24,11 +20,9 @@ class Calendar extends Component {
     } = this.props;
 
     // Fetch this pursuance's tasks if we haven't already
-    if (
-      Object.keys(tasks.taskMap).filter(gid =>
-        gid.startsWith(currentPursuanceId + '_')
-      ).length === 0
-    ) {
+    if (Object.keys(tasks.taskMap)
+        .filter(gid => gid.startsWith(currentPursuanceId + '_'))
+        .length === 0) {
       getTasks(currentPursuanceId);
     }
     if (Object.keys(pursuances).length === 0) {
@@ -37,24 +31,17 @@ class Calendar extends Component {
   }
 
   getEvents = () => {
-    const {
-      currentPursuanceId,
-      user,
-      tasks: { taskMap }
-    } = this.props;
+    const { currentPursuanceId, user, tasks: { taskMap } } = this.props;
     return Object.keys(taskMap)
-      .filter(gid => {
+      .filter((gid) => {
         const t = taskMap[gid];
-        return (
-          t &&
+        return t &&
           t.due_date &&
           t.status !== 'Done' &&
           t.assigned_to === user.username &&
-          (t.pursuance_id === currentPursuanceId ||
-            t.assigned_to_pursuance_id === currentPursuanceId)
-        );
+          (t.pursuance_id === currentPursuanceId || t.assigned_to_pursuance_id === currentPursuanceId)
       })
-      .map(gid => {
+      .map((gid) => {
         const t = taskMap[gid];
         return {
           id: t.gid,
@@ -62,10 +49,10 @@ class Calendar extends Component {
           start: new Date(t.due_date),
           end: new Date(t.due_date),
           desc: t.deliverables,
-          allDay: true
-        };
-      });
-  };
+          allDay: true,
+        }
+      })
+  }
 
   onSelectEvent = (event) => {
     this.props.rpShowTaskDetails({taskGid: event.id});
@@ -81,8 +68,9 @@ class Calendar extends Component {
           <div id="task-hierarchy-title">
             <h2 id="calendar-title">Calendar:&nbsp;</h2>
             <h2 id="pursuance-title">
-              {pursuances[currentPursuanceId] &&
-                pursuances[currentPursuanceId].name}
+              {
+                pursuances[currentPursuanceId] && pursuances[currentPursuanceId].name
+              }
             </h2>
           </div>
           <div id="big-calendar">
@@ -101,16 +89,9 @@ class Calendar extends Component {
   }
 }
 
-export default connect(
-  ({ pursuances, currentPursuanceId, tasks, rightPanel, user }) => ({
-    pursuances,
-    currentPursuanceId,
-    tasks,
-    rightPanel,
-    user
-  }),
-  {
+export default connect(({ pursuances, currentPursuanceId, tasks, rightPanel, user }) =>
+  ({ pursuances, currentPursuanceId, tasks, rightPanel, user }), {
     getTasks,
     getPursuances,
-    rpShowTaskDetails,
+    rpShowTaskDetails
 })(Calendar);

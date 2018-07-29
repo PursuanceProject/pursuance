@@ -2,32 +2,26 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { showTaskInPursuance } from '../../../../utils/tasks';
-import { getPursuances, getTasks, getUsers, rpShowTaskDetails, patchTask, updateFormField } from '../../../../actions';
+import { getPursuances, getTasks, getUsers, rpShowTaskDetails, patchTask } from '../../../../actions';
 import ReactMarkdown from 'react-markdown';
 import FaCircleO from 'react-icons/lib/fa/circle-o';
 import TaskDetailsTopbar from './TaskDetailsTopbar';
 import TaskTitle from './TaskTitle/TaskTitle';
 import TaskIcons from './TaskIcons/TaskIcons';
 import TaskForm from '../../TaskManager/TaskForm/TaskForm';
-
+import Wysiwyg from './Wysiwyg/Wysiwyg';
 import './TaskDetails.css';
 
 class TaskDetails extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      editMode: false,
-      taskDescription: '',
-      refresh: false
-    };
-    this.taskDescription = '';
-  }
-
   componentWillMount() {
     const {
       currentPursuanceId,
+      getPursuances,
       tasks,
       getTasks,
+      getUsers,
+      pursuances, 
+      users,
       rightPanel
     } = this.props;
 
@@ -43,13 +37,11 @@ class TaskDetails extends Component {
 
       // If this task was assigned to this pursuance from another
       // pursuance, grab the current pursuance's tasks, too
-      if (currentPursuanceId &&
-          thisTasksPursuanceId !== currentPursuanceId.toString()) {
+      if (currentPursuanceId && thisTasksPursuanceId !== currentPursuanceId.toString()) {
         getTasks(currentPursuanceId);
       }
     }
 
-    const { getPursuances, getUsers, pursuances, users } = this.props;
     if (Object.keys(users).length === 0) {
       getUsers();
     }
@@ -62,16 +54,6 @@ class TaskDetails extends Component {
     document.addEventListener('keydown', this.closeOnEsc, false);
     document.addEventListener('keydown', this.refresh, false);
   }
-
-  editTaskDescription = e => {
-    this.taskDescription = e.target.value;
-  };
-
-  editModeToggle = () => {
-    this.setState({
-      editMode: !this.state.editMode
-    });
-  };
 
   closeOnEsc = e => {
     if (this.state.editMode === true && e.keyCode === 27) {
@@ -101,6 +83,12 @@ class TaskDetails extends Component {
       refresh: !this.state.refresh
     });
   };
+
+  saveDeliverables = ({savedMarkdown}) => {
+    const { taskGid } = this.props.rightPanel;
+
+    patchTask({gid: taskGid, deliverables: savedMarkdown});
+  }
 
   render() {
     const { pursuances, currentPursuanceId, tasks, rpShowTaskDetails } = this.props;
@@ -153,29 +141,8 @@ class TaskDetails extends Component {
             </div>
             <div className="task-deliverables-ctn">
               <h4><strong>Description / Deliverables</strong></h4>
-              <form>
-                <button className="editSubmit"
-                  onClick={e => {
-                    e.preventDefault();
-                    this.editModeToggle();
-                    this.onSubmit();
-                    this.refresh();
-                  }}>
-                  {editMode ? 'Save' : 'Edit'}
-                </button>
-                {editMode && (
-                  <div className="input">
-                    <label>
-                      <textarea
-                        className="desc"
-                        onChange={this.editTaskDescription.bind}
-                        defaultValue={task.deliverables}
-                      />
-                    </label>
-                  </div>
-                )}
-              </form>
-              {!editMode && (
+              <Wysiwyg taskGid={taskGid} attributeName='deliverables' />
+              {false && !editMode && ( // TODO REMOVE
                 <span>
                   <ReactMarkdown
                     source={task.deliverables}
