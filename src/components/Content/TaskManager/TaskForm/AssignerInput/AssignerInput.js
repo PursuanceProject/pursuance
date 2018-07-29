@@ -14,7 +14,8 @@ import {
   setTaskAssignee
 } from '../../../../../actions';
 
-const AssignerInput = props => {
+const AssignerInput = (props) => {
+
   const {
     updateFormField,
     formId,
@@ -42,33 +43,29 @@ const AssignerInput = props => {
   // to another pursuance
   const onlyShowUsers = () => !isFromCurrentPursuance && editMode;
 
-  const onChange = e => {
+  const onChange = (e) => {
     const { value, name } = e.target;
-    const suggestions = onlyShowUsers()
-      ? users
-      : Object.assign({}, pursuances, users);
+    const suggestions = onlyShowUsers() ? users : Object.assign({}, pursuances, users);
     if (suggestions[assignedTo]) {
-      delete suggestions[assignedTo];
+      delete suggestions[assignedTo]
     }
     delete suggestions[currentPursuanceId];
     updateFormField(formId, name, value);
     startSuggestions(value, filterSuggestion, suggestions, formId);
-  };
+  }
 
-  const onFocus = e => {
+  const onFocus = (e) => {
     const { value, name } = e.target;
     updateFormField(formId, name, value);
-    const suggestions = onlyShowUsers()
-      ? users
-      : Object.assign({}, pursuances, users);
+    const suggestions = onlyShowUsers() ? users : Object.assign({}, pursuances, users);
     if (suggestions[assignedTo]) {
-      delete suggestions[assignedTo];
+      delete suggestions[assignedTo]
     }
     delete suggestions[currentPursuanceId];
     startSuggestions(e.target.value, filterSuggestion, suggestions, formId);
-  };
+  }
 
-  const onKeyDown = e => {
+  const onKeyDown = (e) => {
     if (e.key === 'Escape') {
       onBlur();
       return;
@@ -88,16 +85,15 @@ const AssignerInput = props => {
           patchedTask.assigned_to_pursuance_id = suggestion.id;
           patchedTask.assigned_to = null;
         } else if (isFromCurrentPursuance) {
-          // Assigning to a user in the current pursuance
-          patchedTask.assigned_to_pursuance_id = null;
-          patchedTask.assigned_to = suggestionName;
+            // Assigning to a user in the current pursuance
+            patchedTask.assigned_to_pursuance_id = null;
+            patchedTask.assigned_to = suggestionName;
         } else {
             // Assigning this outsourced-to-us task to a member of the
             // current pursuance
             patchedTask.assigned_to = suggestionName;
           }
         setTaskAssignee(patchedTask);
-        patchTask(patchedTask);
         hideEditAssignee();
       } else {
         addSuggestion(suggestionName, formId);
@@ -114,7 +110,7 @@ const AssignerInput = props => {
       e.preventDefault();
       downSuggestion();
     }
-  };
+  }
 
   const onBlur = () => {
     stopSuggestions();
@@ -122,19 +118,18 @@ const AssignerInput = props => {
       hideEditAssignee();
       updateFormField(formId, 'assigned_to', '');
     }
-  };
+  }
 
   const clearAssignee = () => {
     const patchedTask = {
       gid: formId,
       assigned_to: null
-    };
+    }
     if (placeholder && placeholder[0] === '(') {
       patchedTask.assigned_to_pursuance_id = null;
     }
-    patchTask(patchedTask);
     setTaskAssignee(patchedTask);
-  };
+  }
 
   let assigned_to = taskForm[formId] ? taskForm[formId].assigned_to : '';
   let autoFocus;
@@ -160,25 +155,22 @@ const AssignerInput = props => {
         onKeyDown={onKeyDown}
         autoFocus={autoFocus}
       />
-      {editMode && (
+      { editMode &&
         <div className="unassign-user-icon" onMouseDown={clearAssignee}>
-          <FaUserTimes size={16} />
+          <FaUserTimes size={16}/>
         </div>
-      )}
+      }
     </div>
-  );
-};
+  )
+}
 
-export default connect(
-  ({ pursuances, currentPursuanceId, users, autoComplete, taskForm }) => ({pursuances, currentPursuanceId, users, autoComplete, taskForm}),
-  {
-    updateFormField,
-    startSuggestions,
-    stopSuggestions,
-    upSuggestion,
-    downSuggestion,
-    addSuggestion,
-    setTaskAssignee,
-    patchTask
-  }
-)(AssignerInput);
+export default connect(({ pursuances, currentPursuanceId, users, autoComplete, taskForm }) =>
+  ({ pursuances, currentPursuanceId, users, autoComplete, taskForm}), {
+   updateFormField,
+   startSuggestions,
+   stopSuggestions,
+   upSuggestion,
+   downSuggestion,
+   addSuggestion,
+   setTaskAssignee
+})(AssignerInput);

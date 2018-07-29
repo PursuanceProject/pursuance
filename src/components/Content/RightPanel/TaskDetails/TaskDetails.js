@@ -2,25 +2,19 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { showTaskInPursuance } from '../../../../utils/tasks';
-import { getPursuances, getTasks, getUsers, rpShowTaskDetails, patchTask } from '../../../../actions';
-import { getPursuancesByIds, getTasks } from '../../../../actions';
+import { getPursuances, getTasks, getUsers, rpShowTaskDetails, patchTask, updateFormField } from '../../../../actions';
 import ReactMarkdown from 'react-markdown';
 import FaCircleO from 'react-icons/lib/fa/circle-o';
-import { updateFormField, patchTask } from '../../../../actions';
 import TaskDetailsTopbar from './TaskDetailsTopbar';
 import TaskTitle from './TaskTitle/TaskTitle';
 import TaskIcons from './TaskIcons/TaskIcons';
 import TaskForm from '../../TaskManager/TaskForm/TaskForm';
-import TaskStatus from '../../TaskStatus/TaskStatus';
-import TaskAssigner from '../../TaskHierarchy/Task/TaskAssigner/TaskAssigner';
-import TaskDueDate from '../../TaskDueDate/TaskDueDate';
 
 import './TaskDetails.css';
 
 class TaskDetails extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       editMode: false,
       taskDescription: '',
@@ -29,52 +23,13 @@ class TaskDetails extends Component {
     this.taskDescription = '';
   }
 
-  editTaskDescription = e => {
-    this.taskDescription = e.target.value;
-  };
-
-  editModeToggle = () => {
-    this.setState({
-      editMode: !this.state.editMode
-    });
-    console.log(this.state.editMode);
-  };
-
-  closeOnEsc = e => {
-    if (this.state.editMode === true && e.keyCode === 27) {
-      this.editModeToggle();
-    }
-  };
-
-  onSubmit = () => {
-    if (this.state.editMode) {
-      const patchedTaskDescription = {
-        gid: this.props.rightPanel.taskGid,
-        deliverables: this.taskDescription
-      };
-      patchTask(patchedTaskDescription);
-      this.setState({
-        editMode: false
-      });
-      window.location.reload();
-    }
-  };
-
-  refresh = () => {
-    this.setState({
-      refresh: !this.state.refresh
-    });
-  };
-
-  componentDidMount() {
-    document.addEventListener('keydown', this.closeOnEsc, false);
-    document.addEventListener('keydown', this.refresh, false);
-  }
-
   componentWillMount() {
-    console.log(this.props);
-
-    const { currentPursuanceId, tasks, getTasks, rightPanel } = this.props;
+    const {
+      currentPursuanceId,
+      tasks,
+      getTasks,
+      rightPanel
+    } = this.props;
 
     if (tasks.taskMap[rightPanel.taskGid]) {
       this.setState({
@@ -103,11 +58,54 @@ class TaskDetails extends Component {
     }
   }
 
+  componentDidMount() {
+    document.addEventListener('keydown', this.closeOnEsc, false);
+    document.addEventListener('keydown', this.refresh, false);
+  }
+
+  editTaskDescription = e => {
+    this.taskDescription = e.target.value;
+  };
+
+  editModeToggle = () => {
+    this.setState({
+      editMode: !this.state.editMode
+    });
+  };
+
+  closeOnEsc = e => {
+    if (this.state.editMode === true && e.keyCode === 27) {
+      this.editModeToggle();
+    }
+  };
+
+  onSubmit = (a,b,c) => {
+    console.log(a);
+    console.log(b);
+    console.log(c);
+    if (this.state.editMode) {
+      const patchedTaskDescription = {
+        gid: this.props.rightPanel.taskGid,
+        deliverables: this.taskDescription
+      };
+      console.log('patching task', patchedTaskDescription);
+      this.setState({
+        editMode: false
+      });
+      patchTask(patchedTaskDescription);
+    }
+  };
+
+  refresh = () => {
+    this.setState({
+      refresh: !this.state.refresh
+    });
+  };
+
   render() {
     const { pursuances, currentPursuanceId, tasks, rpShowTaskDetails } = this.props;
-    const {
-      rightPanel: { taskGid }
-    } = this.props;
+    const { taskGid } = this.props.rightPanel;
+    const { editMode } = this.state;
     const task = tasks.taskMap[taskGid];
     if (!task) {
       if (taskGid) {
@@ -116,7 +114,6 @@ class TaskDetails extends Component {
       return null;
     }
     const subtaskGids = task.subtask_gids;
-    const { editMode } = this.state;
 
     const parent = tasks.taskMap[task.parent_task_gid];
     const parentTitle =
@@ -155,65 +152,45 @@ class TaskDetails extends Component {
               </span>
             </div>
             <div className="task-deliverables-ctn">
-              <div className="task-deliverables-header">
-                <h4>
-                  <strong>Descriptions / Deliverables</strong>
-                </h4>
-
-                <button
-                  className="editSubmit"
+              <h4><strong>Description / Deliverables</strong></h4>
+              <form>
+                <button className="editSubmit"
                   onClick={e => {
                     e.preventDefault();
                     this.editModeToggle();
                     this.onSubmit();
                     this.refresh();
-                  }}
-                >
+                  }}>
                   {editMode ? 'Save' : 'Edit'}
                 </button>
-              </div>
-
-              {editMode && (
-                <div className="input">
-                  <form>
+                {editMode && (
+                  <div className="input">
                     <label>
                       <textarea
                         className="desc"
-                        onChange={this.editTaskDescription}
+                        onChange={this.editTaskDescription.bind}
                         defaultValue={task.deliverables}
                       />
                     </label>
-                  </form>
-                </div>
-              )}
-
-              {editMode ? console.log('EM') : console.log('NOT EM')}
-
+                  </div>
+                )}
+              </form>
               {!editMode && (
                 <span>
                   <ReactMarkdown
                     source={task.deliverables}
-                    render={{
-                      Link: props => {
-                        if (props.href.startsWith('/')) {
-                          return <a href={props.href}>{props.children}</a>;
-                        }
-                        return (
-                          <a href={props.href} target="_blank">
-                            {props.children}
-                          </a>
-                        );
+                    render={{Link: props => {
+                      if (props.href.startsWith('/')) {
+                        return <a href={props.href}>{props.children}</a>;
                       }
-                    }}
-                  />
+                      // If link to external site, open in new tab
+                      return <a href={props.href} target="_blank">{props.children}</a>;
+                    }}} />
                 </span>
               )}
             </div>
-
             <div className="subtasks-ctn">
-              <h4>
-                <strong>Subtasks</strong>
-              </h4>
+              <h4><strong>Subtasks</strong></h4>
               <ul className="subtasks-list">
                 {subtaskGids.map((gid, i)=> {
                   return <li key={i} className="subtask-item" onClick={() => rpShowTaskDetails({taskGid: gid})}>
@@ -233,8 +210,10 @@ class TaskDetails extends Component {
         </div>
       </div>
     );
-  }
+  };
 }
 
-export default withRouter(connect(({currentPursuanceId, pursuances, tasks, rightPanel, users}) => ({currentPursuanceId, pursuances, tasks, rightPanel, users}),
-  { getPursuances, getTasks, getUsers, rpShowTaskDetails, patchTask })(TaskDetails));
+export default withRouter(connect(
+  ({currentPursuanceId, pursuances, tasks, rightPanel, users}) => ({currentPursuanceId, pursuances, tasks, rightPanel, users}),
+  {getPursuances, getTasks, getUsers, rpShowTaskDetails, patchTask}
+)(TaskDetails));
