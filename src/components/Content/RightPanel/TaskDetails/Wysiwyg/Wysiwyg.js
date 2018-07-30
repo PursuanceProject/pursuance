@@ -2,14 +2,12 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {EditorState, convertToRaw, convertFromRaw} from 'draft-js';
 import Editor from 'draft-js-plugins-editor';
-import createLinkifyPlugin from 'draft-js-linkify-plugin';
 import createAutoListPlugin from 'draft-js-autolist-plugin'
-import './Wysiwyg.css';
+import createMarkdownPlugin from 'draft-js-markdown-plugin';
 import {markdownToDraft, draftToMarkdown} from 'markdown-draft-js';
 import ReactMarkdown from 'react-markdown';
-import createMarkdownPlugin from 'draft-js-markdown-plugin';
+import './Wysiwyg.css';
 
-const linkifyPlugin = createLinkifyPlugin();
 const autoListPlugin = createAutoListPlugin();
 
 const plugins = [
@@ -23,14 +21,10 @@ class Wysiwyg extends Component {
       attributeValue = taskMap[taskGid][attributeName],
       content = attributeValue ? markdownToDraft(attributeValue, {
         remarkableOptions: {
-          html: true,
+          html: false,
           preserveNewlines: true
         }
       }) : markdownToDraft('');
-
-      console.log('attributeValue', attributeValue);
-
-    
 
     this.state = {
       editMode: false,
@@ -91,7 +85,6 @@ class Wysiwyg extends Component {
               <ReactMarkdown
                 source={attributeValue}
                 render={{Link: props => {
-                  console.log('props.href', props.href);
                   if (props.href.startsWith('/')) {
                     return <a href={props.href}>{props.children}</a>;
                   }

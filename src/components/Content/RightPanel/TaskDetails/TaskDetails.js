@@ -3,33 +3,23 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { showTaskInPursuance } from '../../../../utils/tasks';
 import { getPursuances, getTasks, getUsers, rpShowTaskDetails, patchTask } from '../../../../actions';
-import ReactMarkdown from 'react-markdown';
 import FaCircleO from 'react-icons/lib/fa/circle-o';
 import TaskDetailsTopbar from './TaskDetailsTopbar';
 import TaskTitle from './TaskTitle/TaskTitle';
 import TaskIcons from './TaskIcons/TaskIcons';
 import TaskForm from '../../TaskManager/TaskForm/TaskForm';
 import Wysiwyg from './Wysiwyg/Wysiwyg';
+
 import './TaskDetails.css';
 
 class TaskDetails extends Component {
   componentWillMount() {
     const {
       currentPursuanceId,
-      getPursuances,
       tasks,
       getTasks,
-      getUsers,
-      pursuances, 
-      users,
       rightPanel
     } = this.props;
-
-    if (tasks.taskMap[rightPanel.taskGid]) {
-      this.setState({
-        taskDescription: tasks.taskMap[rightPanel.taskGid].deliverables
-      });
-    }
 
     if (rightPanel.taskGid && !tasks.taskMap[rightPanel.taskGid]) {
       const thisTasksPursuanceId = rightPanel.taskGid.split(/_/)[0];
@@ -42,6 +32,7 @@ class TaskDetails extends Component {
       }
     }
 
+    const { getPursuances, getUsers, pursuances, users } = this.props;
     if (Object.keys(users).length === 0) {
       getUsers();
     }
@@ -50,50 +41,9 @@ class TaskDetails extends Component {
     }
   }
 
-  componentDidMount() {
-    document.addEventListener('keydown', this.closeOnEsc, false);
-    document.addEventListener('keydown', this.refresh, false);
-  }
-
-  closeOnEsc = e => {
-    if (this.state.editMode === true && e.keyCode === 27) {
-      this.editModeToggle();
-    }
-  };
-
-  onSubmit = (a,b,c) => {
-    console.log(a);
-    console.log(b);
-    console.log(c);
-    if (this.state.editMode) {
-      const patchedTaskDescription = {
-        gid: this.props.rightPanel.taskGid,
-        deliverables: this.taskDescription
-      };
-      console.log('patching task', patchedTaskDescription);
-      this.setState({
-        editMode: false
-      });
-      patchTask(patchedTaskDescription);
-    }
-  };
-
-  refresh = () => {
-    this.setState({
-      refresh: !this.state.refresh
-    });
-  };
-
-  saveDeliverables = ({savedMarkdown}) => {
-    const { taskGid } = this.props.rightPanel;
-
-    patchTask({gid: taskGid, deliverables: savedMarkdown});
-  }
-
   render() {
     const { pursuances, currentPursuanceId, tasks, rpShowTaskDetails } = this.props;
     const { taskGid } = this.props.rightPanel;
-    const { editMode } = this.state;
     const task = tasks.taskMap[taskGid];
     if (!task) {
       if (taskGid) {
@@ -142,19 +92,6 @@ class TaskDetails extends Component {
             <div className="task-deliverables-ctn">
               <h4><strong>Description / Deliverables</strong></h4>
               <Wysiwyg taskGid={taskGid} attributeName='deliverables' patchTask={this.props.patchTask} />
-              {false && !editMode && ( // TODO REMOVE
-                <span>
-                  <ReactMarkdown
-                    source={task.deliverables}
-                    render={{Link: props => {
-                      if (props.href.startsWith('/')) {
-                        return <a href={props.href}>{props.children}</a>;
-                      }
-                      // If link to external site, open in new tab
-                      return <a href={props.href} target="_blank">{props.children}</a>;
-                    }}} />
-                </span>
-              )}
             </div>
             <div className="subtasks-ctn">
               <h4><strong>Subtasks</strong></h4>
