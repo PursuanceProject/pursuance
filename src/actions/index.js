@@ -183,10 +183,11 @@ export const clearPursuanceFormFields = () => ({
   type: 'PURSUANCE_FORM_CLEAR_FIELDS'
 });
 
-export const patchTask = task => ({
-  type: 'PATCH_TASK',
-  payload: patchTaskReq(task)
-});
+export const patchTask = task => {
+  return {
+    type: 'PATCH_TASK',
+    payload: patchTaskReq(task)
+  }};
 
 export const archiveTask = task => ({
   type: 'TASK_ARCHIVE',

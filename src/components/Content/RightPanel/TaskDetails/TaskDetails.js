@@ -141,7 +141,7 @@ class TaskDetails extends Component {
             </div>
             <div className="task-deliverables-ctn">
               <h4><strong>Description / Deliverables</strong></h4>
-              <Wysiwyg taskGid={taskGid} attributeName='deliverables' />
+              <Wysiwyg taskGid={taskGid} attributeName='deliverables' patchTask={this.props.patchTask} />
               {false && !editMode && ( // TODO REMOVE
                 <span>
                   <ReactMarkdown

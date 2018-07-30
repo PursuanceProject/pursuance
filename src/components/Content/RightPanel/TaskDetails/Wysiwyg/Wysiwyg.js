@@ -1,32 +1,36 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import { withRouter } from 'react-router-dom';
 import {EditorState, convertToRaw, convertFromRaw} from 'draft-js';
 import Editor from 'draft-js-plugins-editor';
 import createLinkifyPlugin from 'draft-js-linkify-plugin';
-import wysiwygStyles from './Wysiwyg.css';
+import createAutoListPlugin from 'draft-js-autolist-plugin'
+import './Wysiwyg.css';
 import {markdownToDraft, draftToMarkdown} from 'markdown-draft-js';
-import {patchTask} from '../../../../../actions';
 import ReactMarkdown from 'react-markdown';
+import createMarkdownPlugin from 'draft-js-markdown-plugin';
 
 const linkifyPlugin = createLinkifyPlugin();
+const autoListPlugin = createAutoListPlugin();
 
 const plugins = [
-  linkifyPlugin
+  autoListPlugin,
+  createMarkdownPlugin()
 ];
 
 class Wysiwyg extends Component {
   componentWillMount() {
-    const {tasks: { taskMap }, taskGid, attributeName} = this.props; 
-    console.log('tasks', taskMap);
-    console.log('tasksg', taskGid);
-    console.log('attributeName', attributeName);
+    const {tasks: { taskMap }, taskGid, attributeName} = this.props,
+      attributeValue = taskMap[taskGid][attributeName],
+      content = attributeValue ? markdownToDraft(attributeValue, {
+        remarkableOptions: {
+          html: true,
+          preserveNewlines: true
+        }
+      }) : markdownToDraft('');
 
+      console.log('attributeValue', attributeValue);
 
-
-    const attributeValue = taskMap[taskGid][attributeName],
-      content = attributeValue ? markdownToDraft(attributeValue) : markdownToDraft('');
-    console.log('attributeValue', attributeValue);
+    
 
     this.state = {
       editMode: false,
@@ -41,28 +45,29 @@ class Wysiwyg extends Component {
   };
 
   onChange = (editorState) => {
-    console.log(editorState);
     this.setState({
       editorState
     });
   };
 
   save = () => {
-    const markdown = draftToMarkdown(convertToRaw(this.state.editorState.getCurrentContent())),
+    const {patchTask} = this.props,
+      markdown = draftToMarkdown(convertToRaw(this.state.editorState.getCurrentContent())),
       payload = {gid: this.props.taskGid};
 
     payload[this.props.attributeName] = markdown;
 
+    patchTask(payload);
+
     this.setState({
       editMode: false
     });
-
-    patchTask(payload)
   }
 
   render() {
     const {tasks: {taskMap}} = this.props,
       attributeValue = taskMap[this.props.taskGid][this.props.attributeName];
+
     return (
       <div>          
         {
@@ -84,8 +89,9 @@ class Wysiwyg extends Component {
           !this.state.editMode && (
             <div>
               <ReactMarkdown
-                source={taskMap[this.props.taskGid][this.props.attributeName]}
+                source={attributeValue}
                 render={{Link: props => {
+                  console.log('props.href', props.href);
                   if (props.href.startsWith('/')) {
                     return <a href={props.href}>{props.children}</a>;
                   }
@@ -101,7 +107,4 @@ class Wysiwyg extends Component {
   }
 }
 
-export default withRouter(connect(
-  ({tasks}) => ({tasks}),
-  {patchTask}
-)(Wysiwyg));
+export default connect(({tasks}) => ({tasks}), null)(Wysiwyg);
