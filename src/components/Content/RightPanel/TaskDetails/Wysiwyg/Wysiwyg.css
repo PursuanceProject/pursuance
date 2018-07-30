@@ -1,11 +1,11 @@
 .wysiwyg {
   box-sizing: border-box;
-  border: 1px solid #ddd;
+  border: 1px solid #ccc;
   cursor: text;
   padding: 16px;
-  border-radius: 2px;
-  margin-bottom: 2em;
-  box-shadow: inset 0px 1px 8px -3px #ABABAB;
+  border-radius: 5px;
+  margin: 20px 0;
+  box-shadow: inset 0px 1px 8px 3px #ABABAB;
   background: #fefefe;
   color: black;
 }
@@ -16,11 +16,6 @@
 
 .wysiwyg-save,
 .wysiwyg-edit {
-  text-align: left;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 95%;
   border-radius: 5px;
   background-color: #000;
 }

@@ -98,12 +98,6 @@
   min-height: 64px;
 }
 
-.task-deliverables-header {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
 .task-deliverables-ctn a {
   color: #50b3fe;
 }
