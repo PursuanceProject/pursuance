@@ -155,15 +155,15 @@ class RawTask extends Component {
   }
 
   render() {
-    const { pursuances, taskData, currentPursuanceId } = this.props;
+    const { pursuances, taskData, currentPursuanceId, rightPanel } = this.props;
     const { showChildren } = this.state;
     const task = taskData;
-    const { placeholder, assignedTo } =
-      showAssignee(task, currentPursuanceId, pursuances);
-
+    const { placeholder, assignedTo } = showAssignee(task, currentPursuanceId, pursuances);
+    const hightlightTask = rightPanel.show && rightPanel.taskGid === taskData.gid;
+  
     return (
       <li className="li-task-ctn">
-        <div className="task-ctn">
+        <div className={hightlightTask ? 'task-ctn highlight' : 'task-ctn'}>
           <div className="toggle-ctn">
             {this.getTaskIcon(task, showChildren)}
           </div>
