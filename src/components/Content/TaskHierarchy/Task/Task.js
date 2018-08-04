@@ -159,11 +159,11 @@ class RawTask extends Component {
     const { showChildren } = this.state;
     const task = taskData;
     const { placeholder, assignedTo } = showAssignee(task, currentPursuanceId, pursuances);
-    const hightlightTask = rightPanel.show && rightPanel.taskGid === taskData.gid;
+    const highlightTask = rightPanel.show && rightPanel.taskGid === taskData.gid;
   
     return (
       <li className="li-task-ctn">
-        <div className={hightlightTask ? 'task-ctn highlight' : 'task-ctn'}>
+        <div className={highlightTask ? 'task-ctn highlight' : 'task-ctn'}>
           <div className="toggle-ctn">
             {this.getTaskIcon(task, showChildren)}
           </div>
