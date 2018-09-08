@@ -203,9 +203,8 @@ PostgREST's JWTs (JSON Web Tokens).  Hang tight!
 
 ## Linux Quickstart
 
-If you're trying to run Pursuance on a Debian-based Linux distro (such
-as Ubuntu) that does _not_ already have Go installed, then just run
-this one command:
+If you're trying to run Pursuance on an Ubuntu server that does _not_
+already have Go installed, then just run this one command:
 
 ```
 curl https://raw.githubusercontent.com/PursuanceProject/pursuance/develop/install_linux.sh | bash
@@ -279,7 +278,7 @@ npm run start
 Pursuance should now be running on <http://localhost:8080>!
 
 
-### Linux Instructions (for Debian, Ubuntu, and related)
+### Linux Instructions (for Ubuntu; works on Debian if other dependencies met)
 
 If you don't already have Node 7.x installed (`node --version` will tell
 you the installed version), install Node by running:
