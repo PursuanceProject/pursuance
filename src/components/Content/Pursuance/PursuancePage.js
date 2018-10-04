@@ -9,9 +9,10 @@ import DiscussView from './views/DiscussView';
 import ParticipantsView from './views/ParticipantsView';
 import RightPanel from '../RightPanel/RightPanel';
 import './PursuancePage.css';
+import ShortcutsModal from '../ShortcutsModal/ShortcutsModal'; 
 
 class PursuancePage extends Component {
-
+   
   componentWillMount() {
     let { setCurrentPursuance, match, currentPursuanceId } = this.props;
     currentPursuanceId = Number(match.params.pursuanceId) || currentPursuanceId;
@@ -20,21 +21,22 @@ class PursuancePage extends Component {
 
   render() {
     return (
-      <Router>
-        <div id="pursuance-page" className="content-ctn">
-          <nav id="pursuance-nav">
-            <PursuanceMenu />
-          </nav>
-          <article>
-            <Switch>
-              <Route exact path="/pursuance/:pursuanceId" component={TaskListView} />
-              <Route exact path="/pursuance/:pursuanceId/tasks" component={TaskListView} />
-              <Route exact path="/pursuance/:pursuanceId/calendar" component={CalendarView} />
-              <Route exact path="/pursuance/:pursuanceId/discuss/task/:taskGid" component={DiscussView} />
-              <Route exact path="/pursuance/:pursuanceId/participants" component={ParticipantsView} />
-            </Switch>
-            <RightPanel />
-          </article>
+    <Router>
+        <div id="pursuance-page" className="content-ctn" onKeyDown={(event) => {this.child.handleKeyDown(event);}} tabIndex="0">
+        <ShortcutsModal ref={instance => { this.child = instance; }} />
+        <nav id="pursuance-nav">
+        <PursuanceMenu />
+        </nav>
+        <article>
+          <Switch>
+            <Route exact path="/pursuance/:pursuanceId" component={TaskListView} />
+            <Route exact path="/pursuance/:pursuanceId/tasks" component={TaskListView} />
+            <Route exact path="/pursuance/:pursuanceId/calendar" component={CalendarView} />
+            <Route exact path="/pursuance/:pursuanceId/discuss/task/:taskGid" component={DiscussView} />
+            <Route exact path="/pursuance/:pursuanceId/participants" component={ParticipantsView} />
+          </Switch>
+          <RightPanel />
+        </article>
         </div>
       </Router>
     );
