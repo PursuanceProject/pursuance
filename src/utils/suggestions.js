@@ -13,7 +13,13 @@ const sortBySuggest = (suggest1, suggest2) => {
   return suggest1.suggestionName.localeCompare(suggest2.suggestionName);
 };
 
-export const scrollIntoViewOptions = { behavior: 'instant', block: 'nearest' };
+const userAgent = navigator.userAgent;
+let behaviorType = 'smooth';
+if (userAgent.indexOf('Firefox') === -1 && userAgent.indexOf('Chromium') === -1 && userAgent.indexOf('Chrome') > -1) {
+  behaviorType = 'instant';
+}
+
+export const scrollIntoViewOptions = { behavior: behaviorType, block: 'nearest' };
 if (window.browser === 'Firefox') {
   delete scrollIntoViewOptions.block;
 }
