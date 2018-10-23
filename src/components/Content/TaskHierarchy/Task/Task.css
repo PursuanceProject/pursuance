@@ -11,6 +11,10 @@
   min-height: 40px;
 }
 
+.task-ctn.highlight .task-row-ctn {
+  background-color: #4c4c4c;
+}
+
 .toggle-ctn {
   padding-right: 6px;
 }
