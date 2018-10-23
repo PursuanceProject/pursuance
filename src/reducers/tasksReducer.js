@@ -86,9 +86,17 @@ export default function(state = initialState, action) {
     case 'TASK_SET_ASSIGNEE_FULFILLED':
     // Fallthrough
     case 'PATCH_TASK_FULFILLED':
-      const patchedTask = action.payload;
-      patchedTask.subtask_gids =
-        state.taskMap[patchedTask.gid].subtask_gids || [];
+      const patchedTask = action.payload,
+        prevTaskState = state.taskMap[patchedTask.gid];
+
+      patchedTask.subtask_gids = prevTaskState.subtask_gids || [];
+      
+      if (prevTaskState.status !== 'Done' && patchedTask.status === 'Done') {
+        patchedTask.celebration = 'show';
+      } else {
+        patchedTask.celebration = 'hide';
+      }
+ 
       return Object.assign({}, state, {
         taskMap: Object.assign({}, state.taskMap, {
           [patchedTask.gid]: patchedTask

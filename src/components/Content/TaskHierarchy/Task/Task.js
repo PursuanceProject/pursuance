@@ -193,6 +193,7 @@ class RawTask extends Component {
               gid={task.gid}
               status={task.status}
               patchTask={this.props.patchTask}
+              showCelebration={task.celebration === 'show'}
             />
             <div className="task-assigned-to hide-small">
               <TaskAssigner

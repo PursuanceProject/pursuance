@@ -62,6 +62,7 @@ class TaskDetailsTopbar extends Component {
             gid={task.gid}
             status={task.status}
             patchTask={this.props.patchTask}
+            showCelebration={task.celebration === 'show'}
           />
           <div className="assigned-to-ctn">
             <TaskAssigner
