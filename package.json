@@ -3,7 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "draft-js": "^0.10.5",
+    "draft-js-autolist-plugin": "^2.0.0",
+    "draft-js-markdown-plugin": "^3.0.0",
+    "draft-js-plugins-editor": "^2.0.8",
     "glamor": "^2.20.40",
+    "markdown-draft-js": "^1.0.1",
+    "prismjs": "^1.15.0",
     "react": "^15.6.1",
     "react-animated-number": "^0.4.3",
     "react-big-calendar": "^0.19.0",

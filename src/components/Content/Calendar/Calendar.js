@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
-import {
-  getTasks,
-  getPursuances,
-  rpShowTaskDetails,
-} from '../../../actions';
+import {getTasks, getPursuances, rpShowTaskDetails} from '../../../actions';
 import BigCalendar from 'react-big-calendar';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import './Calendar.css';
@@ -14,7 +10,6 @@ import '../Content.css';
 BigCalendar.momentLocalizer(moment);
 
 class Calendar extends Component {
-
   componentDidMount() {
     const {
       getPursuances,
@@ -44,8 +39,7 @@ class Calendar extends Component {
           t.due_date &&
           t.status !== 'Done' &&
           t.assigned_to === user.username &&
-          (t.pursuance_id === currentPursuanceId ||
-           t.assigned_to_pursuance_id === currentPursuanceId)
+          (t.pursuance_id === currentPursuanceId || t.assigned_to_pursuance_id === currentPursuanceId)
       })
       .map((gid) => {
         const t = taskMap[gid];
@@ -99,5 +93,5 @@ export default connect(({ pursuances, currentPursuanceId, tasks, rightPanel, use
   ({ pursuances, currentPursuanceId, tasks, rightPanel, user }), {
     getTasks,
     getPursuances,
-    rpShowTaskDetails,
+    rpShowTaskDetails
 })(Calendar);

@@ -1,0 +1,21 @@
+.wysiwyg {
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  cursor: text;
+  padding: 16px;
+  border-radius: 5px;
+  margin: 20px 0;
+  box-shadow: inset 0px 1px 8px 3px #ABABAB;
+  background: #fefefe;
+  color: black;
+}
+
+.wysiwyg :global(.public-DraftEditor-content) {
+  min-height: 140px;
+}
+
+.wysiwyg-save,
+.wysiwyg-edit {
+  border-radius: 5px;
+  background-color: #000;
+}
