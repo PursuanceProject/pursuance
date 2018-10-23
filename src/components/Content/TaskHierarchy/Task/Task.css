@@ -159,6 +159,10 @@
   border-color: #fff;
 }
 
+.highlight-task {
+  background-color: #50b3fe;
+}
+
 @media (max-width: 1279px) {
   #task-hierarchy .task-row-ctn {
     padding: 0;

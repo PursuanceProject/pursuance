@@ -89,6 +89,7 @@ export default function(state = initialState, action) {
       const patchedTask = action.payload;
       patchedTask.subtask_gids =
         state.taskMap[patchedTask.gid].subtask_gids || [];
+
       return Object.assign({}, state, {
         taskMap: Object.assign({}, state.taskMap, {
           [patchedTask.gid]: patchedTask
@@ -163,6 +164,42 @@ export default function(state = initialState, action) {
         })
       });
     }
+
+    case 'MOVE_TASK':
+      const { oldParentGid, newParentGid, taskGid } = action;
+      const newMap = Object.assign({}, state.taskMap);
+      const newParentTask = newMap[newParentGid];
+      const oldParentTask = newMap[oldParentGid];
+      const oldParentSubtaskGids = oldParentTask.subtask_gids.filter(
+        gid => gid !== taskGid
+      );
+      const newSubtaskGids = [...newParentTask.subtask_gids, taskGid];
+      const newSubtasks = newSubtaskGids.filter(
+        (gid, idx) => newSubtaskGids.indexOf(gid) === idx
+      );
+
+      newSubtasks.sort(function(gid1, gid2) {
+        const t1Date = new Date(newMap[gid1].created);
+        const t2Date = new Date(newMap[gid2].created);
+        if (t1Date === t2Date) {
+          return ( gid1 < gid2) ? -1 : ( gid1 > gid2 ) ? 1 : 0;
+        } else {
+          return (t1Date > t2Date) ? 1 : -1;
+        }
+      });
+
+      return Object.assign({}, state, {
+        taskMap: Object.assign(newMap, {
+          [oldParentGid]: {
+            ...oldParentTask,
+            subtask_gids: oldParentSubtaskGids
+          },
+          [newParentGid]: {
+            ...newParentTask,
+            subtask_gids: newSubtasks
+          }
+        })
+      });
 
     default:
       return state;
