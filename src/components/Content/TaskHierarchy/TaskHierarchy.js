@@ -35,6 +35,12 @@ class TaskHierarchy extends Component {
     }
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.currentPursuanceId !== this.props.currentPursuanceId) {
+      this.componentDidMount();
+    }
+  }
+
   componentWillUnmount(){
     const { showSuccessToast, removeSuccessToast } = this.props;
     if (showSuccessToast) {
@@ -78,6 +84,13 @@ class TaskHierarchy extends Component {
     }
   }
 
+  getPursuanceName = (pursuances, id) => {
+    const rawPursuance = pursuances[id];
+    if (rawPursuance !== undefined) {
+      return rawPursuance.name;
+    }
+  }
+
   renderHierarchy = () => {
     const { currentPursuanceId } = this.props;
     const { rootTaskGids, taskMap } = this.props.tasks;
@@ -102,18 +115,9 @@ class TaskHierarchy extends Component {
   }
 
   render() {
-    const { pursuances, currentPursuanceId } = this.props;
     return (
       <div className="content">
         <div id="task-hierarchy">
-          <div id="task-hierarchy-title">
-            <h2 id="tasks-title">Tasks:&nbsp;</h2>
-            <h2 id="pursuance-title">
-              {
-                pursuances[currentPursuanceId] && pursuances[currentPursuanceId].name
-              }
-            </h2>
-          </div>
           <div id="task-labels">
             <div>
               <span>
@@ -142,11 +146,11 @@ class TaskHierarchy extends Component {
             </div>
           </div>
           <ToastContainer
-              position="top-center"
-              type="success"
-              autoClose={4000}
-              hideProgressBar={false}
-              newestOnTop={false} />
+            position="top-center"
+            type="success"
+            autoClose={4000}
+            hideProgressBar={false}
+            newestOnTop={false} />
           {this.renderHierarchy()}
         </div>
       </div>

@@ -3,18 +3,6 @@
   margin-right: 50px;
 }
 
-#task-hierarchy-title {
-  text-align: center;
-  padding-bottom: 18px;
-  margin: 8px 0;
-}
-
-#task-hierarchy-title h2 {
-  display: inline-block;
-  color: #fcfcfc;
-  margin: 0;
-}
-
 #task-labels {
   display: flex;
   padding: 0 3px 3px 40px;

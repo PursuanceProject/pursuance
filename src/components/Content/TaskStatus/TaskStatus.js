@@ -38,6 +38,8 @@ class TaskStatus extends Component {
             {this.displayStatus(statusName)}
           </MenuItem>
         );
+      } else {
+        return false;
       }
     });
   }

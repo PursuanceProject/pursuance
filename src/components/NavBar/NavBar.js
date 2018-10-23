@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { Link, withRouter } from 'react-router-dom';
 import { Navbar, NavItem, Nav, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import FaBell from 'react-icons/lib/fa/bell';
 import SignUp from './SignUp/SignUp';
 import LogIn from './LogIn/LogIn';
 import NotificationsModal from './NotificationsModal/NotificationsModal';
 import UserSettingsPopover from './UserSettingsPopover';
+import JumpToPursuance from './JumpToPursuance/JumpToPursuance';
 import './NavBar.css';
 
 class NavBar extends Component {
@@ -17,14 +19,14 @@ class NavBar extends Component {
   );
 
   render() {
-    const { authenticated, username, contributionPoints } = this.props;
+    const { user } = this.props;
+    const { authenticated, username, contributionPoints } = user;
     return (
       <Navbar collapseOnSelect>
         <Navbar.Header>
           <Navbar.Brand>
             <Link to="/">Pursuance</Link>
           </Navbar.Brand>
-          <Navbar.Toggle />
         </Navbar.Header>
         <Navbar.Collapse>
           <ul className="nav navbar-nav">
@@ -79,10 +81,14 @@ class NavBar extends Component {
               )
             }
           </Nav>
+          {authenticated &&
+            <JumpToPursuance history={this.props.history}/>
+          }
         </Navbar.Collapse>
-      </Navbar>
+      </Navbar> 
     );
   }
 }
 
-export default NavBar;
+export default withRouter(connect(
+  ({ user }) => ({ user }))(NavBar));
