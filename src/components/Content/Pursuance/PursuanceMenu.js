@@ -6,10 +6,12 @@ import PursuanceMenuItem from './PursuanceMenuItem';
 import FaCheckSquareO from 'react-icons/lib/fa/check-square-o';
 import FaCalendar from 'react-icons/lib/fa/calendar';
 import CommentsO from 'react-icons/lib/fa/comments-o';
+import Planet from 'react-icons/lib/io/planet';
 // import FolderOpen from 'react-icons/lib/fa/folder-open';
 // import Group from 'react-icons/lib/fa/group';
 // import Rocket from 'react-icons/lib/fa/rocket';
 // import PlusCircle from 'react-icons/lib/fa/plus-circle';
+
 import './PursuanceMenu.css';
 
 const PursuanceMenu = () => {
@@ -59,6 +61,12 @@ const PursuanceMenu = () => {
           icon={<Rocket size={28} />}
         />
         */}
+        <PursuanceMenuItem
+          className="pursuance-bottom-btn"
+          label='Universe'
+          action='universe'
+          icon={<Planet size={28} />}
+        />
       </div>
     </ButtonGroup>
   );
